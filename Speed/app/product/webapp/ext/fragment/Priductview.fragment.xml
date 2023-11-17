@@ -1,0 +1,5 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:macros="sap.fe.macros">
+	<VBox>
+		<Button core:require="{ handler: 'speedpro/product/ext/fragment/Priductview'}" text="Priductview" press="handler.onPress" />
+	</VBox>
+</core:FragmentDefinition>
