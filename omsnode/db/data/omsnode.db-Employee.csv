@@ -1,0 +1,14 @@
+ID,company_ID,name,email,contactNumber,designation
+
+LT404,LT03,Karthikeyan Kumaravelu,karthikeyan.k@ladera.com,7708070434,Java Developer
+LT401,TAZ25,Velayutham Ayyappan,Velayutham.a@ladera.com,1234567890,Java Developer
+
+LT300,LT03,Ragul ,ragul.l@laderara.com,9887654321,Hybris
+LT301,TAZ25,Venkateshan ,venkateshan.k@laderara.com,9876543214,Hybris
+LT200,LT03,Ani rose,ani.a@ladera.com,8793461237,Front End Development
+LT201,TAZ25,Selva,sel.s@ladera.com,8793461587,Front End Development
+
+IBM001,IBM023,Jassim,jas@ibm.co,7812378945,Spartacus
+IBM002,IBM023,Kumaran,maran@ibm.co,6789096342,Spartacus
+IBM1400,IBM023,Surekha,suerakha@ibm.co,9087564323,Back End Development
+IBM401,IBM023,Kevin,kevin@ibm.co,6123457890,Back End Development

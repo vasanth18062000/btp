@@ -1,0 +1,5 @@
+POST http://localhost:8080/odata/v4/AdminService/Customer
+Content-Type: application/json
+
+{"ID": 318, "name": "Venkateshan ", "emailId": "venkat@ladera.com","phoneNumber":1234567890}
+

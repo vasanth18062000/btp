@@ -1,0 +1,5 @@
+ID,name,city,locality,pincode,foodCourt_ID
+
+DLF001,DLF,Chennai,Porur,600050,HUB001
+TAZ25,Tamarai International,Chennai,Guindy,600234,HUB001
+TCS111,TATA Consultancy,Bangalore,Electronic City,12345432,HUB001

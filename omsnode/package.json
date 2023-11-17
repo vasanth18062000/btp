@@ -1,0 +1,36 @@
+{
+  "name": "omsnode",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/ux-specification": "^1.108.16"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-project2": "cds watch --open project2/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-fiori": "cds watch --open fiori/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-companyview": "cds watch --open companyview/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-employeeview": "cds watch --open employeeview/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-itpark": "cds watch --open itpark/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-foodcourt": "cds watch --open foodcourt/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "sapux": [
+    "app/project1",
+    "app/project2",
+    "app/fiori",
+    "app/project1",
+    "app/companyview",
+    "app/employeeview",
+    "app/itpark",
+    "app/foodcourt"
+  ]
+}
