@@ -1,0 +1,2 @@
+doctorId,doctorFirstName,doctorLastName,dateOfBirth,age,mail,mobileNumber,gender,doctorImage,specialist_specialistId,address_addressId,patient_patientId
+3001,Leo,Das,1965-04-03,37,leo@gmail.com,9846474784,MALE,image,7001,2003,1001
