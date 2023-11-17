@@ -1,0 +1,5 @@
+Id,status,code,value
+301,Active,1,Communication address
+301,Active,2,Communication address
+302,Inactive,3,Communication address
+202,Inactive,4,Permenent address
