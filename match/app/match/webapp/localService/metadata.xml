@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="ProcessorService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Team" EntityType="ProcessorService.Team">
+                    <NavigationPropertyBinding Path="coach" Target="Coach"/>
+                </EntitySet>
+                <EntitySet Name="Coach" EntityType="ProcessorService.Coach">
+                    <NavigationPropertyBinding Path="gender" Target="Gender"/>
+                    <NavigationPropertyBinding Path="team" Target="Team"/>
+                </EntitySet>
+                <EntitySet Name="Players" EntityType="ProcessorService.Players">
+                    <NavigationPropertyBinding Path="gender" Target="Gender"/>
+                    <NavigationPropertyBinding Path="team" Target="Team"/>
+                </EntitySet>
+                <EntitySet Name="Match" EntityType="ProcessorService.Match">
+                    <NavigationPropertyBinding Path="location" Target="Location"/>
+                    <NavigationPropertyBinding Path="team" Target="Team"/>
+                </EntitySet>
+                <EntitySet Name="Location" EntityType="ProcessorService.Location"/>
+                <EntitySet Name="Gender" EntityType="ProcessorService.Gender"/>
+            </EntityContainer>
+            <EntityType Name="Team">
+                <Key>
+                    <PropertyRef Name="teamID"/>
+                </Key>
+                <Property Name="teamID" Type="Edm.String" Nullable="false"/>
+                <Property Name="teamName" Type="Edm.String"/>
+                <Property Name="logo" Type="Edm.String"/>
+                <Property Name="homeground" Type="Edm.String"/>
+                <Property Name="noOfPlayers" Type="Edm.String"/>
+                <NavigationProperty Name="coach" Type="ProcessorService.Coach">
+                    <ReferentialConstraint Property="coach_coachID" ReferencedProperty="coachID"/>
+                </NavigationProperty>
+                <Property Name="coach_coachID" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Coach">
+                <Key>
+                    <PropertyRef Name="coachID"/>
+                </Key>
+                <Property Name="coachID" Type="Edm.String" Nullable="false"/>
+                <Property Name="coachName" Type="Edm.String"/>
+                <Property Name="age" Type="Edm.Int32"/>
+                <Property Name="experience" Type="Edm.Int32"/>
+                <NavigationProperty Name="gender" Type="ProcessorService.Gender">
+                    <ReferentialConstraint Property="gender_gender" ReferencedProperty="gender"/>
+                </NavigationProperty>
+                <Property Name="gender_gender" Type="Edm.String"/>
+                <NavigationProperty Name="team" Type="ProcessorService.Team">
+                    <ReferentialConstraint Property="team_teamID" ReferencedProperty="teamID"/>
+                </NavigationProperty>
+                <Property Name="team_teamID" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Players">
+                <Key>
+                    <PropertyRef Name="playerID"/>
+                </Key>
+                <Property Name="playerID" Type="Edm.String" Nullable="false"/>
+                <Property Name="playerName" Type="Edm.String"/>
+                <Property Name="position" Type="Edm.String"/>
+                <NavigationProperty Name="gender" Type="ProcessorService.Gender">
+                    <ReferentialConstraint Property="gender_gender" ReferencedProperty="gender"/>
+                </NavigationProperty>
+                <Property Name="gender_gender" Type="Edm.String"/>
+                <NavigationProperty Name="team" Type="ProcessorService.Team">
+                    <ReferentialConstraint Property="team_teamID" ReferencedProperty="teamID"/>
+                </NavigationProperty>
+                <Property Name="team_teamID" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Match">
+                <Key>
+                    <PropertyRef Name="matchID"/>
+                </Key>
+                <Property Name="matchID" Type="Edm.String" Nullable="false"/>
+                <Property Name="matchDate" Type="Edm.Date"/>
+                <Property Name="groundName" Type="Edm.String"/>
+                <NavigationProperty Name="location" Type="ProcessorService.Location">
+                    <ReferentialConstraint Property="location_stadium" ReferencedProperty="stadium"/>
+                </NavigationProperty>
+                <Property Name="location_stadium" Type="Edm.String"/>
+                <NavigationProperty Name="team" Type="ProcessorService.Team">
+                    <ReferentialConstraint Property="team_teamID" ReferencedProperty="teamID"/>
+                </NavigationProperty>
+                <Property Name="team_teamID" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Location">
+                <Key>
+                    <PropertyRef Name="stadium"/>
+                </Key>
+                <Property Name="stadium" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="Gender">
+                <Key>
+                    <PropertyRef Name="gender"/>
+                </Key>
+                <Property Name="gender" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <Annotations Target="ProcessorService.Location/stadium">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="CHEPAK"/>
+                            <PropertyValue Property="Value" String="CH"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="MUMBAI"/>
+                            <PropertyValue Property="Value" String="MB"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="BANGLORE"/>
+                            <PropertyValue Property="Value" String="BGL"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ProcessorService.Gender/gender">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="MALE"/>
+                            <PropertyValue Property="Value" String="M"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="FEMALE"/>
+                            <PropertyValue Property="Value" String="F"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="OTHERS"/>
+                            <PropertyValue Property="Value" String="O"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
