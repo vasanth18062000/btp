@@ -1,0 +1,4 @@
+id,status,code,value
+101, True, 101, Primary
+102, True, 102, Secondary
+103, True, 103, Teritary

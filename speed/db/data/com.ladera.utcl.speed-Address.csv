@@ -1,0 +1,4 @@
+id,addressLine1,addressLine2,addressLine3,addressLine4,city_id,state_id,pincode,country_code,customer_id,addressType_id
+101, 103, Sathya Nagar, Ramapuram, Chennai, 101, 101, 600028, 101, 101, 101
+102, 5, Mohammed Nagar, UDT road, Pollachi, 102, 102, 642001, 102, 102, 102
+103, 2, ladera Technology, DLF, Coimbatore, 103, 103, 631027, 103, 103, 103

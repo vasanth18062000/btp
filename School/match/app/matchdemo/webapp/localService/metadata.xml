@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="ProcessorService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Team" EntityType="ProcessorService.Team">
+                    <NavigationPropertyBinding Path="coach" Target="Coach"/>
+                    <NavigationPropertyBinding Path="players" Target="Players"/>
+                </EntitySet>
+                <EntitySet Name="Coach" EntityType="ProcessorService.Coach">
+                    <NavigationPropertyBinding Path="gender" Target="Gender"/>
+                    <NavigationPropertyBinding Path="team" Target="Team"/>
+                </EntitySet>
+                <EntitySet Name="Players" EntityType="ProcessorService.Players">
+                    <NavigationPropertyBinding Path="gender" Target="Gender"/>
+                    <NavigationPropertyBinding Path="team" Target="Team"/>
+                </EntitySet>
+                <EntitySet Name="Match" EntityType="ProcessorService.Match">
+                    <NavigationPropertyBinding Path="location" Target="Location"/>
+                    <NavigationPropertyBinding Path="team" Target="Team"/>
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="Match"/>
+                </EntitySet>
+                <EntitySet Name="Location" EntityType="ProcessorService.Location"/>
+                <EntitySet Name="Gender" EntityType="ProcessorService.Gender"/>
+            </EntityContainer>
+            <EntityType Name="Team">
+                <Key>
+                    <PropertyRef Name="teamID"/>
+                </Key>
+                <Property Name="teamID" Type="Edm.String" Nullable="false"/>
+                <Property Name="teamName" Type="Edm.String"/>
+                <Property Name="logo" Type="Edm.String"/>
+                <Property Name="homeground" Type="Edm.String"/>
+                <Property Name="noOfPlayers" Type="Edm.String"/>
+                <NavigationProperty Name="coach" Type="ProcessorService.Coach">
+                    <ReferentialConstraint Property="coach_coachID" ReferencedProperty="coachID"/>
+                </NavigationProperty>
+                <Property Name="coach_coachID" Type="Edm.String"/>
+                <NavigationProperty Name="players" Type="Collection(ProcessorService.Players)" Partner="team"/>
+            </EntityType>
+            <EntityType Name="Coach">
+                <Key>
+                    <PropertyRef Name="coachID"/>
+                </Key>
+                <Property Name="coachID" Type="Edm.String" Nullable="false"/>
+                <Property Name="coachName" Type="Edm.String"/>
+                <Property Name="age" Type="Edm.Int32"/>
+                <Property Name="experience" Type="Edm.Int32"/>
+                <NavigationProperty Name="gender" Type="ProcessorService.Gender">
+                    <ReferentialConstraint Property="gender_gender" ReferencedProperty="gender"/>
+                </NavigationProperty>
+                <Property Name="gender_gender" Type="Edm.String"/>
+                <NavigationProperty Name="team" Type="ProcessorService.Team">
+                    <ReferentialConstraint Property="team_teamID" ReferencedProperty="teamID"/>
+                </NavigationProperty>
+                <Property Name="team_teamID" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Players">
+                <Key>
+                    <PropertyRef Name="playerID"/>
+                </Key>
+                <Property Name="playerID" Type="Edm.String" Nullable="false"/>
+                <Property Name="playerName" Type="Edm.String"/>
+                <Property Name="position" Type="Edm.String"/>
+                <NavigationProperty Name="gender" Type="ProcessorService.Gender">
+                    <ReferentialConstraint Property="gender_gender" ReferencedProperty="gender"/>
+                </NavigationProperty>
+                <Property Name="gender_gender" Type="Edm.String"/>
+                <NavigationProperty Name="team" Type="ProcessorService.Team" Partner="players">
+                    <ReferentialConstraint Property="team_teamID" ReferencedProperty="teamID"/>
+                </NavigationProperty>
+                <Property Name="team_teamID" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Match">
+                <Key>
+                    <PropertyRef Name="matchID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="matchID" Type="Edm.String" Nullable="false"/>
+                <Property Name="matchDate" Type="Edm.Date"/>
+                <Property Name="groundName" Type="Edm.String"/>
+                <NavigationProperty Name="location" Type="ProcessorService.Location">
+                    <ReferentialConstraint Property="location_stadium" ReferencedProperty="stadium"/>
+                </NavigationProperty>
+                <Property Name="location_stadium" Type="Edm.String"/>
+                <NavigationProperty Name="team" Type="ProcessorService.Team">
+                    <ReferentialConstraint Property="team_teamID" ReferencedProperty="teamID"/>
+                </NavigationProperty>
+                <Property Name="team_teamID" Type="Edm.String"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="ProcessorService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="ProcessorService.Match"/>
+            </EntityType>
+            <EntityType Name="Location">
+                <Key>
+                    <PropertyRef Name="stadium"/>
+                </Key>
+                <Property Name="stadium" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="Gender">
+                <Key>
+                    <PropertyRef Name="gender"/>
+                </Key>
+                <Property Name="gender" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="DraftAdministrativeData">
+                <Key>
+                    <PropertyRef Name="DraftUUID"/>
+                </Key>
+                <Property Name="DraftUUID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsCreatedByMe" Type="Edm.Boolean"/>
+                <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="InProcessByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
+            </EntityType>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="ProcessorService.Match"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="ProcessorService.Match"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="ProcessorService.Match"/>
+                <ReturnType Type="ProcessorService.Match"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="ProcessorService.Match"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="ProcessorService.Match"/>
+            </Action>
+            <Annotations Target="ProcessorService.EntityContainer/Match">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="ProcessorService.draftActivate"/>
+                        <PropertyValue Property="EditAction" String="ProcessorService.draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="ProcessorService.draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ProcessorService.Match/IsActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="ProcessorService.Match/HasActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="ProcessorService.Match/HasDraftEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="ProcessorService.Match/DraftAdministrativeData">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="ProcessorService.Location/stadium">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="CHEPAK"/>
+                            <PropertyValue Property="Value" String="CH"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="MUMBAI"/>
+                            <PropertyValue Property="Value" String="MB"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="BANGLORE"/>
+                            <PropertyValue Property="Value" String="BGL"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ProcessorService.Gender/gender">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="MALE"/>
+                            <PropertyValue Property="Value" String="M"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="FEMALE"/>
+                            <PropertyValue Property="Value" String="F"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="OTHERS"/>
+                            <PropertyValue Property="Value" String="O"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ProcessorService.DraftAdministrativeData">
+                <Annotation Term="Common.Label" String="{i18n>Draft_DraftAdministrativeData}"/>
+                </Annotations>
+                <Annotations Target="ProcessorService.DraftAdministrativeData/DraftUUID">
+                    <Annotation Term="UI.Hidden" Bool="true"/>
+                    <Annotation Term="Common.Label" String="{i18n>Draft_DraftUUID}"/>
+                    </Annotations>
+                    <Annotations Target="ProcessorService.DraftAdministrativeData/CreationDateTime">
+                        <Annotation Term="Common.Label" String="{i18n>Draft_CreationDateTime}"/>
+                        </Annotations>
+                        <Annotations Target="ProcessorService.DraftAdministrativeData/CreatedByUser">
+                            <Annotation Term="Common.Label" String="{i18n>Draft_CreatedByUser}"/>
+                            </Annotations>
+                            <Annotations Target="ProcessorService.DraftAdministrativeData/DraftIsCreatedByMe">
+                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsCreatedByMe}"/>
+                                </Annotations>
+                                <Annotations Target="ProcessorService.DraftAdministrativeData/LastChangeDateTime">
+                                    <Annotation Term="Common.Label" String="{i18n>Draft_LastChangeDateTime}"/>
+                                    </Annotations>
+                                    <Annotations Target="ProcessorService.DraftAdministrativeData/LastChangedByUser">
+                                        <Annotation Term="Common.Label" String="{i18n>Draft_LastChangedByUser}"/>
+                                        </Annotations>
+                                        <Annotations Target="ProcessorService.DraftAdministrativeData/InProcessByUser">
+                                            <Annotation Term="Common.Label" String="{i18n>Draft_InProcessByUser}"/>
+                                            </Annotations>
+                                            <Annotations Target="ProcessorService.DraftAdministrativeData/DraftIsProcessedByMe">
+                                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                                <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsProcessedByMe}"/>
+                                                </Annotations>
+                                            </Schema>
+                                        </edmx:DataServices>
+                                    </edmx:Edmx>
