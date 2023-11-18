@@ -1,0 +1,11 @@
+ID,title,category,price,author,status_code,publisher_ID
+1,THE PALM-WINE DRINKARD,Fantasy,1200,Amos Tutuola,A,101
+2,The Lion the Witch and the Wardrobe,Fantasy,985,C.S. Lewis,A,101
+3,Harry Potter and the Prisoner of Azkaban,Fantasy,2200,J.K. Rowling,A,102
+4,Destination Wedding,Friction,999,Basu Diksha,A,102
+5,The Inheritance of Loss,Friction,800,Desai Kiran,A,102
+6,The Murder of Roger Ackroyd,Thriller,1320,Agatha Christie,A,101
+7,The Woman in White,Thriller,1001,Wilkie Collins,A,101
+8,Rebecca T,Mystery,1800,Daphne Du Maurier,A,102
+9,And Then There Were None,Mystery,2200,Christie,A,102
+10,The Man Who Know Infinity,Maths,600,Robert kanigal,NA,101

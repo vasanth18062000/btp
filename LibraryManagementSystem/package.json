@@ -1,0 +1,28 @@
+{
+  "name": "LibraryManagementSystem",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/ux-specification": "^1.108.16"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-library": "cds watch --open library/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-libraries": "cds watch --open libraries/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-libraryproject": "cds watch --open libraryproject/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "sapux": [
+    "app/library",
+    "app/libraries",
+    "app/libraryproject",
+    "app/library"
+  ]
+}

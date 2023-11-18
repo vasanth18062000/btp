@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="LibraryService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Member" EntityType="LibraryService.Member">
+                    <NavigationPropertyBinding Path="address" Target="Address"/>
+                </EntitySet>
+                <EntitySet Name="Book" EntityType="LibraryService.Book">
+                    <NavigationPropertyBinding Path="status" Target="Status"/>
+                    <NavigationPropertyBinding Path="publisher" Target="Publisher"/>
+                </EntitySet>
+                <EntitySet Name="Staff" EntityType="LibraryService.Staff"/>
+                <EntitySet Name="Report" EntityType="LibraryService.Report">
+                    <NavigationPropertyBinding Path="user" Target="Member"/>
+                    <NavigationPropertyBinding Path="book" Target="Book"/>
+                </EntitySet>
+                <EntitySet Name="Publisher" EntityType="LibraryService.Publisher"/>
+                <EntitySet Name="Address" EntityType="LibraryService.Address"/>
+                <EntitySet Name="Status" EntityType="LibraryService.Status">
+                    <NavigationPropertyBinding Path="texts" Target="Status_texts"/>
+                    <NavigationPropertyBinding Path="localized" Target="Status_texts"/>
+                </EntitySet>
+                <EntitySet Name="Status_texts" EntityType="LibraryService.Status_texts"/>
+            </EntityContainer>
+            <EntityType Name="Member">
+                <Key>
+                    <PropertyRef Name="UserID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="UserID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="firstname" Type="Edm.String"/>
+                <Property Name="lastname" Type="Edm.String"/>
+                <Property Name="email" Type="Edm.String"/>
+                <Property Name="phonenumber" Type="Edm.String"/>
+                <NavigationProperty Name="address" Type="LibraryService.Address">
+                    <ReferentialConstraint Property="address_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="address_ID" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="Book">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="title" Type="Edm.String"/>
+                <Property Name="category" Type="Edm.String"/>
+                <Property Name="price" Type="Edm.Double"/>
+                <Property Name="author" Type="Edm.String"/>
+                <NavigationProperty Name="status" Type="LibraryService.Status">
+                    <ReferentialConstraint Property="status_code" ReferencedProperty="code"/>
+                </NavigationProperty>
+                <Property Name="status_code" Type="Edm.String"/>
+                <NavigationProperty Name="publisher" Type="LibraryService.Publisher">
+                    <ReferentialConstraint Property="publisher_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="publisher_ID" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="Staff">
+                <Key>
+                    <PropertyRef Name="staffId"/>
+                </Key>
+                <Property Name="staffId" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="name" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Report">
+                <Key>
+                    <PropertyRef Name="registernumber"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="registernumber" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="user" Type="LibraryService.Member">
+                    <ReferentialConstraint Property="user_UserID" ReferencedProperty="UserID"/>
+                </NavigationProperty>
+                <Property Name="user_UserID" Type="Edm.Int32"/>
+                <NavigationProperty Name="book" Type="LibraryService.Book">
+                    <ReferentialConstraint Property="book_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="book_ID" Type="Edm.Int32"/>
+                <Property Name="issueDate" Type="Edm.Date"/>
+                <Property Name="returnDate" Type="Edm.Date"/>
+            </EntityType>
+            <EntityType Name="Publisher">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="name" Type="Edm.String"/>
+                <Property Name="dateOfPublish" Type="Edm.Date"/>
+            </EntityType>
+            <EntityType Name="Address">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="doorNo" Type="Edm.String"/>
+                <Property Name="street" Type="Edm.String"/>
+                <Property Name="city" Type="Edm.String"/>
+                <Property Name="State" Type="Edm.String"/>
+                <Property Name="pincode" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Status">
+                <Key>
+                    <PropertyRef Name="code"/>
+                </Key>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.String" Nullable="false"/>
+                <NavigationProperty Name="texts" Type="Collection(LibraryService.Status_texts)">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <NavigationProperty Name="localized" Type="LibraryService.Status_texts">
+                    <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="Status_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="code"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <Annotations Target="LibraryService.Member/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                </Annotations>
+                <Annotations Target="LibraryService.Member/createdBy">
+                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                    <Annotation Term="Core.Immutable" Bool="true"/>
+                    <Annotation Term="Core.Computed" Bool="true"/>
+                    <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                        <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                        </Annotations>
+                        <Annotations Target="LibraryService.Member/modifiedAt">
+                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                            <Annotation Term="Core.Computed" Bool="true"/>
+                            <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                            </Annotations>
+                            <Annotations Target="LibraryService.Member/modifiedBy">
+                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                <Annotation Term="Core.Computed" Bool="true"/>
+                                <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                    <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                    </Annotations>
+                                    <Annotations Target="LibraryService.Book/status_code">
+                                        <Annotation Term="Common.ValueList">
+                                            <Record Type="Common.ValueListType">
+                                                <PropertyValue Property="Label" String="Status"/>
+                                                <PropertyValue Property="CollectionPath" String="Status"/>
+                                                <PropertyValue Property="Parameters">
+                                                    <Collection>
+                                                        <Record Type="Common.ValueListParameterInOut">
+                                                            <PropertyValue Property="LocalDataProperty" PropertyPath="status_code"/>
+                                                            <PropertyValue Property="ValueListProperty" String="code"/>
+                                                        </Record>
+                                                        <Record Type="Common.ValueListParameterDisplayOnly">
+                                                            <PropertyValue Property="ValueListProperty" String="name"/>
+                                                        </Record>
+                                                    </Collection>
+                                                </PropertyValue>
+                                            </Record>
+                                        </Annotation>
+                                    </Annotations>
+                                    <Annotations Target="LibraryService.Report/createdAt">
+                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                        <Annotation Term="Core.Immutable" Bool="true"/>
+                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                        <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                                        </Annotations>
+                                        <Annotations Target="LibraryService.Report/createdBy">
+                                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                            <Annotation Term="Core.Immutable" Bool="true"/>
+                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                            <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                                </Annotations>
+                                                <Annotations Target="LibraryService.Report/modifiedAt">
+                                                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                                    <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                                                    </Annotations>
+                                                    <Annotations Target="LibraryService.Report/modifiedBy">
+                                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                                        <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                            <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                                            </Annotations>
+                                                            <Annotations Target="LibraryService.Status">
+                                                                <Annotation Term="UI.Identification">
+                                                                    <Collection>
+                                                                        <Record Type="UI.DataField">
+                                                                            <PropertyValue Property="Value" Path="name"/>
+                                                                        </Record>
+                                                                    </Collection>
+                                                                </Annotation>
+                                                            </Annotations>
+                                                            <Annotations Target="LibraryService.Status/name">
+                                                                <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                </Annotations>
+                                                                <Annotations Target="LibraryService.Status/descr">
+                                                                    <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                    </Annotations>
+                                                                    <Annotations Target="LibraryService.Status/code">
+                                                                        <Annotation Term="Validation.AllowedValues">
+                                                                            <Collection>
+                                                                                <Record Type="Validation.AllowedValue">
+                                                                                    <Annotation Term="Core.SymbolicName" String="Available"/>
+                                                                                    <PropertyValue Property="Value" String="A"/>
+                                                                                </Record>
+                                                                                <Record Type="Validation.AllowedValue">
+                                                                                    <Annotation Term="Core.SymbolicName" String="NotAvailable"/>
+                                                                                    <PropertyValue Property="Value" String="NA"/>
+                                                                                </Record>
+                                                                            </Collection>
+                                                                        </Annotation>
+                                                                    </Annotations>
+                                                                    <Annotations Target="LibraryService.Status_texts/locale">
+                                                                        <Annotation Term="Common.Label" String="{i18n>LanguageCode}"/>
+                                                                        </Annotations>
+                                                                        <Annotations Target="LibraryService.Status_texts/name">
+                                                                            <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                            </Annotations>
+                                                                            <Annotations Target="LibraryService.Status_texts/descr">
+                                                                                <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                </Annotations>
+                                                                                <Annotations Target="LibraryService.Status_texts/code">
+                                                                                    <Annotation Term="Validation.AllowedValues">
+                                                                                        <Collection>
+                                                                                            <Record Type="Validation.AllowedValue">
+                                                                                                <Annotation Term="Core.SymbolicName" String="Available"/>
+                                                                                                <PropertyValue Property="Value" String="A"/>
+                                                                                            </Record>
+                                                                                            <Record Type="Validation.AllowedValue">
+                                                                                                <Annotation Term="Core.SymbolicName" String="NotAvailable"/>
+                                                                                                <PropertyValue Property="Value" String="NA"/>
+                                                                                            </Record>
+                                                                                        </Collection>
+                                                                                    </Annotation>
+                                                                                </Annotations>
+                                                                            </Schema>
+                                                                        </edmx:DataServices>
+                                                                    </edmx:Edmx>
