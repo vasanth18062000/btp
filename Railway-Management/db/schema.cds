@@ -19,7 +19,7 @@ entity Employees {
     key empId : Integer;
     designation : String;
 
-    // Managed composition of aspect
+    // Managed composition of aspectb 
 
     address : Composition of many{
         addressLine1 : String;

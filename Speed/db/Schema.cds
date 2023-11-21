@@ -84,7 +84,7 @@ key id          :Integer;
 cartCode        :String(50);
 cartEntries     :Composition of many CartEntry;
 customer        :Association to Customer;
-totalPrice      :Double;
+totalPrice      :Double ;
 deliveryAddress :Association to Address;
 contactDetail   :Association to contact.ContactDetails;
 paymentMode     :String @assert.range enum{

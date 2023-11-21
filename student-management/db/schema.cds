@@ -13,11 +13,16 @@ entity studentDetail  {
 
                     //from contact i cannot fetch student details as this was a unidirection relation.
 
-    // address : Association to addressDetail
+    // address : Association to addressDetail;
     // address : Association to many addressDetail  //can't able to push the data from student as well as in address
      addressTypes : Association to many addressDetail on addressTypes.address=$self;
 
-    cityName =addressTypes[city='TN'].pincode;
+    // Calculated Elements
+
+
+    // cityName = addressTypes[city='TN'].pincode; // On-Read
+
+    // student : String = studentId || ' ' || name; //On-Write
 
 }
 
@@ -29,7 +34,7 @@ entity addressDetail  {
     city :String;
    
     pincode : String(10);
-    address : Association to studentDetail;
+    address : Association to many studentDetail;
 
 }
 
@@ -39,10 +44,14 @@ entity contact  {
     number:String(13);
 }
 
-// 2001,Nallur,Tiruppur,Tiruppur,641606,1001
-// 2002, , ,Pollachi,623689,1002
-// 2003,shanthi Nagar,Ramapuram,Chennai,600089,1001
-// 2004,Nehru Nagar,Venkateshpuram,Chennai,7896534,1002
+// 2001,MRG Nagar,Nallur,TN,641606,1003
+// 2002,Venkateshwar Street,Ghandhi nagar,US,600032,1002
+// 2003,Vijayapuram,Salem,TN,632789,1001
 
-// 1001,Francis,2001
-// 1002,Pream,2002
+// 3001,9673267890
+// 3002,7492706432
+// 3003,9237027340
+
+// 1001,Francis,3001
+// 1002,Pream,3002
+// 1003,Siva,3003
