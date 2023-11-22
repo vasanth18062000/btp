@@ -1,5 +1,6 @@
 using Customer as service from '../../srv/Customer';
 using from '../../db/Schema';
+using from '../../db/ContactDetails';
 annotate service.Customer with @(
     UI.SelectionFields : [
         name,
@@ -12,12 +13,12 @@ annotate service.Customer with {
 };
 
 annotate service.Customer with {
-    name @Common.Label : 'name'
+    name @Common.Label : '{i18n>Name}'
 };
 
 
 annotate service.Customer with {
-    userId @Common.Label : 'userId'
+    userId @Common.Label : 'user Id'
 };
 annotate service.Customer with @(
     UI.LineItem #tableView : [
@@ -40,6 +41,16 @@ annotate service.Customer with @(
             Visualizations : [
                 '@UI.LineItem#tableView',
             ],
+            SortOrder : [
+                {
+                    $Type : 'Common.SortOrderType',
+                    Property : userId,
+                    Descending : false,
+                },
+            ],
+            GroupBy : [
+                firstName,
+            ],
         },
         SelectionVariant : {
             $Type : 'UI.SelectionVariantType',
@@ -53,7 +64,8 @@ annotate service.Customer with @(
 annotate service.Customer with @(
     UI.HeaderInfo : {
         TypeName : 'Customer Order Details',
-        TypeNamePlural : '',
+        TypeNamePlural : 'Cutomer Details',
+        TypeImageUrl : 'sap-icon://employee',
         Title : {
             $Type : 'UI.DataField',
             Value : name,
@@ -62,22 +74,21 @@ annotate service.Customer with @(
             $Type : 'UI.DataField',
             Value : userId,
         },
-        TypeImageUrl : 'sap-icon://account',
     }
 );
 annotate service.Customer with @(
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Cart',
-            ID : 'Cart',
-            Target : 'carts/@UI.LineItem#Cart',
-        },
-        {
-            $Type : 'UI.ReferenceFacet',
             Label : 'Address Details',
             ID : 'AddressDetails',
             Target : 'addresses/@UI.LineItem#AddressDetails',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Cart',
+            ID : 'Cart',
+            Target : 'carts/@UI.LineItem#Cart',
         },
         {
             $Type : 'UI.ReferenceFacet',
@@ -153,10 +164,6 @@ annotate service.Order with @(
     UI.LineItem #Orders : [
         {
             $Type : 'UI.DataField',
-            Value : customer_id,
-            Label : 'customer_id',
-        },{
-            $Type : 'UI.DataField',
             Value : orderCode,
             Label : 'orderCode',
         },{
@@ -174,10 +181,90 @@ annotate service.Order with @(
             Label : 'totalPrice',
         },{
             $Type : 'UI.DataField',
-            Value : customer.userId,
-        },{
-            $Type : 'UI.DataField',
             Value : orderEntries.quantity,
             Label : 'quantity',
         },]
+);
+annotate service.Customer with {
+    name @(Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'Customer',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : name,
+                    ValueListProperty : 'name',
+                },
+            ],
+            Label : 'asdfg',
+        },
+        Common.ValueListWithFixedValues : true
+)};
+annotate service.Customer with {
+    userId @(Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'Customer',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : userId,
+                    ValueListProperty : 'userId',
+                },
+            ],
+            Label : 'User ID Finding',
+        },
+        Common.ValueListWithFixedValues : true,
+        Common.Text : {
+            $value : name,
+            ![@UI.TextArrangement] : #TextSeparate,
+        }
+)};
+annotate service.Customer with {
+    firstName @Common.Label : 'First Name'
+};
+annotate service.Customer with {
+    firstName @Common.Text : lastName
+};
+annotate service.Customer with @(
+    UI.DataPoint #id : {
+        Value : id,
+        MinimumValue : 0,
+        MaximumValue : 10,
+    },
+    UI.Chart #id : {
+        ChartType : #Bullet,
+        Title : 'id',
+        Measures : [
+            id,
+        ],
+        MeasureAttributes : [
+            {
+                DataPoint : '@UI.DataPoint#id',
+                Role : #Axis1,
+                Measure : id,
+            },
+        ],
+    },
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'emailId',
+            Target : 'contactDetails/@UI.DataPoint#emailId',
+        },{
+            $Type : 'UI.ReferenceFacet',
+            ID : 'phoneNumber',
+            Target : 'contactDetails/@UI.DataPoint#phoneNumber',
+        },]
+);
+annotate service.ContactDetails with @(
+    UI.DataPoint #emailId : {
+        $Type : 'UI.DataPointType',
+        Value : emailId,
+        Title : 'MAIL ID',
+    },
+    UI.DataPoint #phoneNumber : {
+        $Type : 'UI.DataPointType',
+        Value : phoneNumber,
+        Title : 'MOBILE',
+    }
 );

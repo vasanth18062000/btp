@@ -8,5 +8,6 @@ sap.ui.define(
                 manifest: "json"
             }
         });
-    }
+    },
+
 );

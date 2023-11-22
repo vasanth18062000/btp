@@ -7,7 +7,7 @@
         "applicationVersion": {
             "version": "0.0.1"
         },
-        "title": "{{appTitle}}",
+        "title": "Customer",
         "description": "{{appDescription}}",
         "resources": "resources.json",
         "sourceTemplate": {
@@ -51,7 +51,8 @@
                 "sap.m": {},
                 "sap.ui.core": {},
                 "sap.ushell": {},
-                "sap.fe.templates": {}
+                "sap.fe.templates": {},
+                "sap.f": {}
             }
         },
         "contentDensities": {
@@ -88,17 +89,26 @@
                 {
                     "pattern": ":?query:",
                     "name": "CustomerList",
-                    "target": "CustomerList"
+                    "target": [
+                        "CustomerList"
+                    ]
                 },
                 {
                     "pattern": "Customer({key}):?query:",
                     "name": "CustomerObjectPage",
-                    "target": "CustomerObjectPage"
+                    "target": [
+                        "CustomerList",
+                        "CustomerObjectPage"
+                    ]
                 },
                 {
                     "pattern": "Customer({key})/carts({key2}):?query:",
                     "name": "Customer_cartsObjectPage",
-                    "target": "Customer_cartsObjectPage"
+                    "target": [
+                        "CustomerList",
+                        "CustomerObjectPage",
+                        "Customer_cartsObjectPage"
+                    ]
                 }
             ],
             "targets": {
@@ -123,12 +133,27 @@
                                         "key": "tableView",
                                         "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView"
                                     }
-                                ]
+                                ],
+                                "showCounts": true
                             },
+                            "initialLoad": "Enabled",
                             "hideFilterBar": false,
-                            "initialLoad": "Enabled"
+                            "content": {
+                                "header": {
+                                    "actions": {
+                                        "Refresh": {
+                                            "press": "speedcus.customer.ext.controller.Refresh.Refresh",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Refresh"
+                                        }
+                                    }
+                                }
+                            }
                         }
-                    }
+                    },
+                    "controlAggregation": "beginColumnPages",
+                    "contextPattern": ""
                 },
                 "CustomerObjectPage": {
                     "type": "Component",
@@ -136,7 +161,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "editableHeaderContent": true,
+                            "editableHeaderContent": false,
                             "contextPath": "/Customer",
                             "navigation": {
                                 "carts": {
@@ -146,9 +171,17 @@
                                 }
                             },
                             "sectionLayout": "Tabs",
-                            "showRelatedApps": true
+                            "showRelatedApps": true,
+                            "content": {
+                                "header": {
+                                    "anchorBarVisible": true,
+                                    "visible": true
+                                }
+                            }
                         }
-                    }
+                    },
+                    "controlAggregation": "midColumnPages",
+                    "contextPattern": "/Customer({key})"
                 },
                 "Customer_cartsObjectPage": {
                     "type": "Component",
@@ -159,8 +192,28 @@
                             "contextPath": "/Customer/carts",
                             "navigation": {}
                         }
-                    }
+                    },
+                    "controlAggregation": "endColumnPages",
+                    "contextPattern": "/Customer({key})/carts({key2})"
                 }
+            },
+            "config": {
+                "flexibleColumnLayout": {
+                    "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
+                    "defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
+                },
+                "routerClass": "sap.f.routing.Router"
+            }
+        },
+        "rootView": {
+            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+            "type": "XML",
+            "async": true,
+            "id": "appRootView"
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {}
             }
         }
     },

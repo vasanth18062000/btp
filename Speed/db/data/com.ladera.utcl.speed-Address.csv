@@ -1,6 +1,1 @@
-id,addressLine1,addressLine2,addressLine3,addressLine4,city_id,state_id,pincode,country_code,customer_id,addressType_id
-2001,MRG Nagar,Nallur,Vijayapuram,Tiruppur,3001,4001,641606,IN,1001,5001
-2002,Venkateshwar Nagar,Cheran Street,Chengalpattu,Chengallpattu,3002,4002,621895,IN,1002,5002
-2003,Shanthi Nagar,Heera hospital near,Virunkgambakham,Chennai,3003,4003,60004,IN,1003,5001
-2004,33 A,Kalpana, 4th Floor,Mumbai,3004,4004,400005,IN,1002,5002
-2005,10,2nd Floor, Wadgaonkar Bldg, Jitendra Road Mumbai,3005,4005,400097,In,1005,5001
+id,createdAt,createdBy,modifiedAt,modifiedBy,addressLine1,addressLine2,addressLine3,addressLine4,city_id,state_id,pincode,country_code,customer_id,addressType_id

@@ -1,0 +1,21 @@
+<!-- <Annotation Term="UI.LineItem">
+  <Collection>
+      <Record Type="UI.DataFieldForAction">
+          <PropertyValue Property="Label" String="Copy" />
+          <PropertyValue Property="Action" String="STTA_PROD_MAN.STTA_PROD_MAN_Entities/STTA_C_MP_ProductCopy" />
+          <Annotation Term="UI.IsCopyAction" Bool="true" />
+     </Record> -->
+
+     <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+   <VBox>
+      <Button text="Action" icon="sap-icon://action" press="onActionButtonPress" />
+   </VBox>
+
+   <Record Type="UI.DataFieldForAction">
+          <PropertyValue Property="Label" String="Copy" />
+          <PropertyValue Property="Action" String="STTA_PROD_MAN.STTA_PROD_MAN_Entities/STTA_C_MP_ProductCopy" />
+          <Annotation Term="UI.IsCopyAction" Bool="true" />
+     </Record> -->
+
+   
+</mvc:View>

@@ -1,4 +1,1 @@
-id,code,name,status
-4001,TN,Tamilnadu,true
-4002,TS,Telungana,true
-4003,RJ,Rajasthan,true
+id,createdAt,createdBy,modifiedAt,modifiedBy,code,name,status

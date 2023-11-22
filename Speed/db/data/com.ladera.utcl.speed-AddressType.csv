@@ -1,5 +1,1 @@
-id,status,code,value
-5001,true,1,permanent Address
-5002,true,2,Communication Address
-5003,false,3,permanent Address
-5004,false,4,Communication Address
+id,createdAt,createdBy,modifiedAt,modifiedBy,status,code,value

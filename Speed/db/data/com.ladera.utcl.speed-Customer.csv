@@ -1,6 +1,1 @@
-id,userId,firstName,lastName,dateOfBirth,title_id
-1001,SP001,Francis,Ajay,2000-02-19,13001
-1002,SP002,Ananth,Krishnan,1995-01-21,13001
-1003,SP003,Lavanya,Perumal,1998-07-23,13002
-1004,SP004,Pream,Kumar,1991-03-21,13004
-1005,SP005,Logarasan,Kumar,1990-08-18,13001
+id,createdAt,createdBy,modifiedAt,modifiedBy,customerId,firstName,lastName,dateOfBirth,title_id
