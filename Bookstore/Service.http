@@ -1,0 +1,46 @@
+@sever = http://localhost:4004
+#
+# Browse Books
+
+GET  http://localhost:4004/odata/v4/catalog/Books
+# Content-Type: application/json
+
+{ "ID":1234,
+    "title":"java",
+    "author":"siva",
+    "stock":23
+ }
+
+  # &$select=title,stock
+  # &$expand=currency
+  # &sap-language=de
+
+###
+#
+#  Author wit ID 101
+#
+POST http://localhost:4004/odata/v4/catalog/Books  
+
+{ "ID":" 1234",
+     "title":"java",
+     "author":"siva",
+     "stock":23
+  }
+###
+#
+# Update Author with ID 101
+#
+POST http://localhost:4004/odata/v4/catalog/localhost:4004/odata/v4/catalog/Books
+Content-Type: application/json
+
+{"ID": 1001, "name": "Some Author"}
+
+
+###
+#
+# Order a Book
+#
+POST http://localhost:4004/odata/v4/catalog/localhost:4004/odata/v4/catalog/Books/Authors(123)
+Content-Type: application/json
+
+{"ID": 1234, "name": "Siva"}
