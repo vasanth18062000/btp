@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 id,createdAt,createdBy,modifiedAt,modifiedBy,code,name,notes
+=======
+id,code,name,notes
+11001,1,Franch Delivery,Express post
+11002,2,Blue Dart,Normal post
+11003,3,Post Office,Normal post
+11004,4,Post Office,Speed Post
+>>>>>>> bf5f6033f63f14353c49d594b808b91a1b85db19

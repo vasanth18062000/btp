@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 validFrom,id,validTo,createdAt,createdBy,modifiedAt,modifiedBy,code,name,productImage,description,rating,manufactureId,sellerId
+=======
+validFrom,id,validTo,code,name,productImage,description,rating,manufactureId,sellerId
+2023-02-12,6001,2030-10-01,A001,Air Filter,https://www.vikingsauto.in/wp-content/uploads/2020/04/winger_burned-min.jpg, Tata Genuine Parts 253409130241 Air Filter Tata Winger, 4,M001,TATA1010
+2022-01-21,6002,2040-01-20,A002,Air Pods,https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/airpods-max-select-silver-202011_FV1_FMT_WHH?wid=940&hei=800&fmt=jpeg&qlt=90&.v=1604776024000, AirPods Pro are Apple’s first in-ear earbuds that feature Active Noise Cancellation technology but Apple has previously used ANC in its on-ear Beats headphones. Active Noise Cancellation leverages two microphones and Apple’s advanced software algorithms to adapt sound to each individual’s ear.,4.5,M002,Apple001
+2021-04-11,6003,2050-09-11,A003,Umberlla,https://m.media-amazon.com/images/I/715NYjrzi9L._AC_UY1100_.jpg, 100% Waterproof & Windproof - Destinio small umbrella for kids is made from 100% waterproof pongee material which protects your baby boy and girl from sun & rain. It has a strong metal shaft with fibreglass ribs making it windproof.,3.8,M001,TATA1010
+2023-11-17,6004,2023-11-30,A004,Tomato,https://iwantveggies.com/cdn/shop/articles/ACUTEB_1.png?v=1682265622, Go Green Tomato Hybrid Vegetable,5,M003,VEGE001
+>>>>>>> bf5f6033f63f14353c49d594b808b91a1b85db19

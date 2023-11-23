@@ -1,12 +1,12 @@
-# CAP sap-btp-project
+# CAP incidents-mgt
 _out
 *.db
 *.sqlite
-connection.properties
+.env
 default-*.json
 .cdsrc-private.json
 gen/
-node_modules/
+node_modules
 target/
 
 # Web IDE, App Studio
@@ -26,9 +26,4 @@ mta_archives/
 *.iml
 *.flattened-pom.xml
 
-# IDEs
-# .vscode
-# .idea
-
-# @cap-js/cds-typer
-@cds-models
+*.tgz

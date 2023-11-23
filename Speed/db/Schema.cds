@@ -83,6 +83,7 @@ entity PriceRow:   managed{
 }
 
 entity Cart:   managed{
+<<<<<<< HEAD
     key id:Integer;
     cartCode:String(50);
     cartEntries:Composition of many CartEntry on cartEntries.cart=$self;
@@ -97,6 +98,20 @@ entity Cart:   managed{
     };
     isActive:Boolean;
     
+=======
+key id          :Integer;
+cartCode        :String(50);
+cartEntries     :Composition of many CartEntry;
+customer        :Association to Customer;
+totalPrice      :Double ;
+deliveryAddress :Association to Address;
+contactDetail   :Association to contact.ContactDetails;
+paymentMode     :String @assert.range enum{
+                    COD;
+                    PO;
+                    };
+isActive        :Boolean;
+>>>>>>> bf5f6033f63f14353c49d594b808b91a1b85db19
 }
 
 entity CartEntry:   managed{

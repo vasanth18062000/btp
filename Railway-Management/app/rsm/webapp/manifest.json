@@ -118,11 +118,24 @@
                             "controlConfiguration": {
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
                                     "tableSettings": {
-                                        "type": "ResponsiveTable"
+                                        "type": "ResponsiveTable",
+                                        "selectionMode": "Single"
                                     }
                                 }
                             },
-                            "hideFilterBar": false
+                            "hideFilterBar": false,
+                            "content": {
+                                "header": {
+                                    "actions": {
+                                        "Refresh": {
+                                            "press": "rs.rsm.ext.controller.Refresh.Refresh",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "REFRESH"
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 },
