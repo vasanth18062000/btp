@@ -1,0 +1,48 @@
+### Create Product
+
+POST http://localhost:8080/odata/v4/AdminService/Products
+Content-Type: application/json
+
+{ "title": "My Tutorial Product", "descr": "You are doing an awesome job!"}
+
+### Read Book
+
+GET http://localhost:8080/odata/v4/BooksService/Books(abed2f7a-c50e-4bc5-89fd-9a00a54b4b16)
+Accept: application/json
+
+
+### Create Categories
+
+POST http://localhost:8080/odata/v4/AdminService/Categories
+Content-Type: application/json
+
+{
+  "ID": 2,
+  "name": "TechEd",
+  "descr": "TechEd related topics",
+  "children": [
+    {
+      "ID": 12,
+      "name": "CAP Java",
+      "descr": "Run on Java"
+    },
+    {
+      "ID": 13,
+      "name": "CAP Node.js",
+      "descr": "Run on Node.js"
+    }
+  ]
+}
+
+### Create Order
+POST http://localhost:8080/odata/v4/OrdersService/Orders
+Content-Type: application/json
+
+{
+  "items": [
+    {
+      "book_ID": "abed2f7a-c50e-4bc5-89fd-9a00a54b4b16",
+      "amount": 10
+    }
+  ]
+}
