@@ -1,0 +1,6 @@
+departmentId,departmentName,headOfDepartment,description,teacher_teacherId
+1,Mathematics,John Doe,Math department,101
+2,Science,Jane Smith,Science department,102
+3,History,Bob Johnson,History department,103
+4,English,Alice Williams,English department,104
+5,Art,Michael Smith,Art department,105

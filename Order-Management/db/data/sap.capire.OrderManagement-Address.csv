@@ -1,0 +1,8 @@
+ID,addressLine1,addressLine2,state,city,pincode,customer_ID
+1,123 Main St,Apartment 456,California,Los Angeles,90001,1
+2,456 Elm St,,Texas,Houston,77001,2
+3,789 Oak St,Unit 101,New York,New York,10001,1
+4,567 Pine St,,Florida,Miami,33001,3
+5,890 Cedar St,,Texas,Dallas,75201,2
+6,234 Maple St,,California,San Francisco,94101,1
+7,432 Birch St,Unit 201,Florida,Orlando,32801,4
