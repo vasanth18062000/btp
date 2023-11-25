@@ -19,18 +19,26 @@ annotate CatalogService.Books with @(UI : {
     },
     {
       Value : id, 
-    }
+    },
+    {
+      $Type  : 'UI.DataFieldForAnnotation',
+      Target : '@UI.DataPoint#rating'
+    },
   ],
   SelectionFields : [
     author,
     genre,
-    title,
-    id,
+    
   ],
   PresentationVariant : {
     Text           : 'Default',
     SortOrder      : [{Property : title}],
     Visualizations : ['@UI.LineItem']
+  },
+  DataPoint #rating   : {
+    Value         : rating,
+    Visualization : #Rating,
+    TargetValue   : 5
   },
 })
 
