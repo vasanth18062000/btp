@@ -1,4 +1,4 @@
-ID;TITLE;DESCR;AUTHOR;GENRE;
-1;Alchemist;Personal Development;Richard;Self;
-2;Atomic Habits;Personal Development;Allen;Self;
-3;Finance Management;Personal Development;Robert;Finance;
+ID;TITLE;DESCR;AUTHOR;GENRE;PRICE;CURRENCY_CODE;RATING
+123;Alchemist;Personal Development;Richard;Self;12;EUR;4
+234;Atomic Habits;Personal Development;Allen;Self;9;USD;3.4
+345;Finance Management;Finance;Robert;Finance;15;CAD;4.3
