@@ -8,7 +8,7 @@ annotate CatalogService.Books with @(UI : {
 
 LineItem : [
       {
-        Value: id,
+        Value: ID,
         Label: 'Id'
       },
       {
@@ -22,7 +22,7 @@ LineItem : [
       {
         $Type  : 'UI.DataFieldForAnnotation',
         Target : '@UI.DataPoint#rating'
-      },
+      },     
       {
         Value: author,       
       },
@@ -52,7 +52,7 @@ DataPoint #rating   : {
     Value         : rating,
     Visualization : #Rating,
     TargetValue   : 5
-  }
+  },
 })
 
 // Combine price and currency
@@ -60,3 +60,8 @@ DataPoint #rating   : {
     @Measures.Unit : currency.code
     price
 };
+
+annotate CatalogService.Books actions {
+addReview(rating @title : 'Rating', title @title : 'Title', text @title : 'Text')
+}
+

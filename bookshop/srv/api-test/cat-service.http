@@ -1,9 +1,12 @@
 ### Create a book
-POST http://admin:admin@localhost:8080/api/browse/Books(123)/CatalogService.addReview
+POST http://localhost:8080/api/browse/Books(f846b0b9-01d4-4f6d-82a4-d79204f62278)/CatalogService.addReview
 Content-Type: application/json
 
 {
-  "title" : "I hated it",
+  "title" : "Bad",
   "text" : "Birds freak me out",
   "rating" : 3
 }
+
+### Get a book
+GET http://localhost:8080/api/browse/Reviews(8d7eadf4-ec48-4c80-8f95-138e77e61e1c) HTTP/1.1
