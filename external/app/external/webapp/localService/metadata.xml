@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="com.ser.MyService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Incident" EntityType="com.ser.MyService.Incident">
+                    <NavigationPropertyBinding Path="conversation" Target="Incident_conversation"/>
+                    <NavigationPropertyBinding Path="service" Target="Appointment"/>
+                </EntitySet>
+                <EntitySet Name="Appointment" EntityType="com.ser.MyService.Appointment">
+                    <NavigationPropertyBinding Path="worker" Target="ServiceWorker"/>
+                </EntitySet>
+                <EntitySet Name="ServiceWorker" EntityType="com.ser.MyService.ServiceWorker">
+                    <NavigationPropertyBinding Path="appointments" Target="Appointment"/>
+                </EntitySet>
+                <EntitySet Name="Customer" EntityType="com.ser.MyService.Customer">
+                    <NavigationPropertyBinding Path="to_BusinessPartnerAddress" Target="A_BusinessPartnerAddress"/>
+                    <NavigationPropertyBinding Path="to_Supplier" Target="A_Supplier"/>
+                </EntitySet>
+                <EntitySet Name="A_Supplier" EntityType="com.ser.MyService.A_Supplier">
+                    <NavigationPropertyBinding Path="to_SupplierCompany" Target="A_SupplierCompany"/>
+                </EntitySet>
+                <EntitySet Name="A_SupplierCompany" EntityType="com.ser.MyService.A_SupplierCompany"/>
+                <EntitySet Name="A_BusinessPartnerAddress" EntityType="com.ser.MyService.A_BusinessPartnerAddress"/>
+                <EntitySet Name="Incident_conversation" EntityType="com.ser.MyService.Incident_conversation">
+                    <NavigationPropertyBinding Path="up_" Target="Incident"/>
+                </EntitySet>
+            </EntityContainer>
+            <EntityType Name="Incident">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="title" Type="Edm.String"/>
+                <Property Name="urgency" Type="Edm.String"/>
+                <Property Name="status" Type="Edm.String"/>
+                <NavigationProperty Name="conversation" Type="Collection(com.ser.MyService.Incident_conversation)" Partner="up_">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <NavigationProperty Name="service" Type="com.ser.MyService.Appointment">
+                    <ReferentialConstraint Property="service_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="service_ID" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Appointment">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false"/>
+                <Property Name="start_date" Type="Edm.Date"/>
+                <Property Name="start_time" Type="Edm.TimeOfDay"/>
+                <Property Name="end_date" Type="Edm.Date"/>
+                <Property Name="end_time" Type="Edm.TimeOfDay"/>
+                <Property Name="title" Type="Edm.String"/>
+                <Property Name="project" Type="Edm.String"/>
+                <Property Name="type" Type="Edm.String"/>
+                <Property Name="calendar_year" Type="Edm.Int32"/>
+                <NavigationProperty Name="worker" Type="com.ser.MyService.ServiceWorker" Partner="appointments">
+                    <ReferentialConstraint Property="worker_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="worker_ID" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="ServiceWorker">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false"/>
+                <Property Name="name" Type="Edm.String"/>
+                <Property Name="role" Type="Edm.String"/>
+                <NavigationProperty Name="appointments" Type="Collection(com.ser.MyService.Appointment)" Partner="worker"/>
+            </EntityType>
+            <EntityType Name="Customer">
+                <Key>
+                    <PropertyRef Name="BusinessPartner"/>
+                </Key>
+                <Property Name="BusinessPartner" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="Customer" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10"/>
+                <Property Name="AcademicTitle" Type="Edm.String" MaxLength="4"/>
+                <Property Name="AuthorizationGroup" Type="Edm.String" MaxLength="4"/>
+                <Property Name="BusinessPartnerFullName" Type="Edm.String" MaxLength="81"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="12"/>
+                <Property Name="CreationDate" Type="Edm.Date"/>
+                <Property Name="FirstName" Type="Edm.String" MaxLength="40"/>
+                <Property Name="LastName" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Language" Type="Edm.String" MaxLength="2"/>
+                <NavigationProperty Name="to_BusinessPartnerAddress" Type="Collection(com.ser.MyService.A_BusinessPartnerAddress)"/>
+                <NavigationProperty Name="to_Supplier" Type="com.ser.MyService.A_Supplier"/>
+            </EntityType>
+            <EntityType Name="A_Supplier">
+                <Key>
+                    <PropertyRef Name="Supplier"/>
+                </Key>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="AlternativePayeeAccountNumber" Type="Edm.String" MaxLength="10"/>
+                <Property Name="AuthorizationGroup" Type="Edm.String" MaxLength="4"/>
+                <Property Name="BusinessPartnerPanNumber" Type="Edm.String" MaxLength="40"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="12"/>
+                <Property Name="CreationDate" Type="Edm.Date"/>
+                <Property Name="Customer" Type="Edm.String" MaxLength="10"/>
+                <Property Name="SupplierFullName" Type="Edm.String" MaxLength="220"/>
+                <Property Name="PaymentReason" Type="Edm.String" MaxLength="4"/>
+                <Property Name="TaxNumber1" Type="Edm.String" MaxLength="16"/>
+                <Property Name="TaxNumber2" Type="Edm.String" MaxLength="11"/>
+                <Property Name="TaxNumber3" Type="Edm.String" MaxLength="18"/>
+                <NavigationProperty Name="to_SupplierCompany" Type="Collection(com.ser.MyService.A_SupplierCompany)"/>
+            </EntityType>
+            <EntityType Name="A_SupplierCompany">
+                <Key>
+                    <PropertyRef Name="Supplier"/>
+                </Key>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="CompanyCode" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="AuthorizationGroup" Type="Edm.String" MaxLength="4"/>
+                <Property Name="CompanyCodeName" Type="Edm.String" MaxLength="25"/>
+                <Property Name="PaymentBlockingReason" Type="Edm.String" MaxLength="1"/>
+                <Property Name="SupplierIsBlockedForPosting" Type="Edm.Boolean"/>
+                <Property Name="AccountingClerk" Type="Edm.String" MaxLength="2"/>
+                <Property Name="AccountingClerkPhoneNumber" Type="Edm.String" MaxLength="30"/>
+                <Property Name="SupplierClerk" Type="Edm.String" MaxLength="15"/>
+                <Property Name="PaymentMethodsList" Type="Edm.String" MaxLength="10"/>
+                <Property Name="PaymentReason" Type="Edm.String" MaxLength="4"/>
+                <Property Name="Currency" Type="Edm.String" MaxLength="5"/>
+            </EntityType>
+            <EntityType Name="A_BusinessPartnerAddress">
+                <Key>
+                    <PropertyRef Name="BusinessPartner"/>
+                    <PropertyRef Name="AddressID"/>
+                </Key>
+                <Property Name="BusinessPartner" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="AddressID" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="ValidityStartDate" Type="Edm.DateTimeOffset"/>
+                <Property Name="ValidityEndDate" Type="Edm.DateTimeOffset"/>
+                <Property Name="CityCode" Type="Edm.String" MaxLength="12"/>
+                <Property Name="CityName" Type="Edm.String" MaxLength="40"/>
+                <Property Name="District" Type="Edm.String" MaxLength="40"/>
+                <Property Name="CompanyPostalCode" Type="Edm.String" MaxLength="10"/>
+                <Property Name="HouseNumber" Type="Edm.String" MaxLength="10"/>
+                <Property Name="PostalCode" Type="Edm.String" MaxLength="10"/>
+                <Property Name="StreetName" Type="Edm.String" MaxLength="60"/>
+                <Property Name="StreetPrefixName" Type="Edm.String" MaxLength="40"/>
+                <Property Name="StreetSuffixName" Type="Edm.String" MaxLength="40"/>
+            </EntityType>
+            <EntityType Name="Incident_conversation">
+                <Key>
+                    <PropertyRef Name="up__ID"/>
+                    <PropertyRef Name="timestamp"/>
+                </Key>
+                <NavigationProperty Name="up_" Type="com.ser.MyService.Incident" Nullable="false" Partner="conversation">
+                    <ReferentialConstraint Property="up__ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="up__ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="timestamp" Type="Edm.DateTimeOffset" Nullable="false"/>
+                <Property Name="author" Type="Edm.String" MaxLength="77"/>
+                <Property Name="message" Type="Edm.String" MaxLength="300"/>
+            </EntityType>
+            <Annotations Target="com.ser.MyService.Incident/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                </Annotations>
+                <Annotations Target="com.ser.MyService.Incident/createdBy">
+                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                    <Annotation Term="Core.Immutable" Bool="true"/>
+                    <Annotation Term="Core.Computed" Bool="true"/>
+                    <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                        <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                        </Annotations>
+                        <Annotations Target="com.ser.MyService.Incident/modifiedAt">
+                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                            <Annotation Term="Core.Computed" Bool="true"/>
+                            <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                            </Annotations>
+                            <Annotations Target="com.ser.MyService.Incident/modifiedBy">
+                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                <Annotation Term="Core.Computed" Bool="true"/>
+                                <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                    <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                    </Annotations>
+                                    <Annotations Target="com.ser.MyService.Incident/title">
+                                        <Annotation Term="Common.Label" String="Title"/>
+                                    </Annotations>
+                                    <Annotations Target="com.ser.MyService.Incident/urgency">
+                                        <Annotation Term="Common.Label" String="Urgency"/>
+                                        <Annotation Term="Validation.AllowedValues">
+                                            <Collection>
+                                                <Record Type="Validation.AllowedValue">
+                                                    <Annotation Term="Core.SymbolicName" String="high"/>
+                                                    <PropertyValue Property="Value" String="high"/>
+                                                </Record>
+                                                <Record Type="Validation.AllowedValue">
+                                                    <Annotation Term="Core.SymbolicName" String="medium"/>
+                                                    <PropertyValue Property="Value" String="medium"/>
+                                                </Record>
+                                                <Record Type="Validation.AllowedValue">
+                                                    <Annotation Term="Core.SymbolicName" String="low"/>
+                                                    <PropertyValue Property="Value" String="low"/>
+                                                </Record>
+                                            </Collection>
+                                        </Annotation>
+                                    </Annotations>
+                                    <Annotations Target="com.ser.MyService.Incident/status">
+                                        <Annotation Term="Common.Label" String="Status"/>
+                                        <Annotation Term="Validation.AllowedValues">
+                                            <Collection>
+                                                <Record Type="Validation.AllowedValue">
+                                                    <Annotation Term="Core.SymbolicName" String="new"/>
+                                                    <PropertyValue Property="Value" String="new"/>
+                                                    <Annotation Term="Core.Description" String="An incident that has been logged but not yet worked on."/>
+                                                </Record>
+                                                <Record Type="Validation.AllowedValue">
+                                                    <Annotation Term="Core.SymbolicName" String="assigned"/>
+                                                    <PropertyValue Property="Value" String="assigned"/>
+                                                    <Annotation Term="Core.Description" String="Incident has been asssigned to a technician"/>
+                                                </Record>
+                                                <Record Type="Validation.AllowedValue">
+                                                    <Annotation Term="Core.SymbolicName" String="in process"/>
+                                                    <PropertyValue Property="Value" String="in process"/>
+                                                    <Annotation Term="Core.Description" String="Case is being actively worked on"/>
+                                                </Record>
+                                                <Record Type="Validation.AllowedValue">
+                                                    <Annotation Term="Core.SymbolicName" String="on hold"/>
+                                                    <PropertyValue Property="Value" String="on hold"/>
+                                                    <Annotation Term="Core.Description" String="Incident has been put on hold"/>
+                                                </Record>
+                                                <Record Type="Validation.AllowedValue">
+                                                    <Annotation Term="Core.SymbolicName" String="resolved"/>
+                                                    <PropertyValue Property="Value" String="resolved"/>
+                                                    <Annotation Term="Core.Description" String="Resolution has been found"/>
+                                                </Record>
+                                                <Record Type="Validation.AllowedValue">
+                                                    <Annotation Term="Core.SymbolicName" String="closed"/>
+                                                    <PropertyValue Property="Value" String="closed"/>
+                                                    <Annotation Term="Core.Description" String="Incident was acknowleged closed by end user"/>
+                                                </Record>
+                                            </Collection>
+                                        </Annotation>
+                                    </Annotations>
+                                    <Annotations Target="com.ser.MyService.Appointment/start_date">
+                                        <Annotation Term="Common.Label" String="Start Date"/>
+                                    </Annotations>
+                                    <Annotations Target="com.ser.MyService.Appointment/start_time">
+                                        <Annotation Term="Common.Label" String="Start Time"/>
+                                    </Annotations>
+                                    <Annotations Target="com.ser.MyService.Appointment/end_date">
+                                        <Annotation Term="Common.Label" String="End Date"/>
+                                    </Annotations>
+                                    <Annotations Target="com.ser.MyService.Appointment/end_time">
+                                        <Annotation Term="Common.Label" String="End Time"/>
+                                    </Annotations>
+                                    <Annotations Target="com.ser.MyService.Appointment/title">
+                                        <Annotation Term="Common.Label" String="Title"/>
+                                    </Annotations>
+                                    <Annotations Target="com.ser.MyService.Appointment/project">
+                                        <Annotation Term="Common.Label" String="Project"/>
+                                    </Annotations>
+                                    <Annotations Target="com.ser.MyService.Appointment/type">
+                                        <Annotation Term="Common.Label" String="Type"/>
+                                    </Annotations>
+                                    <Annotations Target="com.ser.MyService.Incident_conversation/timestamp">
+                                        <Annotation Term="Common.Label" String="Time"/>
+                                    </Annotations>
+                                    <Annotations Target="com.ser.MyService.Incident_conversation/author">
+                                        <Annotation Term="Common.Label" String="Author"/>
+                                    </Annotations>
+                                    <Annotations Target="com.ser.MyService.Incident_conversation/message">
+                                        <Annotation Term="Common.Label" String="Message"/>
+                                    </Annotations>
+                                </Schema>
+                            </edmx:DataServices>
+                        </edmx:Edmx>
