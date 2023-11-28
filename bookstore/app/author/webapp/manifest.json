@@ -1,0 +1,67 @@
+{
+    "_version": "1.58.0",
+    "sap.app": {
+     "id": "author",
+     "type": "application",
+     "title": "Browse Authors",
+     "description": "Find your favorite book",
+     "dataSources": {
+      "AdminService": {
+       "uri": "/odata/v4/AdminService/",
+       "type": "OData",
+       "settings": {
+        "odataVersion": "4.0"
+       }
+      }
+     }
+    },
+    
+    "sap.ui5": {
+     "dependencies": {
+      "libs": {
+       "sap.fe.templates": {}
+      }
+     },
+     "models": {
+      "": {
+       "dataSource": "AdminService",
+       "settings": {
+        "synchronizationMode": "None",
+        "operationMode": "Server",
+        "autoExpandSelect": true,
+        "earlyRequests": true,
+        "groupProperties": {
+         "default": {
+          "submit": "Auto"
+         }
+        }
+       }
+      }
+     },
+     "routing": {
+      "routes": [
+       {
+        "pattern": ":?query:",
+        "name": "AuthorsList",
+        "target": "AuthorsList"
+       }
+      ],
+      "targets": {
+       "AuthorsList": {
+        "type": "Component",
+        "id": "AuthorsList",
+        "name": "sap.fe.templates.ListReport",
+        "options": {
+         "settings": {
+          "entitySet": "Authors"
+         }
+        }
+       }
+      }
+     }
+    },
+    "sap.ui": {
+     "technology": "UI5",
+     "fullWidth": false
+    }
+   }

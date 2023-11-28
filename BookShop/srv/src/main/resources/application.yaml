@@ -1,0 +1,8 @@
+
+---
+spring:
+  web.resources.static-locations: "file:./app"
+  config.activate.on-profile: default
+  sql.init.schema-locations: classpath:schema-h2.sql
+cds:
+ odata-v4.endpoint.path: "/api"
