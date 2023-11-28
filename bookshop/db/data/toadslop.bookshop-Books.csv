@@ -1,2 +1,4 @@
-ID;TITLE;DESCR;AUTHOR;GENRE;
-10;Wuthering Heights;Wuthering Heights;Bharathi;Drama;
+ID;PRICE;CURRENCY_CODE;TITLE;DESCR;AUTHOR;GENRE;RATING;
+101;120.0;USD;Wuthering Heights;Wuthering Heights;Bharathi;Drama;3.0;
+102;200.0;USD;Heights;Wuthering Heights;Elumalai;Action;4.0;
+103;100.0;USD;Java;Wuthering Heights;Selva;Genral;5.0;
