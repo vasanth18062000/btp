@@ -12,21 +12,13 @@ Content-Type: application/json
   ]
 }
 
+
+
 ### Read Book
 
 GET http://localhost:8080/odata/v4/BooksService/Books(abed2f7a-c50e-4bc5-89fd-9a00a54b4b16)
 Accept: application/json
 
-### Create another Order
+### create a Book
 
-POST http://localhost:8080/odata/v4/OrdersService/Orders
-Content-Type: application/json
-
-{
-  "items": [
-    {
-      "book_ID": "fd0c5fda-8811-4e20-bcff-3a776abc290a",
-      "amount": 4
-    }
-  ]
-}
+POST http://admin:admin@localhost:8080/odata/v4/BooksService/Books HTTP/1.1

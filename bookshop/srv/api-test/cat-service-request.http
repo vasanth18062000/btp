@@ -1,0 +1,82 @@
+### Get all books
+GET http://localhost:8080/odata/v4/CatalogService/Books HTTP/1.1
+
+### Create a book
+POST http://localhost:8080/odata/v4/CatalogService/Books HTTP/1.1
+content-type: application/json
+Authorization: Basic authenticated:
+
+{
+  "id": "106",
+  "title": "Java",
+  "descr": "Complete java reference",
+  "author": "Java",
+  "genre": "Education",
+  "price": 500.00,
+  "currency_code": "USD",
+  "rating": 5.0
+}
+
+### Get the book
+GET http://localhost:8080/odata/v4/CatalogService/Books('107') HTTP/1.1
+
+### Update the book
+PATCH http://localhost:8080/odata/v4/CatalogService/Books('100') HTTP/1.1
+content-type: application/json
+
+{
+  "author": "Emily Brontë"
+}
+
+### Delete the book
+DELETE http://localhost:8080/odata/v4/CatalogService/Books('106') HTTP/1.1
+content-type: application/json
+
+### Get all Reviews
+GET http://admin:admin@localhost:8080/odata/v4/CatalogService/Reviews HTTP/1.1
+
+### Create a Review
+POST http://localhost:8080/odata/v4/CatalogService/Reviews HTTP/1.1
+content-type: application/json
+
+{
+  "title": "I hated it",
+  "text": "Birds freak me out",
+  "rating": 1,
+  "book_id": "102"
+}
+
+### Get a Review
+GET http://admin:admin@localhost:8080/odata/v4/CatalogService/Reviews(d3761fa5-2cb4-4469-a0f1-04f8bc64fda9) HTTP/1.1
+
+### Update a review
+PATCH http://admin:admin@localhost:8080/odata/v4/CatalogService/Reviews(d3761fa5-2cb4-4469-a0f1-04f8bc64fda9) HTTP/1.1
+content-type: application/json
+
+{
+  "rating": 2
+}
+
+### Delete a rating
+DELETE http://admin:admin@localhost:8080/odata/v4/CatalogService/Reviews(d3761fa5-2cb4-4469-a0f1-04f8bc64fda9) HTTP/1.1
+content-type: application/json
+
+### Get all reviews for a book
+GET http://admin:admin@localhost:8080/odata/v4/CatalogService/Books('100')/reviews HTTP/1.1
+content-type: application/json
+
+### Get a single review through a book
+GET http://admin:admin@localhost:8080/odata/v4/CatalogService/Books('100')/reviews(ab822445-fa56-4054-81d6-4eb23275a2c2) HTTP/1.1
+content-type: application/json
+
+### Create a review through a book
+POST http://localhost:8080/odata/v4/CatalogService/Books('100')/CatalogService.addReview 
+Content-type: application/json
+
+{
+  "title": "I hated it",
+  "text": "Birds freak me out",
+  "rating": 1
+}
+
+

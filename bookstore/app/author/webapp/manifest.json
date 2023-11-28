@@ -1,13 +1,14 @@
 {
-    "_version": "1.8.0",
+    "_version": "1.58.0",
     "sap.app": {
-     "id": "bookshop",
+     "id": "author",
      "type": "application",
-     "title": "Browse Books",
-     "description": "Find your favorite book",
+     "title": "Browse Authors",
+     "description": "Find the Authors",
      "dataSources": {
-      "CatalogService": {
-       "uri": "/odata/v4/CatalogService/",
+      "Service": {
+        
+       "uri": "/odata/v4/BooksService/",
        "type": "OData",
        "settings": {
         "odataVersion": "4.0"
@@ -23,7 +24,7 @@
      },
      "models": {
       "": {
-       "dataSource": "CatalogService",
+       "dataSource": "Service",
        "settings": {
         "synchronizationMode": "None",
         "operationMode": "Server",
@@ -52,17 +53,7 @@
         "name": "sap.fe.templates.ListReport",
         "options": {
          "settings": {
-          "entitySet": "Books",
-          "controlConfiguration":{
-            "@com.sap.vocabularies.UI.v1.LineItem":{
-                "columns": {
-                    "AddReviewColumn":{
-                        "header":"Add Review",
-                        "template":"bookshop.custom.AddReview.AddReviewButton"
-                    }
-                }
-            }
-          }
+          "entitySet": "Authors"
          }
         }
        }
@@ -74,3 +65,4 @@
      "fullWidth": false
     }
    }
+   

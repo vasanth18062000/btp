@@ -1,10 +1,10 @@
-using {toadslop.bookshop as bookshop} from '../db/books';
-@path : 'browse'
-service CatalogService {
-  entity Books as projection on bookshop.Books
-  actions{
-    action addReview(rating:bookshop.Rating,title:bookshop.Name,text:bookshop.Text) returns Reviews;
-  };
-  entity Reviews as projection on bookshop.Reviews;
-}
+using {com.sap.book as book} from '../db/books';
 
+
+service CatalogService {
+  entity Books as projection on book.Books
+   actions {
+    action addReview(rating: book.Rating ,title: book.Name, text: book.Text) returns Reviews;
+   };
+  entity Reviews as projection on book.Reviews;
+}

@@ -1,8 +1,18 @@
-sap.ui.define(["sap/m/MessageBox"],function(MessageBox){
-    "use strict";
-    return{
-        onPress: function(){
-            MessageBox.show("Button pressed!");
-        },
-    };
-});
+sap.ui.define(["sap/ui/core/Fragment"], function (Fragment) {
+    "use strict";    
+    
+    return {
+         openDialog: async function () {
+          const oBooklistPage = sap.ui.getCore().byId("bookshop::BooksList");
+   
+          if(!this.oAddReviewDialog){
+           this.oAddReviewDialog = await Fragment.load({
+               id: `${oBooklistPage.getId()}-AddReviewDialog`,
+               name: "bookshop.custom.AddReview.AddReviewDialog", 
+           });
+           oBooklistPage.addDependent(this.oAddReviewDialog);
+          }
+          this.oAddReviewDialog.open();
+         },
+       };
+   });
