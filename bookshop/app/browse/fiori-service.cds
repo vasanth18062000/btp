@@ -47,13 +47,13 @@ annotate CatalogService.Books with @(UI : {
       Value: id,
       ![@UI.Hidden]
     },
-       {
-      $Type  : 'UI.DataFieldForAnnotation',
-      Target : '@UI.DataPoint#rating'
-    },  {
-      $Type  : 'UI.DataFieldForAnnotation',
-      Target : '@UI.FieldGroup#AddReview',
-    },
+      //  {
+      // $Type  : 'UI.DataFieldForAnnotation',
+    //   Target : '@UI.DataPoint#rating'
+    // },  {
+    //   $Type  : 'UI.DataFieldForAnnotation',
+    //   Target : '@UI.FieldGroup#AddReview',
+    // },
   
   ],
 }){
