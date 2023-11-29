@@ -1,2 +1,4 @@
-ID;TITLE;DESCR;AUTHOR;GENRE;
-10;Wuthering Heights;Wuthering Heights;Elumalai;Drama;
+ID;PRICE;CURRENCY_CODE;TITLE;DESCR;AUTHOR;GENRE;RATING;
+1;12.32;USD;Wuthering Heights;Wuthering Heights;Elumalai;Drama;5;
+2;14.35;EUR;Leo;hit;Lokesh;Action;3;
+3;12.34;CAD;Beast;flop;nelson;robbery;3;
