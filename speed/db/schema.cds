@@ -11,6 +11,15 @@ using
 }
 from '@sap/cds/common';
 
+
+    entity SampleProducts {
+        key ID : Integer;
+        title  : String(111);
+        descr  : String(1111);
+    }
+
+
+
 entity ContactDetails:  managed{
 phoneNumber:String(50);
 emailId:String(50);
