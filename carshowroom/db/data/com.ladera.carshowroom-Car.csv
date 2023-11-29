@@ -1,0 +1,3 @@
+ID,carName,carModel,engineType,modelYear,seatsDetails_ID,tubeDetails_ID,engineDetails_ID,currencyDetails_ID
+1,tata,altraz,diesel,2019,201,301,101,40
+2,audi,A4,petrol,2020,202,302,102,41
