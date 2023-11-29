@@ -5,51 +5,66 @@ annotate CatalogService.Books with @(UI : {
       TypeName : 'Book',
       TypeNamePlural : 'Books',
   },
-  LineItem : [
-      {
-        Value: title,
-        Label: 'Title'
-      },
-    //{Value : author},
-    {Value : genre},
-    { $Type  : 'UI.DataFieldForAnnotation',
-      Target : '@UI.DataPoint#rating'
+ LineItem        : [
+     {
+      Value : id,
+      Label : 'ID'
     },
+    {
+      Value : title,
+    },
+    {Value : author},
     {Value : price},
     {
       Value : descr,
       ![@UI.Hidden]
     },
-   
+    {Value : genre,
+    ![@UI.Hidden]
+    },
+    {
+      Value : currency.code,
+      ![@UI.Hidden]
+    },
+     {
+      $Type  : 'UI.DataFieldForAnnotation',
+      Target : '@UI.DataPoint#rating'
+    },
+    // {
+    //   $Type  :'UI.DataFieldForAnnotation',
+    //   Target :'@UI.FieldGroup#AddReview',
+    // },
   ],
+
   SelectionFields : [
     author,
     genre
   ],
-  PresentationVariant : {
+    PresentationVariant : {
     Text           : 'Default',
     SortOrder      : [{Property : title}],
     Visualizations : ['@UI.LineItem']
   },
-   DataPoint#rating   : {
+   DataPoint #rating   : {
     Value         : rating,
     Visualization : #Rating,
     TargetValue   : 5
   },
-  // FieldGroup #AddReview :{Data:[{
+
+  // FieldGroup #AddReview : {Data:[{
   //   $Type:'UI.DataFieldForAction',
   //   Label:'Add Review',
   //   Action:'CatalogService.addReview',
   //   InvocationGrouping: #Isolated
-  // }]}
+  // }]}  
 })
+  
+   
+
+
 {
-    @UI.HiddenFilter
-    descr;
+   @UI.HiddenFilter
+  descr;
     @Measures.ISOCurrency : currency.code
     price
 };
-
-annotate CatalogService.Books actions {
-    addReview(rating @title:'Rating' ,title @title:'Title', text @title:'Text')
-  }

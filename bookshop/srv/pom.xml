@@ -55,8 +55,8 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${spring.boot.version}</version>
 				<configuration>
-				    <workingDirectory>..</workingDirectory>
 					<skip>false</skip>
+					<workingDirectory>..</workingDirectory>
 				</configuration>
 				<executions>
 					<execution>

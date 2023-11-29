@@ -1,6 +1,0 @@
-### Create Categories
-
-POST http://localhost:8080/odata/v4/AdminService/Categories
-Content-Type: application/json
-
-{"ID": 2, "name": "TechEd", "descr": "TechEd related topics", "children": [{"ID": 20, "name": "CAP Java", "descr": "Run on Java"}, {"ID": 21, "name": "CAP Node.js", "descr": "Run on Node.js"}]}

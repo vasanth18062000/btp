@@ -56,7 +56,6 @@
 				<version>${spring.boot.version}</version>
 				<configuration>
 					<skip>false</skip>
-					<workingDirectory>..</workingDirectory>
 				</configuration>
 				<executions>
 					<execution>
