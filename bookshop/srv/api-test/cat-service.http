@@ -8,5 +8,8 @@ Content-Type: application/json
   "rating" : 3
 }
 
-### Get a book
+### Get te a book
+GET http://localhost:8080/api/browse/Books(f846b0b9-01d4-4f6d-82a4-d79204f62278)/reviews
+
+### Get Review
 GET http://localhost:8080/api/browse/Reviews(8d7eadf4-ec48-4c80-8f95-138e77e61e1c) HTTP/1.1
