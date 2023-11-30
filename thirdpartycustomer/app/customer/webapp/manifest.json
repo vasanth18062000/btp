@@ -1,7 +1,7 @@
 {
     "_version": "1.58.0",
     "sap.app": {
-        "id": "ns.cust",
+        "id": "ns.customer",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -13,11 +13,11 @@
         "sourceTemplate": {
             "id": "@sap/generator-fiori:lrop",
             "version": "1.11.4",
-            "toolsId": "f297ff96-ee41-45c1-8a2f-fa7a6f809c1d"
+            "toolsId": "53c19343-f528-48f6-bf84-67aef87bd23f"
         },
         "dataSources": {
             "mainService": {
-                "uri": "/odata/v4/customer/",
+                "uri": "/odata/v4/my/",
                 "type": "OData",
                 "settings": {
                     "annotations": [],
@@ -62,7 +62,7 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "ns.cust.i18n.i18n"
+                    "bundleName": "ns.customer.i18n.i18n"
                 }
             },
             "": {
@@ -112,28 +112,7 @@
                                     }
                                 }
                             },
-                            "initialLoad": "Enabled",
-                            "controlConfiguration": {
-                                "@com.sap.vocabularies.UI.v1.LineItem": {
-                                    "tableSettings": {
-                                        "condensedTableLayout": true,
-                                        "enableExport": true,
-                                        "selectAll": true
-                                    }
-                                }
-                            },
-                            "content": {
-                                "header": {
-                                    "actions": {
-                                        "login": {
-                                            "press": "ns.cust.ext.controller.LoginFunction.login",
-                                            "visible": true,
-                                            "enabled": true,
-                                            "text": "Login"
-                                        }
-                                    }
-                                }
-                            }
+                            "initialLoad": "Enabled"
                         }
                     }
                 },

@@ -20,6 +20,6 @@ File or Folder | Purpose
 - Start adding content, for example, a [db/schema.cds](db/schema.cds).
 
 
-## Learn Moref
+## Learn More
 
 Learn more at https://cap.cloud.sap/docs/get-started/.

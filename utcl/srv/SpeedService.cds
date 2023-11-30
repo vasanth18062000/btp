@@ -9,6 +9,6 @@ service Customer  {
     entity Order as projection on project.Order;
     entity Stock as projection on project.StockLevel;
     entity warehouse as projection on project.Warehouse;
-
-
 }
+annotate Customer.Customer with @odata.draft.enabled;
+

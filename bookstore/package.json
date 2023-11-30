@@ -1,5 +1,5 @@
 {
-  "name": "utcl",
+  "name": "bookstore",
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "repository": "<Add your repository here>",
@@ -7,18 +7,13 @@
   "private": true,
   "dependencies": {
     "@sap/cds": "^7",
-    "express": "^4",
-    "node": "^18.18.2"
+    "express": "^4"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
-    "@sap/ux-specification": "^1.108.18"
+    "sqlite3": "^5.1.6"
   },
   "scripts": {
-    "start": "cds-serve",
-    "watch-cust": "cds watch --open cust/webapp/index.html?sap-ui-xx-viewCache=false"
-  },
-  "sapux": [
-    "app/cust"
-  ]
+    "start": "cds-serve"
+  }
 }
