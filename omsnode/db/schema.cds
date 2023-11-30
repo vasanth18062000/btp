@@ -30,7 +30,7 @@ entity FoodCourt  : managed,cuid{
       merchandiseCount:Integer;
 }
 
-entity ItPark:cuid,managed{
+entity ItPark:managed{
     key ID:String;
     name:String;
     city:String;
