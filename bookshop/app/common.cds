@@ -1,12 +1,11 @@
-using {toadslop.bookshop as bookshop} from '../db/index';
-using from '../srv/cat-service';
-using from '@sap/cds/common';
+using { toadslop.bookshop as bookshop } from '../db/index';
 
 annotate bookshop.Books with {
-  author   @title: 'Author';
-  genre    @title: 'Genre';
-  price    @title: 'Price';
-  rating   @title: 'Rating';
-  id       @UI.Hidden;
+  author @title : 'Author';
+  genre  @title : 'Genre';
+  id    @title : 'ID';
+  price  @title : 'Price';
+  rating  @title : 'Rating';
+  descr @UI.Hidden;
   currency @UI.Hidden;
 }

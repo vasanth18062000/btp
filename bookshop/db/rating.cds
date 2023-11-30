@@ -1,4 +1,5 @@
 namespace toadslop.bookshop;
+
 type Rating : Integer enum {
     Great    = 5;
     Good     = 4;

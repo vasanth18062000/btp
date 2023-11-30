@@ -5,45 +5,70 @@ annotate CatalogService.Books with @(UI : {
       TypeName : 'Book',
       TypeNamePlural : 'Books',
   },
- LineItem        : [
+  LineItem        : [
+     {
+      Value : id,
+      Label : 'ID'
+    },
     {
       Value : title,
-      Label : 'Title'
+     
     },
     {Value : author},
-    {Value : genre},
     {Value : price},
+    
     {
       Value : descr,
       ![@UI.Hidden]
     },
-    {
-      Value : id, 
+    {Value : genre,
+    ![@UI.Hidden]
     },
     {
+      Value : currency.code,
+      ![@UI.Hidden]
+    },
+     {
       $Type  : 'UI.DataFieldForAnnotation',
       Target : '@UI.DataPoint#rating'
     },
+    // {
+    //   $Type  : 'UI.DataFieldForAnnotation',
+    //   Target : '@UI.FieldGroup#AddReview'
+    // },
+    
   ],
   SelectionFields : [
     author,
-    genre,
-    
+    genre
   ],
   PresentationVariant : {
     Text           : 'Default',
-    SortOrder      : [{Property : title}],
+    SortOrder      : [{Property : id}],
     Visualizations : ['@UI.LineItem']
   },
+  
   DataPoint #rating   : {
     Value         : rating,
     Visualization : #Rating,
-    TargetValue   : 5
+    TargetValue   : 5,
+    
   },
-})
 
+  // FieldGroup #AddReview   : {Data: [{
+  //   $Type         : 'UI.DataFieldForAction',
+  //   Label : 'Add Review',
+  //   Action   :  'CatalogService.addReview',
+  //   InvocationGrouping: #Isolated,
+  // }]}   
+  })
 {
+    @UI.HiddenFilter
+    descr;
     @Measures.ISOCurrency : currency.code
-    price
+    price;
 };
 
+annotate CatalogService.Books actions {
+addReview(rating @title : 'Rating', title @title : 'Title', text @title : 'Text')
+}
