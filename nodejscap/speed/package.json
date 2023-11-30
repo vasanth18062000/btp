@@ -16,10 +16,12 @@
   "scripts": {
     "start": "cds-serve",
     "watch-customer": "cds watch --open customer/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-order": "cds watch --open order/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-order": "cds watch --open order/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-customerspace": "cds watch --open customerspace/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "sapux": [
     "app/customer",
-    "app/order"
+    "app/order",
+    "app/customerspace"
   ]
 }
