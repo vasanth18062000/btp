@@ -222,14 +222,12 @@ IBANValidityStartDate,BankAccount,BankAccountReferenceText,CollectionAuthInd,Cit
 
 }
 
-entity Suuplier as projection on api.A_Supplier{
-  key Supplier,
-  AuthorizationGroup,
-  BusinessPartnerPanNumber,
-  Customer
-  
-}
+entity Suppliers as projection on api.A_BusinessPartner {
+        key BusinessPartner as ID,
+        BusinessPartnerFullName as fullName,
+        BusinessPartnerIsBlocked as isBlocked,
 
+}
 
 
 
