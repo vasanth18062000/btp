@@ -53,16 +53,16 @@
       "options": {
        "settings": {
         "entitySet": "Books",
-          "controlConfiguration": {
-            "@com.sap.vocabularies.UI.v1.LineItem": {
-                "columns": {
-                    "AddReviewColumn": {
-                        "header":"Add Review",
-                        "template":"bookshop.custom.AddReview.AddReviewButton"
-                    }
-                }
-            }
+        "controlConfiguration":{
+          "@com.sap.vocabularies.UI.v1.LineItem":{
+              "columns": {
+                  "AddReviewColumn":{
+                      "header":"Add Review",
+                      "template":"bookshop.custom.AddReview.AddReviewButton"
+                  }
+              }
           }
+        }
        }
       }
      }
