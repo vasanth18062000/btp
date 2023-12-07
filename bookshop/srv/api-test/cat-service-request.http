@@ -4,10 +4,10 @@ GET http://localhost:8080/odata/v4/CatalogService/Books HTTP/1.1
 ### Create a book
 POST http://localhost:8080/odata/v4/CatalogService/Books HTTP/1.1
 content-type: application/json
-Authorization: Basic authenticated:
+Authorization: Basic klaus:pass_klaus
 
 {
-  "id": "106",
+  "id": "107",
   "title": "Java",
   "descr": "Complete java reference",
   "author": "Java",
@@ -19,6 +19,7 @@ Authorization: Basic authenticated:
 
 ### Get the book
 GET http://localhost:8080/odata/v4/CatalogService/Books('107') HTTP/1.1
+//Authorization: Basic sabine:pass_sabine
 
 ### Update the book
 PATCH http://localhost:8080/odata/v4/CatalogService/Books('100') HTTP/1.1
@@ -33,11 +34,13 @@ DELETE http://localhost:8080/odata/v4/CatalogService/Books('106') HTTP/1.1
 content-type: application/json
 
 ### Get all Reviews
-GET http://admin:admin@localhost:8080/odata/v4/CatalogService/Reviews HTTP/1.1
+GET http://sabine:pass_sabine@localhost:8080/odata/v4/CatalogService/Reviews HTTP/1.1
+
 
 ### Create a Review
 POST http://localhost:8080/odata/v4/CatalogService/Reviews HTTP/1.1
 content-type: application/json
+Authorization: Basic sabine:pass_sabine
 
 {
   "title": "I hated it",

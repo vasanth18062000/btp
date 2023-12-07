@@ -15,6 +15,9 @@ annotate CatalogService.Books with @(UI : {
     { $Type  : 'UI.DataFieldForAnnotation',
       Target : '@UI.DataPoint#rating'
     },
+    // { $Type  : 'UI.DataFieldForAnnotation',
+    //   Target : '@UI.FieldGroup#AddReview'
+    // },
     {Value : price},
     {
       Value : descr,
