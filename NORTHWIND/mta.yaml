@@ -25,6 +25,9 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: NORTHWIND-auth
+      - name: NORTHWIND-destination
+      - name: NORTHWIND-logs
+      
       
 
 resources:
@@ -42,4 +45,10 @@ resources:
     type: org.cloudfoundry.managed-service
     parameters:
       service: destination
+      service-plan: lite
+
+  - name: NORTHWIND-logs
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: application-logs
       service-plan: lite

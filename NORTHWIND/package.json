@@ -1,6 +1,6 @@
 {
     "name": "NORTHWIND",
-    "version": "1.0.0",
+    "version": "1.2.27",
     "description": "A simple CAP project.",
     "repository": "<Add your repository here>",
     "license": "UNLICENSED",
@@ -27,7 +27,7 @@
     },
     "cds": {
         "requires": {
-            "NorthWind": {
+            "Northwind": {
                 "kind": "odata",
                 "model": "srv/external/Northwind",
                 "[backend]": {
@@ -37,7 +37,7 @@
                 },
                 "[production]": {
                     "credentials": {
-                        "destination": "Northwind"
+                        "destination": "NORTHWIND"
                     }
                 }
             },
