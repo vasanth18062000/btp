@@ -20,6 +20,7 @@ Accept: application/json
 
 POST http://localhost:8080/odata/v4/OrdersService/Orders
 Content-Type: application/json
+Authorization: Basic mia:pass_mia
 
 {
   "items": [
@@ -30,3 +31,30 @@ Content-Type: application/json
   ]
 }
 
+### Read Products
+
+GET http://localhost:8080/odata/v4/AdminService/Products
+Accept: application/json
+//Authorization: Basic sabine:pass_sabine
+Authorization: Basic mia:pass_mia
+
+### Create Order as Mia
+
+POST http://localhost:8080/odata/v4/OrdersService/Orders
+Content-Type: application/json
+Authorization: Basic mia:pass_mia 
+
+{
+  "items": [
+    {
+      "book_ID": "fd0c5fda-8811-4e20-bcff-3a776abc290a",
+      "amount": 10
+    }
+  ]
+}
+
+### Read Orders as Mia
+
+GET http://localhost:8080/odata/v4/OrdersService/Orders?$expand=items
+Accept: application/json
+Authorization:  Basic sabine:pass_sabine

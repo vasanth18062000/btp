@@ -1,9 +1,13 @@
 package com.sap.cap.bookshop.handlers;
 
+import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
+import com.fasterxml.jackson.core.io.BigDecimalParser;
 import com.sap.cds.Result;
 import com.sap.cds.ql.Insert;
 import com.sap.cds.ql.cqn.AnalysisResult;
@@ -11,13 +15,16 @@ import com.sap.cds.ql.cqn.CqnAnalyzer;
 import com.sap.cds.ql.cqn.CqnInsert;
 import com.sap.cds.ql.cqn.CqnSelect;
 import com.sap.cds.reflect.CdsModel;
+import com.sap.cds.services.cds.CqnService;
 import com.sap.cds.services.handler.EventHandler;
+import com.sap.cds.services.handler.annotations.After;
 import com.sap.cds.services.handler.annotations.On;
 import com.sap.cds.services.handler.annotations.ServiceName;
 import com.sap.cds.services.persistence.PersistenceService;
 
 import cds.gen.catalogservice.AddReviewContext;
 import cds.gen.catalogservice.Books;
+import cds.gen.catalogservice.Books_;
 import cds.gen.catalogservice.CatalogService_;
 import cds.gen.catalogservice.Reviews;
 import cds.gen.catalogservice.Reviews_;
@@ -60,8 +67,30 @@ public class CatalogServiceHandler implements EventHandler {
         context.setResult(newreviews);
 
     }
+  //   @After(event = { CqnService.EVENT_READ, CqnService.EVENT_CREATE }, entity = Books_.CDS_NAME)
+  //   public void calculateTotal(List<Books> books )
+  //   {
+  //        for (Books book : books) 
+  //   {
+  //     if(!CollectionUtils.isEmpty(books))
+  //     {
+  //      List<Reviews> reviews    = book.getReviews();
 
-    
+  //      int toalreview = 0;
+  //      int noofReview=0;
+  //      if(!CollectionUtils.isEmpty(reviews))
+  //      {
+  //      for (Reviews review : reviews)
+  //      {
+  //       toalreview = toalreview +  review.getRating();
+  //       noofReview++;
+  //     }
+  //       long  ratings = toalreview / noofReview;
 
+  //       book.setRating(BigDecimal.valueOf(ratings));
+  //   }
+  //   }
+  //   }
+  // }
     
 }

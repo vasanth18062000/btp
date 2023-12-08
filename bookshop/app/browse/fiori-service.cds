@@ -19,15 +19,15 @@ annotate CatalogService.Books with @(UI : {
       {
         Value: price,
       },
-         {
+    {
       $Type  : 'UI.DataFieldForAnnotation',
       Target : '@UI.DataPoint#rating',
-       Label  : '{i18n>Rating}'
+       Label  : 'Rating'
     },
-    {
-      $Type: 'UI.DataFieldForAnnotation',
-      Target:'@UI.FieldGroup#AddReview',
-    },
+    // {
+    //   $Type: 'UI.DataFieldForAnnotation',
+    //   Target:'@UI.FieldGroup#AddReview',
+    // },
      // {
      // Value: descr,
      // ![@UI.Hidden]
@@ -56,13 +56,13 @@ annotate CatalogService.Books with @(UI : {
     TargetValue   : 5
   },
 
-  FieldGroup #AddReview  : {Data : [{
-    $Type :'UI.DataFieldForAction',
-    Label:'Add Review',
-    Action:'CatalogService.addReview',
-    InvocationGrouping:#Isolated
-  }]
-  }
+  // FieldGroup #AddReview  : {Data : [{
+  //   $Type :'UI.DataFieldForAction',
+  //   Label:'Add Review',
+  //   Action:'CatalogService.addReview',
+  //   InvocationGrouping:#Isolated
+  // }]
+  // }
 })
 {
   @UI.HiddenFilter
