@@ -2,6 +2,7 @@
 
 POST http://localhost:8080/odata/v4/AdminService/Products
 Content-Type: application/json
+Authorization: Basic sabine:pass_sabine
 
 { "title": "My Tutorial Product", "descr": "You are doing an awesome job!"}
 
@@ -34,9 +35,10 @@ Content-Type: application/json
   ]
 }
 
-### Create Order
+### Create Order as Anne
 POST http://localhost:8080/odata/v4/OrdersService/Orders
 Content-Type: application/json
+Authorization: Basic anne:pass_anne
 
 {
   "items": [
@@ -46,3 +48,10 @@ Content-Type: application/json
     }
   ]
 }
+
+### Read Orders as Anne
+
+GET http://localhost:8080/odata/v4/OrdersService/Orders?$expand=items
+Accept: application/json
+Authorization: Basic anne:pass_anne
+
