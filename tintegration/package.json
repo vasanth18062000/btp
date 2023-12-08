@@ -1,0 +1,47 @@
+{
+  "name": "tintegration",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap-cloud-sdk/http-client": "^3.8.1",
+    "@sap/cds": "^7",
+    "express": "^4",
+    "@sap/xssec": "^3",
+    "passport": "^0"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7",
+    "@sap/ux-specification": "^1.120.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-businesspartner": "cds watch --open businesspartner/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-business_partner": "cds watch --open business_partner/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-industry": "cds watch --open industry/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-business_credit_info": "cds watch --open business_credit_info/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-business_year_info": "cds watch --open business_year_info/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-business_partner_indentifycation": "cds watch --open business_partner_indentifycation/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-creditifo": "cds watch --open creditifo/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "cds": {
+    "requires": {
+      "API_BUSINESS_PARTNER": {
+        "kind": "odata-v2",
+        "model": "srv/external/API_BUSINESS_PARTNER"
+      },
+      "auth": "xsuaa"
+    }
+  },
+  "sapux": [
+    "app/businesspartner",
+    "app/business_partner",
+    "app/industry",
+    "app/creditifo",
+    "app/business_year_info",
+    "app/business_partner_indentifycation"
+  ]
+}

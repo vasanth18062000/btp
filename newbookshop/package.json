@@ -1,0 +1,34 @@
+{
+  "name": "newbookshop",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/ux-specification": "^1.120.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-book": "cds watch --open book/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-reviews": "cds watch --open reviews/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-reviwe": "cds watch --open reviwe/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-reviwes": "cds watch --open reviwes/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+
+  
+  "sapux": [
+    "app/book",
+    "app/reviews",
+    "app/reviwe",
+    "app/reviwe",
+    "app/book",
+    "app/reviwes"
+  ]
+}
+  
