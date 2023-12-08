@@ -1,3 +1,3 @@
 
-using from './fiori';
-using from '../node_modules/@sap/cds/common';
+using from './customer/webapp/fiori';
+// using from '../node_modules/@sap/cds/common';

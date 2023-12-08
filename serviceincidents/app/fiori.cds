@@ -97,7 +97,30 @@ annotate ser.MyService.Customer with @(
  ) ;
 
 
- 
+  annotate ser.MyService.Customer @(
+
+    UI.SelectionFields : [
+        Customer,
+    ]);
+
+    annotate ser.MyService.Customer with {
+    Customer @(Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'Customer',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : Customer,
+                    ValueListProperty : 'Customer',
+                },
+            ],
+            Label : 'customer',
+        PresentationVariantQualifier : 'vh_Customer_Customer',
+        },
+        Common.ValueListWithFixedValues : true
+)};
+
+
 
 
 

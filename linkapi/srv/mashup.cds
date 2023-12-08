@@ -23,6 +23,8 @@ service LinkApi {
               }
           ]) as projection on serv.Suppliers;
 
+    entity BPsupplier as projection on serv.Suppliers;
+
    
 }
 
@@ -44,6 +46,8 @@ annotate serv.BPContactToFuncAndDept with @cds.persistence :{table,skip:false};
 annotate serv.DepdntIntlLocNumber with @cds.persistence :{table,skip:false};
 
 annotate serv.BusinessPartnerBank with @cds.persistence :{table,skip:false};
+
+annotate serv.Suppliers with  @cds.persistence :{table,skip:false};
 
 
 

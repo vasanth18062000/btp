@@ -10,7 +10,11 @@
     "express": "^4"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^1"
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7"
+  },
+  "engines": {
+    "node": "^16"
   },
   "scripts": {
     "start": "cds-serve"

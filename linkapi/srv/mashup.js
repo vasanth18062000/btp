@@ -61,6 +61,11 @@ module.exports = (async function() {
       this.on('READ', 'BPContactToFuncAndDept', (req) => {
         console.log('>> delegating to S4 service...')
         return s4hanacloud.run(req.query)
+      }),
+
+      this.on('READ', 'BusinessPartnerBank', (req) => {
+        console.log('>> delegating to S4 service...')
+        return s4hanacloud.run(req.query)
       })
 
     
