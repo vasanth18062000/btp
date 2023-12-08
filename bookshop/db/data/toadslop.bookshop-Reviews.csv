@@ -1,4 +1,11 @@
-ID;CREATEDAT;CREATEDBY;MODIFIEDAT;MODIFIEDBY;RATING;TITLE;TEXT;BOOK_ID;
-11;2019-11-26T03:29:46.178Z;Anne;2019-11-26T03:29:46.178Z;Ann;4;Science;Good;111;
-12;2019-11-25T03:29:46.178Z;Rose;2019-11-25T03:29:46.178Z;Anne;5;English;Goood;112;
-13;2019-11-24T03:29:46.178Z;Rosee;2019-11-24T03:29:46.178Z;Annee;5;Englishh;Gooood;6;
+ID;CREATEDAT;CREATEDBY;MODIFIEDAT;MODIFIEDBY;RATING;TITLE;TEXT;BOOK_ID
+1;2023-01-15 08:30:00;John Doe;2023-01-15 10:45:00;Jane Smith;5;Review of "The Great Gatsby";An insightful review of the classic novel;1
+2;2023-02-03 12:15:00;Alice Johnson;2023-02-03 15:20:00;Bob Brown;4;Thoughts on "To Kill a Mockingbird";Analyzing the moral themes in the book;2
+3;2023-03-10 09:45:00;Charlie White;2023-03-10 11:55:00;David Green;3;Review of "The Hitchhiker's Guide to the Galaxy";Mixed feelings about the humor;3
+4;2023-04-05 14:20:00;Eva Black;2023-04-06 09:10:00;Frank Grey;5;Appreciating "Pride and Prejudice";Highlighting the timeless love story;4
+5;2023-05-22 11:00:00;Grace Taylor;2023-05-22 13:25:00;Henry Davis;4;Analysis of the dystopian elements in "1984";Reflecting on Orwell's vision;5
+6;2023-06-18 16:40:00;Isaac Reed;2023-06-18 18:55:00;Jessica Evans;2;Exploring the protagonist in "The Catcher in the Rye";Understanding Holden's character;6
+7;2023-07-07 09:15:00;Karen Miller;2023-07-07 12:30:00;Liam Wilson;4;Unraveling the mysteries in "The Da Vinci Code";A thrilling analysis;7
+8;2023-08-20 13:45:00;Michael Brooks;2023-08-20 15:55:00;Nancy Reed;5;Journey through Middle-earth in "The Lord of the Rings";A fantasy epic;8
+9;2023-09-11 10:10:00;Olivia Green;2023-09-11 11:45:00;Paul Harris;4;Magical experiences in "Harry Potter and the Philosopher's Stone";A wizarding world introduction;9
+10;2023-10-30 15:30:00;Quentin Turner;2023-10-30 18:20:00;Rachel White;4;Discovering life lessons in "The Alchemist";Philosophical reflections;10

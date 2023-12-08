@@ -4,6 +4,17 @@ spring:
   web.resources.static-locations: "file:./app"
   config.activate.on-profile: default
   sql.init.schema-locations: classpath:schema-h2.sql
+  security:
+    mock:
+      users:
+        - name: internal
+          password: ""
+        - name: privileged
+          password: ""
+        - name: authenticated
+          password: ""
+          roles:
+            - Administrators
 cds:
   datasource.auto-config.enabled: false
   odata-v4.endpoint.path: "/api"

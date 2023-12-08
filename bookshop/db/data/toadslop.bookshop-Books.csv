@@ -1,5 +1,11 @@
-ID;TITLE;DESCR;AUTHOR;GENRE;PRICE;CURRENCY_CODE;RATING;
-6;Test;CAP;Karthi;Test;12.99;USD;2.5;
-2;Test2;CAP2;Kumar;Testing;10.99;INR;3.5;
-3;Tes3;CAP3;Selva;Test;20.00;USD;4.0;
-4;Test4;CAP4;Vengat;Test;30.90;INR;4.5;
+ID;TITLE;DESCR;AUTHOR;GENRE;PRICE;CURRENCY_CODE;RATING
+1;The Great Gatsby;A classic novel exploring the American Dream;F. Scott Fitzgerald;Fiction;12.99;USD;4.5
+2;To Kill a Mockingbird;A powerful story about justice and morality;Harper Lee;Fiction;14.99;USD;4.8
+3;The Hitchhiker's Guide to the Galaxy;A comedic science fiction adventure;Douglas Adams;Science Fiction;9.99;USD;4.3
+4;Pride and Prejudice;A timeless tale of love and societal expectations;Jane Austen;Fiction;11.49;USD;4.7
+5;1984;A dystopian novel depicting a totalitarian society;George Orwell;Science Fiction;10.79;USD;4.6
+6;The Catcher in the Rye;A coming-of-age novel with a rebellious protagonist;J.D. Salinger;Fiction;13.29;USD;4.2
+7;The Da Vinci Code;A mystery thriller exploring art and religion;Dan Brown;Mystery;15.99;USD;4.0
+8;The Lord of the Rings;An epic fantasy trilogy;J.R.R. Tolkien;Fantasy;20.49;USD;4.9
+9;Harry Potter and the Philosopher's Stone;The first book in the magical series;J.K. Rowling;Fantasy;16.99;USD;4.8
+10;The Alchemist;A philosophical novel about pursuing one's dreams;Paulo Coelho;Fiction;12.49;USD;4.4
