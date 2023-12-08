@@ -1,11 +1,14 @@
 ### Get all books
-GET http://localhost:8080/odata/v4/CatalogService/Books HTTP/1.1
+GET http://admin:admin@localhost:8080/odata/v4/CatalogService/Books HTTP/1.1
+Authorization: Basic rahul:rahul@123
+
 ### Create a book
 POST http://admin:admin@localhost:8080/api/browse/Books HTTP/1.1
 content-type: application/json
+Authorization: Basic selva:selva@123
 
 {
-  "id": 8,
+  "id": 10,
   "title": "Wuthering Heights",
   
   "author": "Jane Austen",

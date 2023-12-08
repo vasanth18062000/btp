@@ -7,4 +7,26 @@ spring:
 cds:
   datasource.auto-config.enabled: false
   odata-v4.endpoint.path: "/api"
-  
+  security:
+    mock:
+      users:
+        - name: selva
+          password: selva@123
+          additional:
+            firstName: selvakumar
+            lastName: selvakumar@123
+            email: selvakumar@laderatechnology.com
+        - name: elumalai
+          password: m
+          additional:
+            firstName: elumalai1
+            lastName: m1
+            email: elumalai@laderatechnology.com
+        - name: rahul
+          password: rahul@123
+          roles:
+            - Administrators
+          additional:
+            firstName: Rahul
+            lastName: S
+            email: elumalai@laderatechnology.com
