@@ -11,4 +11,4 @@ service CatalogService {
   entity Reviews as projection on bookshop.Reviews;
 }
 
-annotate CatalogService @(requires: 'Administrators');
+// annotate CatalogService @(requires: 'Administrators');
