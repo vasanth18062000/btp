@@ -1,5 +1,5 @@
-package com.sap.bookshop.handlers;
 
+package toadslop.bookshop.handlers;
 import org.springframework.stereotype.Component;
 
 import com.sap.cds.Result;
@@ -13,12 +13,11 @@ import com.sap.cds.services.handler.annotations.On;
 import com.sap.cds.services.handler.annotations.ServiceName;
 import com.sap.cds.services.persistence.PersistenceService;
 
-
 import cds.gen.catalogservice.AddReviewContext;
 import cds.gen.catalogservice.Books;
 import cds.gen.catalogservice.CatalogService_;
 import cds.gen.catalogservice.Reviews;
-import cds.gen.com.sap.bookshop.Reviews_;
+import cds.gen.catalogservice.Reviews_;
 
 @Component
 @ServiceName(CatalogService_.CDS_NAME) // Map the service
@@ -36,7 +35,7 @@ public class CatalogServiceHandler implements EventHandler{
     public void addReview(AddReviewContext context){   
         System.out.println("Event handler triggered...");
         CqnSelect select = context.getCqn();
-        String bookId = String.valueOf(analyzer.analyze(select).targetKeys().get(Books.ID));
+        String bookId = (String) analyzer.analyze(select).targetKeys().get(Books.ID);
         System.out.println("BookId is: " + bookId);
 
         Reviews review =  Reviews.create();

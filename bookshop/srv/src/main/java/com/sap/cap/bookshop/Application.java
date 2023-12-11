@@ -1,4 +1,4 @@
-package com.sap.bookshop;
+package com.sap.cap.bookshop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

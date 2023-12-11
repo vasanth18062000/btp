@@ -1,39 +1,81 @@
 sap.ui.define(
   [
     "sap/ui/core/Fragment",
-    "sap/ui/layout/form/FormContainer",
-    "sap/ui/layout/form/FormElement",
-    "sap/m/Input"
-  ], 
-  function (Fragment, FormContainer, FormElement, Input) {
-    "use strict";   
-    
+    "./createAddReviewFormContainer",
+    "sap/ui/model/json/JSONModel",
+  ],
+  function (Fragment, createAddReviewFormContainer, JSONModel) {
+    "use strict";
+
     const getAddReviewDialog = (oEvent) => oEvent.getSource().getParent();
 
-    const oContainerTemplate = new FormContainer();
-    const oTitleElement = new FormElement({label:"Title"});
-    const oTitleInput = new Input({value:"{title}"});
-    oTitleElement.addField(oTitleInput);
-    oContainerTemplate.addFormElement(oTitleElement);
-       
-	return {
-    beforeOpenDialog: function (oEvent,oParams) {
-      const { sRowBindingPath, sReviewDialogId} = oParams;
-      const oAddReviewForm = Fragment.byId(sReviewDialogId, "addReviewForm");
+    const setInputError = (oInputElement, bHasError) => {
+      const oFormErrorModel = oInputElement.getModel("formErrors");
+      const oInputErrors = { ...oFormErrorModel.getProperty("/inputErrors") };
+      oInputErrors[oInputElement.getId()] = bHasError;
+      oFormErrorModel.setProperty("/inputErrors", oInputErrors);
+    };
 
-      oAddReviewForm.bindAggregation("formContainers", {
-        path:`${sRowBindingPath}/reviews`,
-      });
-      console.log("BEFORE OPEN");
-      console.log("PARAMS", oParams);
-     },
-     
-    submit: function (oEvent) {
-      getAddReviewDialog(oEvent).close();
-    },
-    
-    cancel: function (oEvent) {
-      getAddReviewDialog(oEvent).close();
-    },
-  };
-});
+    return {
+      beforeOpenDialog: function (oEvent, oParams) {
+        const oFormErrorModel = new JSONModel({
+          get hasErrors() {
+            return Object.values(this.inputErrors).some((error) => error);
+          },
+          inputErrors: {},
+        });
+        oEvent.getSource().setModel(oFormErrorModel, "formErrors");
+
+        const { sRowBindingPath, sReviewDialogId } = oParams;
+        this.sReviewDialogId = sReviewDialogId;
+        const oAddReviewForm = Fragment.byId(sReviewDialogId, "addReviewForm");
+
+        oAddReviewForm.bindAggregation("formContainers", {
+          path: `${sRowBindingPath}/reviews`,
+          template: createAddReviewFormContainer(),
+          length: 1,
+          parameters: {
+            $$updateGroupId: "reviews",
+          },
+        });
+
+        const oReviewBinding = oAddReviewForm.getBinding("formContainers");
+
+        oReviewBinding.create({
+          rating: 0,
+          title: "",
+          text: "",
+        });
+      },
+
+      submit: async function (oEvent) {
+        const oAddReviewDialog = getAddReviewDialog(oEvent);
+        oAddReviewDialog.setBusy(true);
+
+        try {
+          await oAddReviewDialog.getModel().submitBatch("reviews");
+          console.log("SUCCESS");
+          oAddReviewDialog.close();
+        } catch (error) {
+          console.log(`ERROR: ${error.message}`);
+        } finally {
+          oAddReviewDialog.setBusy(false);
+        }
+      },
+
+      cancel: function (oEvent) {
+        getAddReviewDialog(oEvent).close();
+      },
+
+      onValidationError: function (oEvent) {
+        const oInputElement = oEvent.getParameter("element");
+        setInputError(oInputElement, true);
+      },
+
+      onValidationSuccess: function (oEvent) {
+        const oInputElement = oEvent.getParameter("element");
+        setInputError(oInputElement, false);
+      },
+    };
+  }
+);

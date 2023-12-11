@@ -1,4 +1,4 @@
-namespace com.sap.bookshop;
+namespace toadslop.bookshop;
 
-type Name : String(100);
+type Name: String(100);
 

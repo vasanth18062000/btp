@@ -1,12 +1,12 @@
-using {cuid, managed} from '@sap/cds/common';
-using {com.sap.bookshop as bookshop} from './index';
+namespace toadslop.bookshop;
 
-namespace com.sap.bookshop;
+using {cuid,managed} from '@sap/cds/common';
+using {toadslop.bookshop as bookshop} from './index';
 
-entity Reviews : cuid, managed {
-    rating : bookshop.Rating @assert.range; // validate the value between the range.
-    title  : bookshop.Name @mandatory;
-    text   : bookshop.Text @mandatory;
-    book   : Association to bookshop.Books;
+entity Reviews : cuid, managed {  
+        
+        rating : bookshop.Rating @assert.range;
+        title  : bookshop.Name @mandatory;
+        text   : bookshop.Text @mandatory;
+        book   : Association to bookshop.Books;
 }
-
