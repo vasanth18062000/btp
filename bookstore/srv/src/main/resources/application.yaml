@@ -4,4 +4,28 @@ spring:
   config.activate.on-profile: default
   sql.init.schema-locations: classpath:schema-h2.sql
 cds:
-  datasource.auto-config.enabled: false
+  datasource:
+    auto-config.enabled: false
+  security:
+    mock:
+      users:
+        - name: bharathi
+          password: pass_bharathi
+          additional:
+            firstName: Bharathi
+            lastName: Rajan
+            email: Bharathi.Rajan@mail.com
+        - name: krishna
+          password: pass_krishna
+          additional:
+            firstName: Krishna
+            lastName: Kumar
+            email: Krishna.Kumar@mail.com
+        - name: pandi
+          password: pass_pandi
+          roles:
+            - Administrators
+          additional:
+            firstName: Pandi
+            lastName: Rajan
+            email: Pandi.Rajan@mail.com

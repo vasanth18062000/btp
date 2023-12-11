@@ -2,6 +2,7 @@
 
 POST http://localhost:8080/odata/v4/OrdersService/Orders
 Content-Type: application/json
+Authorization: Basic bharathi:pass_bharathi
 
 {
   "items": [
@@ -12,21 +13,42 @@ Content-Type: application/json
   ]
 }
 
-### Read Book
+### Read Products
 
-GET http://localhost:8080/odata/v4/BooksService/Books(abed2f7a-c50e-4bc5-89fd-9a00a54b4b16)
+GET http://localhost:8080/odata/v4/AdminService/Products
 Accept: application/json
+Authorization: Basic pandi:pass_pandi
 
-### Create another Order
+### Create Order as Krishna
 
 POST http://localhost:8080/odata/v4/OrdersService/Orders
 Content-Type: application/json
+Authorization: Basic krishna:pass_krishna
 
 {
   "items": [
     {
       "book_ID": "fd0c5fda-8811-4e20-bcff-3a776abc290a",
-      "amount": 4
+      "amount": 10
     }
   ]
 }
+
+### Read Orders as Krishna
+
+GET http://localhost:8080/odata/v4/OrdersService/Orders?$expand=items
+Accept: application/json
+Authorization: Basic krishna:pass_krishna
+
+### Read Orders as Bharathi
+
+GET http://localhost:8080/odata/v4/OrdersService/OrderItems
+Accept: application/json
+Authorization: Basic bharathi:pass_bharathi
+
+
+### Read Orders as Pandi (Administrator)
+
+GET http://localhost:8080/odata/v4/OrdersService/Orders?$expand=items
+Accept: application/json
+Authorization: Basic pandi:pass_pandi
