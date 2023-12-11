@@ -1,4 +1,5 @@
 using{com.ladera.businessservice as serv} from './businesspartnerservice';
+using {com.ladera.schema as schem} from '../db/schema';
 
 namespace com.ladera.linkapi;
 
@@ -15,18 +16,14 @@ service LinkApi {
     entity BPContactToAddress as projection on serv.BPContactToAddress;
     entity BPContactToFuncAndDept as projection on serv.BPContactToFuncAndDept;
     entity BusinessPartnerBank as projection on serv.BusinessPartnerBank;
-    @readonly
-    entity Suppliers @(restrict : [
-              {
-                  grant : [ 'READ' ],
-                  to : [ 'Customer' ]
-              }
-          ]) as projection on serv.Suppliers;
+    entity BPSuuplier as projection on serv.Suppliers;
 
-    entity BPsupplier as projection on serv.Suppliers;
+     entity Risks as projection on schem.Risks;
+    entity Mitigations as projection on schem.Mitigations;
 
    
 }
+
 
 
 annotate serv.BusinessPartner with @cds.persistence : {table,skip:false};

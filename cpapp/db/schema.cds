@@ -1,7 +1,5 @@
-using {managed} from '@sap/cds/common';
-using {com.ladera.businessservice as service } from '../srv/businesspartnerservice';
-
-namespace com.ladera.schema;
+namespace sap.ui.riskmanagement;
+using { managed } from '@sap/cds/common';
 
 entity Risks : managed {
     key ID      : UUID  @(Core.Computed : true);
@@ -11,8 +9,9 @@ entity Risks : managed {
     miti        : Association to Mitigations;
     impact      : Integer;
     criticality : Integer;
-    supplier    : Association to service.Suppliers;
-  }
+    supplier    : Association to Suppliers;
+}
+
 
   entity Mitigations : managed {
     key ID       : UUID  @(Core.Computed : true);
