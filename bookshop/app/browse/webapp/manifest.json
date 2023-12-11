@@ -1,11 +1,11 @@
 {
     "_version": "1.8.0",
     "sap.app": {
-     "id": "bookshop",
-     "type": "application",
+     "id": "bookshop",                          // The same as we defined in our Component.js (the bookshop in bookshop.Component
+     "type": "application",                     // specifies whether our app is a standalone application or another category of SAPUI5 component
      "title": "Browse Books",
      "description": "Find your favorite book",
-     "dataSources": {
+     "dataSources": {                           // Mention how to interact with our oData service.
       "CatalogService": {
        "uri": "/api/browse/",
        "type": "OData",
@@ -15,7 +15,7 @@
       }
      }
     },
-    "sap.ui5": {
+    "sap.ui5": {                               // declare the dependencies, the sap.fe.templates library, which contains Fiori Elements
      "dependencies": {
       "libs": {
        "sap.fe.templates": {}
@@ -26,8 +26,8 @@
        "dataSource": "CatalogService",
        "settings": {
         "synchronizationMode": "None",
-        "operationMode": "Server",
-        "autoExpandSelect": true,
+        "operationMode": "Server",           // Setting this to server means that Fiori Elements will append $filter and $orderby parameters to requests sent to our backend and the backend will handle all filtering and sorting
+        "autoExpandSelect": true,            // FioriElements will automatically generate $expand and $select parameters when sending requests to the backend
         "earlyRequests": true,
         "groupProperties": {
          "default": {
@@ -37,7 +37,7 @@
        }
       }
      },
-     "routing": {
+     "routing": {                          // config file as it’s how we tell our app to move from page to page
       "routes": [
        {
         "pattern": ":?query:",

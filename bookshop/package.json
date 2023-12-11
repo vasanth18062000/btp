@@ -6,9 +6,15 @@
   "repository": "<Add your repository here>",
   "sapux": [
     "app/ook-shop",
-    "app/bookshop"
+    "app/bookshop",
+    "app/bookshop",
+    "app/book"
   ],
   "devDependencies": {
-    "@sap/ux-specification": "^1.108.18"
+    "@sap/ux-specification": "^1.120.0"
+  },
+  "dependencies": {
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+    "script": "^0.1.4"
   }
 }
