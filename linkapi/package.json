@@ -8,11 +8,15 @@
   "dependencies": {
     "@sap-cloud-sdk/http-client": "^3.8.1",
     "@sap-cloud-sdk/util": "^3.8.1",
-    "@sap/cds": "^7",
-    "express": "^4"
+    "@sap/cds": "^7.4.2",
+    "@sap/cds-hana": "^2",
+    "express": "^4",
+    "force": "^0.0.3",
+    "mbt": "^1.2.27"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7",
     "@sap/ux-specification": "^1.120.0"
   },
   "scripts": {
@@ -33,7 +37,8 @@
       "API_BUSINESS_PARTNER": {
         "kind": "odata-v2",
         "model": "srv/external/API_BUSINESS_PARTNER"
-      }
+      },
+      "db": "hana"
     }
   },
   "sapux": [

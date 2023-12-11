@@ -4,7 +4,7 @@ namespace com.ladera.businessservice;
 
 
 entity BusinessPartner as projection on api.A_BusinessPartner{
-   PersonFullName,
+   key PersonFullName,
    key BusinessPartner ,
   Customer,
   Supplier,
