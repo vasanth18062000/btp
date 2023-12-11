@@ -7,7 +7,9 @@ entity Car{
     noOfPassanger: Association to many Passanger on noOfPassanger.carPassanger=$self;
     // type: String;
     modelVarient:  Composition of  many ModelVarient on modelVarient.models=$self;
+    carimage :String;
 }
+
 entity ModelVarient{
     key Id: Integer;
     modelName: String;

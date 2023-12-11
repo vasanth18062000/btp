@@ -9,5 +9,4 @@ service CarManagementService{
     entity Engine as projection on task.Engine;
     entity Passanger as projection on task.Passanger;
     entity TyreType as projection on task.TyreType;
-
 }

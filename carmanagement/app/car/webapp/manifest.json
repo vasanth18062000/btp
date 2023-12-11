@@ -135,6 +135,18 @@
                                         "route": "ModelVarientObjectPage"
                                     }
                                 }
+                            },
+                            "content": {
+                                "header": {
+                                    "actions": {
+                                        "101": {
+                                            "press": "ns.car.ext.controller.SecondBack.SecondBack",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Go to back"
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -146,7 +158,19 @@
                     "options": {
                         "settings": {
                             "editableHeaderContent": false,
-                            "contextPath": "/Car/modelVarient"
+                            "contextPath": "/Car/modelVarient",
+                            "content": {
+                                "header": {
+                                    "actions": {
+                                        "100": {
+                                            "press": "ns.car.ext.controller.BackButton.BackButton",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Go to back"
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

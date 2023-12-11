@@ -159,7 +159,7 @@ annotate service.ModelVarient with @(
 );
 annotate service.Car with @(
     UI.HeaderInfo : {
-        TypeImageUrl : 'sap-icon://insurance-car',
+        TypeImageUrl : '',
         TypeName : '',
         TypeNamePlural : '',
         Title : {
@@ -170,6 +170,7 @@ annotate service.Car with @(
             $Type : 'UI.DataField',
             Value : 'Tough looking in any angle',
         },
+        ImageUrl : carimage,
     }
 );
 annotate service.ModelVarient with @(
@@ -299,5 +300,12 @@ annotate service.ModelVarient with @(
         $Type : 'UI.FieldGroupType',
         Data : [
         ],
+    }
+);
+annotate service.Car with @(
+    UI.DataPoint #Id : {
+        Value : Id,
+        Visualization : #Rating,
+        TargetValue : 5,
     }
 );
