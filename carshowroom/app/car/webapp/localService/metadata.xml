@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="CarShowroomService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="cars" EntityType="CarShowroomService.cars">
+                    <NavigationPropertyBinding Path="tyres" Target="TyresDeatail"/>
+                    <NavigationPropertyBinding Path="passengerDetails" Target="Passenger"/>
+                    <NavigationPropertyBinding Path="colour" Target="Colour"/>
+                    <NavigationPropertyBinding Path="modelVarient" Target="ModelVarient"/>
+                    <NavigationPropertyBinding Path="seatsDetails" Target="SeatsDetails"/>
+                    <NavigationPropertyBinding Path="tubeDetails" Target="TubeDetails"/>
+                    <NavigationPropertyBinding Path="engineDetails" Target="EngineDetails"/>
+                    <NavigationPropertyBinding Path="currencyDetails" Target="CurrencyDetails"/>
+                </EntitySet>
+                <EntitySet Name="TyresDeatail" EntityType="CarShowroomService.TyresDeatail">
+                    <NavigationPropertyBinding Path="car" Target="cars"/>
+                </EntitySet>
+                <EntitySet Name="SeatsDetails" EntityType="CarShowroomService.SeatsDetails"/>
+                <EntitySet Name="TubeDetails" EntityType="CarShowroomService.TubeDetails"/>
+                <EntitySet Name="EngineDetails" EntityType="CarShowroomService.EngineDetails">
+                    <NavigationPropertyBinding Path="car" Target="cars"/>
+                </EntitySet>
+                <EntitySet Name="Passenger" EntityType="CarShowroomService.Passenger">
+                    <NavigationPropertyBinding Path="car" Target="cars"/>
+                </EntitySet>
+                <EntitySet Name="ModelVarient" EntityType="CarShowroomService.ModelVarient">
+                    <NavigationPropertyBinding Path="car" Target="cars"/>
+                </EntitySet>
+                <EntitySet Name="Colour" EntityType="CarShowroomService.Colour">
+                    <NavigationPropertyBinding Path="car" Target="cars"/>
+                </EntitySet>
+                <EntitySet Name="CurrencyDetails" EntityType="CarShowroomService.CurrencyDetails"/>
+            </EntityContainer>
+            <EntityType Name="cars">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="tyres" Type="Collection(CarShowroomService.TyresDeatail)" Partner="car">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <NavigationProperty Name="passengerDetails" Type="Collection(CarShowroomService.Passenger)" Partner="car"/>
+                <NavigationProperty Name="colour" Type="Collection(CarShowroomService.Colour)" Partner="car"/>
+                <NavigationProperty Name="modelVarient" Type="Collection(CarShowroomService.ModelVarient)" Partner="car"/>
+                <Property Name="carName" Type="Edm.String"/>
+                <Property Name="carModel" Type="Edm.String"/>
+                <Property Name="engineType" Type="Edm.String"/>
+                <Property Name="modelYear" Type="Edm.String"/>
+                <NavigationProperty Name="seatsDetails" Type="CarShowroomService.SeatsDetails">
+                    <OnDelete Action="Cascade"/>
+                    <ReferentialConstraint Property="seatsDetails_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="seatsDetails_ID" Type="Edm.Int32"/>
+                <NavigationProperty Name="tubeDetails" Type="CarShowroomService.TubeDetails">
+                    <OnDelete Action="Cascade"/>
+                    <ReferentialConstraint Property="tubeDetails_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="tubeDetails_ID" Type="Edm.Int32"/>
+                <NavigationProperty Name="engineDetails" Type="CarShowroomService.EngineDetails">
+                    <OnDelete Action="Cascade"/>
+                    <ReferentialConstraint Property="engineDetails_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="engineDetails_ID" Type="Edm.Int32"/>
+                <NavigationProperty Name="currencyDetails" Type="CarShowroomService.CurrencyDetails">
+                    <ReferentialConstraint Property="currencyDetails_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="currencyDetails_ID" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="TyresDeatail">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="tyreBrand" Type="Edm.String"/>
+                <Property Name="tyreType" Type="Edm.String"/>
+                <NavigationProperty Name="car" Type="CarShowroomService.cars" Partner="tyres">
+                    <ReferentialConstraint Property="car_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="car_ID" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="SeatsDetails">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="noOfSeats" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="TubeDetails">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="tubeBrand" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="EngineDetails">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="engineCC" Type="Edm.String"/>
+                <Property Name="OilCapacity" Type="Edm.String"/>
+                <NavigationProperty Name="car" Type="CarShowroomService.cars">
+                    <ReferentialConstraint Property="car_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="car_ID" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="Passenger">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="gender" Type="Edm.String"/>
+                <Property Name="passengerList" Type="Edm.String"/>
+                <NavigationProperty Name="car" Type="CarShowroomService.cars" Partner="passengerDetails">
+                    <ReferentialConstraint Property="car_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="car_ID" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="ModelVarient">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="carModel" Type="Edm.String"/>
+                <Property Name="carVarient" Type="Edm.String"/>
+                <NavigationProperty Name="car" Type="CarShowroomService.cars" Partner="modelVarient">
+                    <ReferentialConstraint Property="car_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="car_ID" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="Colour">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="carColourVarient" Type="Edm.String"/>
+                <NavigationProperty Name="car" Type="CarShowroomService.cars" Partner="colour">
+                    <ReferentialConstraint Property="car_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="car_ID" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="CurrencyDetails">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="currencyType" Type="Edm.String"/>
+                <Property Name="price" Type="Edm.String"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

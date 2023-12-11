@@ -1,0 +1,246 @@
+{
+    "_version": "1.59.0",
+    "sap.app": {
+        "id": "ns.car",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.11.5",
+            "toolsId": "a6179f4e-039e-4896-9a29-9b67d8db4f13"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/odata/v4/car-showroom/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "4.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.120.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "ns.car.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "carsList",
+                    "target": "carsList"
+                },
+                {
+                    "pattern": "cars({key}):?query:",
+                    "name": "carsObjectPage",
+                    "target": "carsObjectPage"
+                },
+                {
+                    "pattern": "cars({key})/tyres({key2}):?query:",
+                    "name": "cars_tyresObjectPage",
+                    "target": "cars_tyresObjectPage"
+                }
+            ],
+            "targets": {
+                "carsList": {
+                    "type": "Component",
+                    "id": "carsList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/cars",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "cars": {
+                                    "detail": {
+                                        "route": "carsObjectPage"
+                                    }
+                                }
+                            },
+                            "initialLoad": "Enabled",
+                            "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#table1"
+                        }
+                    }
+                },
+                "carsObjectPage": {
+                    "type": "Component",
+                    "id": "carsObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": true,
+                            "contextPath": "/cars",
+                            "navigation": {
+                                "tyres": {
+                                    "detail": {
+                                        "route": "cars_tyresObjectPage"
+                                    }
+                                }
+                            },
+                            "variantManagement": "Control",
+                            "content": {
+                                "header": {
+                                    "anchorBarVisible": true,
+                                    "actions": {
+                                        "100": {
+                                            "press": "ns.car.ext.controller.BackButton.BackButton",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Go To Previous Page"
+                                        }
+                                    }
+                                }
+                            },
+                            "sectionLayout": "Page",
+                            "controlConfiguration": {
+                                "passengerDetails/@com.sap.vocabularies.UI.v1.LineItem#PassengerDetails": {
+                                    "tableSettings": {
+                                        "enableExport": false,
+                                        "enableFullScreen": false,
+                                        "enablePaste": false,
+                                        "selectAll": false,
+                                        "selectionLimit": 0,
+                                        "selectionMode": "None",
+                                        "creationMode": {
+                                            "createAtEnd": false,
+                                            "inlineCreationRowsHiddenInEditMode": false
+                                        },
+                                        "personalization": {
+                                            "column": false,
+                                            "filter": false,
+                                            "sort": false
+                                        },
+                                        "quickVariantSelection": {
+                                            "hideTableTitle": false,
+                                            "showCounts": false
+                                        }
+                                    }
+                                },
+                                "tyres/@com.sap.vocabularies.UI.v1.LineItem#TyreAndTubeDetails": {
+                                    "tableSettings": {
+                                        "condensedTableLayout": false,
+                                        "enableExport": false,
+                                        "enableFullScreen": false,
+                                        "enablePaste": false,
+                                        "selectAll": false,
+                                        "creationMode": {
+                                            "createAtEnd": false,
+                                            "inlineCreationRowsHiddenInEditMode": false,
+                                            "name": "Inline"
+                                        },
+                                        "personalization": {
+                                            "column": false,
+                                            "filter": false,
+                                            "sort": false
+                                        },
+                                        "quickVariantSelection": {
+                                            "hideTableTitle": false,
+                                            "showCounts": false
+                                        }
+                                    }
+                                },
+                                "tyres/@com.sap.vocabularies.UI.v1.LineItem#Tyres": {
+                                    "tableSettings": {
+                                        "condensedTableLayout": false,
+                                        "enableExport": false,
+                                        "enableFullScreen": false,
+                                        "enablePaste": false,
+                                        "selectAll": false,
+                                        "creationMode": {
+                                            "createAtEnd": false,
+                                            "inlineCreationRowsHiddenInEditMode": false
+                                        },
+                                        "personalization": {
+                                            "column": false,
+                                            "filter": false,
+                                            "sort": false
+                                        },
+                                        "quickVariantSelection": {
+                                            "hideTableTitle": false,
+                                            "showCounts": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "cars_tyresObjectPage": {
+                    "type": "Component",
+                    "id": "cars_tyresObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/cars/tyres",
+                            "navigation": {}
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}
