@@ -1,3 +1,4 @@
+---
 _schema-version: '3.1'
 ID: Hospital-Management
 version: 1.0.0
@@ -21,30 +22,4 @@ modules:
       - name: srv-api # required by consumers of CAP services (e.g. approuter)
         properties:
           srv-url: ${default-url}
-    requires:
-      - name: Hospital-Management-db
-      - name: Hospital-Management-auth
-
-  - name: Hospital-Management-db-deployer
-    type: hdb
-    path: gen/db
-    parameters:
-      buildpack: nodejs_buildpack
-    requires:
-      - name: Hospital-Management-db
-
-resources:
-  - name: Hospital-Management-db
-    type: com.sap.xs.hdi-container
-    parameters:
-      service: hana
-      service-plan: hdi-shared
-  - name: Hospital-Management-auth
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: xsuaa
-      service-plan: application
-      path: ./xs-security.json
-      config:
-        xsappname: Hospital-Management-${org}-${space}
-        tenant-mode: dedicated
+    requires: []

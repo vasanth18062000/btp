@@ -3,6 +3,7 @@ using {API_BUSINESS_PARTNER as api} from './external/API_BUSINESS_PARTNER';
 namespace com.ladera.businessservice;
 
 
+
 entity BusinessPartner as projection on api.A_BusinessPartner{
    key PersonFullName,
    key BusinessPartner ,
