@@ -1,5 +1,5 @@
 {
-  "name": "NorthWind",
+  "name": "northwind",
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "repository": "<Add your repository here>",
@@ -8,28 +8,30 @@
   "dependencies": {
     "@sap-cloud-sdk/http-client": "^3.9.0",
     "@sap/cds": "^7",
-    "express": "^4",
-    "@sap/xssec": "^3",
-    "passport": "^0"
+    "express": "^4"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
-    "@sap/cds-dk": "^7"
+    "@sap/ux-specification": "^1.120.0"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch-northwind": "cds watch --open northwind/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "requires": {
-      "northwind": {
+      "NorthWind": {
         "kind": "odata",
-        "model": "srv/external/northwind",
+        "model": "srv/external/NorthWind",
         "[backend]": {
           "credentials": {
-            "destination" : "NORTHWIND_DEVOLPMENT_DESTINATION"
+            "url": "https://services.odata.org/Experimental/OData/OData.svc"
           }
         }
       }
     }
-  }
+  },
+  "sapux": [
+    "app/northwind"
+  ]
 }

@@ -4,18 +4,18 @@
  },
  "$version": "2.0",
  "definitions": {
-  "northwind.FeaturedProduct": {
+  "NorthWind.FeaturedProduct": {
    "kind": "entity",
    "@cds.external": true,
    "@cds.persistence.skip": true,
    "includes": [
-    "northwind.Products"
+    "NorthWind.Products"
    ],
    "elements": {
     "Advertisement": {
      "type": "cds.Association",
      "@cds.ambiguous": "missing on condition?",
-     "target": "northwind.Advertisements",
+     "target": "NorthWind.Advertisements",
      "cardinality": {
       "max": 1
      },
@@ -23,12 +23,12 @@
     }
    }
   },
-  "northwind.Customer": {
+  "NorthWind.Customer": {
    "kind": "entity",
    "@cds.external": true,
    "@cds.persistence.skip": true,
    "includes": [
-    "northwind.Persons"
+    "NorthWind.Persons"
    ],
    "elements": {
     "TotalExpense": {
@@ -37,12 +37,12 @@
     }
    }
   },
-  "northwind.Employee": {
+  "NorthWind.Employee": {
    "kind": "entity",
    "@cds.external": true,
    "@cds.persistence.skip": true,
    "includes": [
-    "northwind.Persons"
+    "NorthWind.Persons"
    ],
    "elements": {
     "EmployeeID": {
@@ -62,7 +62,7 @@
     }
    }
   },
-  "northwind.Address": {
+  "NorthWind.Address": {
    "kind": "type",
    "@cds.external": true,
    "elements": {
@@ -83,12 +83,12 @@
     }
    }
   },
-  "northwind": {
+  "NorthWind": {
    "kind": "service",
    "@cds.external": true,
    "@Org.OData.Display.V1.Description": "This is a sample OData service with vocabularies"
   },
-  "northwind.Products": {
+  "NorthWind.Products": {
    "kind": "entity",
    "@cds.external": true,
    "@cds.persistence.skip": true,
@@ -127,7 +127,7 @@
     "Categories": {
      "type": "cds.Association",
      "@cds.ambiguous": "missing on condition?",
-     "target": "northwind.Categories",
+     "target": "NorthWind.Categories",
      "cardinality": {
       "max": "*"
      },
@@ -136,7 +136,7 @@
     "Supplier": {
      "type": "cds.Association",
      "@cds.ambiguous": "missing on condition?",
-     "target": "northwind.Suppliers",
+     "target": "NorthWind.Suppliers",
      "cardinality": {
       "max": 1
      },
@@ -145,7 +145,7 @@
     "ProductDetail": {
      "type": "cds.Association",
      "@cds.ambiguous": "missing on condition?",
-     "target": "northwind.ProductDetails",
+     "target": "NorthWind.ProductDetails",
      "cardinality": {
       "max": 1
      },
@@ -155,7 +155,7 @@
    "@open": true,
    "@Org.OData.Display.V1.Description": "All Products available in the online store"
   },
-  "northwind.ProductDetails": {
+  "NorthWind.ProductDetails": {
    "kind": "entity",
    "@cds.external": true,
    "@cds.persistence.skip": true,
@@ -171,7 +171,7 @@
     "Product": {
      "type": "cds.Association",
      "@cds.ambiguous": "missing on condition?",
-     "target": "northwind.Products",
+     "target": "NorthWind.Products",
      "cardinality": {
       "max": 1
      },
@@ -179,7 +179,7 @@
     }
    }
   },
-  "northwind.Categories": {
+  "NorthWind.Categories": {
    "kind": "entity",
    "@cds.external": true,
    "@cds.persistence.skip": true,
@@ -195,7 +195,7 @@
     "Products": {
      "type": "cds.Association",
      "@cds.ambiguous": "missing on condition?",
-     "target": "northwind.Products",
+     "target": "NorthWind.Products",
      "cardinality": {
       "max": "*"
      },
@@ -204,7 +204,7 @@
    },
    "@open": true
   },
-  "northwind.Suppliers": {
+  "NorthWind.Suppliers": {
    "kind": "entity",
    "@cds.external": true,
    "@cds.persistence.skip": true,
@@ -218,7 +218,7 @@
      "type": "cds.LargeString"
     },
     "Address": {
-     "type": "northwind.Address"
+     "type": "NorthWind.Address"
     },
     "Location": {
      "type": "cds.String",
@@ -231,7 +231,7 @@
     "Products": {
      "type": "cds.Association",
      "@cds.ambiguous": "missing on condition?",
-     "target": "northwind.Products",
+     "target": "NorthWind.Products",
      "cardinality": {
       "max": "*"
      },
@@ -249,7 +249,7 @@
    "@Org.OData.Publication.V1.LastModified": "4/2/2013",
    "@Org.OData.Publication.V1.ImageUrl ": "http://www.odata.org/"
   },
-  "northwind.Persons": {
+  "NorthWind.Persons": {
    "kind": "entity",
    "@cds.external": true,
    "@cds.persistence.skip": true,
@@ -265,7 +265,7 @@
     "PersonDetail": {
      "type": "cds.Association",
      "@cds.ambiguous": "missing on condition?",
-     "target": "northwind.PersonDetails",
+     "target": "NorthWind.PersonDetails",
      "cardinality": {
       "max": 1
      },
@@ -274,7 +274,7 @@
    },
    "@open": true
   },
-  "northwind.PersonDetails": {
+  "NorthWind.PersonDetails": {
    "kind": "entity",
    "@cds.external": true,
    "@cds.persistence.skip": true,
@@ -297,7 +297,7 @@
      "type": "cds.LargeString"
     },
     "Address": {
-     "type": "northwind.Address"
+     "type": "NorthWind.Address"
     },
     "Photo": {
      "type": "cds.LargeBinary",
@@ -308,7 +308,7 @@
     "Person": {
      "type": "cds.Association",
      "@cds.ambiguous": "missing on condition?",
-     "target": "northwind.Persons",
+     "target": "NorthWind.Persons",
      "cardinality": {
       "max": 1
      },
@@ -316,7 +316,7 @@
     }
    }
   },
-  "northwind.Advertisements": {
+  "NorthWind.Advertisements": {
    "kind": "entity",
    "@cds.external": true,
    "@cds.persistence.skip": true,
@@ -338,7 +338,7 @@
     "FeaturedProduct": {
      "type": "cds.Association",
      "@cds.ambiguous": "missing on condition?",
-     "target": "northwind.FeaturedProduct",
+     "target": "NorthWind.FeaturedProduct",
      "cardinality": {
       "max": 1
      },

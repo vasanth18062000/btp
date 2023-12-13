@@ -1,4 +1,4 @@
-using {northwind as external} from './external/northwind';
+using {NorthWind as external} from './external/NorthWind';
 
 service CatalogService {
 

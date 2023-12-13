@@ -1,4 +1,4 @@
-# CAP NorthWind
+# CAP northwind
 _out
 *.db
 *.sqlite
