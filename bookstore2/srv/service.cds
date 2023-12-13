@@ -13,3 +13,4 @@ service CatalogService {
   };
   entity Reviews as projection on bookshop.Reviews;
 }
+
