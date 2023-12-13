@@ -1,0 +1,14 @@
+---
+applications:
+- name: bookstore
+  routes:
+    - route: bookstore-9c60871ftrial.cfapps.us10-001.hana.ondemand.com
+  path: 
+  memory: 128M
+  buildpacks:
+    - nodejs_buildpack
+  env:
+    TENANT_HOST_PATTERN: 'approuter-(.*).cfapps.us10-001.hana.ondemand.com'
+    destinations: '[{"name":"	app-destination", "url" :"https://bookstore-smart-meerkat-om.cfapps.us10-001.hana.ondemand.com", "forwardAuthToken": true}]'
+  services:
+    - my-xsuaa

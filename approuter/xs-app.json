@@ -1,0 +1,9 @@
+{
+    "welcomeFile": "index.html",
+    "routes": [{
+      "source": "/",
+      "target": "/",
+      "destination": "app-destination"
+      }]
+  }
+  
