@@ -11,10 +11,13 @@
     "express": "^4"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^1"
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7",
+    "@sap/ux-specification": "^1.120.0"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch-northwind": "cds watch --open northwind/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "requires": {
@@ -23,10 +26,13 @@
         "model": "srv/external/NorthWind",
         "[backend]": {
           "credentials": {
-            "destination":"NORTHWIND_DEVELOPMENT_DESTINATION_CLONING"
+            "url": "https://services.odata.org/Experimental/OData/OData.svc"
           }
         }
       }
     }
-  }
+  },
+  "sapux": [
+    "app/northwind"
+  ]
 }
