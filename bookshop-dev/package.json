@@ -33,17 +33,23 @@
           "users": {
             "incident.support@tester.sap.com": {
               "password": "initial",
-              "roles": ["support"]
+              "roles": [
+                "support"
+              ]
             },
             "BookViewer": {
-              "ID":"BookViewer",
-              "password":"1234",
-              "roles": ["BookViewer"]
+              "ID": "BookViewer",
+              "password": "1234",
+              "roles": [
+                "BookViewer"
+              ]
             },
             "Admin": {
-              "ID":"Admin",
-              "password":"123",
-              "roles": ["Admin"]
+              "ID": "Admin",
+              "password": "123",
+              "roles": [
+                "Admin"
+              ]
             }
           }
         }
