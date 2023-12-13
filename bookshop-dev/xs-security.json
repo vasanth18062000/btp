@@ -3,6 +3,14 @@
     {
       "name": "$XSAPPNAME.support",
       "description": "support"
+    },
+    {
+      "name": "$XSAPPNAME.BookViewer",
+      "description": "BookViewer"
+    },
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Admin"
     }
   ],
   "attributes": [],
