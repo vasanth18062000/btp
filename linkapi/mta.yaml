@@ -44,3 +44,17 @@ resources:
     parameters:
       service: destination
       service-plan: lite
+
+    - name: link-bupa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    skip-service-updates:
+        plan: true
+        parameters: true
+        tags: true
+    service: s4-hana-cloud
+    service-plan: api-access
+    system-name: LINKAPI_S4HANA_CLOUD
+    path: ./bupa-service-config.json
+    config:
+        systemName: LINKAPI_S4HANA_CLOUD

@@ -16,13 +16,22 @@ service LinkApi {
     entity BPContactToAddress as projection on serv.BPContactToAddress;
     entity BPContactToFuncAndDept as projection on serv.BPContactToFuncAndDept;
     entity BusinessPartnerBank as projection on serv.BusinessPartnerBank;
-    entity BPSuuplier as projection on serv.Suppliers;
+    
 
      entity Risks as projection on schem.Risks;
     entity Mitigations as projection on schem.Mitigations;
 
+    @readonly
+    entity Suppliers @(restrict : [
+              {
+                  grant : [ 'READ' ],
+                  to : [ 'RiskViewer', 'RiskManager' ]
+              }
+          ]) as projection on serv.Suppliers;
+
    
 }
+
 
 
 
