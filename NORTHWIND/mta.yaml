@@ -1,16 +1,14 @@
-
+_schema-version: '3.1'
 ID: NORTHWIND
 version: 1.2.27
-_schema-version: "3.1"
-description: "Third Party Integration project."
+description: "A simple CAP project."
 parameters:
   enable-parallel-deployments: true
 build-parameters:
   before-all:
     - builder: custom
       commands:
-        - npx -p @sap/cds-dk cds build --production
-
+        - npx cds build --production
 modules:
   - name: NORTHWIND-srv
     type: nodejs
@@ -18,7 +16,7 @@ modules:
     parameters:
       buildpack: nodejs_buildpack
     build-parameters:
-      builder: npm-ci
+      builder: npm
     provides:
       - name: srv-api # required by consumers of CAP services (e.g. approuter)
         properties:
@@ -27,8 +25,23 @@ modules:
       - name: NORTHWIND-auth
       - name: NORTHWIND-destination
       - name: NORTHWIND-logs
-      
-      
+
+  - name: NORTHWIND
+    type: approuter.nodejs
+    path: app/
+    parameters:
+      keep-existing-routes: true
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api # must be used in xs-app.json as well
+          url: ~{srv-url}
+          forwardAuthToken: true
+      - name: NORTHWIND-auth
+      - name: NORTHWIND-logs
 
 resources:
   - name: NORTHWIND-auth
@@ -40,13 +53,11 @@ resources:
       config:
         xsappname: NORTHWIND-${org}-${space}
         tenant-mode: dedicated
-
   - name: NORTHWIND-destination
     type: org.cloudfoundry.managed-service
     parameters:
       service: destination
       service-plan: lite
-
   - name: NORTHWIND-logs
     type: org.cloudfoundry.managed-service
     parameters:
