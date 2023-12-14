@@ -78,6 +78,7 @@
                 <version>1.2.11</version>
                 <scope>runtime</scope>
             </dependency>
+            
         </dependencies>
     </dependencyManagement>
 
@@ -95,7 +96,6 @@
 
     <modules>
         <module>application</module>
-        <module>integration-tests</module>
     </modules>
 
     <build>

@@ -1,0 +1,20 @@
+{
+    "xsappname": "firstapp-df43022ctrial",
+    "tenant-mode": "shared",
+    "scopes": [
+      {
+        "name": "$XSAPPNAME.Display",
+        "description": "display"
+      }
+    ],
+    "role-templates": [
+      {
+        "name": "Viewer",
+        "description": "Required to view things in your solution",
+        "scope-references"     : [
+          "$XSAPPNAME.Display"
+        ]
+      }
+    ]
+  }
+  
