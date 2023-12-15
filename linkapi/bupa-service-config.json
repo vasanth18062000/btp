@@ -1,5 +1,5 @@
 {
-    "systemName": "LINKAPI_S4HANA_CLOUD",
+    "systemName": "linkapi-destination",
     "communicationArrangement": {
         "communicationArrangementName": "CPAPP_COM_0008",
         "scenarioId": "SAP_COM_0008",

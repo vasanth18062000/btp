@@ -57,7 +57,18 @@ annotate serv.Suppliers with  @cds.persistence :{table,skip:false};
 
 
 
+extend service LinkApi {
 
+  @topic: 'sap.s4.beh.businesspartner.v1.BusinessPartner.Created.v1'
+  event Created : {
+    BusinessPartner : serv.BusinessPartner:Customer
+  }
+
+  @topic: 'sap.s4.beh.businesspartner.v1.BusinessPartner.Changed.v1'
+  event Changed : {
+      BusinessPartner : serv.BusinessPartner:Customer
+  }
+}
 
 
 
