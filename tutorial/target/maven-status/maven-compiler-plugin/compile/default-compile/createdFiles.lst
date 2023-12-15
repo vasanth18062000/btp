@@ -1,0 +1,6 @@
+com\sap\hana\hibernate\tutorial\setup\TestSetup.class
+com\sap\hana\hibernate\tutorial\simple\Developer.class
+com\sap\hana\hibernate\tutorial\simple\Project.class
+com\sap\hana\hibernate\tutorial\simple\VersionPK.class
+com\sap\hana\hibernate\tutorial\simple\TestSimple.class
+com\sap\hana\hibernate\tutorial\simple\Version.class

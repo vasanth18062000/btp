@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+    <persistence-unit name="Tutorial">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.HANAColumnStoreDialect"/>
+            <property name="hibernate.connection.driver_class" value="com.sap.db.jdbc.Driver"/>
+           
+            <property name="hibernate.connection.url" value="jdbc:sap://a697ac40-37bb-46e0-a12c-03c69c877b8a.hana.trial-us10.hanacloud.ondemand.com:443"/>
+            <!-- update the <username>-->
+            <property name="hibernate.connection.username" value="DBADMIN"/>
+            <!-- update the <password>-->
+            <property name="hibernate.connection.password" value="Ladera@123"/>
+            <!-- -->
+            <property name="hibernate.connection.pool_size" value="5"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.bytecode.provider" value="javassist" />
+            <property name="hibernate.bytecode.use_reflection_optimizer" value="true" />
+          	<property name="hibernate.jdbc.batch_size" value="10000" />          
+        </properties>
+    </persistence-unit>
+</persistence>
