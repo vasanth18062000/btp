@@ -24,6 +24,7 @@ modules:
     requires:
       - name: northwindext-destination
       - name: northwindext-auth
+      - name: northwindext-logs
 
 resources:
   - name: northwindext-destination
@@ -41,3 +42,9 @@ resources:
       config:
         xsappname: northwindext-${org}-${space}
         tenant-mode: dedicated
+
+  - name: northwindext-logs
+    type: org.cloudfoundry.managed-service
+    parameters:
+     service: application-logs
+     service-plan: lite
