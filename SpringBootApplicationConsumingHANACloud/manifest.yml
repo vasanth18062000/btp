@@ -1,0 +1,7 @@
+applications:
+- name: SpringBootApplicationConsumingHANACloud
+  path: target/SpringBootApplicationConsumingHANACloud.jar
+  buildpack: java_buildpack
+  memory: 1024M
+  services:
+    - hana_trail
