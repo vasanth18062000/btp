@@ -1,0 +1,134 @@
+_schema-version: "3.1"
+ID: bookstore
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: bookstore-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: bookstore-db
+  - name: bookstore-auth
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+  build-parameters:
+    builder: npm
+- name: bookstore-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: bookstore-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: bookstore-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: bookstore-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - nsauthor.zip
+      name: nsauthor
+      target-path: resources/
+    - artifacts:
+      - bookbook.zip
+      name: bookbook
+      target-path: resources/
+    - artifacts:
+      - cfbook.zip
+      name: cfbook
+      target-path: resources/
+- name: nsauthor
+  type: html5
+  path: app/author
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: bookbook
+  type: html5
+  path: app/book
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: cfbook
+  type: html5
+  path: app/book
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: bookstore-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: bookstore-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: bookstore-${org}-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: bookstore-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: bookstore-html5-srv
+    service-plan: app-host
+- name: bookstore-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: false
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          - Authentication: NoAuthentication
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            Name: bookstore-srv-api
+            ProxyType: Internet
+            Type: HTTP
+            URL: ~{srv-api/srv-url}
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: bookstore-destination-service
+    service-plan: lite
+  requires:
+  - name: srv-api
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npx cds build --production
