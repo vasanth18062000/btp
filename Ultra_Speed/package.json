@@ -14,7 +14,7 @@
     },
     "devDependencies": {
         "@cap-js/sqlite": "^1",
-        "@sap/cds": "^7.4.0",
+        "@sap/cds": "^7.4.2",
         "@sap/cds-dk": "^7",
         "@sap/ux-specification": "^1.108.18",
         "rimraf": "^3.0.2"
