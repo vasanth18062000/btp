@@ -1,4 +1,4 @@
-using Order as service from '../../srv/Order';
+using SpeedService as service from '../../srv/service';
 
 annotate service.Order with @(
     UI.LineItem : [
@@ -41,7 +41,7 @@ annotate service.Order with {
             },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'userId',
+                ValueListProperty : 'customerId',
             },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
@@ -54,14 +54,6 @@ annotate service.Order with {
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty : 'dateOfBirth',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'title_id',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name',
             },
         ],
     }
@@ -92,30 +84,6 @@ annotate service.Order with {
                 $Type : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty : 'addressLine4',
             },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'city_id',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'state_id',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'pincode',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'country_code',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'customer_id',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'addressType_id',
-            },
         ],
     }
 };
@@ -144,59 +112,6 @@ annotate service.Order with {
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty : 'addressLine4',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'city_id',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'state_id',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'pincode',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'country_code',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'customer_id',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'addressType_id',
-            },
-        ],
-    }
-};
-annotate service.Order with {
-    deliveryContact @Common.ValueList : {
-        $Type : 'Common.ValueListType',
-        CollectionPath : 'ContactDetails',
-        Parameters : [
-            {
-                $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : deliveryContact_id,
-                ValueListProperty : 'id',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'phoneNumber',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'emailId',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'contactType',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'customer_id',
             },
         ],
     }

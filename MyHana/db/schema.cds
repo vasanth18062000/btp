@@ -2,6 +2,7 @@ using { Country, managed } from '@sap/cds/common';
 
 namespace bookshop.db;
 
+
   entity Books {
     key ID : Integer;
     title  : String;

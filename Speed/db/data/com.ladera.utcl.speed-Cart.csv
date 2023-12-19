@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-id,createdAt,createdBy,modifiedAt,modifiedBy,cartCode,customer_id,totalQuantity,totalPrice,deliveryAddress_id,contactDetail_id,paymentMode,isActive
-=======
-id,cartCode,cartEntries_id,customer_id,totalPrice,deliveryAddress_id,contactDetail_id,paymentMode,isActive
->>>>>>> bf5f6033f63f14353c49d594b808b91a1b85db19
+id,createdAt,createdBy,modifiedAt,modifiedBy,cartCode,cartEntries_id,customer_id,totalPrice,deliveryAddress_id,contactDetail_id,paymentMode,isActive

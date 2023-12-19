@@ -8,9 +8,9 @@ sap.ui.define(['sap/fe/test/ObjectPage'], function(ObjectPage) {
 
     return new ObjectPage(
         {
-            appId: 'speedpro.product',
+            appId: 'ns.product',
             componentId: 'PriceRowObjectPage',
-            contextPath: '/Products/price'
+            contextPath: '/Product/price'
         },
         CustomPageDefinitions
     );

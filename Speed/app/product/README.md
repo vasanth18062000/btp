@@ -1,22 +1,22 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Thu Nov 16 2023 07:08:05 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Tue Dec 19 2023 16:12:44 GMT+0530 (India Standard Time)|
 |**App Generator**<br>@sap/generator-fiori-elements|
-|**App Generator Version**<br>1.11.4|
-|**Generation Platform**<br>SAP Business Application Studio|
+|**App Generator Version**<br>1.12.0|
+|**Generation Platform**<br>Visual Studio Code|
 |**Template Used**<br>List Report Page V4|
 |**Service Type**<br>Local Cap|
-|**Service URL**<br>http://localhost:4004/odata/v4/product/
+|**Service URL**<br>http://localhost:4004/odata/v4/speed/
 |**Module Name**<br>product|
-|**Application Title**<br>Product|
-|**Namespace**<br>speedpro|
+|**Application Title**<br>Speed|
+|**Namespace**<br>ns|
 |**UI5 Theme**<br>sap_horizon|
-|**UI5 Version**<br>1.120.1|
+|**UI5 Version**<br>1.120.3|
 |**Enable Code Assist Libraries**<br>False|
 |**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|
-|**Main Entity**<br>Products|
+|**Main Entity**<br>Product|
 |**Navigation Entity**<br>price|
 
 ## product

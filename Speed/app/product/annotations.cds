@@ -1,82 +1,63 @@
-using Product as service from '../../srv/Product';
+using SpeedService as service from '../../srv/service';
+using from '../../db/Schema';
 
-annotate service.Products with @(
+annotate service.Product with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : '{i18n>S.  No}',
+            Label : 'Product ID',
             Value : id,
         },
         {
             $Type : 'UI.DataField',
-            Label : '{i18n>Product Code}',
-            Value : code,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : '{i18n>Product Name}',
+            Label : 'Product Name',
             Value : name,
         },
         {
-            $Type : 'UI.DataFieldForAnnotation',
-            Target : '@UI.DataPoint#rating1',
-            Label : '{i18n>Rating}',
+            $Type : 'UI.DataField',
+            Label : 'Product Image',
+            Value : productImage,
         },
     ]
 );
-annotate service.Products with @(
+annotate service.Product with @(
     UI.FieldGroup #GeneratedGroup1 : {
         $Type : 'UI.FieldGroupType',
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'validFrom',
-                Value : validFrom,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'validTo',
-                Value : validTo,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'id',
+                Label : 'Product ID',
                 Value : id,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'code',
-                Value : code,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'name',
+                Label : 'Product Name',
                 Value : name,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'productImage',
+                Label : 'Product Image',
                 Value : productImage,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'description',
+                Label : 'Description',
                 Value : description,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'rating',
+                Label : 'Average Rating',
                 Value : rating,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'manufactureId',
-                Value : manufactureId,
+                Value : price.productId.price.price,
+                Label : 'Price',
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'sellerId',
-                Value : sellerId,
+                Value : price.unit,
+                Label : 'Unit',
             },
         ],
     },
@@ -87,41 +68,53 @@ annotate service.Products with @(
             Label : 'General Information',
             Target : '@UI.FieldGroup#GeneratedGroup1',
         },
-    ]
-);
-annotate service.Products with @(
-    UI.SelectionFields : [
-        code,
-        name,
-    ]
-);
-annotate service.Products with {
-    code @Common.Label : '{i18n>Product Code}'
-};
-annotate service.Products with {
-    name @Common.Label : '{i18n>Product Name}'
-};
-annotate service.Products with @(
-    UI.DataPoint #rating : {
-        Value : rating,
-        Visualization : #Rating,
-        TargetValue : 5,
-    }
-);
-annotate service.Products with @(
-    UI.HeaderInfo : {
-        Title : {
-            $Type : 'UI.DataField',
-            Value : productImage,
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Price',
+            ID : 'Price',
+            Target : 'texts/@UI.LineItem#Price',
         },
+    ]
+);
+annotate service.Product with @(
+    UI.SelectionFields : [
+        name,
+        rating,
+        id,
+    ]
+);
+annotate service.Product with {
+    name @Common.Label : 'Product Name'
+};
+annotate service.Product with {
+    rating @Common.Label : 'Average Rating'
+};
+annotate service.Product with {
+    id @Common.Label : 'Product ID'
+};
+annotate service.Product with @(
+    UI.HeaderInfo : {
+        ImageUrl : productImage,
         TypeName : '',
         TypeNamePlural : '',
     }
 );
-annotate service.Products with @(
-    UI.DataPoint #rating1 : {
-        Value : rating,
-        Visualization : #Rating,
-        TargetValue : 5,
-    }
+annotate service.Product.texts with @(
+    UI.LineItem #Price : [
+        {
+            $Type : 'UI.DataField',
+            Value : description,
+            Label : 'description',
+        },{
+            $Type : 'UI.DataField',
+            Value : id,
+            Label : 'id',
+        },{
+            $Type : 'UI.DataField',
+            Value : locale,
+        },{
+            $Type : 'UI.DataField',
+            Value : name,
+            Label : 'name',
+        },]
 );

@@ -1,1 +1,1 @@
-id,createdAt,createdBy,modifiedAt,modifiedBy,entryNumber,product_id,quantity,subTotal,cart_id
+id,createdAt,createdBy,modifiedAt,modifiedBy,entryNumber,product_id,quantity,subTotal,totalQuantity

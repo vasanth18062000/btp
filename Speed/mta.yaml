@@ -1,0 +1,115 @@
+_schema-version: "3.1"
+ID: UTCL
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: UTCL-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: UTCL-db
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+  build-parameters:
+    builder: npm
+- name: UTCL-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: UTCL-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: UTCL-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: UTCL-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - nsproduct.zip
+      name: nsproduct
+      target-path: resources/
+    - artifacts:
+      - nsorder.zip
+      name: nsorder
+      target-path: resources/
+    - artifacts:
+      - nscart.zip
+      name: nscart
+      target-path: resources/
+- name: nsproduct
+  type: html5
+  path: app/product
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: nsorder
+  type: html5
+  path: app/order
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: nscart
+  type: html5
+  path: app/cart
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: UTCL-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: UTCL-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: UTCL-html5-srv
+    service-plan: app-host
+- name: UTCL-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: false
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: UTCL-destination-service
+    service-plan: lite
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npx cds build --production

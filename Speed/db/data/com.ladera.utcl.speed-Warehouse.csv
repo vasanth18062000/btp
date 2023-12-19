@@ -1,1 +1,1 @@
-id,createdAt,createdBy,modifiedAt,modifiedBy,warehouseName,warehouseAddress_id,contactPerson,stocks_id
+id,createdAt,createdBy,modifiedAt,modifiedBy,warehouseAddress_id,contactPerson,contactDetails_id,stockatWarehouse_id

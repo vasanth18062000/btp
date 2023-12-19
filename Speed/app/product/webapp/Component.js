@@ -3,7 +3,7 @@ sap.ui.define(
     function (Component) {
         "use strict";
 
-        return Component.extend("speedpro.product.Component", {
+        return Component.extend("ns.product.Component", {
             metadata: {
                 manifest: "json"
             }

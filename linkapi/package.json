@@ -42,11 +42,6 @@
   },
   "cds": {
     "requires": {
-      "db": {
-        "[development]": { "kind": "sqlite", "impl": "@cap-js/sqlite", "credentials": { "url": "memory" } },
-        "[production]": { "kind": "hana", "impl": "@sap/cds-hana", "deploy-format": "hdbtable" }
-      }
-    },
       "API_BUSINESS_PARTNER": {
         "kind": "odata-v2",
         "model": "srv/external/API_BUSINESS_PARTNER",
@@ -71,5 +66,6 @@
       },
       "auth": "mocked"
     }
-    }
-
+  }
+}
+  

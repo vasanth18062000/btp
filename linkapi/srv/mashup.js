@@ -7,14 +7,14 @@ module.exports = (async function() {
 
 const {francis} = bupa.entities;  //A_BusinessPartner;
 
-//const ajay =this.entities;
+// const ajay =this.entities;
 
  //const result = await bupa.run(SELECT(francis).limit(4));
 
- const test = await bupa.run(SELECT(francis).limit(4));
+//  const test = await bupa.run(SELECT(francis).limit(4));
  
     
-    this.on('READ', test , (req) => {
+    this.on('READ', francis , (req) => {
       console.log('>> delegating to S4 service...')
       return bupa.run(req.query)
     })

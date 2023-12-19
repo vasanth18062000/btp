@@ -1,24 +1,24 @@
 sap.ui.require(
     [
         'sap/fe/test/JourneyRunner',
-        'speedpro/product/test/integration/FirstJourney',
-		'speedpro/product/test/integration/pages/ProductsList',
-		'speedpro/product/test/integration/pages/ProductsObjectPage',
-		'speedpro/product/test/integration/pages/PriceRowObjectPage'
+        'ns/product/test/integration/FirstJourney',
+		'ns/product/test/integration/pages/ProductList',
+		'ns/product/test/integration/pages/ProductObjectPage',
+		'ns/product/test/integration/pages/PriceRowObjectPage'
     ],
-    function(JourneyRunner, opaJourney, ProductsList, ProductsObjectPage, PriceRowObjectPage) {
+    function(JourneyRunner, opaJourney, ProductList, ProductObjectPage, PriceRowObjectPage) {
         'use strict';
         var JourneyRunner = new JourneyRunner({
             // start index.html in web folder
-            launchUrl: sap.ui.require.toUrl('speedpro/product') + '/index.html'
+            launchUrl: sap.ui.require.toUrl('ns/product') + '/index.html'
         });
 
        
         JourneyRunner.run(
             {
                 pages: { 
-					onTheProductsList: ProductsList,
-					onTheProductsObjectPage: ProductsObjectPage,
+					onTheProductList: ProductList,
+					onTheProductObjectPage: ProductObjectPage,
 					onThePriceRowObjectPage: PriceRowObjectPage
                 }
             },

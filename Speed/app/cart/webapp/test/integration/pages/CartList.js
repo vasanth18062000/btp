@@ -8,7 +8,7 @@ sap.ui.define(['sap/fe/test/ListReport'], function(ListReport) {
 
     return new ListReport(
         {
-            appId: 'speedcart.cart',
+            appId: 'ns.cart',
             componentId: 'CartList',
             contextPath: '/Cart'
         },

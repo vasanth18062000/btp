@@ -43,10 +43,10 @@
                 }
             },
             applications: {
-                "speedordorder-tile": {
-                    title: "order",
+                "nsorder-tile": {
+                    title: "SPEED-OMS",
                     description: "A Fiori application.",
-                    additionalInformation: "SAPUI5.Component=speedord.order",
+                    additionalInformation: "SAPUI5.Component=ns.order",
                     applicationType: "URL",
                     url: "../"
                 }
@@ -54,19 +54,23 @@
         };
     </script>
 
-    <script src="https://sapui5.hana.ondemand.com/1.120.1/test-resources/sap/ushell/bootstrap/sandbox.js" id="sap-ushell-bootstrap"></script>
+    <script src="https://sapui5.hana.ondemand.com/1.120.3/test-resources/sap/ushell/bootstrap/sandbox.js" id="sap-ushell-bootstrap"></script>
     <!-- Bootstrap the UI5 core library -->
     <script id="sap-ui-bootstrap"
-        src="https://sapui5.hana.ondemand.com/1.120.1/resources/sap-ui-core.js"
+        src="https://sapui5.hana.ondemand.com/1.120.3/resources/sap-ui-core.js"
         data-sap-ui-libs=""
         data-sap-ui-async="true"
         data-sap-ui-preload="async"
         data-sap-ui-theme="sap_horizon"
         data-sap-ui-compatVersion="edge"
         data-sap-ui-language="en"
-        data-sap-ui-resourceroots='{"speedord.order": "../"}'
+        data-sap-ui-resourceroots='{"ns.order": "../"}'
         data-sap-ui-frameOptions="allow"> // NON-SECURE setting for testing environment
     </script>
+
+    <script type="text/javascript">
+        sap.ui.getCore().attachInit(() => sap.ushell.Container.createRenderer().placeAt('content'));
+    </script>     
 </head>
 
 <!-- UI Content -->
