@@ -6,7 +6,7 @@ namespace com.sap.bookshop;
 
      
 
-entity Books {
+entity Books{
   key id : String;
   title  : String(100);
   descr  : String(1000);
@@ -14,7 +14,7 @@ entity Books {
   genre  : String(100);
   price : Decimal(9,2);
   currency : Currency;
-  rating   : Decimal(2, 1)@assert.range : [ 0.0, 5.0 ];
+  rating   : Decimal(2, 1) @assert.range : [ 0.0, 5.0 ];
   reviews  : Association to many bookshop.Reviews on reviews.book = $self;
 }
 

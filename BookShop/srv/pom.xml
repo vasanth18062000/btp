@@ -20,6 +20,11 @@
 			<artifactId>cds-starter-spring-boot</artifactId>
 		</dependency>
 
+		<dependency>
+        <groupId>com.sap.cds</groupId>
+        <artifactId>cds-starter-cloudfoundry</artifactId>
+        </dependency>
+
 		<!-- ODATA PROTOCOL ADAPTER -->
 		<dependency>
 			<groupId>com.sap.cds</groupId>

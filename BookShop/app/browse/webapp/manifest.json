@@ -46,29 +46,29 @@
        }
       ],
       "targets": {
-        "BooksList": {
-         "type": "Component",
-         "id": "BooksList",
-         "name": "sap.fe.templates.ListReport",
-         "options": {
-          "settings": {
-           "entitySet": "Books",
-           "controlConfiguration":{
-             "@com.sap.vocabularies.UI.v1.LineItem":{
-                 "columns":{
-                     "AddReviewColumn":{
-                         "header":"Add Review",
-                         "template":"bookshop.custom.AddReview.AddReviewButton"
-                     }
-                 }
-             }
-           }
+       "BooksList": {
+        "type": "Component",
+        "id": "BooksList",
+        "name": "sap.fe.templates.ListReport",
+        "options": {
+         "settings": {
+          "entitySet": "Books",
+          "controlConfiguration":{
+            "@com.sap.vocabularies.UI.v1.LineItem":{
+                "columns": {
+                    "AddReviewColumn":{
+                        "header":"Add Review",
+                        "template":"bookshop.custom.AddReview.AddReviewButton"
+                    }
+                }
+            }
           }
          }
         }
        }
       }
-     },
+     }
+    },
     "sap.ui": {
      "technology": "UI5",
      "fullWidth": false

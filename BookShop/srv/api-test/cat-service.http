@@ -1,51 +1,92 @@
-### Get all Reviews
-GET http://admin:admin@localhost:8080/api/browse/Reviews HTTP/1.1
-###Add Review
-POST http://admin:admin@localhost:8080/api/browse/Books('123sed')/CatalogService.addReview
+### Get all books
+GET http://localhost:8080/api/browse/Books HTTP/1.1
+
+
+### Create a book
+POST http://localhost:8080/api/browse/Books HTTP/1.1
+
+
+
+{
+  "id": "118",
+  "title": "sap",
+  "descr": "btp reference",
+  "author": "anu",
+  "genre": "Education",
+  "price": 1000.00,
+  "currency_code": "USD",
+  "rating": 5.0
+}
+
+
+
+
+
+### Get the book
+GET http://localhost:8080/api/browse/Books('118') HTTP/1.1
+
+
+### Update the book
+PATCH http://localhost:8080/api/browse/Books('118') HTTP/1.1
 content-type: application/json
 
 {
-  "title": "I hated it",
-  "text": "Birds freak me out",
-  "rating": 1
+  "author": "Emily Brontë"
 }
 
-### Get the new Review
-GET http://admin:admin@localhost:8080/api/browse/Reviews(<add your ID here>) HTTP/1.1
-### Create a Review
-POST http://admin:admin@localhost:8080/api/browse/Reviews HTTP/1.1
+### Delete the book
+DELETE http://localhost:8080/api/browse/Books('112') HTTP/1.1
 content-type: application/json
+
+### Get all Reviews
+GET http://localhost:8080/api/browse/Reviews HTTP/1.1
+
+
+### Create a Review
+POST http://localhost:8080/api/browse/Reviews HTTP/1.1
+# Content-Type: application/json
+# Authorization: Basic authenticated:
+# Content-Type: application/json
+# Authorization: Basic mia:pass_mia
+Content-Type: application/json
+Authorization: Basic sabine:pass_sabine
+
 {
   "title": "I hated it",
   "text": "Birds freak me out",
   "rating": 1,
-  "book_ID": "51061ce3-ddde-4d70-a2dc-6314afbcc73e"
+  "book_id": "121"
 }
+
 ### Get a Review
-GET http://admin:admin@localhost:8080/api/browse/Reviews(8089768a-14ae-3cd0-807e-c77ceab8f91e) HTTP/1.1
+GET http://localhost:8080/api/browse/Reviews(1f5831cf-7f0c-4bde-bdfa-83bc05123bcc) HTTP/1.1
+
 ### Update a review
-PATCH http://admin:admin@localhost:8080/api/browse/Reviews(8089768a-14ae-3cd0-807e-c77ceab8f91e) HTTP/1.1
+PATCH http://localhost:8080/api/browse/Reviews(1f5831cf-7f0c-4bde-bdfa-83bc05123bcc) HTTP/1.1
 content-type: application/json
+
 {
   "rating": 2
 }
-### Delete a rating
 
-DELETE http://admin:admin@localhost:8080/api/browse/Reviews(8089768a-14ae-3cd0-807e-c77ceab8f91e) HTTP/1.1
+### Delete a rating
+DELETE http://localhost:8080/api/browse/Reviews(1f5831cf-7f0c-4bde-bdfa-83bc05123bcc) HTTP/1.1
 content-type: application/json
+
 ### Get all reviews for a book
-GET http://admin:admin@localhost:8080/api/browse/Books(f846b0b9-01d4-4f6d-82a4-d79204f62278)/reviews HTTP/1.1
+GET http://admin:admin@localhost:8080/api/browse/Books('121')/reviews HTTP/1.1
 content-type: application/json
+
 ### Get a single review through a book
-GET http://admin:admin@localhost:8080/api/browse/Books(f846b0b9-01d4-4f6d-82a4-d79204f62278)/reviews(8098ea0a-e4b9-3265-9a21-95758a1e49e0) HTTP/1.1
+GET http://localhost:8080/api/browse/Books('121')/reviews(1f5831cf-7f0c-4bde-bdfa-83bc05123bcc) HTTP/1.1
 content-type: application/json
+
 ### Create a review through a book
-POST http://admin:admin@localhost:8080/api/browse/Books(f846b0b9-01d4-4f6d-82a4-d79204f62278)/reviews HTTP/1.1
-content-type: application/json
+POST http://localhost:8080/api/browse/Books('118')/CatalogService.addReview 
+Content-type: application/json
+
 {
   "title": "I hated it",
   "text": "Birds freak me out",
   "rating": 1
 }
-
-

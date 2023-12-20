@@ -3,9 +3,9 @@
     xmlns = "sap.m"
     xmlns:l = "sap.ui.layout">
     <l:VerticalLayout
-        core:require = "{handler: 'bookshop/custom/AddReview/AddReviewButtonHandler'}">
+        core:require = "{handler:'bookshop/custom/AddReview/AddReviewButtonHandler'}">
         <Button 
-            text = "Add Review"
-            press = "handler.openDialog" />
+            text ="Add Review"
+            press ="handler.openDialog" />
     </l:VerticalLayout>
 </core:FragmentDefinition>
