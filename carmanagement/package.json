@@ -1,35 +1,28 @@
 {
-  "name": "taskOne",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap/cds": "^7",
-    "express": "^4",
-    "@sap/xssec": "^3",
-    "passport": "^0"
-  },
-  "devDependencies": {
-    "@cap-js/sqlite": "^1",
-    "@sap/cds-dk": "^7",
-    "@sap/ux-specification": "^1.120.0"
-  },
-  "scripts": {
-    "start": "cds-serve",
-    "watch-car": "cds watch --open car/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-modelvarient": "cds watch --open modelvarient/webapp/index.html?sap-ui-xx-viewCache=false"
-  },
-  "sapux": [
-    "app/car",
-    "app/modelvarient"
-  ],
-  "[production]": {
-    "auth": {
-      "kind": "xsuaa",
-      "restrict_all_services": false
-    }
-  },
-      "auth": "xsuaa"
+    "name": "taskOne",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^7",
+        "@sap/xssec": "^3",
+        "express": "^4",
+        "passport": "^0"
+    },
+    "devDependencies": {
+        "@cap-js/sqlite": "^1",
+        "@sap/cds-dk": "^7",
+        "@sap/ux-specification": "UI5-1.120"
+    },
+    "scripts": {
+        "start": "cds-serve",
+        "watch-car": "cds watch --open car/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-modelvarient": "cds watch --open modelvarient/webapp/index.html?sap-ui-xx-viewCache=false"
+    },
+    "sapux": [
+        "app/car",
+        "app/modelvarient"
+    ]
 }
