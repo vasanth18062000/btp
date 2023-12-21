@@ -6,13 +6,21 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@sap-cloud-sdk/http-client": "^3.9.0",
     "@sap/cds": "^7",
+    "@sap/cds-hana": "^2",
     "express": "^4"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^1"
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7"
   },
   "scripts": {
     "start": "cds-serve"
+  },
+  "cds": {
+    "requires": {
+      "db": "hana"
+    }
   }
 }
