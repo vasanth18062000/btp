@@ -1,0 +1,4 @@
+code,name,descr,criticality
+H,HIGH,3
+M,MEDIUM,2
+L,LOW,1
