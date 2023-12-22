@@ -1,0 +1,21 @@
+{
+"cds":{
+    "requires":{
+        "[development]": {
+            "auth":{
+                    "kind":"mocked",
+                    "users":{
+                        "customer":{
+                            "password":"admin",
+                            "roles":["support"]
+                        },
+                        "admin":{
+                            "password":"admin",
+                            "roles":["support"]
+                        }
+                    }
+            }
+        }
+    }
+}
+}

@@ -11,3 +11,4 @@ service CatalogService {
     }; 
 
 } 
+annotate CatalogService.Products with @(requires:'support');
