@@ -11,6 +11,9 @@ service CarShowroomService {
     entity ModelVarient    as projection on my.ModelVarient;
     entity Colour          as projection on my.Colour;
     entity CurrencyDetails as projection on my.CurrencyDetails;
-
     
+    // annotate CarShowroomService with @(requires: 'support');
+    annotate my.Car with @(requires: 'test');
+
+
 }

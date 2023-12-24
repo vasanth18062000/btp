@@ -19,5 +19,31 @@
   },
   "sapux": [
     "app/car"
-  ]
+  ],
+
+  "cds": {
+    "requires": {
+      "[development]": {
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "gopi@gmail.com": {
+              "password": "admin",
+              "roles": ["test"]
+            },
+            "vasanth": {
+              "roles": ["support"]
+            },
+            "vel": {
+              "roles": ["test"]
+            },
+            "karthik": {
+              "roles": ["support"]
+            }
+
+          }
+        }
+      }
+    }
+  }
 }

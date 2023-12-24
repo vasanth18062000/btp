@@ -1,0 +1,34 @@
+{
+    "requires": {
+      "db": {
+        "kind": "postgres",
+        "impl": "@cap-js/postgres",
+        "credentials": {
+          "host": "localhost",
+          "port": 5432,
+          "user": "postgres",
+          "password": "postgres",
+          "database": "Customer"
+        }
+      }
+    },
+    "[development]": {
+      "auth": {
+        "passport": {
+          "strategy": "mock",
+          "users": {
+            "StudentViewer": {
+              "ID": "CustomerViewer",
+              "password": "12345",
+              "roles": ["CustomerViewer"]
+            },
+            "StudentAdmin": {
+              "ID": "CustomerAdmin",
+              "password": "12345",
+              "roles": ["CustomertAdmin"]
+            }
+          }
+        }
+      }
+    }
+  }

@@ -1,0 +1,16 @@
+{
+    "cds":{
+        "requires":{
+            "[backend]":{
+                "auth":{
+                "users":{
+                    "gopi@gmail.com":{
+                        "password":"admin",
+                        "roles":["support"]
+                    }
+                }
+            }
+        }
+        }
+    }
+}

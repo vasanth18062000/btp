@@ -8,10 +8,13 @@
   "dependencies": {
     "@sap-cloud-sdk/http-client": "^3.9.0",
     "@sap/cds": "^7",
-    "express": "^4"
+    "@sap/xssec": "^3.6.0",
+    "express": "^4",
+    "passport": "^0.7.0"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7",
     "@sap/ux-specification": "^1.120.0"
   },
   "scripts": {
@@ -25,10 +28,17 @@
         "model": "srv/external/NorthWind",
         "[backend]": {
           "credentials": {
-            "url": "https://services.odata.org/Experimental/OData/OData.svc"
+            "destination": "NORTHWIND_DEVOLPMENT_DESTINATION"
           }
         }
-      }
+      },
+      "[backend]": {
+        "auth": {
+          "kind": "xsuaa",
+          "restrict_all_services": false
+        }
+      },
+      "auth": "xsuaa"
     }
   },
   "sapux": [

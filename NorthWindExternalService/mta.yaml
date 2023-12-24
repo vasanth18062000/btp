@@ -1,0 +1,51 @@
+_schema-version: "3.1"
+ID: NorthWindExternalService
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npx cds build --production
+modules:
+  - name: NorthWindExternalService-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: NorthWindExternalService-destination
+      - name: NorthWindExternalService-auth
+      - name: NorthWindExternalService-logs
+
+resources:
+  - name: NorthWindExternalService-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+
+  - name: NorthWindExternalService-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: NorthWindExternalService-${org}-${space}
+        tenant-mode: dedicated
+  - name: NorthWindExternalService-logs
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: application-logs
+      service-plan: lite
+
+
