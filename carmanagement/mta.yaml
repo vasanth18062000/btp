@@ -1,3 +1,4 @@
+---
 _schema-version: '3.1'
 ID: taskOne
 version: 1.0.0
@@ -21,16 +22,4 @@ modules:
       - name: srv-api # required by consumers of CAP services (e.g. approuter)
         properties:
           srv-url: ${default-url}
-    requires:
-      - name: taskOne-auth
-
-resources:
-  - name: taskOne-auth
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: xsuaa
-      service-plan: application
-      path: ./xs-security.json
-      config:
-        xsappname: taskOne-${org}-${space}
-        tenant-mode: dedicated
+    requires: []

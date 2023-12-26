@@ -370,8 +370,6 @@
     },
     "CarManagementService.Car": {
       "kind": "entity",
-      "@odata.draft.enabled": true,
-      "@requires": "support",
       "@UI.LineItem": [
         {
           "$Type": "UI.DataField",
