@@ -1,0 +1,1177 @@
+{
+  "namespace": "sap.capire.carmanagement",
+  "definitions": {
+    "sap.capire.carmanagement.Car": {
+      "kind": "entity",
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "carName": {
+          "type": "cds.String"
+        },
+        "manufactureDate": {
+          "type": "cds.String"
+        },
+        "noOfPassanger": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "sap.capire.carmanagement.Passanger",
+          "on": [
+            {
+              "ref": [
+                "noOfPassanger",
+                "carPassanger"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        },
+        "modelVarient": {
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "sap.capire.carmanagement.ModelVarient",
+          "on": [
+            {
+              "ref": [
+                "modelVarient",
+                "models"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        },
+        "carimage": {
+          "type": "cds.String"
+        }
+      }
+    },
+    "sap.capire.carmanagement.ModelVarient": {
+      "kind": "entity",
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "modelName": {
+          "type": "cds.String"
+        },
+        "colour": {
+          "type": "cds.Composition",
+          "target": "sap.capire.carmanagement.Colours",
+          "on": [
+            {
+              "ref": [
+                "colour",
+                "colour"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        },
+        "price": {
+          "type": "cds.Composition",
+          "target": "sap.capire.carmanagement.Prices",
+          "on": [
+            {
+              "ref": [
+                "price",
+                "price"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        },
+        "engineType": {
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "sap.capire.carmanagement.Engine",
+          "on": [
+            {
+              "ref": [
+                "engineType",
+                "engines"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        },
+        "noOfTyre": {
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "sap.capire.carmanagement.Tyre",
+          "on": [
+            {
+              "ref": [
+                "noOfTyre",
+                "carTyre"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        },
+        "models": {
+          "type": "cds.Association",
+          "target": "sap.capire.carmanagement.Car",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        },
+        "seatCapacity": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "sap.capire.carmanagement.Seat",
+          "on": [
+            {
+              "ref": [
+                "seatCapacity",
+                "carSeat"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "sap.capire.carmanagement.Colours": {
+      "kind": "entity",
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "colours": {
+          "type": "cds.String"
+        },
+        "colour": {
+          "type": "cds.Association",
+          "target": "sap.capire.carmanagement.ModelVarient",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        },
+        "cars": {
+          "type": "cds.Association",
+          "target": "sap.capire.carmanagement.Car",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "sap.capire.carmanagement.Prices": {
+      "kind": "entity",
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "price": {
+          "type": "cds.Association",
+          "target": "sap.capire.carmanagement.ModelVarient",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        },
+        "priceRange": {
+          "type": "cds.String"
+        }
+      }
+    },
+    "sap.capire.carmanagement.Engine": {
+      "kind": "entity",
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "modelNumber": {
+          "type": "cds.String"
+        },
+        "engineType": {
+          "type": "cds.String"
+        },
+        "engines": {
+          "type": "cds.Association",
+          "target": "sap.capire.carmanagement.ModelVarient",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "sap.capire.carmanagement.Seat": {
+      "kind": "entity",
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "capacity": {
+          "type": "cds.String"
+        },
+        "seatBrand": {
+          "type": "cds.String"
+        },
+        "carSeat": {
+          "type": "cds.Association",
+          "target": "sap.capire.carmanagement.ModelVarient",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "sap.capire.carmanagement.Tyre": {
+      "kind": "entity",
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "tyreBrand": {
+          "type": "cds.String"
+        },
+        "carTyre": {
+          "type": "cds.Association",
+          "target": "sap.capire.carmanagement.ModelVarient",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        },
+        "type": {
+          "type": "cds.Composition",
+          "target": "sap.capire.carmanagement.TyreType",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "sap.capire.carmanagement.TyreType": {
+      "kind": "entity",
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "tyreType": {
+          "type": "cds.String"
+        }
+      }
+    },
+    "sap.capire.carmanagement.Passanger": {
+      "kind": "entity",
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "noOfPpl": {
+          "type": "cds.String"
+        },
+        "gender": {
+          "type": "cds.String"
+        },
+        "carPassanger": {
+          "type": "cds.Association",
+          "target": "sap.capire.carmanagement.Car",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "CarManagementService": {
+      "@source": "srv/carmanagement-service.cds",
+      "kind": "service"
+    },
+    "CarManagementService.Car": {
+      "kind": "entity",
+      "@odata.draft.enabled": true,
+      "@requires": "support",
+      "@UI.LineItem": [
+        {
+          "$Type": "UI.DataField",
+          "Label": "Id",
+          "Value": {
+            "=": "Id"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Label": "carName",
+          "Value": {
+            "=": "carName"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Label": "manufactureDate",
+          "Value": {
+            "=": "manufactureDate"
+          }
+        }
+      ],
+      "@UI.FieldGroup#GeneratedGroup1.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#GeneratedGroup1.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Label": "Id",
+          "Value": {
+            "=": "Id"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Label": "carName",
+          "Value": {
+            "=": "carName"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Label": "manufactureDate",
+          "Value": {
+            "=": "manufactureDate"
+          }
+        }
+      ],
+      "@UI.Facets": [
+        {
+          "$Type": "UI.ReferenceFacet",
+          "ID": "GeneratedFacet1",
+          "Label": "Car Details",
+          "Target": "@UI.FieldGroup#GeneratedGroup1"
+        },
+        {
+          "$Type": "UI.ReferenceFacet",
+          "Label": "Model Details",
+          "ID": "ModelDetails",
+          "Target": "modelVarient/@UI.LineItem#ModelDetails"
+        }
+      ],
+      "@UI.HeaderInfo.TypeImageUrl": "",
+      "@UI.HeaderInfo.TypeName": "",
+      "@UI.HeaderInfo.TypeNamePlural": "",
+      "@UI.HeaderInfo.Title.$Type": "UI.DataField",
+      "@UI.HeaderInfo.Title.Value": {
+        "=": "carName"
+      },
+      "@UI.HeaderInfo.Description.$Type": "UI.DataField",
+      "@UI.HeaderInfo.Description.Value": "Tough looking in any angle",
+      "@UI.HeaderInfo.ImageUrl": {
+        "=": "carimage"
+      },
+      "@UI.FieldGroup#Modeldetails.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#Modeldetails.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "modelVarient.Id"
+          },
+          "Label": "Id"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "modelVarient.models_Id"
+          },
+          "Label": "models_Id"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "modelVarient.modelName"
+          },
+          "Label": "modelName"
+        }
+      ],
+      "@UI.DataPoint#Id.Value": {
+        "=": "Id"
+      },
+      "@UI.DataPoint#Id.Visualization": {
+        "#": "Rating"
+      },
+      "@UI.DataPoint#Id.TargetValue": 5,
+      "projection": {
+        "from": {
+          "ref": [
+            "sap.capire.carmanagement.Car"
+          ]
+        }
+      },
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "carName": {
+          "type": "cds.String"
+        },
+        "manufactureDate": {
+          "type": "cds.String"
+        },
+        "noOfPassanger": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "CarManagementService.Passanger",
+          "on": [
+            {
+              "ref": [
+                "noOfPassanger",
+                "carPassanger"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        },
+        "modelVarient": {
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "CarManagementService.ModelVarient",
+          "on": [
+            {
+              "ref": [
+                "modelVarient",
+                "models"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        },
+        "carimage": {
+          "type": "cds.String"
+        }
+      }
+    },
+    "CarManagementService.ModelVarient": {
+      "kind": "entity",
+      "@UI.Facets": [
+        {
+          "$Type": "UI.ReferenceFacet",
+          "Label": "Model Details",
+          "ID": "ModelDetails",
+          "Target": "@UI.FieldGroup#ModelDetails"
+        },
+        {
+          "$Type": "UI.ReferenceFacet",
+          "Label": "colors",
+          "ID": "colors",
+          "Target": "@UI.FieldGroup#colors"
+        },
+        {
+          "$Type": "UI.ReferenceFacet",
+          "Label": "Engine type",
+          "ID": "Enginetype",
+          "Target": "@UI.FieldGroup#Enginetype"
+        },
+        {
+          "$Type": "UI.ReferenceFacet",
+          "Label": "prices",
+          "ID": "prices",
+          "Target": "@UI.FieldGroup#prices"
+        },
+        {
+          "$Type": "UI.ReferenceFacet",
+          "Label": "Tyres",
+          "ID": "Numberoftyres",
+          "Target": "@UI.FieldGroup#Numberoftyres"
+        },
+        {
+          "$Type": "UI.ReferenceFacet",
+          "Label": "Seat capacity",
+          "ID": "Seatcapacity",
+          "Target": "@UI.FieldGroup#Seatcapacity"
+        }
+      ],
+      "@UI.FieldGroup#car.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#car.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Id"
+          },
+          "Label": "Id"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "modelName"
+          },
+          "Label": "modelName"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "models_Id"
+          },
+          "Label": "models_Id",
+          "@UI.Hidden": true
+        }
+      ],
+      "@UI.FieldGroup#ModelDetails.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#ModelDetails.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "modelName"
+          },
+          "Label": "modelName"
+        }
+      ],
+      "@UI.LineItem#ModelDetails": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Id"
+          },
+          "Label": "Id"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "modelName"
+          },
+          "Label": "modelName"
+        }
+      ],
+      "@UI.HeaderInfo.TypeImageUrl": "",
+      "@UI.HeaderInfo.TypeName": "",
+      "@UI.HeaderInfo.TypeNamePlural": "",
+      "@UI.HeaderInfo.Title.$Type": "UI.DataField",
+      "@UI.HeaderInfo.Title.Value": {
+        "=": "colour.cars.carName"
+      },
+      "@UI.HeaderInfo.Description.$Type": "UI.DataField",
+      "@UI.HeaderInfo.Description.Value": "Tough looking in any angle",
+      "@UI.FieldGroup#colors.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#colors.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "colour.Id"
+          },
+          "Label": "Id"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "colour.colours"
+          },
+          "Label": "colours"
+        }
+      ],
+      "@UI.FieldGroup#Enginetype.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#Enginetype.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "engineType.Id"
+          },
+          "Label": "Id"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "engineType.modelNumber"
+          },
+          "Label": "modelNumber"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "engineType.engineType"
+          },
+          "Label": "engineType"
+        }
+      ],
+      "@UI.FieldGroup#prices.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#prices.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "price.Id"
+          },
+          "Label": "Id"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "price.priceRange"
+          },
+          "Label": "priceRange"
+        }
+      ],
+      "@UI.FieldGroup#Numberoftyres.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#Numberoftyres.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "noOfTyre.Id"
+          },
+          "Label": "Id"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "noOfTyre.tyreBrand"
+          },
+          "Label": "tyreBrand"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "noOfTyre.type.tyreType"
+          },
+          "Label": "tyreType"
+        }
+      ],
+      "@UI.FieldGroup#Seatcapacity.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#Seatcapacity.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "seatCapacity.Id"
+          },
+          "Label": "Id"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "seatCapacity.seatBrand"
+          },
+          "Label": "seatBrand"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "seatCapacity.capacity"
+          },
+          "Label": "capacity"
+        }
+      ],
+      "@UI.DataPoint#models_Id.Value": {
+        "=": "models_Id"
+      },
+      "@UI.DataPoint#models_Id.Visualization": {
+        "#": "Rating"
+      },
+      "@UI.DataPoint#models_Id.TargetValue": 5,
+      "@UI.DataPoint#Id.Value": {
+        "=": "Id"
+      },
+      "@UI.DataPoint#Id.Visualization": {
+        "#": "Rating"
+      },
+      "@UI.DataPoint#Id.TargetValue": 5,
+      "@UI.FieldGroup#Tyre.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#Tyre.Data": [],
+      "@UI.LineItem": [
+        {
+          "$Type": "UI.DataField",
+          "Label": "Id",
+          "Value": {
+            "=": "Id"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Label": "modelName",
+          "Value": {
+            "=": "modelName"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Label": "models_Id",
+          "Value": {
+            "=": "models_Id"
+          }
+        }
+      ],
+      "projection": {
+        "from": {
+          "ref": [
+            "sap.capire.carmanagement.ModelVarient"
+          ]
+        }
+      },
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "modelName": {
+          "type": "cds.String"
+        },
+        "colour": {
+          "type": "cds.Composition",
+          "target": "CarManagementService.Colours",
+          "on": [
+            {
+              "ref": [
+                "colour",
+                "colour"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        },
+        "price": {
+          "type": "cds.Composition",
+          "target": "CarManagementService.Prices",
+          "on": [
+            {
+              "ref": [
+                "price",
+                "price"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        },
+        "engineType": {
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "CarManagementService.Engine",
+          "on": [
+            {
+              "ref": [
+                "engineType",
+                "engines"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        },
+        "noOfTyre": {
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "CarManagementService.Tyre",
+          "on": [
+            {
+              "ref": [
+                "noOfTyre",
+                "carTyre"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        },
+        "models": {
+          "@Common.Text": {
+            "=": "modelName"
+          },
+          "@Common.Text.@UI.TextArrangement": {
+            "#": "TextFirst"
+          },
+          "@Common.ValueList.$Type": "Common.ValueListType",
+          "@Common.ValueList.CollectionPath": "Car",
+          "@Common.ValueList.Parameters": [
+            {
+              "$Type": "Common.ValueListParameterInOut",
+              "LocalDataProperty": {
+                "=": "models_Id"
+              },
+              "ValueListProperty": "Id"
+            },
+            {
+              "$Type": "Common.ValueListParameterDisplayOnly",
+              "ValueListProperty": "carName"
+            },
+            {
+              "$Type": "Common.ValueListParameterDisplayOnly",
+              "ValueListProperty": "manufactureDate"
+            }
+          ],
+          "type": "cds.Association",
+          "target": "CarManagementService.Car",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        },
+        "seatCapacity": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "CarManagementService.Seat",
+          "on": [
+            {
+              "ref": [
+                "seatCapacity",
+                "carSeat"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "CarManagementService.Colours": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "sap.capire.carmanagement.Colours"
+          ]
+        }
+      },
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "colours": {
+          "type": "cds.String"
+        },
+        "colour": {
+          "type": "cds.Association",
+          "target": "CarManagementService.ModelVarient",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        },
+        "cars": {
+          "type": "cds.Association",
+          "target": "CarManagementService.Car",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "CarManagementService.Prices": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "sap.capire.carmanagement.Prices"
+          ]
+        }
+      },
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "price": {
+          "type": "cds.Association",
+          "target": "CarManagementService.ModelVarient",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        },
+        "priceRange": {
+          "type": "cds.String"
+        }
+      }
+    },
+    "CarManagementService.Seat": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "sap.capire.carmanagement.Seat"
+          ]
+        }
+      },
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "capacity": {
+          "type": "cds.String"
+        },
+        "seatBrand": {
+          "type": "cds.String"
+        },
+        "carSeat": {
+          "type": "cds.Association",
+          "target": "CarManagementService.ModelVarient",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "CarManagementService.Tyre": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "sap.capire.carmanagement.Tyre"
+          ]
+        }
+      },
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "tyreBrand": {
+          "type": "cds.String"
+        },
+        "carTyre": {
+          "type": "cds.Association",
+          "target": "CarManagementService.ModelVarient",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        },
+        "type": {
+          "type": "cds.Composition",
+          "target": "CarManagementService.TyreType",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "CarManagementService.Engine": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "sap.capire.carmanagement.Engine"
+          ]
+        }
+      },
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "modelNumber": {
+          "type": "cds.String"
+        },
+        "engineType": {
+          "type": "cds.String"
+        },
+        "engines": {
+          "type": "cds.Association",
+          "target": "CarManagementService.ModelVarient",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "CarManagementService.Passanger": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "sap.capire.carmanagement.Passanger"
+          ]
+        }
+      },
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "noOfPpl": {
+          "type": "cds.String"
+        },
+        "gender": {
+          "type": "cds.String"
+        },
+        "carPassanger": {
+          "type": "cds.Association",
+          "target": "CarManagementService.Car",
+          "keys": [
+            {
+              "ref": [
+                "Id"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "CarManagementService.TyreType": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "sap.capire.carmanagement.TyreType"
+          ]
+        }
+      },
+      "elements": {
+        "Id": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "tyreType": {
+          "type": "cds.String"
+        }
+      }
+    }
+  },
+  "meta": {
+    "creator": "CDS Compiler v4.4.4",
+    "flavor": "inferred"
+  },
+  "$version": "2.0"
+}
