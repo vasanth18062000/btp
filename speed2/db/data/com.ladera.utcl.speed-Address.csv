@@ -1,0 +1,4 @@
+id,addressLine1,addressLine2,addressLine3,addressLine4,city,state,pincode,customer_id
+2001,nehru street,royal nagar,porur,guindy,chennai,tn,600920,1001
+2002,gandhi street,rambo nagar,velachery,chennai,chennai,tn,603830,1002
+2003,rama street,terminator nagar,guindy,chennai,chennai,tn,604682,1003

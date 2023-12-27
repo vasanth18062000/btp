@@ -1,0 +1,5 @@
+id,code,name,productImage,description,price,rating
+3001,LAP001,Astro Laptop 1516,https://sapui5.hana.ondemand.com/test-resources/sap/m/demokit/cart/webapp/localService/mockdata/images/HT-1251.jpg, Flexible Laptop with 2.5 GHz Quad Core 15" HD TN 16 GB DDR SDRAM 256 GB SSD Windows 10 Pro,90000,4.5
+3002,LAP002,Benda Laptop 1408,https://sapui5.hana.ondemand.com/test-resources/sap/m/demokit/cart/webapp/localService/mockdata/images/HT-1253.jpg, Flexible Laptop with 2.5 GHz Dual Core 14" HD+ TN 8 GB DDR SDRAM 324 GB SSD Windows 10 Pro,80000,3.2
+3003,LAP003,Astro Laptop 1516,https://sapui5.hana.ondemand.com/test-resources/sap/m/demokit/cart/webapp/localService/mockdata/images/HT-1251.jpg, Flexible Laptop with 2.5 GHz Quad Core 15" HD TN 16 GB DDR SDRAM 256 GB SSD Windows 10 Pro,70000,4.5
+
