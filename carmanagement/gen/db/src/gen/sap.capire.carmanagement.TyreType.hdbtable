@@ -1,0 +1,5 @@
+COLUMN TABLE sap_capire_carmanagement_TyreType (
+  Id INTEGER NOT NULL,
+  tyreType NVARCHAR(5000),
+  PRIMARY KEY(Id)
+)

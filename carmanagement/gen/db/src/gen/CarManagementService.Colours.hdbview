@@ -1,0 +1,10 @@
+VIEW CarManagementService_Colours AS SELECT
+  Colours_0.Id,
+  Colours_0.colours,
+  Colours_0.colour_Id,
+  Colours_0.cars_Id
+FROM sap_capire_carmanagement_Colours AS Colours_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN CarManagementService_ModelVarient AS colour ON (colour.Id = colour_Id),
+  MANY TO ONE JOIN CarManagementService_Car AS cars ON (cars.Id = cars_Id)
+)
