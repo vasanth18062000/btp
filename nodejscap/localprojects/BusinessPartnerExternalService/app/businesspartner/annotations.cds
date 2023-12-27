@@ -1,1 +1,0 @@
-using incidents.serve.IncidentsService as service from '../../srv/IncidentsService';

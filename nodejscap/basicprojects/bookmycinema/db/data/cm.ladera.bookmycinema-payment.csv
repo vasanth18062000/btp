@@ -1,0 +1,4 @@
+id,paymentType,transactionId,paymentVia,totalAmount,availedSeat,UserDetails_userId
+10,online,2345,Internet,1000,4,101
+11,online,2346,Internet,750,3,101
+12,online,346,Internet,750,3,103

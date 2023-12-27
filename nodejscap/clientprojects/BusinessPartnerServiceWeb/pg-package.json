@@ -1,0 +1,12 @@
+{
+    "engines":{
+        "node":"^18"
+    },
+    "dependencies":{
+        "@sap/cds":"*"
+    },
+    "scripts":{
+        "start":"cds-deploy"
+    }
+
+}

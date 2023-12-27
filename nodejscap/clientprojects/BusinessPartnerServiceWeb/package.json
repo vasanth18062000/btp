@@ -1,0 +1,71 @@
+{
+  "name": "BusinessPartnerServiceWeb",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap-cloud-sdk/resilience": "^3.9.0",
+    "@sap/cds": "^7",
+    "@sap/xssec": "^3",
+    "express": "^4",
+    "passport": "^0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-customerweb": "cds watch --open customerweb/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-businesspartnersweb": "cds watch --open businesspartnersweb/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "cds": {
+    "requires": {
+      "API_BUSINESS_PARTNER": {
+        "kind": "odata-v2",
+        "model": "srv/external/API_BUSINESS_PARTNER",
+        "[sandbox]": {
+          "credentials":{
+            "url":"https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER",
+            "headers":{
+              "APIKey":"QMIWVjrNZus63IiYMopzyyvm6qNceIGk"
+            }
+          },
+        
+          "auth": {
+            "kind": "mocked",
+            "users": {
+              "incident.support@tester.sap.com": {
+                "password": "initial",
+                "roles": [
+                  "support"
+                ]
+              },
+              "devi": {
+                "roles": [
+                  "support"
+                ]
+              },
+              "karthi": {
+                "roles": [
+                  "support"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "[sandbox]":{
+        "auth":{
+          "kind":"xsuaa",
+          "restrict_all_services":false
+        }
+      }
+    },
+     "auth": "xsuaa"
+    },
+
+  
+  "sapux": [
+    "app/customerweb",
+    "app/businesspartnersweb"
+  ]
+}
