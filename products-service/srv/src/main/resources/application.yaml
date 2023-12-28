@@ -1,0 +1,11 @@
+
+---
+spring:
+  config.activate.on-profile: cloud
+  sql.init.schema-locations: classpath:schema-h2.sql
+  
+cds:
+  remote.services:
+    API_BUSINESS_PARTNER:
+      destination:
+        type: "odata-v2"
