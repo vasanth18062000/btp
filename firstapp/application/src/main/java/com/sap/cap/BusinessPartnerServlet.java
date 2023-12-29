@@ -31,11 +31,11 @@ import java.util.List;
 
 
 
-@WebServlet("/hello")
-public class HelloWorldServlet extends HttpServlet
+@WebServlet("/businesspartners")
+public class BusinessPartnerServlet extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
-    private static final Logger logger = LoggerFactory.getLogger(HelloWorldServlet.class);
+    private static final Logger logger = LoggerFactory.getLogger(BusinessPartnerServlet.class);
 
     @Override
     protected void doGet( final HttpServletRequest request, final HttpServletResponse response )
