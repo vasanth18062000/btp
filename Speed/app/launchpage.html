@@ -10,21 +10,12 @@
                 defaultRenderer: 'fiori2',
                 applications: {
                     "customer-app": {
-                        title: 'customer',
-                        description: 'customer',
-                        additionalInformation: 'SAPUI5.Component=ns.customer',
+                        title: 'Customer',
+                        description: 'Login Page',
                         applicationType: 'URL',
-                        url: "./customer/webapp",
+                        url: "./login.html",
                         navigationMode: 'embedded'
-                    },
-                    "order-app": {
-                        title: 'order',
-                        description: 'order',
-                        additionalInformation: 'SAPUI5.Component=ns.order',
-                        applicationType: 'URL',
-                        url: "./order/webapp",
-                        navigationMode: 'embedded'
-                    },
+                    }
             }
         }
         </script>
@@ -44,4 +35,5 @@
         </script>
     </head>
     <body class="sapUiBody" id="content"></body>
+    
 </html>

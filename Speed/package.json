@@ -1,63 +1,43 @@
 {
-  "name": "Speed",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap/cds": "^7",
-    "express": "^4"
-  },
-  "devDependencies": {
-    "@cap-js/sqlite": "^1",
-    "@sap/ux-specification": "^1.108.18"
-  },
-  "scripts": {
-    "start": "cds-serve",
-    "watch-utcl.speed": "cds watch --open utcl.speed/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-coustomer": "cds watch --open coustomer/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-customer": "cds watch --open customer/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-order": "cds watch --open order/webapp/index.html?sap-ui-xx-viewCache=false"
-  },
-  "cds": {
-    "requires": {
-      "[development]": {
-        "auth": {
-          "kind": "mocked",
-          "users": {
-            "incident.support@tester.sap.com": {
-              "password": "initial",
-              "roles": [
-                "support"
-              ]
-            },
-            "Siva": {
-              "roles": [
-                "support"
-              ]
-            },
-            "Francis": {
-              "roles": [
-                "support"
-              ]
-            },
-            "Prawin": {
-              "roles": [
-                "support"
-              ]
-            }
-          }
+    "name": "Speed",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^7",
+        "@sap/cds-hana": "^2",
+        "@sap/xssec": "^3",
+        "express": "^4",
+        "passport": "^0"
+    },
+    "devDependencies": {
+        "@cap-js/sqlite": "^1",
+        "@sap/cds-dk": "^7",
+        "@sap/ux-specification": "^1.120.1",
+        "rimraf": "^3.0.2"
+    },
+    "scripts": {
+        "start": "cds-serve",
+        "watch-utcl.speed": "cds watch --open utcl.speed/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-coustomer": "cds watch --open coustomer/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-customer": "cds watch --open customer/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-order": "cds watch --open order/webapp/index.html?sap-ui-xx-viewCache=false",
+        "undeploy": "cf undeploy Speed --delete-services --delete-service-keys --delete-service-brokers",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+        "watch-speed": "cds watch --open speed/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-cart": "cds watch --open cart/webapp/index.html?sap-ui-xx-viewCache=false"
+    },
+    "cds": {
+        "requires": {
+            "db": "hana"
         }
-      }
     },
     "sapux": [
-      "app/utcl.speed"
+        "app/customer",
+        "app/speed",
+        "app/cart"
     ]
-  },
-  "sapux": [
-    "app/coustomer",
-    "app/customer",
-    "app/order"
-  ]
 }

@@ -43,4 +43,4 @@ Content-Type: application/json
 POST http://localhost:4004/odata/v4/catalog/localhost:4004/odata/v4/catalog/Books/Authors(123)
 Content-Type: application/json
 
-{"ID": 1234, "name": "Siva"}
+{"ID": 1001, "Stock": "6"}
