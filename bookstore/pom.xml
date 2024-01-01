@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.sap.cap</groupId>
-	<artifactId>products-service-parent</artifactId>
+	<artifactId>bookstore-parent</artifactId>
 	<version>${revision}</version>
 	<packaging>pom</packaging>
 
-	<name>products-service parent</name>
+	<name>bookstore parent</name>
 
 	<properties>
 		<!-- OUR VERSION -->

@@ -2,15 +2,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>products-service-parent</artifactId>
+		<artifactId>bookstore-parent</artifactId>
 		<groupId>com.sap.cap</groupId>
 		<version>${revision}</version>
 	</parent>
 
-	<artifactId>products-service</artifactId>
+	<artifactId>bookstore</artifactId>
 	<packaging>jar</packaging>
 
-	<name>products-service</name>
+	<name>bookstore</name>
 
 	<!-- ACTUAL DEPENDENCIES -->
 	<dependencies>
@@ -44,6 +44,12 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+		<dependency>
+    		<groupId>com.sap.cds</groupId>
+    		<artifactId>cds-starter-cloudfoundry</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>

@@ -2,11 +2,16 @@
 ---
 spring:
   web.resources.static-locations: "file:./app"
-  config.activate.on-profile: default
-  sql.init.schema-locations: classpath:schema-h2.sql
+  config.activate.on-profile: cloud
+  sql.init.schema-locations: classpath:schema-h2.sql 
 cds:
   datasource.auto-config.enabled: false
   odata-v4.endpoint.path: "/api"
+  remote.services:
+    API_BUSINESS_PARTNER:
+      destination:
+        type: "odata-v2"
+
   # security:
   #   mock:
   #     users:
