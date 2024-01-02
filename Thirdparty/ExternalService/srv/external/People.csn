@@ -1,0 +1,671 @@
+{
+ "meta": {
+  "creator": "cds-dk 7.3.2"
+ },
+ "$version": "2.0",
+ "definitions": {
+  "People.GetPersonWithMostFriends": {
+   "kind": "function",
+   "@cds.external": true,
+   "returns": {
+    "type": "People.People"
+   }
+  },
+  "People.GetNearestAirport": {
+   "kind": "function",
+   "@cds.external": true,
+   "params": {
+    "lat": {
+     "type": "cds.Double",
+     "notNull": true
+    },
+    "lon": {
+     "type": "cds.Double",
+     "notNull": true
+    }
+   },
+   "returns": {
+    "type": "People.Airports"
+   }
+  },
+  "People.ResetDataSource": {
+   "kind": "action",
+   "@cds.external": true
+  },
+  "People.Trip": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "TripId": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "ShareId": {
+     "type": "cds.UUID",
+     "notNull": true
+    },
+    "Name": {
+     "type": "cds.LargeString"
+    },
+    "Budget": {
+     "type": "cds.Double",
+     "@odata.Type": "Edm.Single",
+     "notNull": true
+    },
+    "Description": {
+     "type": "cds.LargeString"
+    },
+    "Tags": {
+     "items": {
+      "type": "cds.LargeString"
+     }
+    },
+    "StartsAt": {
+     "type": "cds.DateTime",
+     "@odata.Precision": 0,
+     "@odata.Type": "Edm.DateTimeOffset",
+     "notNull": true
+    },
+    "EndsAt": {
+     "type": "cds.DateTime",
+     "@odata.Precision": 0,
+     "@odata.Type": "Edm.DateTimeOffset",
+     "notNull": true
+    },
+    "PlanItems": {
+     "type": "cds.Association",
+     "@cds.ambiguous": "missing on condition?",
+     "target": "People.PlanItem",
+     "cardinality": {
+      "max": "*"
+     },
+     "keys": []
+    }
+   },
+   "actions": {
+    "GetInvolvedPeople": {
+     "kind": "function",
+     "params": {
+      "trip": {
+       "type": "$self"
+      }
+     },
+     "returns": {
+      "items": {
+       "type": "People.People"
+      }
+     }
+    }
+   }
+  },
+  "People.PlanItem": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "PlanItemId": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "ConfirmationCode": {
+     "type": "cds.LargeString"
+    },
+    "StartsAt": {
+     "type": "cds.DateTime",
+     "@odata.Precision": 0,
+     "@odata.Type": "Edm.DateTimeOffset",
+     "notNull": true
+    },
+    "EndsAt": {
+     "type": "cds.DateTime",
+     "@odata.Precision": 0,
+     "@odata.Type": "Edm.DateTimeOffset",
+     "notNull": true
+    },
+    "Duration": {
+     "type": "cds.String",
+     "@odata.Type": "Edm.Duration",
+     "notNull": true
+    }
+   },
+   "@open": true
+  },
+  "People.Event": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "includes": [
+    "People.PlanItem"
+   ],
+   "elements": {
+    "OccursAt": {
+     "type": "People.EventLocation"
+    },
+    "Description": {
+     "type": "cds.LargeString"
+    }
+   }
+  },
+  "People.PublicTransportation": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "includes": [
+    "People.PlanItem"
+   ],
+   "elements": {
+    "SeatNumber": {
+     "type": "cds.LargeString"
+    }
+   },
+   "@open": true
+  },
+  "People.Flight": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "includes": [
+    "People.PublicTransportation"
+   ],
+   "elements": {
+    "FlightNumber": {
+     "type": "cds.LargeString"
+    },
+    "Airline": {
+     "type": "cds.Association",
+     "@cds.ambiguous": "missing on condition?",
+     "target": "People.Airlines",
+     "cardinality": {
+      "max": 1
+     },
+     "keys": []
+    },
+    "From": {
+     "type": "cds.Association",
+     "@cds.ambiguous": "missing on condition?",
+     "target": "People.Airports",
+     "cardinality": {
+      "max": 1
+     },
+     "keys": []
+    },
+    "To": {
+     "type": "cds.Association",
+     "@cds.ambiguous": "missing on condition?",
+     "target": "People.Airports",
+     "cardinality": {
+      "max": 1
+     },
+     "keys": []
+    }
+   }
+  },
+  "People.Employee": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "includes": [
+    "People.People"
+   ],
+   "elements": {
+    "Cost": {
+     "type": "cds.Integer64",
+     "notNull": true
+    },
+    "Peers": {
+     "type": "cds.Association",
+     "@cds.ambiguous": "missing on condition?",
+     "target": "People.People",
+     "cardinality": {
+      "max": "*"
+     },
+     "keys": []
+    }
+   }
+  },
+  "People.Manager": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "includes": [
+    "People.People"
+   ],
+   "elements": {
+    "Budget": {
+     "type": "cds.Integer64",
+     "notNull": true
+    },
+    "BossOffice": {
+     "type": "People.Location"
+    },
+    "DirectReports": {
+     "type": "cds.Association",
+     "@cds.ambiguous": "missing on condition?",
+     "target": "People.People",
+     "cardinality": {
+      "max": "*"
+     },
+     "keys": []
+    }
+   }
+  },
+  "People.Location": {
+   "kind": "type",
+   "@cds.external": true,
+   "elements": {
+    "Address": {
+     "type": "cds.LargeString"
+    },
+    "City": {
+     "type": "People.City"
+    }
+   },
+   "@open": true
+  },
+  "People.City": {
+   "kind": "type",
+   "@cds.external": true,
+   "elements": {
+    "Name": {
+     "type": "cds.LargeString"
+    },
+    "CountryRegion": {
+     "type": "cds.LargeString"
+    },
+    "Region": {
+     "type": "cds.LargeString"
+    }
+   }
+  },
+  "People.AirportLocation": {
+   "kind": "type",
+   "@cds.external": true,
+   "elements": {
+    "Loc": {
+     "type": "cds.String",
+     "@odata.Type": "Edm.GeographyPoint"
+    }
+   },
+   "includes": [
+    "People.Location"
+   ]
+  },
+  "People.EventLocation": {
+   "kind": "type",
+   "@cds.external": true,
+   "elements": {
+    "BuildingInfo": {
+     "type": "cds.LargeString"
+    }
+   },
+   "includes": [
+    "People.Location"
+   ]
+  },
+  "People.PersonGender": {
+   "kind": "type",
+   "@cds.external": true,
+   "enum": {
+    "Male": {
+     "val": 0
+    },
+    "Female": {
+     "val": 1
+    },
+    "Unknown": {
+     "val": 2
+    }
+   },
+   "type": "cds.Integer"
+  },
+  "People.Feature": {
+   "kind": "type",
+   "@cds.external": true,
+   "enum": {
+    "Feature1": {
+     "val": 0
+    },
+    "Feature2": {
+     "val": 1
+    },
+    "Feature3": {
+     "val": 2
+    },
+    "Feature4": {
+     "val": 3
+    }
+   },
+   "type": "cds.Integer"
+  },
+  "People": {
+   "kind": "service",
+   "@cds.external": true
+  },
+  "People.People": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "UserName": {
+     "key": true,
+     "type": "cds.LargeString",
+     "notNull": true
+    },
+    "FirstName": {
+     "type": "cds.LargeString",
+     "notNull": true
+    },
+    "LastName": {
+     "type": "cds.String",
+     "length": 26
+    },
+    "MiddleName": {
+     "type": "cds.LargeString"
+    },
+    "Gender": {
+     "type": "People.PersonGender",
+     "notNull": true
+    },
+    "Age": {
+     "type": "cds.Integer64"
+    },
+    "Emails": {
+     "items": {
+      "type": "cds.LargeString"
+     }
+    },
+    "AddressInfo": {
+     "items": {
+      "type": "People.Location"
+     }
+    },
+    "HomeAddress": {
+     "type": "People.Location"
+    },
+    "FavoriteFeature": {
+     "type": "People.Feature",
+     "notNull": true
+    },
+    "Features": {
+     "items": {
+      "type": "People.Feature",
+      "notNull": true
+     }
+    },
+    "Friends": {
+     "type": "cds.Association",
+     "@cds.ambiguous": "missing on condition?",
+     "target": "People.People",
+     "cardinality": {
+      "max": "*"
+     },
+     "keys": []
+    },
+    "BestFriend": {
+     "type": "cds.Association",
+     "@cds.ambiguous": "missing on condition?",
+     "target": "People.People",
+     "cardinality": {
+      "max": 1
+     },
+     "keys": []
+    },
+    "Trips": {
+     "type": "cds.Association",
+     "@cds.ambiguous": "missing on condition?",
+     "target": "People.Trip",
+     "cardinality": {
+      "max": "*"
+     },
+     "keys": []
+    }
+   },
+   "@open": true,
+   "actions": {
+    "UpdateLastName": {
+     "kind": "action",
+     "params": {
+      "person": {
+       "type": "$self"
+      },
+      "lastName": {
+       "type": "cds.LargeString",
+       "notNull": true
+      }
+     },
+     "returns": {
+      "type": "cds.Boolean",
+      "notNull": true
+     }
+    },
+    "ShareTrip": {
+     "kind": "action",
+     "params": {
+      "personInstance": {
+       "type": "$self"
+      },
+      "userName": {
+       "type": "cds.LargeString",
+       "notNull": true
+      },
+      "tripId": {
+       "type": "cds.Integer",
+       "notNull": true
+      }
+     }
+    },
+    "GetFavoriteAirline": {
+     "kind": "function",
+     "params": {
+      "person": {
+       "type": "$self"
+      }
+     },
+     "returns": {
+      "type": "People.Airlines"
+     }
+    },
+    "GetFriendsTrips": {
+     "kind": "function",
+     "params": {
+      "person": {
+       "type": "$self"
+      },
+      "userName": {
+       "type": "cds.LargeString",
+       "notNull": true
+      }
+     },
+     "returns": {
+      "items": {
+       "type": "People.Trip"
+      }
+     }
+    }
+   }
+  },
+  "People.Airlines": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "AirlineCode": {
+     "key": true,
+     "type": "cds.LargeString",
+     "notNull": true
+    },
+    "Name": {
+     "type": "cds.LargeString"
+    }
+   }
+  },
+  "People.Airports": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "Name": {
+     "type": "cds.LargeString"
+    },
+    "IcaoCode": {
+     "key": true,
+     "type": "cds.LargeString",
+     "notNull": true
+    },
+    "IataCode": {
+     "type": "cds.LargeString"
+    },
+    "Location": {
+     "type": "People.AirportLocation"
+    }
+   }
+  },
+  "People.Me": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "UserName": {
+     "key": true,
+     "type": "cds.LargeString",
+     "notNull": true
+    },
+    "FirstName": {
+     "type": "cds.LargeString",
+     "notNull": true
+    },
+    "LastName": {
+     "type": "cds.String",
+     "length": 26
+    },
+    "MiddleName": {
+     "type": "cds.LargeString"
+    },
+    "Gender": {
+     "type": "People.PersonGender",
+     "notNull": true
+    },
+    "Age": {
+     "type": "cds.Integer64"
+    },
+    "Emails": {
+     "items": {
+      "type": "cds.LargeString"
+     }
+    },
+    "AddressInfo": {
+     "items": {
+      "type": "People.Location"
+     }
+    },
+    "HomeAddress": {
+     "type": "People.Location"
+    },
+    "FavoriteFeature": {
+     "type": "People.Feature",
+     "notNull": true
+    },
+    "Features": {
+     "items": {
+      "type": "People.Feature",
+      "notNull": true
+     }
+    },
+    "Friends": {
+     "type": "cds.Association",
+     "@cds.ambiguous": "missing on condition?",
+     "target": "People.People",
+     "cardinality": {
+      "max": "*"
+     },
+     "keys": []
+    },
+    "BestFriend": {
+     "type": "cds.Association",
+     "@cds.ambiguous": "missing on condition?",
+     "target": "People.People",
+     "cardinality": {
+      "max": 1
+     },
+     "keys": []
+    },
+    "Trips": {
+     "type": "cds.Association",
+     "@cds.ambiguous": "missing on condition?",
+     "target": "People.Trip",
+     "cardinality": {
+      "max": "*"
+     },
+     "keys": []
+    }
+   },
+   "@open": true,
+   "actions": {
+    "UpdateLastName": {
+     "kind": "action",
+     "params": {
+      "person": {
+       "type": "$self"
+      },
+      "lastName": {
+       "type": "cds.LargeString",
+       "notNull": true
+      }
+     },
+     "returns": {
+      "type": "cds.Boolean",
+      "notNull": true
+     }
+    },
+    "ShareTrip": {
+     "kind": "action",
+     "params": {
+      "personInstance": {
+       "type": "$self"
+      },
+      "userName": {
+       "type": "cds.LargeString",
+       "notNull": true
+      },
+      "tripId": {
+       "type": "cds.Integer",
+       "notNull": true
+      }
+     }
+    },
+    "GetFavoriteAirline": {
+     "kind": "function",
+     "params": {
+      "person": {
+       "type": "$self"
+      }
+     },
+     "returns": {
+      "type": "People.Airlines"
+     }
+    },
+    "GetFriendsTrips": {
+     "kind": "function",
+     "params": {
+      "person": {
+       "type": "$self"
+      },
+      "userName": {
+       "type": "cds.LargeString",
+       "notNull": true
+      }
+     },
+     "returns": {
+      "items": {
+       "type": "People.Trip"
+      }
+     }
+    }
+   },
+   "@odata.singleton": true
+  }
+ }
+}
