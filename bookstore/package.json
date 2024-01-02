@@ -9,6 +9,7 @@
         "@sap-cloud-sdk/http-client": "^3.9.0",
         "@sap/cds": "^7",
         "@sap/cds-hana": "^2",
+        "@sap/hana-client": "^2.19.20",
         "@sap/xssec": "^3",
         "express": "^4",
         "passport": "^0"

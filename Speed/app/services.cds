@@ -1,4 +1,2 @@
 
-using from './customer/annotations';
-
-using from './order/annotations';
+using from './product/annotations';

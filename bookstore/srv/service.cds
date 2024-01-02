@@ -5,4 +5,4 @@ service CatalogService {
   entity Authors as projection on  my.Authors;
   entity Orders as projection on my.Orders;
 }
-//annotate CatalogService.Authors with @odata.draft.enabled ;
+annotate CatalogService.Books with @odata.draft.enabled ;

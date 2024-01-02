@@ -1,0 +1,101 @@
+_schema-version: "3.1"
+ID: SampleSpeed
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: SampleSpeed-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: SampleSpeed-db
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+  build-parameters:
+    builder: npm
+- name: SampleSpeed-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: SampleSpeed-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: SampleSpeed-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: SampleSpeed-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - nsproduct.zip
+      name: nsproduct
+      target-path: resources/
+    - artifacts:
+      - cartentry.zip
+      name: cartentry
+      target-path: resources/
+- name: nsproduct
+  type: html5
+  path: app/product
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: cartentry
+  type: html5
+  path: app/cartentry
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: SampleSpeed-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: SampleSpeed-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: SampleSpeed-html5-srv
+    service-plan: app-host
+- name: SampleSpeed-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: false
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: SampleSpeed-destination-service
+    service-plan: lite
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npx cds build --production
