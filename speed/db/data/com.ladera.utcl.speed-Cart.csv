@@ -1,1 +1,4 @@
 id,cartCode,cartEntries_id,customer_id,totalPrice,deliveryAddress_id,contactDetail_id,paymentMode,isActive
+CT1, FOODCART, CE01, 101, 5000, 101, 001, COD, True
+CT2, TREATCART, CE02, 102, 3000, 102, 002, PO, True
+CT3, FREECART, CE03, 103, 6000, 103, 003, COD, True

@@ -1,0 +1,19 @@
+{
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.developer",
+      "description": "developer"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "developer",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.developer"
+      ],
+      "attribute-references": []
+    }
+  ]
+}

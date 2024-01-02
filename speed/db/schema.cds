@@ -70,7 +70,7 @@ entity PriceRow:   managed{
     key id:Integer;
     price:Double;
     currency:Currency;
-    unit:String @assert.range enum {KG;METER;GRAM;LENGTH;INCH;LITRE;};
+    //unit:String @assert.range enum {KG;METER;GRAM;LENGTH;INCH;LITRE;};
     productId:Association to one Product;
 }
 

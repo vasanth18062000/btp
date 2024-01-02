@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="MyService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Products" EntityType="MyService.Products"/>
+                <EntitySet Name="ProductDetails" EntityType="MyService.ProductDetails">
+                    <NavigationPropertyBinding Path="Product" Target="Products"/>
+                </EntitySet>
+                <EntitySet Name="Employee" EntityType="MyService.Employee"/>
+                <EntitySet Name="Categories" EntityType="MyService.Categories">
+                    <NavigationPropertyBinding Path="Products" Target="Products"/>
+                </EntitySet>
+                <EntitySet Name="Customer" EntityType="MyService.Customer"/>
+                <EntitySet Name="Suppliers" EntityType="MyService.Suppliers">
+                    <NavigationPropertyBinding Path="Products" Target="Products"/>
+                </EntitySet>
+            </EntityContainer>
+            <EntityType Name="Products" OpenType="true">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <Property Name="ReleaseDate" Type="Edm.DateTimeOffset" Precision="0" Nullable="false"/>
+                <Property Name="DiscontinuedDate" Type="Edm.DateTimeOffset" Precision="0"/>
+                <Property Name="Rating" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Price" Type="Edm.Double" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="ProductDetails">
+                <Key>
+                    <PropertyRef Name="ProductID"/>
+                </Key>
+                <Property Name="ProductID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Details" Type="Edm.String"/>
+                <NavigationProperty Name="Product" Type="MyService.Products"/>
+            </EntityType>
+            <EntityType Name="Employee" OpenType="true">
+                <Property Name="EmployeeID" Type="Edm.Int64" Nullable="false"/>
+                <Property Name="HireDate" Type="Edm.DateTimeOffset" Precision="0" Nullable="false"/>
+                <Property Name="Salary" Type="Edm.Single" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="Categories" OpenType="true">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <NavigationProperty Name="Products" Type="Collection(MyService.Products)"/>
+            </EntityType>
+            <EntityType Name="Customer" OpenType="true">
+                <Property Name="TotalExpense" Type="Edm.Decimal" Nullable="false" Scale="variable"/>
+            </EntityType>
+            <EntityType Name="Suppliers">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Location" Type="Edm.GeographyPoint"/>
+                <Property Name="Concurrency" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="Products" Type="Collection(MyService.Products)"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

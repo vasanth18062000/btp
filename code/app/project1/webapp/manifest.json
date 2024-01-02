@@ -1,0 +1,203 @@
+{
+    "_version": "1.58.0",
+    "sap.app": {
+        "id": "ns.project1",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.11.4",
+            "toolsId": "25a1d543-fb9f-4f42-87bb-3dd0b00093fc"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/odata/v4/processor/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "4.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.120.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "ns.project1.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "StudentList",
+                    "target": "StudentList"
+                },
+                {
+                    "pattern": "Student({key}):?query:",
+                    "name": "StudentObjectPage",
+                    "target": "StudentObjectPage"
+                },
+                {
+                    "pattern": "Student({key})/phoneNumber({key2}):?query:",
+                    "name": "ContactObjectPage",
+                    "target": "ContactObjectPage"
+                }
+            ],
+            "targets": {
+                "StudentList": {
+                    "type": "Component",
+                    "id": "StudentList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/Student",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "Student": {
+                                    "detail": {
+                                        "route": "StudentObjectPage"
+                                    }
+                                }
+                            },
+                            "hideFilterBar": false,
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "columns": {
+                                        "DataField::address::addressLine3": {
+                                            "availability": "Default"
+                                        }
+                                    },
+                                    "tableSettings": {
+                                        "selectionLimit": 0
+                                    }
+                                }
+                            },
+                            "initialLoad": "Enabled",
+                            "content": {
+                                "header": {
+                                    "actions": {
+                                        "Submit": {
+                                            "press": "ns.project1.ext.controller.Login.login",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Submit"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "StudentObjectPage": {
+                    "type": "Component",
+                    "id": "StudentObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "contextPath": "/Student",
+                            "navigation": {
+                                "phoneNumber": {
+                                    "detail": {
+                                        "route": "ContactObjectPage"
+                                    }
+                                }
+                            },
+                            "content": {
+                                "header": {
+                                    "actions": {
+                                        "DataFieldForIntentBasedNavigation::student.name::student.phoneNumber": {
+                                            "afterExecution": {
+                                                "enableAutoScroll": true,
+                                                "navigateToInstance": true
+                                            }
+                                        }
+                                    },
+                                    "anchorBarVisible": true,
+                                    "visible": true
+                                }
+                            },
+                            "sectionLayout": "Tabs",
+                            "variantManagement": "Control",
+                            "showRelatedApps": true
+                        }
+                    }
+                },
+                "ContactObjectPage": {
+                    "type": "Component",
+                    "id": "ContactObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "contextPath": "/Student/phoneNumber",
+                            "sectionLayout": "Tabs"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}

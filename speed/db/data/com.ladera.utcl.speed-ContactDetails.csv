@@ -1,1 +1,4 @@
-id,createdAt,createdBy,modifiedAt,modifiedBy,phoneNumber,emailId,contactType,customer_id
+id,phoneNumber,emailId,contactType,customer_id
+001, 6382763821, preamkumar.b@laderatechnology.com, Primary, 101
+002, 9876456708, abinaya@laderatechnology.com, Secondary, 102
+003, 9876543210, fransis@laderatechnology.com, Primary, 103

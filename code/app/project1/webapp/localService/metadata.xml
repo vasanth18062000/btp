@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="ProcessorService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Student" EntityType="ProcessorService.Student">
+                    <NavigationPropertyBinding Path="phoneNumber" Target="Contact"/>
+                    <NavigationPropertyBinding Path="address" Target="Address"/>
+                </EntitySet>
+                <EntitySet Name="Address" EntityType="ProcessorService.Address"/>
+                <EntitySet Name="Contact" EntityType="ProcessorService.Contact">
+                    <NavigationPropertyBinding Path="phNo" Target="Student"/>
+                </EntitySet>
+            </EntityContainer>
+            <EntityType Name="Student">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.String" Nullable="false"/>
+                <Property Name="name" Type="Edm.String"/>
+                <Property Name="regNo" Type="Edm.String"/>
+                <Property Name="age" Type="Edm.String"/>
+                <Property Name="dob" Type="Edm.Date"/>
+                <NavigationProperty Name="phoneNumber" Type="Collection(ProcessorService.Contact)" Partner="phNo"/>
+                <NavigationProperty Name="address" Type="ProcessorService.Address">
+                    <ReferentialConstraint Property="address_id" ReferencedProperty="id"/>
+                </NavigationProperty>
+                <Property Name="address_id" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Address">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.String" Nullable="false"/>
+                <Property Name="addressLine1" Type="Edm.String"/>
+                <Property Name="addressLine2" Type="Edm.String"/>
+                <Property Name="addressLine3" Type="Edm.String"/>
+                <Property Name="pincode" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Contact">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.String" Nullable="false"/>
+                <NavigationProperty Name="phNo" Type="ProcessorService.Student" Partner="phoneNumber">
+                    <ReferentialConstraint Property="phNo_id" ReferencedProperty="id"/>
+                </NavigationProperty>
+                <Property Name="phNo_id" Type="Edm.String"/>
+                <Property Name="email" Type="Edm.String"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

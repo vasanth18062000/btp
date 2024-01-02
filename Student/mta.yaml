@@ -1,0 +1,60 @@
+_schema-version: '3.1'
+ID: Student
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npx cds build --production
+
+modules:
+  - name: Student-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: Student-auth
+      - name: NorthDatabase
+
+  - name: NorthDatabase-deployer
+    type: nodejs
+    path: gen/pg
+    parameters:
+      buildpack: nodejs_buildpack
+      no-route: true
+      no-start: true
+      disk-quota: 1GB
+      memory: 256MB
+      tasks:
+        - name: deploy-to-postgresql
+          command: npm start
+          disk-quota: 1GB
+          memory: 256MB
+    requires:
+      - name: NorthDatabase
+
+resources:
+  - name: Student-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: Student-${org}-${space}
+        tenant-mode: dedicated
+  - name: NorthDatabase
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: postgresql-db
+      service-plan: trial

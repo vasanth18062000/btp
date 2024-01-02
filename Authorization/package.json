@@ -1,0 +1,62 @@
+{
+  "name": "Authorization",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "express": "^4",
+    "@sap/xssec": "^3",
+    "passport": "^0"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7",
+    "@sap/ux-specification": "^1.120.1"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-authentication": "cds watch --open authentication/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-authorization": "cds watch --open authorization/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "cds": {
+    "requires": {
+      "[development]": {
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "incident.support@tester.sap.com": {
+              "password": "initial",
+              "roles": [
+                "support"
+              ]
+            },
+            "pream@gmail.com": {
+              "password": "12345",
+              "roles": [
+                "developer"
+              ]
+            },
+            "alice": {
+              "roles": [
+                "support"
+              ]
+            },
+            "bob": {
+              "roles": [
+                "support"
+              ]
+            }
+          }
+        }
+      },
+      "auth": "xsuaa"
+    }
+  },
+  "sapux": [
+    "app/authentication",
+    "app/authorization"
+  ]
+}
