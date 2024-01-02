@@ -1,1 +1,16 @@
-{}
+{
+    "cds":{
+        "requires":{
+            "[hybrid]":{
+                "auth":{
+                "users":{
+                    "customer":{
+                        "password":"admin",
+                        "roles":["support"]
+                    }
+                }
+            }
+        }
+        }
+    }
+}

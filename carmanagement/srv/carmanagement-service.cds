@@ -12,4 +12,4 @@ service CarManagementService{
 }
 
 // annotate CarManagementService.Car with @odata.draft.enabled;
-// annotate CarManagementService.Car with @(requires: 'support');
+annotate CarManagementService.Car with @(requires: 'support');
