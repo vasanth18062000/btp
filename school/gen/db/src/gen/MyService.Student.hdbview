@@ -1,0 +1,11 @@
+VIEW MyService_Student AS SELECT
+  Student_0.rollnumber,
+  Student_0.firstname,
+  Student_0.lastname,
+  Student_0.class,
+  Student_0.dateoOfBirth,
+  Student_0.school_ID
+FROM school_db_Student AS Student_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN MyService_School AS school ON (school.ID = school_ID)
+)

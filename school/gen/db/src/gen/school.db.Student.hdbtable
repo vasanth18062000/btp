@@ -1,0 +1,11 @@
+COLUMN TABLE school_db_Student (
+  rollnumber NVARCHAR(5000) NOT NULL,
+  firstname NVARCHAR(5000),
+  lastname NVARCHAR(5000),
+  class NVARCHAR(5000),
+  dateoOfBirth DATE,
+  school_ID NVARCHAR(36),
+  PRIMARY KEY(rollnumber)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN school_db_School AS school ON (school.ID = school_ID)
+)

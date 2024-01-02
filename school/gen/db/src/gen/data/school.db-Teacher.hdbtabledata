@@ -1,0 +1,37 @@
+{
+  "format_version": 1,
+  "imports": [
+    {
+      "target_table": "SCHOOL_DB_TEACHER",
+      "source_data": {
+        "data_type": "CSV",
+        "file_name": "school.db-Teacher.csv",
+        "has_header": true,
+        "type_config": {
+          "delimiter": ","
+        }
+      },
+      "import_settings": {
+        "import_columns": [
+          "ID",
+          "FIRSTNAME",
+          "LASTNAME",
+          "POSITION",
+          "PHONENUMBER",
+          "ADDRESS_ID",
+          "SCHOOL_ID"
+        ],
+        "include_filter": []
+      },
+      "column_mappings": {
+        "ID": "ID",
+        "FIRSTNAME": "firstname",
+        "LASTNAME": "lastname",
+        "POSITION": "position",
+        "PHONENUMBER": "phonenumber",
+        "ADDRESS_ID": "address_ID",
+        "SCHOOL_ID": "school_ID"
+      }
+    }
+  ]
+}

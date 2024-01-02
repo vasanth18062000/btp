@@ -1,0 +1,8 @@
+COLUMN TABLE school_db_School (
+  ID NVARCHAR(36) NOT NULL,
+  name NVARCHAR(5000),
+  address_ID INTEGER,
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN school_db_Address AS address ON (address.ID = address_ID)
+)

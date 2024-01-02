@@ -1,0 +1,8 @@
+VIEW MyService_School AS SELECT
+  School_0.ID,
+  School_0.name,
+  School_0.address_ID
+FROM school_db_School AS School_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN MyService_Address AS address ON (address.ID = address_ID)
+)

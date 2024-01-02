@@ -1,0 +1,14 @@
+COLUMN TABLE sap_capire_incidents_Book (
+  ID NVARCHAR(36) NOT NULL,
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  name NVARCHAR(5000),
+  price DOUBLE,
+  genre NVARCHAR(5000),
+  author_ID INTEGER,
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN sap_capire_incidents_Author AS author ON (author.ID = author_ID)
+)

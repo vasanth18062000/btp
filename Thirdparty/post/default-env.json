@@ -1,0 +1,20 @@
+{
+    "VCAP_SERVICES": {
+      "postgresql": [
+        {
+          "name": "your-postgresql-service",
+          "label": "postgresql",
+          "tags": ["postgresql", "database"],
+          "plan": "trail",
+          "credentials": {
+            "host": "",
+            "port": "",
+            "user": "yourUsername",
+            "password": "yourPassword",
+            "database": "yourDatabase"
+          }
+        }
+      ]
+    }
+  }
+  

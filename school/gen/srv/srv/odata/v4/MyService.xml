@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema Namespace="MyService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityContainer Name="EntityContainer">
+        <EntitySet Name="School" EntityType="MyService.School">
+          <NavigationPropertyBinding Path="address" Target="Address"/>
+        </EntitySet>
+        <EntitySet Name="Student" EntityType="MyService.Student">
+          <NavigationPropertyBinding Path="school" Target="School"/>
+        </EntitySet>
+        <EntitySet Name="Teacher" EntityType="MyService.Teacher">
+          <NavigationPropertyBinding Path="address" Target="Address"/>
+          <NavigationPropertyBinding Path="school" Target="School"/>
+        </EntitySet>
+        <EntitySet Name="Address" EntityType="MyService.Address"/>
+      </EntityContainer>
+      <EntityType Name="School">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="name" Type="Edm.String"/>
+        <NavigationProperty Name="address" Type="MyService.Address">
+          <ReferentialConstraint Property="address_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="address_ID" Type="Edm.Int32"/>
+      </EntityType>
+      <EntityType Name="Student">
+        <Key>
+          <PropertyRef Name="rollnumber"/>
+        </Key>
+        <Property Name="rollnumber" Type="Edm.String" Nullable="false"/>
+        <Property Name="firstname" Type="Edm.String"/>
+        <Property Name="lastname" Type="Edm.String"/>
+        <Property Name="class" Type="Edm.String"/>
+        <Property Name="dateoOfBirth" Type="Edm.Date"/>
+        <NavigationProperty Name="school" Type="MyService.School">
+          <ReferentialConstraint Property="school_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="school_ID" Type="Edm.Guid"/>
+      </EntityType>
+      <EntityType Name="Teacher">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="firstname" Type="Edm.String"/>
+        <Property Name="lastname" Type="Edm.String"/>
+        <Property Name="position" Type="Edm.String"/>
+        <Property Name="phonenumber" Type="Edm.String"/>
+        <NavigationProperty Name="address" Type="MyService.Address">
+          <ReferentialConstraint Property="address_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="address_ID" Type="Edm.Int32"/>
+        <NavigationProperty Name="school" Type="MyService.School">
+          <ReferentialConstraint Property="school_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="school_ID" Type="Edm.Guid"/>
+      </EntityType>
+      <EntityType Name="Address">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="doorNo" Type="Edm.String"/>
+        <Property Name="street" Type="Edm.String"/>
+        <Property Name="city" Type="Edm.String"/>
+        <Property Name="State" Type="Edm.String"/>
+        <Property Name="pincode" Type="Edm.String"/>
+      </EntityType>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

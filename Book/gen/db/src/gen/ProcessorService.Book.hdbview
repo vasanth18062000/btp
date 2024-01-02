@@ -1,0 +1,14 @@
+VIEW ProcessorService_Book AS SELECT
+  Book_0.ID,
+  Book_0.createdAt,
+  Book_0.createdBy,
+  Book_0.modifiedAt,
+  Book_0.modifiedBy,
+  Book_0.name,
+  Book_0.price,
+  Book_0.genre,
+  Book_0.author_ID
+FROM sap_capire_incidents_Book AS Book_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN ProcessorService_Author AS author ON (author.ID = author_ID)
+)

@@ -1,0 +1,29 @@
+{
+  "format_version": 1,
+  "imports": [
+    {
+      "target_table": "SCHOOL_DB_SCHOOL",
+      "source_data": {
+        "data_type": "CSV",
+        "file_name": "school.db-School.csv",
+        "has_header": true,
+        "type_config": {
+          "delimiter": ","
+        }
+      },
+      "import_settings": {
+        "import_columns": [
+          "ID",
+          "NAME",
+          "ADDRESS_ID"
+        ],
+        "include_filter": []
+      },
+      "column_mappings": {
+        "ID": "ID",
+        "NAME": "name",
+        "ADDRESS_ID": "address_ID"
+      }
+    }
+  ]
+}

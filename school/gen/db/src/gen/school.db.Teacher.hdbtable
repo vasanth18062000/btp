@@ -1,0 +1,13 @@
+COLUMN TABLE school_db_Teacher (
+  ID NVARCHAR(36) NOT NULL,
+  firstname NVARCHAR(5000),
+  lastname NVARCHAR(5000),
+  position NVARCHAR(5000),
+  phonenumber NVARCHAR(5000),
+  address_ID INTEGER,
+  school_ID NVARCHAR(36),
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN school_db_Address AS address ON (address.ID = address_ID),
+  MANY TO ONE JOIN school_db_School AS school ON (school.ID = school_ID)
+)

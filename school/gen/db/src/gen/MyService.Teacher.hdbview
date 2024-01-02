@@ -1,0 +1,13 @@
+VIEW MyService_Teacher AS SELECT
+  Teacher_0.ID,
+  Teacher_0.firstname,
+  Teacher_0.lastname,
+  Teacher_0.position,
+  Teacher_0.phonenumber,
+  Teacher_0.address_ID,
+  Teacher_0.school_ID
+FROM school_db_Teacher AS Teacher_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN MyService_Address AS address ON (address.ID = address_ID),
+  MANY TO ONE JOIN MyService_School AS school ON (school.ID = school_ID)
+)

@@ -1,0 +1,20 @@
+{
+  "requires": {
+    "[hybrid]": {
+      "custom-service:southdatabase": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.us10-001.hana.ondemand.com",
+          "org": "6c8d28e6trial",
+          "space": "dev",
+          "instance": "southdatabase",
+          "key": "db-key",
+          "resolved": false
+        },
+        "vcap": {
+          "name": "custom-service:southdatabase"
+        }
+      }
+    }
+  }
+}

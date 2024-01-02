@@ -1,0 +1,8 @@
+VIEW MyService_Address AS SELECT
+  Address_0.ID,
+  Address_0.doorNo,
+  Address_0.street,
+  Address_0.city,
+  Address_0.State,
+  Address_0.pincode
+FROM school_db_Address AS Address_0
