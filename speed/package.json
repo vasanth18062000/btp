@@ -1,0 +1,25 @@
+{
+  "name": "speed",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/ux-specification": "^1.108.18"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-oms": "cds watch --open oms/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-order": "cds watch --open order/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "sapux": [
+    "app/oms",
+    "app/order"
+  ]
+}
