@@ -1,0 +1,13 @@
+PROCEDURE "demo"( )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   READS SQL DATA AS
+BEGIN
+   /*************************************
+       Write your procedure logic
+   *************************************/
+   SELECT * from EMPLOYEE_DB_EMPLOYEE
+   WHERE id IN (1,5);
+   
+END
