@@ -9,12 +9,12 @@
             window['sap-ushell-config'] = {
                 defaultRenderer: 'fiori2',
                 applications: {
-                    "UTCL-app": {
-                        title: 'UTCL - Customer',
-                        description: 'Customer',
-                        additionalInformation: 'SAPUI5.Component=ns.product',
+                    "Speed-App": {
+                        title: 'Customer',
+                        description: 'Customer Log-In',
+                        
                         applicationType: 'URL',
-                        url: "./product/webapp",
+                        url: "/login.html",
                         navigationMode: 'embedded'
                     }
 
@@ -32,9 +32,9 @@
         <script src="https://ui5.sap.com/test-resources/sap/ushell/bootstrap/sandbox.js"></script>
         <script
             src="https://ui5.sap.com/resources/sap-ui-core.js"
-            data-sap-ui-libs="sap.m, sap.ushell, sap.fe.templates"
+            
             data-sap-ui-compatVersion="edge"
-            data-sap-ui-theme="sap_horizon"
+            data-sap-ui-theme="sap_fiori_3"
             data-sap-ui-frameOptions="allow"
             data-sap-ui-bindingSyntax="complex"
         ></script>

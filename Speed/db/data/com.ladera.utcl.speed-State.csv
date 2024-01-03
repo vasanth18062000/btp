@@ -1,1 +1,3 @@
-id,createdAt,createdBy,modifiedAt,modifiedBy,code,name,status
+id,code,name,status
+4001,STATE001,TamilNadu,true
+4002,STATE002,Telungana,true

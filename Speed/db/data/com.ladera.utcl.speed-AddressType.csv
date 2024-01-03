@@ -1,1 +1,5 @@
-id,createdAt,createdBy,modifiedAt,modifiedBy,status,code,value
+id,status,code,value
+5001,true,20001,Permanent
+5002,false,20002,Permanent
+5003,true,20003,Communication
+5004,false,20004,Communication

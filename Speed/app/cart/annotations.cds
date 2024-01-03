@@ -1,8 +1,4 @@
-// using SpeedService as service from '../../C:/Users/Francis Ajay.D.S/AppData/Local/Programs/Microsoft VS Code/srv/service';
-using from '../../srv/service';
-using from '../../db/Schema';
-
-
+using SpeedService as service from '../../srv/service';
 
 annotate service.Cart with @(
     UI.LineItem : [
@@ -13,11 +9,6 @@ annotate service.Cart with @(
         },
         {
             $Type : 'UI.DataField',
-            Label : 'cartCode',
-            Value : cartCode,
-        },
-        {
-            $Type : 'UI.DataField',
             Label : 'cartEntries_id',
             Value : cartEntries_id,
         },
@@ -25,11 +16,6 @@ annotate service.Cart with @(
             $Type : 'UI.DataField',
             Label : 'customer_id',
             Value : customer_id,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'totalPrice',
-            Value : totalPrice,
         },
     ]
 );
@@ -53,11 +39,11 @@ annotate service.Cart with {
             },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'quantity',
+                ValueListProperty : 'cart_id',
             },
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'subTotal',
+                ValueListProperty : 'quantity',
             },
         ],
     }
@@ -179,4 +165,34 @@ annotate service.Cart with @(
             Target : '@UI.FieldGroup#GeneratedGroup1',
         },
     ]
+);
+annotate service.CartEntry with @(
+    UI.LineItem #CartEntries : [
+        {
+            $Type : 'UI.DataField',
+            Value : cart_id,
+            Label : 'cart_id',
+        },{
+            $Type : 'UI.DataField',
+            Value : id,
+            Label : 'id',
+        },{
+            $Type : 'UI.DataField',
+            Value : quantity,
+            Label : 'quantity',
+        },{
+            $Type : 'UI.DataField',
+            Value : totalQuantity,
+            Label : 'totalQuantity',
+        },{
+            $Type : 'UI.DataField',
+            Value : product.id,
+        },{
+            $Type : 'UI.DataField',
+            Value : product.name,
+        },{
+            $Type : 'UI.DataField',
+            Value : product.productImage,
+            Label : 'productImage',
+        },]
 );

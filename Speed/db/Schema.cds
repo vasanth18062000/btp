@@ -1,6 +1,9 @@
 using{managed,Currency,temporal,Country,User} from '@sap/cds/common';
 namespace com.ladera.utcl.speed;
 
+context Schema {
+    
+
 entity Customer: managed{
 key id         :Integer @unique; 
 customerId     :String(50);
@@ -13,6 +16,8 @@ title          :Association to one Title;
 carts          :Association to  many Cart on carts.customer=$self;
 name           :String(50) = firstName ||' '|| lastName;
 orders         :Association to  many Order on orders.customer=$self;
+emailId : String(50);
+password : String(50);
 }
 
 entity ContactDetails:  managed{
@@ -68,22 +73,18 @@ key id         :Integer @unique;
 code           :String(50);
 name           :localized String;
 productImage   :String(1000);
-description    :localized String(50);
-price          :Association to  many PriceRow on price.productId=$self;
+description    :localized String(1000);
 rating         :Double;
 manufactureId  :String(50);
 sellerId       :String(50);
-// order          : Composition of many Order;
-}
-
-
-entity PriceRow:   managed{
-key id          :Integer @unique;
 price           :Double;
 currency        :Currency;
 unit            :String @assert.range enum {KG;METER;GRAM;LENGTH;INCH;LITRE;};
-productId       :Association to one Product;
+cartEntry       : Association to CartEntry;
+
+
 }
+
 
 
 entity Cart:   managed{
@@ -106,6 +107,7 @@ entity CartEntry:   managed{
 key id          :Integer;
 entryNumber     :String(50);
 product         :Association to Product;
+cart            : Association to Cart;
 quantity        :Integer;
 subTotal        :Decimal(10,2);
 totalQuantity   :Decimal(10,2);
@@ -128,7 +130,7 @@ message         :localized String(200);
 // order           : Association to many Product;
 }
 
-entity ShippingMethod:   managed{
+entity  ShippingMethod:   managed{
 key id          :Integer;
 code            :String(50);
 name            :String(50);
@@ -176,4 +178,24 @@ entity Warehouse: managed{
     stockatWarehouse            :Association to many StockLevel;
 
 
+}
+
+
+entity Reviews : managed {  
+        
+        rating : Rating @assert.range;
+        overall  : String(200) @mandatory;
+        review   : String(200) @mandatory;
+        product : Association to many Product;
+
+}
+
+type Rating : Integer enum {
+    Great    = 5;
+    Good     = 4;
+    Average  = 3;
+    Poor     = 2;
+    Bad      = 1;
+    Terrible = 0;
+}
 }

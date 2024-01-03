@@ -1,7 +1,7 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Tue Dec 19 2023 19:47:40 GMT+0530 (India Standard Time)|
+|**Generation Date and Time**<br>Wed Dec 27 2023 15:49:19 GMT+0530 (India Standard Time)|
 |**App Generator**<br>@sap/generator-fiori-elements|
 |**App Generator Version**<br>1.12.0|
 |**Generation Platform**<br>Visual Studio Code|
@@ -9,7 +9,7 @@
 |**Service Type**<br>Local Cap|
 |**Service URL**<br>http://localhost:4004/odata/v4/speed/
 |**Module Name**<br>cart|
-|**Application Title**<br>SPEED-App|
+|**Application Title**<br>Speed|
 |**Namespace**<br>ns|
 |**UI5 Theme**<br>sap_horizon|
 |**UI5 Version**<br>1.120.3|

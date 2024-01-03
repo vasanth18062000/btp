@@ -1,0 +1,1 @@
+using SpeedService as service from '../../srv/service';

@@ -51,7 +51,8 @@
                 "sap.m": {},
                 "sap.ui.core": {},
                 "sap.ushell": {},
-                "sap.fe.templates": {}
+                "sap.fe.templates": {},
+                "sap.f": {}
             }
         },
         "contentDensities": {
@@ -88,17 +89,26 @@
                 {
                     "pattern": ":?query:",
                     "name": "ProductList",
-                    "target": "ProductList"
+                    "target": [
+                        "ProductList"
+                    ]
                 },
                 {
                     "pattern": "Product({key}):?query:",
                     "name": "ProductObjectPage",
-                    "target": "ProductObjectPage"
+                    "target": [
+                        "ProductList",
+                        "ProductObjectPage"
+                    ]
                 },
                 {
                     "pattern": "Product({key})/price({key2}):?query:",
                     "name": "PriceRowObjectPage",
-                    "target": "PriceRowObjectPage"
+                    "target": [
+                        "ProductList",
+                        "ProductObjectPage",
+                        "PriceRowObjectPage"
+                    ]
                 }
             ],
             "targets": {
@@ -117,9 +127,43 @@
                                     }
                                 }
                             },
-                            "initialLoad": "Enabled"
+                            "initialLoad": "Enabled",
+                            "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#table",
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "condensedTableLayout": true
+                                    },
+                                    "columns": {
+                                        "Image": {
+                                            "header": "Image",
+                                            "position": {
+                                                "anchor": "DataField::id",
+                                                "placement": "Before"
+                                            }
+                                        },
+                                        "DataFieldForAnnotation::Contact::contact": {
+                                            "availability": "Default"
+                                        }
+                                    }
+                                }
+                            },
+                            "content": {
+                                "header": {
+                                    "actions": {
+                                        "Action001": {
+                                            "press": "ns.product.ext.controller.Carts.carts",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Cart"
+                                        }
+                                    }
+                                }
+                            }
                         }
-                    }
+                    },
+                    "controlAggregation": "beginColumnPages",
+                    "contextPattern": ""
                 },
                 "ProductObjectPage": {
                     "type": "Component",
@@ -127,7 +171,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "editableHeaderContent": false,
+                            "editableHeaderContent": true,
                             "contextPath": "/Product",
                             "navigation": {
                                 "price": {
@@ -136,31 +180,55 @@
                                     }
                                 }
                             },
-                            "sectionLayout": "Page",
+                            "sectionLayout": "Tabs",
                             "content": {
-                                "footer": {
-                                    "actions": {
-                                        "FOOTER001": {
-                                            "press": "ns.product.ext.controller.Cart.cart",
-                                            "visible": true,
-                                            "enabled": true,
-                                            "text": "Add to cart"
-                                        }
-                                    }
-                                },
                                 "header": {
                                     "actions": {
                                         "Action001": {
                                             "press": "ns.product.ext.controller.Home.Home",
                                             "visible": true,
                                             "enabled": true,
-                                            "text": "Home Page"
+                                            "text": "Home Page",
+                                            "position": {
+                                                "placement": "After"
+                                            }
+                                        },
+                                        "BUTTON1001": {
+                                            "press": "ns.product.ext.controller.BackButton.BackButton",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "☃",
+                                            "position": {
+                                                "placement": "Before"
+                                            }
+                                        }
+                                    },
+                                    "anchorBarVisible": true,
+                                    "visible": true
+                                },
+                                "footer": {
+                                    "actions": {
+                                        "Action003": {
+                                            "press": "ns.product.ext.controller.Addtocart.Addtocart",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Add to cart"
+                                        },
+                                        "a123": {
+                                            "press": "ns.product.ext.controller.Asdfg.asdfghj",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "sedrtfyghuij"
                                         }
                                     }
                                 }
-                            }
+                            },
+                            "variantManagement": "Control",
+                            "showRelatedApps": true
                         }
-                    }
+                    },
+                    "controlAggregation": "midColumnPages",
+                    "contextPattern": "/Product({key})"
                 },
                 "PriceRowObjectPage": {
                     "type": "Component",
@@ -183,9 +251,24 @@
                                 }
                             }
                         }
-                    }
+                    },
+                    "controlAggregation": "endColumnPages",
+                    "contextPattern": "/Product({key})/price({key2})"
                 }
+            },
+            "config": {
+                "flexibleColumnLayout": {
+                    "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
+                    "defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
+                },
+                "routerClass": "sap.f.routing.Router"
             }
+        },
+        "rootView": {
+            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+            "type": "XML",
+            "async": true,
+            "id": "appRootView"
         }
     },
     "sap.fiori": {

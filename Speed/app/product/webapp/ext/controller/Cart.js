@@ -4,11 +4,8 @@ sap.ui.define([
     'use strict';
 
     return {
-        cart: function(oEvent) {
-            MessageToast.show("Product added to cart");
-
-           
-
+        Cart: function(oEvent) {
+            MessageToast.show("Custom handler invoked");
         }
     };
 });
