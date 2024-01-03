@@ -1,0 +1,34 @@
+Project Description:-
+
+		 This Project is Used to consume external Business partner API in local java 
+		 project and push into cloud using cmd cf push
+		 
+		 In Local the Desination is we Maintained Desination in Environment 
+		 -------------------------------------------------------------------------
+		 How to add the Desination in Environment 
+		  
+		  -> go to Run (or) Debug and click on Run (or) Debug Configuration and Select 
+		  	our Application in java application and move to Envrionment tab and add the 
+		  	Below Desination
+		  	
+		  	destinations=[{"name": "businesspartners-api", "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_AddressEmailAddress"}]
+		  	
+		 In BTP Cloud Configure the Desination:
+		 	
+		 		go to Service and MarketPalace and Search Desination Service and click 
+		 		on Desination Service -> Create - > create the Desination Service
+		 		
+		 		now go to Instances and see the Desination Service click on & go to Desination 
+		 		and Create Desination  -> enter name of Desination and In URL paste the Third party URl
+		 		Authenticaton  - NoAuthentication , Type - HTTP
+		 		
+		       Go to Referencing Apps Click on Bind Instance select the Application and click on Ok 
+		      	 The Application we can only see after push
+		      	 
+		     code Explanination:-
+		     ----------------------------------------------------------------------
+		     We can access the Desination Using DesinationAccesor 
+		     
+		     Refernce Link for Creating Desination :
+		     https://blogs.sap.com/2023/06/12/consuming-external-odata-service-from-cap-java-application/
+		     https://developers.sap.com/tutorials/cp-cf-create-destination.html
