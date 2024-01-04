@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="Product" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Product" EntityType="Product.Product">
+                    <NavigationPropertyBinding Path="price" Target="PriceRow"/>
+                </EntitySet>
+                <EntitySet Name="PriceRow" EntityType="Product.PriceRow">
+                    <NavigationPropertyBinding Path="currency" Target="Currencies"/>
+                    <NavigationPropertyBinding Path="productId" Target="Product"/>
+                </EntitySet>
+                <EntitySet Name="Currencies" EntityType="Product.Currencies">
+                    <NavigationPropertyBinding Path="texts" Target="Currencies_texts"/>
+                    <NavigationPropertyBinding Path="localized" Target="Currencies_texts"/>
+                </EntitySet>
+                <EntitySet Name="Currencies_texts" EntityType="Product.Currencies_texts"/>
+            </EntityContainer>
+            <EntityType Name="Product">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="code" Type="Edm.String" MaxLength="50"/>
+                <Property Name="name" Type="Edm.String"/>
+                <Property Name="productImage" Type="Edm.String" MaxLength="50"/>
+                <Property Name="description" Type="Edm.String" MaxLength="50"/>
+                <NavigationProperty Name="price" Type="Collection(Product.PriceRow)" Partner="productId">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <Property Name="rating" Type="Edm.Double"/>
+                <Property Name="manufactureId" Type="Edm.String" MaxLength="50"/>
+                <Property Name="sellerId" Type="Edm.String" MaxLength="50"/>
+            </EntityType>
+            <EntityType Name="PriceRow">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="price" Type="Edm.Double"/>
+                <NavigationProperty Name="currency" Type="Product.Currencies">
+                    <ReferentialConstraint Property="currency_code" ReferencedProperty="code"/>
+                </NavigationProperty>
+                <Property Name="currency_code" Type="Edm.String" MaxLength="3"/>
+                <Property Name="unit" Type="Edm.String"/>
+                <NavigationProperty Name="productId" Type="Product.Product" Partner="price">
+                    <ReferentialConstraint Property="productId_id" ReferencedProperty="id"/>
+                </NavigationProperty>
+                <Property Name="productId_id" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="Currencies">
+                <Key>
+                    <PropertyRef Name="code"/>
+                </Key>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <Property Name="symbol" Type="Edm.String" MaxLength="5"/>
+                <Property Name="minorUnit" Type="Edm.Int16"/>
+                <NavigationProperty Name="texts" Type="Collection(Product.Currencies_texts)">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <NavigationProperty Name="localized" Type="Product.Currencies_texts">
+                    <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="Currencies_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="code"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.String" MaxLength="3" Nullable="false"/>
+            </EntityType>
+            <Annotations Target="Product.Product/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                </Annotations>
+                <Annotations Target="Product.Product/createdBy">
+                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                    <Annotation Term="Core.Immutable" Bool="true"/>
+                    <Annotation Term="Core.Computed" Bool="true"/>
+                    <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                        <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                        </Annotations>
+                        <Annotations Target="Product.Product/modifiedAt">
+                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                            <Annotation Term="Core.Computed" Bool="true"/>
+                            <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                            </Annotations>
+                            <Annotations Target="Product.Product/modifiedBy">
+                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                <Annotation Term="Core.Computed" Bool="true"/>
+                                <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                    <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                    </Annotations>
+                                    <Annotations Target="Product.PriceRow/createdAt">
+                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                        <Annotation Term="Core.Immutable" Bool="true"/>
+                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                        <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                                        </Annotations>
+                                        <Annotations Target="Product.PriceRow/createdBy">
+                                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                            <Annotation Term="Core.Immutable" Bool="true"/>
+                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                            <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                                </Annotations>
+                                                <Annotations Target="Product.PriceRow/modifiedAt">
+                                                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                                    <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                                                    </Annotations>
+                                                    <Annotations Target="Product.PriceRow/modifiedBy">
+                                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                                        <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                            <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                                            </Annotations>
+                                                            <Annotations Target="Product.PriceRow/currency">
+                                                                <Annotation Term="Common.Label" String="{i18n>Currency}"/>
+                                                                    <Annotation Term="Core.Description" String="{i18n>CurrencyCode.Description}"/>
+                                                                    </Annotations>
+                                                                    <Annotations Target="Product.PriceRow/currency_code">
+                                                                        <Annotation Term="Common.Label" String="{i18n>Currency}"/>
+                                                                            <Annotation Term="Common.ValueList">
+                                                                                <Record Type="Common.ValueListType">
+                                                                                    <PropertyValue Property="Label" String="{i18n>Currency}"/>
+                                                                                        <PropertyValue Property="CollectionPath" String="Currencies"/>
+                                                                                        <PropertyValue Property="Parameters">
+                                                                                            <Collection>
+                                                                                                <Record Type="Common.ValueListParameterInOut">
+                                                                                                    <PropertyValue Property="LocalDataProperty" PropertyPath="currency_code"/>
+                                                                                                    <PropertyValue Property="ValueListProperty" String="code"/>
+                                                                                                </Record>
+                                                                                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                                                                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                                                                                </Record>
+                                                                                            </Collection>
+                                                                                        </PropertyValue>
+                                                                                    </Record>
+                                                                                </Annotation>
+                                                                                <Annotation Term="Core.Description" String="{i18n>CurrencyCode.Description}"/>
+                                                                                </Annotations>
+                                                                                <Annotations Target="Product.PriceRow/unit">
+                                                                                    <Annotation Term="Validation.AllowedValues">
+                                                                                        <Collection>
+                                                                                            <Record Type="Validation.AllowedValue">
+                                                                                                <Annotation Term="Core.SymbolicName" String="KG"/>
+                                                                                                <PropertyValue Property="Value" String="KG"/>
+                                                                                            </Record>
+                                                                                            <Record Type="Validation.AllowedValue">
+                                                                                                <Annotation Term="Core.SymbolicName" String="METER"/>
+                                                                                                <PropertyValue Property="Value" String="METER"/>
+                                                                                            </Record>
+                                                                                            <Record Type="Validation.AllowedValue">
+                                                                                                <Annotation Term="Core.SymbolicName" String="GRAM"/>
+                                                                                                <PropertyValue Property="Value" String="GRAM"/>
+                                                                                            </Record>
+                                                                                            <Record Type="Validation.AllowedValue">
+                                                                                                <Annotation Term="Core.SymbolicName" String="LENGTH"/>
+                                                                                                <PropertyValue Property="Value" String="LENGTH"/>
+                                                                                            </Record>
+                                                                                            <Record Type="Validation.AllowedValue">
+                                                                                                <Annotation Term="Core.SymbolicName" String="INCH"/>
+                                                                                                <PropertyValue Property="Value" String="INCH"/>
+                                                                                            </Record>
+                                                                                            <Record Type="Validation.AllowedValue">
+                                                                                                <Annotation Term="Core.SymbolicName" String="LITRE"/>
+                                                                                                <PropertyValue Property="Value" String="LITRE"/>
+                                                                                            </Record>
+                                                                                        </Collection>
+                                                                                    </Annotation>
+                                                                                </Annotations>
+                                                                                <Annotations Target="Product.Currencies">
+                                                                                    <Annotation Term="UI.Identification">
+                                                                                        <Collection>
+                                                                                            <Record Type="UI.DataField">
+                                                                                                <PropertyValue Property="Value" Path="name"/>
+                                                                                            </Record>
+                                                                                        </Collection>
+                                                                                    </Annotation>
+                                                                                </Annotations>
+                                                                                <Annotations Target="Product.Currencies/name">
+                                                                                    <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="Product.Currencies/descr">
+                                                                                        <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                        </Annotations>
+                                                                                        <Annotations Target="Product.Currencies/code">
+                                                                                            <Annotation Term="Common.Text" Path="name"/>
+                                                                                            <Annotation Term="Common.Label" String="{i18n>CurrencyCode}"/>
+                                                                                            </Annotations>
+                                                                                            <Annotations Target="Product.Currencies/symbol">
+                                                                                                <Annotation Term="Common.Label" String="{i18n>CurrencySymbol}"/>
+                                                                                                </Annotations>
+                                                                                                <Annotations Target="Product.Currencies/minorUnit">
+                                                                                                    <Annotation Term="Common.Label" String="{i18n>CurrencyMinorUnit}"/>
+                                                                                                    </Annotations>
+                                                                                                    <Annotations Target="Product.Currencies_texts/locale">
+                                                                                                        <Annotation Term="Common.Label" String="{i18n>LanguageCode}"/>
+                                                                                                        </Annotations>
+                                                                                                        <Annotations Target="Product.Currencies_texts/name">
+                                                                                                            <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                                                            </Annotations>
+                                                                                                            <Annotations Target="Product.Currencies_texts/descr">
+                                                                                                                <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                                                </Annotations>
+                                                                                                                <Annotations Target="Product.Currencies_texts/code">
+                                                                                                                    <Annotation Term="Common.Text" Path="name"/>
+                                                                                                                    <Annotation Term="Common.Label" String="{i18n>CurrencyCode}"/>
+                                                                                                                    </Annotations>
+                                                                                                                </Schema>
+                                                                                                            </edmx:DataServices>
+                                                                                                        </edmx:Edmx>

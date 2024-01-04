@@ -1,0 +1,4 @@
+id,addressLine1,addressLine2,addressLine3,addressLine4,city_id,state_id,pincode,country,customer_id,addressType_id
+201,Karpaga Villa,Swarnambigai nagar,Virugambakkam,Chenai,51,61,600092,IND72,1001,301
+202,Jai illam,Vinayaga nagar,tnagar,Chennai,52,62,600093,IND72,1002,302
+203,Paraveen Illam,Jesus Street,Annanagar,Chennai,53,62,600094,IND72,1003,303

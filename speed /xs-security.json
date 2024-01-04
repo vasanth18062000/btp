@@ -1,0 +1,32 @@
+
+{
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.ProductViewer",
+      "description": "Product Viewer"
+    },
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Product Manager"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "ProductViewer",
+      "description": "Product Viewer",
+      "scope-references": [
+        "$XSAPPNAME.ProductViewer"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "ProductManager",
+      "description": "Product Manager",
+      "scope-references": [
+        "$XSAPPNAME.ProductManager"
+      ],
+      "attribute-references": []
+    }
+  ]
+}
+

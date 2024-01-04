@@ -1,5 +1,5 @@
-id,cartCode,totalPrice,paymentMode,isActive,customer_id
-4001,67368262,6000,COD,true,1001
-4002,543654362,3000,COD,true,1001
-4003,687626289,2000,COD,true,1002
-4004,678647867,4000,COD,true,1003
+id,cartCode,totalPrice,paymentMode,isActive,customer_id,product_id
+4001,67368262,6000,COD,true,1001,3001
+4002,543654362,3000,COD,true,1001,3002
+4003,687626289,2000,COD,true,1002,3003
+4004,678647867,4000,COD,true,1003,3004

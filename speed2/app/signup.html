@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+</head>
+<script>
+    var attempt = 3; 
+function validate(){
+    console.log("hello");
+var username = document.getElementById("id").value;
+var password = document.getElementById("password").value;
+if ( username == "" && password == ""){
+window.location = "./product/webapp/index.html";
+    return false;
+}
+else{
+    attempt --;
+alert("You have left "+attempt+" attempt;");
+
+if( attempt == 0){
+document.getElementById("id").disabled = true;
+document.getElementById("password").disabled = true;
+document.getElementById("submit").disabled = true;
+return false;
+}
+}
+}
+
+    
+</script>
+<body>
+    <h2>Welcome to Ecommerce</h2>
+    <form>
+        <label>Customer Id</label><br>
+        <input type="text" id="id"><br>
+        <label>Password</label>
+        <input type="password" id="password">
+        <br>
+        <input type="button" value="Login" onclick="validate()">
+    </form>
+    
+</body>
+</html>

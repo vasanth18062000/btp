@@ -1,0 +1,50 @@
+{
+    "name": "speed",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^7",
+        "@sap/cds-hana": "^2",
+        "@sap/hana-client": "^2.19.20",
+        "@sap/xssec": "^3",
+        "express": "^4",
+        "passport": "^0"
+    },
+    "devDependencies": {
+        "@cap-js/sqlite": "^1",
+        "@sap/cds-dk": "^7",
+        "@sap/ux-specification": "^1.120.1",
+        "@ui5/cli": "^3.8.0",
+        "rimraf": "^3.0.2"
+    },
+    "scripts": {
+        "start": "cds-serve",
+        "watch-customer": "cds watch --open customer/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-orders": "cds watch --open orders/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-cart": "cds watch --open cart/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-customers": "cds watch --open customers/webapp/index.html?sap-ui-xx-viewCache=false",
+        "undeploy": "cf undeploy speed --delete-services --delete-service-keys --delete-service-brokers",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+        "watch-product": "cds watch --open product/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-products": "cds watch --open products/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-prod": "cds watch --open prod/webapp/index.html?sap-ui-xx-viewCache=false"
+    },
+    "cds": {
+        "requires": {
+            "db": "hana",
+            "auth": "mocked"
+        }
+    },
+    "sapux": [
+        "app/customer",
+        "app/orders",
+        "app/cart",
+        "app/customers",
+        "app/product",
+        "app/products"
+    ]
+}

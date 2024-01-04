@@ -1,0 +1,2 @@
+service speed.Service {
+}

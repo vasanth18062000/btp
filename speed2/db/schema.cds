@@ -4,11 +4,12 @@ namespace com.ladera.utcl.speed;
 entity Product{
 key id         :Integer;
 code           :String(50);
-name           :localized String;
-productImage   :String;
-description    :localized String;
+name           :String;
+productImage   :String(1000);
+description    :String(1000);
 price          :String(30);
 rating         :Double;
+Cart            :Association to many Cart;
 }
 entity Cart {
     key id:Integer;
@@ -20,6 +21,7 @@ entity Cart {
                     };
     isActive        :Boolean;
     customer        :Association to Customer;
+    product         :Association to Product;
       
 }
 entity Customer {

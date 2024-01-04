@@ -11,6 +11,5 @@ service Product  {
 }
 annotate Product.Customer with @odata.draft.enabled;
 annotate Product.Address with @odata.draft.enabled;
-annotate Product.Product with @odata.draft.enabled;
-annotate Product.Cart with @odata.draft.enabled;
+
 

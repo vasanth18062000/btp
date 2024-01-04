@@ -7,18 +7,27 @@
   "private": true,
   "dependencies": {
     "@sap/cds": "^7",
-    "express": "^4",
-    "@sap/cds-hana": "^2"
+    "@sap/cds-hana": "^2",
+    "@sap/hana-client": "^2.19.20",
+    "express": "^4"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^1"
+    "@cap-js/sqlite": "^1",
+    "@sap/ux-specification": "^1.120.1"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch-product": "cds watch --open product/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-cart": "cds watch --open cart/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-products": "cds watch --open products/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "requires": {
       "db": "hana"
     }
-  }
+  },
+  "sapux": [
+    "app/product",
+    "app/cart"
+  ]
 }
