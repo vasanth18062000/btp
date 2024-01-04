@@ -1,4 +1,0 @@
-VIEW CarManagementService_TyreType AS SELECT
-  TyreType_0.Id,
-  TyreType_0.tyreType
-FROM sap_capire_carmanagement_TyreType AS TyreType_0
