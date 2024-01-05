@@ -1,8 +1,8 @@
-/*eslint-disable semi, no-console*/
+/* eslint-disable semi, no-console*/
 (function (sap) {
-    var getKeys = function (libOrComp, libOrCompKeysString) {
+    const getKeys = function (libOrComp, libOrCompKeysString) {
         // SAPUI5 delivered namespaces from https://ui5.sap.com/#/api/sap
-        var ui5Libs = [
+        const ui5Libs = [
             "sap.apf",
             "sap.base",
             "sap.chart",
@@ -30,11 +30,11 @@
             // ignore libs or Components that start with SAPUI5 delivered namespaces
             if (
                 !ui5Libs.some(function (substring) {
-                    return libOrCompKey === substring || libOrCompKey.startsWith(substring + ".");
+                    return libOrCompKey === substring || libOrCompKey.startsWith(`${substring}.`);
                 })
             ) {
                 if (libOrCompKeysString.length > 0) {
-                    libOrCompKeysString = libOrCompKeysString + "," + libOrCompKey;
+                    libOrCompKeysString = `${libOrCompKeysString},${libOrCompKey}`;
                 } else {
                     libOrCompKeysString = libOrCompKey;
                 }
@@ -43,8 +43,8 @@
         return libOrCompKeysString;
     };
 
-    var updateManifest = function (manifest) {
-        var result = "";
+    const updateManifest = function (manifest) {
+        let result = "";
         if (manifest) {
             if (manifest["sap.ui5"] && manifest["sap.ui5"].dependencies) {
                 if (manifest["sap.ui5"].dependencies.libs) {
@@ -61,27 +61,27 @@
         return result;
     };
 
-    var fioriToolsGetManifestLibs = function (manifestPath) {
-        var url = manifestPath;
+    const fioriToolsGetManifestLibs = function (manifestPath) {
+        const url = manifestPath;
         return new Promise(function (resolve, reject) {
             $.ajax(url)
                 .done(function (manifest) {
                     resolve(updateManifest(manifest));
                 })
                 .fail(function () {
-                    reject(new Error("Could not fetch manifest at '" + manifestPath));
+                    reject(new Error(`Could not fetch manifest at '${manifestPath}`));
                 });
         });
     };
 
-    var updateModuleDefinition = function (data) {
+    const updateModuleDefinition = function (data) {
         if (data) {
             Object.keys(data).forEach(function (moduleDefinitionKey) {
-                var moduleDefinition = data[moduleDefinitionKey];
+                const moduleDefinition = data[moduleDefinitionKey];
                 if (moduleDefinition && moduleDefinition.dependencies) {
                     moduleDefinition.dependencies.forEach(function (dependency) {
                         if (dependency.url && dependency.url.length > 0 && dependency.type === "UI5LIB") {
-                            jQuery.sap.log.info("Registering Library " + dependency.componentId + " from server " + dependency.url);
+                            jQuery.sap.log.info(`Registering Library ${dependency.componentId} from server ${dependency.url}`);
                             jQuery.sap.registerModulePath(dependency.componentId, dependency.url);
                         }
                     });
@@ -98,13 +98,13 @@
      * the app-index was successful and the module paths were registered.
      */
     sap.registerComponentDependencyPaths = function (manifestPath) {
-        /*eslint-disable semi, consistent-return*/
+        /* eslint-disable semi, consistent-return*/
         return fioriToolsGetManifestLibs(manifestPath).then(function (libs) {
             if (libs && libs.length > 0) {
-                var url = "/sap/bc/ui2/app_index/ui5_app_info?id=" + libs;
-                var sapClient = jQuery.sap.getUriParameters().get("sap-client");
+                let url = `/sap/bc/ui2/app_index/ui5_app_info?id=${libs}`;
+                const sapClient = jQuery.sap.getUriParameters().get("sap-client");
                 if (sapClient && sapClient.length === 3) {
-                    url = url + "&sap-client=" + sapClient;
+                    url = `${url}&sap-client=${sapClient}`;
                 }
                 return $.ajax(url).done(updateModuleDefinition);
             }
@@ -112,19 +112,19 @@
     };
 })(sap);
 
-/*eslint-disable sap-browser-api-warning, sap-no-dom-access*/
-var scripts = document.getElementsByTagName("script");
-var currentScript = document.getElementById("locate-reuse-libs");
+/* eslint-disable sap-browser-api-warning, sap-no-dom-access*/
+const scripts = document.getElementsByTagName("script");
+let currentScript = document.getElementById("locate-reuse-libs");
 if (!currentScript) {
     currentScript = document.currentScript;
 }
-var manifestUri = currentScript.getAttribute("data-sap-ui-manifest-uri");
-var componentName = currentScript.getAttribute("data-sap-ui-componentName");
-var useMockserver = currentScript.getAttribute("data-sap-ui-use-mockserver");
-var bundleResources = function () {
+const manifestUri = currentScript.getAttribute("data-sap-ui-manifest-uri");
+const componentName = currentScript.getAttribute("data-sap-ui-componentName");
+const useMockserver = currentScript.getAttribute("data-sap-ui-use-mockserver");
+const bundleResources = function () {
     jQuery.sap.require("jquery.sap.resources");
-    var sLocale = sap.ui.getCore().getConfiguration().getLanguage();
-    var oBundle = jQuery.sap.resources({
+    const sLocale = sap.ui.getCore().getConfiguration().getLanguage();
+    const oBundle = jQuery.sap.resources({
         url: "i18n/i18n.properties",
         locale: sLocale,
     });
@@ -141,7 +141,7 @@ sap.registerComponentDependencyPaths(manifestUri)
         if (componentName && componentName.length > 0) {
             if (useMockserver && useMockserver === "true") {
                 sap.ui.getCore().attachInit(function () {
-                    sap.ui.require([componentName.replace(/\./g, "/") + "/localService/mockserver"], function (server) {
+                    sap.ui.require([`${componentName.replace(/\./g, "/")}/localService/mockserver`], function (server) {
                         // set up test service for local testing
                         server.init();
                         // initialize the ushell sandbox component

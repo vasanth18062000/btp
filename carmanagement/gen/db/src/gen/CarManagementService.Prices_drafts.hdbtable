@@ -1,0 +1,13 @@
+COLUMN TABLE CarManagementService_Prices_drafts (
+  Id INTEGER NOT NULL,
+  price_Id INTEGER NULL,
+  priceRange NVARCHAR(5000) NULL,
+  IsActiveEntity BOOLEAN,
+  HasActiveEntity BOOLEAN,
+  HasDraftEntity BOOLEAN,
+  DraftAdministrativeData_DraftUUID NVARCHAR(36) NOT NULL,
+  PRIMARY KEY(Id)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN CarManagementService_ModelVarient_drafts AS price ON (price.Id = price_Id),
+  MANY TO ONE JOIN CarManagementService_DraftAdministrativeData AS DraftAdministrativeData ON (DraftAdministrativeData.DraftUUID = DraftAdministrativeData_DraftUUID)
+)

@@ -1,0 +1,15 @@
+COLUMN TABLE CarManagementService_Tyre_drafts (
+  Id INTEGER NOT NULL,
+  tyreBrand NVARCHAR(5000) NULL,
+  carTyre_Id INTEGER NULL,
+  type_Id INTEGER NULL,
+  IsActiveEntity BOOLEAN,
+  HasActiveEntity BOOLEAN,
+  HasDraftEntity BOOLEAN,
+  DraftAdministrativeData_DraftUUID NVARCHAR(36) NOT NULL,
+  PRIMARY KEY(Id)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN CarManagementService_ModelVarient_drafts AS carTyre ON (carTyre.Id = carTyre_Id),
+  MANY TO ONE JOIN CarManagementService_TyreType_drafts AS type ON (type.Id = type_Id),
+  MANY TO ONE JOIN CarManagementService_DraftAdministrativeData AS DraftAdministrativeData ON (DraftAdministrativeData.DraftUUID = DraftAdministrativeData_DraftUUID)
+)

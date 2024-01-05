@@ -1,0 +1,18 @@
+COLUMN TABLE CarManagementService_ModelVarient_drafts (
+  Id INTEGER NOT NULL,
+  modelName NVARCHAR(5000) NULL,
+  models_Id INTEGER NULL,
+  IsActiveEntity BOOLEAN,
+  HasActiveEntity BOOLEAN,
+  HasDraftEntity BOOLEAN,
+  DraftAdministrativeData_DraftUUID NVARCHAR(36) NOT NULL,
+  PRIMARY KEY(Id)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN CarManagementService_Colours_drafts AS colour ON (colour.colour_Id = Id),
+  MANY TO ONE JOIN CarManagementService_Prices_drafts AS price ON (price.price_Id = Id),
+  MANY TO MANY JOIN CarManagementService_Engine_drafts AS engineType ON (engineType.engines_Id = Id),
+  MANY TO MANY JOIN CarManagementService_Tyre_drafts AS noOfTyre ON (noOfTyre.carTyre_Id = Id),
+  MANY TO ONE JOIN CarManagementService_Car_drafts AS models ON (models.Id = models_Id),
+  MANY TO MANY JOIN CarManagementService_Seat AS seatCapacity ON (seatCapacity.carSeat_Id = Id),
+  MANY TO ONE JOIN CarManagementService_DraftAdministrativeData AS DraftAdministrativeData ON (DraftAdministrativeData.DraftUUID = DraftAdministrativeData_DraftUUID)
+)

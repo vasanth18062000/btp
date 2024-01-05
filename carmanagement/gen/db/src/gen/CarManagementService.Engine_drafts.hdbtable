@@ -1,0 +1,14 @@
+COLUMN TABLE CarManagementService_Engine_drafts (
+  Id INTEGER NOT NULL,
+  modelNumber NVARCHAR(5000) NULL,
+  engineType NVARCHAR(5000) NULL,
+  engines_Id INTEGER NULL,
+  IsActiveEntity BOOLEAN,
+  HasActiveEntity BOOLEAN,
+  HasDraftEntity BOOLEAN,
+  DraftAdministrativeData_DraftUUID NVARCHAR(36) NOT NULL,
+  PRIMARY KEY(Id)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN CarManagementService_ModelVarient_drafts AS engines ON (engines.Id = engines_Id),
+  MANY TO ONE JOIN CarManagementService_DraftAdministrativeData AS DraftAdministrativeData ON (DraftAdministrativeData.DraftUUID = DraftAdministrativeData_DraftUUID)
+)

@@ -1,0 +1,15 @@
+COLUMN TABLE CarManagementService_Car_drafts (
+  Id INTEGER NOT NULL,
+  carName NVARCHAR(5000) NULL,
+  manufactureDate NVARCHAR(5000) NULL,
+  carimage NVARCHAR(5000) NULL,
+  IsActiveEntity BOOLEAN,
+  HasActiveEntity BOOLEAN,
+  HasDraftEntity BOOLEAN,
+  DraftAdministrativeData_DraftUUID NVARCHAR(36) NOT NULL,
+  PRIMARY KEY(Id)
+) WITH ASSOCIATIONS (
+  MANY TO MANY JOIN CarManagementService_Passanger AS noOfPassanger ON (noOfPassanger.carPassanger_Id = Id),
+  MANY TO MANY JOIN CarManagementService_ModelVarient_drafts AS modelVarient ON (modelVarient.models_Id = Id),
+  MANY TO ONE JOIN CarManagementService_DraftAdministrativeData AS DraftAdministrativeData ON (DraftAdministrativeData.DraftUUID = DraftAdministrativeData_DraftUUID)
+)
