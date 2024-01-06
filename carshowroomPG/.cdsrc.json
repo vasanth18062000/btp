@@ -1,0 +1,22 @@
+{
+    "[development]": {
+      "auth": {
+        "passport": {
+          "strategy": "mock",
+          "users": {
+            "CarViewer": {
+              "ID": "CarViewer",
+              "password": "12345",
+              "roles": ["CarViewer"]
+            },
+            "CarAdmin": {
+              "ID": "CarAdmin",
+              "password": "12345",
+              "roles": ["CarAdmin"]
+            }
+          }
+        }
+      }
+    }
+  }
+

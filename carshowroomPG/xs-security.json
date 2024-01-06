@@ -1,0 +1,31 @@
+{
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.CarViewer",
+      "description": "CarViewer"
+    },
+    {
+      "name": "$XSAPPNAME.CarAdmin",
+      "description": "CarAdmin"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "CarViewer",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.CarViewer"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "CarAdmin",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.CarAdmin"
+      ],
+      "attribute-references": []
+    }
+  ]
+}
