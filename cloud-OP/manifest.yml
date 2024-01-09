@@ -1,0 +1,9 @@
+---
+applications:
+- name: COP-CC
+  random-route: true
+  type: nodejs
+  command: node server.js
+  memory: 1024M
+services:
+ - MyConnectivity

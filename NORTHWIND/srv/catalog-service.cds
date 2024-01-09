@@ -1,12 +1,16 @@
 using { Northwind as external } from './external/Northwind';
 
 
-service CatalogService {
+
+
+  service CatalogService {
+
+   
 
     @readonly
-    entity Persons as projection on external.Persons {
+    entity Persons as select from  external.Persons {
         key ID,Name,PersonDetail
-    }
+    };
     
     @readonly
     entity Products as projection on external.Products {
@@ -50,6 +54,9 @@ service CatalogService {
         EmployeeID,HireDate,Salary
     }
 
+
+
+
     
     
 
@@ -58,6 +65,8 @@ service CatalogService {
 
     
 }
+
+annotate  CatalogService.Products with @requires(support);
 
 annotate CatalogService.Customer with @cds.redirection.target;
 
@@ -76,4 +85,6 @@ annotate CatalogService.Categories with @cds.persistence:{table,skip:false};
 annotate CatalogService.Suppliers with @cds.persistence:{table,skip:false};
 
 annotate CatalogService.Advertisements with @cds.persisitence:{table,skip:false};
+
+
 

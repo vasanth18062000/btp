@@ -8,6 +8,9 @@ const cds = require('@sap/cds');
 // 	});
 // });
 
+cds.context;
+
+
 const LOG=cds.log('NORTHWIND');
 
 module.exports = cds.service.impl(async function() {

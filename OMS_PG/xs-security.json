@@ -1,0 +1,31 @@
+{
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Developer",
+      "description": "Developer"
+    },
+    {
+      "name": "$XSAPPNAME.Tester",
+      "description": "Tester"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "Developer",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.Developer"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "Tester",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.Tester"
+      ],
+      "attribute-references": []
+    }
+  ]
+}

@@ -33,10 +33,11 @@
         "kind": "odata",
         "model": "srv/external/Northwind",
         "[backend]": {
-          "credentials": {
-            "url": "https://services.odata.org/Experimental/OData/OData.svc"
-          }
-        },
+        "credentials": {
+          "url": "https://services.odata.org/Experimental/OData/OData.svc"
+        }
+       
+      },
         "[production]": {
           "credentials": {
             "destination": "NORTHWIND"
@@ -48,8 +49,8 @@
           "kind": "xsuaa",
           "restrict_all_services": false
         }
-      },
-      "auth": "xsuaa"
+      }
+      
     }
   },
   "sapux": [

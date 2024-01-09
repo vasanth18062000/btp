@@ -1,0 +1,51 @@
+_schema-version: '3.1'
+ID: emp-shexed
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npx cds build --production
+modules:
+  - name: emp-shexed-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: emp-shexed-auth
+      - name: emp-shexed-logs
+      - name: CC-CONNECTIVITY      
+      
+
+resources:
+  - name: emp-shexed-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: emp-shexed-${org}-${space}
+        tenant-mode: dedicated
+
+  - name: emp-shexed-logs
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: application-logs
+      service-plan: lite     
+
+  - name: CC-CONNECTIVITY
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: connectivity
+      service-plan: lite          

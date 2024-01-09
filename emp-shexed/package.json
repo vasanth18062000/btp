@@ -1,0 +1,27 @@
+{
+  "name": "emp-shexed",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "@sap/hana-client": "^2.19.20",
+    "@sap/xssec": "^3",
+    "express": "^4",
+    "passport": "^0",
+    "sap-hdbext-promisfied": "^2.202312.1"
+  },
+  "devDependencies": {
+    "@sap/cds-dk": "^7"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "cds": {
+    "requires": {
+      "auth": "xsuaa"
+    }
+  }
+}

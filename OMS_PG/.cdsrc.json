@@ -1,0 +1,24 @@
+{
+    "[development]":{
+        "auth":{
+            "passport":{
+                "strategy":"mock",
+                "users":{
+                    "Developer":{
+                        "ID":"Developer",
+                        "password":"DEV",
+                        "roles":["Developer"]
+                    },
+                    
+                        "Tester":{
+                            "ID":"Tester",
+                            "password":"TEST",
+                            "roles":["Tester"]
+                        }
+                    
+                    
+                }
+            }
+        }
+    }
+}
