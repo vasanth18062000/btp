@@ -1,5 +1,11 @@
 <mvc:View
+   controllerName="carmanagement.controller.App"
    xmlns:mvc="sap.ui.core.mvc"
    xmlns="sap.m">
-   <Text text="Hello World"></Text>
+   <Button text="{i18n>showHelloButtonText}" press=".onShowHello"></Button>
+   <!-- <Text text="Hello World"></Text> -->
+   <Input value="{/recipient/name}" 
+   description="Hello {/recipient/name}"
+   valueLiveUpdate="true"
+   width="60%"></Input>
 </mvc:View>
