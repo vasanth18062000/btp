@@ -6,23 +6,19 @@ sap.ui.define([
     "use strict";
  
     return UIComponent.extend("carmanagement.Component", {
-       metadata : {
-          "interfaces": ["sap.ui.core.IAsyncContentCreation"],
-          "rootView": {
-             "viewName": "carmanagement.view.App",
-             "type": "XML",
-             "id": "app"
-          }
-       },
+      metadata : {
+         interfaces: ["sap.ui.core.IAsyncContentCreation"],
+         manifest: "json"
+      },
  
        init() {
           // call the init function of the parent
           UIComponent.prototype.init.apply(this, arguments);
           // set data model
-          const oData = {
-             recipient : {
-                name : "World"
-             }
+          const oData={
+            recipient:{
+            name:"india"
+        }
           };
           const oModel = new JSONModel(oData);
           this.setModel(oModel);
