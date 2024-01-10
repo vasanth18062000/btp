@@ -1,15 +1,40 @@
 <mvc:View
    controllerName="ui5.controller.App"
-   xmlns="sap.m"
-   xmlns:mvc="sap.ui.core.mvc">
+   xmlns:mvc="sap.ui.core.mvc"
+   xmlns="sap.m">
 
-   <Button 
-   text="{i18n>showHelloButtonText}" press=".onShowHello">
-   </Button>
+<Shell>   <App>
+   <pages>
+   <Page title="{i18n>homePageTitle}">
+   <content>
+   <Panel headerText="{i18n>hellopaneltitle}">
+   <content>
+   <Button text="{i18n>showHelloButtonText}" press=".onShowHello"></Button>
+   <!-- <Text text="Hello World"></Text> -->
+   <Input value="{/recipient/name}" 
+   description="Hello {/recipient/name}"
+   valueLiveUpdate="true"
+   width="60%"></Input>
+   
+   
+   </content>
+         </Panel>
 
-   <Input value="{/recipient/name}"
-    description="Hello {/recipient/name}"
-    valueLiveUpdate="true"
-   width="50%"></Input>
 
+
+      
+      </content>   
+   </Page>
+   </pages>
+   
+   
+   
+   
+   </App>
+   </Shell>
+
+
+
+
+   
 </mvc:View>
