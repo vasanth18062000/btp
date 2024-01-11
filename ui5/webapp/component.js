@@ -133,6 +133,10 @@ sap.ui.define([
          const oModel = new JSONModel(oData);
          this.setModel(oModel);
 
+        
+			// create the views based on the url/hash
+			this.getRouter().initialize();
+
          // set i18n model
          // const i18nModel = new ResourceModel({
          //    bundleName: "sap.ui.demo.walkthrough.i18n.i18n"
