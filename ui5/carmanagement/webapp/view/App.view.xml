@@ -7,17 +7,8 @@
    <pages>
    <Page  title="{i18n>homePageTitle}">
    <content>
-   <Panel headerText="{i18n>helloPanelTitle}" class="sapUiResponsiveMargin" width="auto">
-   <content>
-  <Button text="{i18n>showHelloButtonText}" press=".onShowHello" class="sapUiSmallMarginEnd myCustomButton"></Button>
-   <!-- <Text text="Hello World"></Text> -->
-   <Input value="{/recipient/name}" 
-   description="Hello {/recipient/name}"
-   valueLiveUpdate="true"
-   width="60%"></Input>
-   <FormattedText htmlText="Hello {/recipient/name}" class="sapUiSmallMargin sapThemeHighlight-asColor myCustomText"/>
-   </content>
-   </Panel>
+   <mvc:XMLView viewName="carmanagement.view.HelloPanel"/>
+   <mvc:XMLView viewName="carmanagement.view.InvoiceList"/>
    </content>
    </Page>
    </pages>

@@ -1,7 +1,6 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast",
-], function(Controller,MessageToast) {
+    "sap/ui/core/mvc/Controller"
+], function(Controller) {
     'use strict';
     return Controller.extend("carmanagement.controller.App",{
         
@@ -20,9 +19,6 @@ sap.ui.define([
             // });
             // this.getView().setModel(i18nModel,"i18n");
             // },
-            onShowHello:function(){
-                alert("hey world");
-                MessageToast.show("Hello vasanth");
                   // read msg from i18n model
         //  const oBundle = this.getView().getModel("i18n").getResourceBundle();
         //  const sRecipient = this.getView().getModel().getProperty("/recipient/name");
@@ -30,7 +26,7 @@ sap.ui.define([
 
          // show message
         //  MessageToast.show(sMsg);
-             }
+             
         
     });
 });
