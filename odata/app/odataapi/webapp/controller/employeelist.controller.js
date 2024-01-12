@@ -7,7 +7,7 @@ sap.ui.define([
     function (Controller) {
         "use strict";
 
-        return Controller.extend("ns.odataapi.view.View1", {
+        return Controller.extend("ns.odataapi.controller.employeelist", {
             onInit: function () {
 
             }

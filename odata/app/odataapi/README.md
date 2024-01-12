@@ -1,15 +1,15 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Thu Jan 11 2024 17:53:30 GMT+0530 (India Standard Time)|
+|**Generation Date and Time**<br>Fri Jan 12 2024 06:25:39 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>@sap/generator-fiori-freestyle|
 |**App Generator Version**<br>1.12.1|
-|**Generation Platform**<br>Visual Studio Code|
+|**Generation Platform**<br>SAP Business Application Studio|
 |**Template Used**<br>simple|
 |**Service Type**<br>Local Cap|
 |**Service URL**<br>http://localhost:4004/odata/v4/link-api/
 |**Module Name**<br>odataapi|
-|**Application Title**<br>ODATA API CALL|
+|**Application Title**<br>ODATA UI5|
 |**Namespace**<br>ns|
 |**UI5 Theme**<br>sap_horizon|
 |**UI5 Version**<br>1.120.4|

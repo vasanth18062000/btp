@@ -1,0 +1,38 @@
+<mvc:View controllerName="ns.odataapi.controller.employeelist"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+
+        <content>
+            <Table items="{/A_BusinessPartner}">
+                <columns>
+                    <Column>
+                        <Label text="Customer Id"></Label>
+                    </Column>
+                     <Column>
+                        <Label text="Customer Name"></Label>
+                    </Column>
+                    <Column>
+                    <Label text="Customer"></Label>
+                    </Column>
+                    <Column>
+                    <Label text="First Name"></Label>
+                    </Column>
+                   </columns>
+                   <items>
+                
+                <ColumnListItem >
+                        <cells>
+                            <Text text="{BusinessPartner}" ></Text>
+                            <Text text="{PersonFullName}"></Text>
+                            <Text text="{Customer}"></Text>
+                            <Text text="{FirstName}"></Text>
+                        </cells>                    
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+        
+    
+</mvc:View>

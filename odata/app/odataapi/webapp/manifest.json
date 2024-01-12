@@ -13,7 +13,7 @@
     "sourceTemplate": {
       "id": "@sap/generator-fiori:basic",
       "version": "1.12.1",
-      "toolsId": "a8ef1a57-b8f3-4c7c-9452-b9f1964050b1"
+      "toolsId": "90bfec00-f0c5-4cb7-b41f-655cbbec12d1"
     },
     "dataSources": {
       "mainService": {
@@ -66,14 +66,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "ns.odataapi.i18n.i18n",
-          "supportedLocales": [""],
-          "fallbackLocale": ""
-        },
-        "partner":{
-
-          "dataSource": "businesspartnerpath"
-
+          "bundleName": "ns.odataapi.i18n.i18n"
         }
       },
       "": {
@@ -106,20 +99,20 @@
       },
       "routes": [
         {
-          "name": "RouteView1",
+          "name": "Routeemployeelist",
           "pattern": ":?query:",
           "target": [
-            "TargetView1"
+            "Targetemployeelist"
           ]
         }
       ],
       "targets": {
-        "TargetView1": {
+        "Targetemployeelist": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "View1",
-          "viewName": "View1"
+          "viewId": "employeelist",
+          "viewName": "employeelist"
         }
       }
     },
