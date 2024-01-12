@@ -1,31 +1,71 @@
 {
-  "name": "odata",
-  "version": "0.0.1",
+  "name": "linkapi",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
   "private": true,
-  "description": "A Fiori application.",
-  "keywords": [
-    "ui5",
-    "openui5",
-    "sapui5"
-  ],
-  "main": "webapp/index.html",
-  "dependencies": {},
+  "dependencies": {
+    "@sap-cloud-sdk/connectivity": "^3.9.0",
+    "@sap-cloud-sdk/http-client": "^3.9.0",
+    "@sap-cloud-sdk/resilience": "^3.9.0",
+    "@sap/cds": "^7",
+    "@sap/cds-hana": "^2",
+    "@sap/xssec": "^3",
+    "express": "^4",
+    "force": "^0.0.3",
+    "hana": "^0.0.2",
+    "make": "^0.8.1",
+    "passport": "^0"
+  },
   "devDependencies": {
-    "@ui5/cli": "^3.0.0",
-    "@sap/ux-ui5-tooling": "1",
-    "@sap-ux/ui5-middleware-fe-mockserver": "2"
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7",
+    "@sap/ux-specification": "^1.120.1"
+  },
+  "engines": {
+    "node": "^16"
   },
   "scripts": {
-    "start": "fiori run --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#nsodata-display\"",
-    "start-local": "fiori run --config ./ui5-local.yaml --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#nsodata-display\"",
-    "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist",
-    "deploy": "fiori verify",
-    "deploy-config": "fiori add deploy-config",
-    "start-noflp": "fiori run --open \"index.html?sap-ui-xx-viewCache=false\"",
-    "start-mock": "fiori run --config ./ui5-mock.yaml --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#nsodata-display\"",
-    "start-variants-management": "fiori run --open \"preview.html?sap-ui-xx-viewCache=false&fiori-tools-rta-mode=true&sap-ui-rta-skip-flex-validation=true#preview-app\"",
-    "unit-tests": "fiori run --config ./ui5-mock.yaml --open 'test/unit/unitTests.qunit.html'",
-    "int-tests": "fiori run --config ./ui5-mock.yaml --open 'test/integration/opaTests.qunit.html'"
+    "start": "cds-serve",
+    "watch-bpartner": "cds watch --open bpartner/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-bpaddress": "cds watch --open bpaddress/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-bpemail": "cds watch --open bpemail/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-addressfax": "cds watch --open addressfax/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-homeurl": "cds watch --open homeurl/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-phonenumber": "cds watch --open phonenumber/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-deplocalnumber": "cds watch --open deplocalnumber/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-contacttoaddress": "cds watch --open contacttoaddress/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-contactfunctionanddept": "cds watch --open contactfunctionanddept/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-bpbank": "cds watch --open bpbank/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-odataapi": "cds watch --open odataapi/webapp/index.html?sap-ui-xx-viewCache=false"
   },
-  "sapuxLayer": "CUSTOMER_BASE"
+  "cds": {
+    "requires": {
+      "API_BUSINESS_PARTNER": {
+        "kind": "odata-v2",
+        "model": "srv/external/API_BUSINESS_PARTNER",
+        "[sandbox]": {
+          "credentials": {
+            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER/"
+          }
+        },
+        "sapux": [
+          "app/bpartner",
+          "app/bpaddress",
+          "app/bpemail",
+          "app/addressfax",
+          "app/homeurl",
+          "app/phonenumber",
+          "app/deplocalnumber",
+          "app/contacttoaddress",
+          "app/contacttoaddress",
+          "app/contactfunctionanddept",
+          "app/bpbank"
+        ]
+      },
+      "auth": "mocked",
+      "db": "hana"
+    }
+  }
 }
