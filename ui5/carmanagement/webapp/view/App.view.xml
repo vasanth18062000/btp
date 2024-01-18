@@ -3,15 +3,7 @@
    xmlns:mvc="sap.ui.core.mvc"
    xmlns="sap.m" >
    <Shell>
-   <App class="myAppDemoWT">
-   <pages>
-   <Page  title="{i18n>homePageTitle}">
-   <content>
-   <mvc:XMLView viewName="carmanagement.view.HelloPanel"/>
-   <mvc:XMLView viewName="carmanagement.view.InvoiceList"/>
-   </content>
-   </Page>
-   </pages>
+   <App class="myAppDemoWT" id="app">
    </App>
    </Shell>
 </mvc:View>

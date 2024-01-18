@@ -1,32 +1,35 @@
 <mvc:View
     controllerName="carmanagement.controller.InvoiceList"
-   xmlns="sap.m"
-   xmlns:mvc="sap.ui.core.mvc">
-   <List
-         id="invoiceList"
-      headerText="{i18n>invoiceListTitle}"
-      class="sapUiResponsiveMargin"
-      width="auto"
-       items="{
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <List
+        id="invoiceList"
+        headerText="{i18n>invoiceListTitle}"
+        class="sapUiResponsiveMargin"
+        width="auto"
+        items="{
          path : 'invoice>/Invoices',
          sorter : {
                 path : 'ShipperName',
                 group : true
             }
-      }" >
-       <headerToolbar>
-         <Toolbar>
-            <Title text="{i18n>invoiceListTitle}"/>
-            <ToolbarSpacer/>
-            <SearchField 
-               width="50%" 
-               search=".onFilterInvoices"/>
-         </Toolbar>
-      </headerToolbar>
-      <items>
-         <ObjectListItem
-            title="{invoice>Quantity} x {invoice>ProductName}"
-             number="{
+      }"
+    >
+        <headerToolbar>
+            <Toolbar>
+                <Title text="{i18n>invoiceListTitle}" />
+                <ToolbarSpacer />
+                <SearchField
+                    width="50%"
+                    search=".onFilterInvoices"
+                />
+            </Toolbar>
+        </headerToolbar>
+        <items>
+            <ObjectListItem
+                title="{invoice>Quantity} x {invoice>ProductName}"
+                number="{
                     parts: [
                         'invoice>ExtendedPrice',
                         'view>/currency'
@@ -38,15 +41,18 @@
                 }"
                 numberUnit="{view>/currency}"
                 numberState="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success' }"
-                >
-                     <firstStatus>
+                type="Navigation"
+                press=".onPress"
+            >
+                <firstStatus>
                     <ObjectStatus
                         text="{
                             path: 'invoice>Status',
                             formatter: '.formatter.statusText'
-                        }"/>
+                        }"
+                    />
                 </firstStatus>
-                </ObjectListItem>
-      </items>
-   </List>
+            </ObjectListItem>
+        </items>
+    </List>
 </mvc:View>

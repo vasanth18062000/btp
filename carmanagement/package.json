@@ -8,25 +8,28 @@
   "dependencies": {
     "@sap/approuter": "^15.0.0",
     "@sap/cds": "^7",
+    "@sap/cds-hana": "^2",
     "@sap/xssec": "^3",
     "express": "^4",
     "jwt-auth": "^2.0.1",
-    "passport": "^0",
-    "@sap/cds-hana": "^2"
+    "passport": "^0"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
     "@sap/cds-dk": "^7",
-    "@sap/ux-specification": "UI5-1.120"
+    "@sap/ux-specification": "^1.120.1"
   },
   "scripts": {
     "start": "cds-serve",
     "watch-car": "cds watch --open car/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-modelvarient": "cds watch --open modelvarient/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-modelvarient": "cds watch --open modelvarient/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-carshowroom": "cds watch --open carshowroom/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-car2": "cds watch --open car2/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "sapux": [
     "app/car",
-    "app/modelvarient"
+    "app/modelvarient",
+    "app/car2"
   ],
   "cds": {
     "requires": {
