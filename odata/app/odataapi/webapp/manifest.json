@@ -70,6 +70,11 @@
           "bundleName": "ns.odataapi.i18n.i18n"
         }
       },
+      
+      "invoice": {
+        "type": "sap.ui.model.xml.XMLModel",
+        "uri": "metadata.xml"
+      },
 
       "": {
         "dataSource": "mainService",
@@ -108,7 +113,7 @@
           ]
         },
         {
-          "pattern": "detail",
+          "pattern": "detail/{employeedetail}",
           "name": "detail",
           "target": ["detail"]
         },

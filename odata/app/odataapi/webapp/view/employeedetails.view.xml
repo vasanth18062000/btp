@@ -4,7 +4,7 @@
 <pages >
 	
 	<Page
-		title="{i18n>detailPageTitle}" showNavButton="true" navButtonPress=".onNavBack">
+		title="{ETag}" showNavButton="true" navButtonPress=".onNavBack" >
 
 		<Bar >
 		<contentMiddle>
@@ -21,6 +21,62 @@
 		<content >
 
 	
+<ObjectHeader
+
+
+	
+	>
+
+
+
+
+	
+
+	<attributes>
+
+	
+
+	
+					
+						
+
+						<ObjectAttribute
+						title="{i18n>FirstName}"
+						text="{PersonFullName}"/>
+
+						<ObjectAttribute
+						title="{i18n>LasttName}"
+						text="{products>LastName}"/>
+
+						<ObjectAttribute
+						title="{i18n>Address}"
+						text="{products>Address}"/>
+
+						<ObjectAttribute
+						title="{i18n>City}"
+						text="{products>City}"/>
+
+							<ObjectAttribute
+						title="{i18n>PostalCode}"
+						text="{products>PostalCode}"/>
+
+						<ObjectAttribute
+						title="{i18n>Country}"
+						text="{products>Country}"/>
+
+						<ObjectAttribute
+						title="{i18n>HomePhone}"
+						text="{products>HomePhone}"/>
+
+					
+
+						</attributes>
+
+						
+					
+
+</ObjectHeader>
+
 
 		
 
