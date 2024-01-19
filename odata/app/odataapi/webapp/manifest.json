@@ -56,6 +56,7 @@
         "sap.ui.generic.app": {},
         "sap.ui.table": {},
         "sap.ushell": {}
+       
       }
     },
     "contentDensities": {
@@ -69,6 +70,7 @@
           "bundleName": "ns.odataapi.i18n.i18n"
         }
       },
+
       "": {
         "dataSource": "mainService",
         "preload": true,
@@ -95,7 +97,7 @@
         "viewPath": "ns.odataapi.view",
         "controlAggregation": "pages",
         "controlId": "app",
-        "clearControlAggregation": false
+        "transition": "slide"
       },
       "routes": [
         {
@@ -104,16 +106,53 @@
           "target": [
             "Targetemployeelist"
           ]
+        },
+        {
+          "pattern": "detail",
+          "name": "detail",
+          "target": ["detail"]
+        },
+
+        {
+          "pattern": "overview",
+          "name": "overview",
+          "target": "[overview]"
         }
+  
       ],
-      "targets": {
+      "targets":
+      {
+      
+      
         "Targetemployeelist": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "employeelist",
+          "viewId": "list",
           "viewName": "employeelist"
-        }
+        },
+
+        "detail": {
+
+          "viewType" : "XML",
+          "transition" : "flip",
+          "clearControlAggregation" : false,
+          "viewId" : "details",
+          "viewName" : "employeedetails"
+
+        },
+
+        "overview": {
+
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "list",
+          "viewName": "employeelist"
+
+
+        }      
+      
       }
     },
     "rootView": {
@@ -124,3 +163,4 @@
     }
   }
 }
+

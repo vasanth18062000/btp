@@ -1,0 +1,38 @@
+<mvc:View xmlns:table="sap.ui.table" xmlns:smartfilterbar="sap.ui.comp.smartfilterbar" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ns.odataapi.controller.employeedetails" displayBlock="true">
+
+<App>
+<pages >
+	
+	<Page
+		title="{i18n>detailPageTitle}" showNavButton="true" navButtonPress=".onNavBack">
+
+		<Bar >
+		<contentMiddle>
+		
+		<Title text="{BusinessPartnerName}'s Detail " ></Title>
+		
+		</contentMiddle>
+		
+		</Bar>
+
+			
+
+			
+		<content >
+
+	
+
+		
+
+		
+
+
+	</content>
+	</Page>
+
+</pages>
+	</App>
+
+
+
+</mvc:View>

@@ -1,38 +1,56 @@
-<mvc:View controllerName="ns.odataapi.controller.employeelist"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
+<mvc:View xmlns:table="sap.ui.table" xmlns:smartfilterbar="sap.ui.comp.smartfilterbar" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ns.odataapi.controller.employeelist" 
 
-        <content>
-            <Table items="{/A_BusinessPartner}">
-                <columns>
-                    <Column>
+displayBlock="true"
+
+xmlns:smarttable="sap.ui.comp.smarttable"
+
+>
+
+<App id="app001">
+<Page id="page001" title="{i18n>title}">
+
+<content>
+
+
+<Table id="table002"  items="{/A_BusinessPartner}">
+
+<columns>
+                    <Column width="10%" > 
                         <Label text="Customer Id"></Label>
                     </Column>
-                     <Column>
+                     <Column width="20%">
                         <Label text="Customer Name"></Label>
                     </Column>
-                    <Column>
-                    <Label text="Customer"></Label>
+                    <Column width="30%">
+                    <Label text="ETag"></Label>
                     </Column>
-                    <Column>
-                    <Label text="First Name"></Label>
+                    <Column width="5%">
+                   
                     </Column>
                    </columns>
                    <items>
                 
-                <ColumnListItem >
+                <ColumnListItem press="nextpage" type="Navigation">
                         <cells>
                             <Text text="{BusinessPartner}" ></Text>
-                            <Text text="{PersonFullName}"></Text>
-                            <Text text="{Customer}"></Text>
-                            <Text text="{FirstName}"></Text>
+                            <Text text="{BusinessPartnerName}"></Text>
+                            <Text text="{ETag}"></Text>
+                            <Button icon="sap-icon://open-command-field" id="button001" press=".nextpage"></Button>
+                         
                         </cells>                    
                     </ColumnListItem>
                 </items>
-            </Table>
-        </content>
-    </Page>
-        
-    
+
+</Table>
+
+
+</content>
+
+</Page>
+
+</App>
+
+
+
+
 </mvc:View>
