@@ -4,13 +4,15 @@
     xmlns="sap.m"
 >
     <Shell>
-        <App class="myAppDemoWT">
+        <App
+            class="myAppDemoWT"
+            id="app"
+        >
             <pages>
                 <Page title="{i18n>homePageTitle}">
                     <content>
                         <mvc:XMLView viewName="ui5.view.HelloPanel" />
-                        <mvc:XMLView
-                                    viewName="ui5.view.InvoiceList"/>
+                        <mvc:XMLView viewName="ui5.view.InvoiceList" />
                     </content>
                 </Page>
             </pages>

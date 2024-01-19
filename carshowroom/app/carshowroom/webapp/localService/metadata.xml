@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="CarShowroomService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="cars" EntityType="CarShowroomService.cars">
+                    <NavigationPropertyBinding Path="tyres" Target="TyresDeatail"/>
+                    <NavigationPropertyBinding Path="passengerDetails" Target="Passenger"/>
+                    <NavigationPropertyBinding Path="colour" Target="Colour"/>
+                    <NavigationPropertyBinding Path="modelVarient" Target="ModelVarient"/>
+                    <NavigationPropertyBinding Path="seatsDetails" Target="SeatsDetails"/>
+                    <NavigationPropertyBinding Path="engineDetails" Target="EngineDetails"/>
+                    <NavigationPropertyBinding Path="currencyDetails" Target="CurrencyDetails"/>
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="cars"/>
+                </EntitySet>
+                <EntitySet Name="TyresDeatail" EntityType="CarShowroomService.TyresDeatail">
+                    <NavigationPropertyBinding Path="tubeDetails" Target="TubeDetails"/>
+                    <NavigationPropertyBinding Path="car" Target="cars"/>
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="TyresDeatail"/>
+                </EntitySet>
+                <EntitySet Name="SeatsDetails" EntityType="CarShowroomService.SeatsDetails">
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="SeatsDetails"/>
+                </EntitySet>
+                <EntitySet Name="TubeDetails" EntityType="CarShowroomService.TubeDetails">
+                    <NavigationPropertyBinding Path="tyre" Target="TyresDeatail"/>
+                </EntitySet>
+                <EntitySet Name="EngineDetails" EntityType="CarShowroomService.EngineDetails">
+                    <NavigationPropertyBinding Path="car" Target="cars"/>
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="EngineDetails"/>
+                </EntitySet>
+                <EntitySet Name="Passenger" EntityType="CarShowroomService.Passenger">
+                    <NavigationPropertyBinding Path="car" Target="cars"/>
+                </EntitySet>
+                <EntitySet Name="ModelVarient" EntityType="CarShowroomService.ModelVarient">
+                    <NavigationPropertyBinding Path="car" Target="cars"/>
+                </EntitySet>
+                <EntitySet Name="Colour" EntityType="CarShowroomService.Colour">
+                    <NavigationPropertyBinding Path="car" Target="cars"/>
+                </EntitySet>
+                <EntitySet Name="CurrencyDetails" EntityType="CarShowroomService.CurrencyDetails"/>
+            </EntityContainer>
+            <EntityType Name="cars">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="tyres" Type="Collection(CarShowroomService.TyresDeatail)" Partner="car">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <NavigationProperty Name="passengerDetails" Type="Collection(CarShowroomService.Passenger)" Partner="car"/>
+                <NavigationProperty Name="colour" Type="Collection(CarShowroomService.Colour)" Partner="car"/>
+                <NavigationProperty Name="modelVarient" Type="Collection(CarShowroomService.ModelVarient)" Partner="car"/>
+                <Property Name="carName" Type="Edm.String"/>
+                <Property Name="carModel" Type="Edm.String"/>
+                <Property Name="engineType" Type="Edm.String"/>
+                <Property Name="modelYear" Type="Edm.String"/>
+                <NavigationProperty Name="seatsDetails" Type="CarShowroomService.SeatsDetails">
+                    <OnDelete Action="Cascade"/>
+                    <ReferentialConstraint Property="seatsDetails_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="seatsDetails_ID" Type="Edm.Int32"/>
+                <NavigationProperty Name="engineDetails" Type="CarShowroomService.EngineDetails">
+                    <OnDelete Action="Cascade"/>
+                    <ReferentialConstraint Property="engineDetails_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="engineDetails_ID" Type="Edm.Int32"/>
+                <NavigationProperty Name="currencyDetails" Type="CarShowroomService.CurrencyDetails">
+                    <ReferentialConstraint Property="currencyDetails_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="currencyDetails_ID" Type="Edm.Int32"/>
+                <Property Name="carImage" Type="Edm.String"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="CarShowroomService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="CarShowroomService.cars"/>
+            </EntityType>
+            <EntityType Name="TyresDeatail">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="tyreBrand" Type="Edm.String"/>
+                <Property Name="tyreType" Type="Edm.String"/>
+                <NavigationProperty Name="tubeDetails" Type="CarShowroomService.TubeDetails">
+                    <ReferentialConstraint Property="tubeDetails_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="tubeDetails_ID" Type="Edm.Int32"/>
+                <NavigationProperty Name="car" Type="CarShowroomService.cars" Partner="tyres">
+                    <OnDelete Action="Cascade"/>
+                    <ReferentialConstraint Property="car_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="car_ID" Type="Edm.Int32"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="CarShowroomService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="CarShowroomService.TyresDeatail"/>
+            </EntityType>
+            <EntityType Name="SeatsDetails">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="noOfSeats" Type="Edm.String"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="CarShowroomService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="CarShowroomService.SeatsDetails"/>
+            </EntityType>
+            <EntityType Name="TubeDetails">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="tubeBrand" Type="Edm.String"/>
+                <NavigationProperty Name="tyre" Type="CarShowroomService.TyresDeatail">
+                    <ReferentialConstraint Property="tyre_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="tyre_ID" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="EngineDetails">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="engineCC" Type="Edm.String"/>
+                <Property Name="OilCapacity" Type="Edm.String"/>
+                <NavigationProperty Name="car" Type="CarShowroomService.cars">
+                    <OnDelete Action="Cascade"/>
+                    <ReferentialConstraint Property="car_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="car_ID" Type="Edm.Int32"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="CarShowroomService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="CarShowroomService.EngineDetails"/>
+            </EntityType>
+            <EntityType Name="Passenger">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="gender" Type="Edm.String"/>
+                <Property Name="passengerList" Type="Edm.String"/>
+                <NavigationProperty Name="car" Type="CarShowroomService.cars" Partner="passengerDetails">
+                    <ReferentialConstraint Property="car_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="car_ID" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="ModelVarient">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="carModel" Type="Edm.String"/>
+                <Property Name="carVarient" Type="Edm.String"/>
+                <NavigationProperty Name="car" Type="CarShowroomService.cars" Partner="modelVarient">
+                    <ReferentialConstraint Property="car_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="car_ID" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="Colour">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="carColourVarient" Type="Edm.String"/>
+                <NavigationProperty Name="car" Type="CarShowroomService.cars" Partner="colour">
+                    <ReferentialConstraint Property="car_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="car_ID" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="CurrencyDetails">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="currencyType" Type="Edm.String"/>
+                <Property Name="price" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="DraftAdministrativeData">
+                <Key>
+                    <PropertyRef Name="DraftUUID"/>
+                </Key>
+                <Property Name="DraftUUID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsCreatedByMe" Type="Edm.Boolean"/>
+                <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="InProcessByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
+            </EntityType>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CarShowroomService.cars"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="CarShowroomService.cars"/>
+            </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CarShowroomService.TyresDeatail"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="CarShowroomService.TyresDeatail"/>
+            </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CarShowroomService.SeatsDetails"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="CarShowroomService.SeatsDetails"/>
+            </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CarShowroomService.EngineDetails"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="CarShowroomService.EngineDetails"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CarShowroomService.cars"/>
+                <ReturnType Type="CarShowroomService.cars"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CarShowroomService.cars"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="CarShowroomService.cars"/>
+            </Action>
+            <Annotations Target="CarShowroomService.EntityContainer/cars">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="CarShowroomService.draftActivate"/>
+                        <PropertyValue Property="EditAction" String="CarShowroomService.draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="CarShowroomService.draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarShowroomService.cars/IsActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CarShowroomService.cars/HasActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CarShowroomService.cars/HasDraftEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CarShowroomService.cars/DraftAdministrativeData">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CarShowroomService.EntityContainer/TyresDeatail">
+                <Annotation Term="Common.DraftNode">
+                    <Record Type="Common.DraftNodeType">
+                        <PropertyValue Property="PreparationAction" String="CarShowroomService.draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarShowroomService.TyresDeatail/IsActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CarShowroomService.TyresDeatail/HasActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CarShowroomService.TyresDeatail/HasDraftEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CarShowroomService.TyresDeatail/DraftAdministrativeData">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CarShowroomService.EntityContainer/SeatsDetails">
+                <Annotation Term="Common.DraftNode">
+                    <Record Type="Common.DraftNodeType">
+                        <PropertyValue Property="PreparationAction" String="CarShowroomService.draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarShowroomService.SeatsDetails/IsActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CarShowroomService.SeatsDetails/HasActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CarShowroomService.SeatsDetails/HasDraftEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CarShowroomService.SeatsDetails/DraftAdministrativeData">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CarShowroomService.EntityContainer/EngineDetails">
+                <Annotation Term="Common.DraftNode">
+                    <Record Type="Common.DraftNodeType">
+                        <PropertyValue Property="PreparationAction" String="CarShowroomService.draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarShowroomService.EngineDetails/IsActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CarShowroomService.EngineDetails/HasActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CarShowroomService.EngineDetails/HasDraftEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CarShowroomService.EngineDetails/DraftAdministrativeData">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CarShowroomService.DraftAdministrativeData">
+                <Annotation Term="Common.Label" String="{i18n>Draft_DraftAdministrativeData}"/>
+                </Annotations>
+                <Annotations Target="CarShowroomService.DraftAdministrativeData/DraftUUID">
+                    <Annotation Term="UI.Hidden" Bool="true"/>
+                    <Annotation Term="Common.Label" String="{i18n>Draft_DraftUUID}"/>
+                    </Annotations>
+                    <Annotations Target="CarShowroomService.DraftAdministrativeData/CreationDateTime">
+                        <Annotation Term="Common.Label" String="{i18n>Draft_CreationDateTime}"/>
+                        </Annotations>
+                        <Annotations Target="CarShowroomService.DraftAdministrativeData/CreatedByUser">
+                            <Annotation Term="Common.Label" String="{i18n>Draft_CreatedByUser}"/>
+                            </Annotations>
+                            <Annotations Target="CarShowroomService.DraftAdministrativeData/DraftIsCreatedByMe">
+                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsCreatedByMe}"/>
+                                </Annotations>
+                                <Annotations Target="CarShowroomService.DraftAdministrativeData/LastChangeDateTime">
+                                    <Annotation Term="Common.Label" String="{i18n>Draft_LastChangeDateTime}"/>
+                                    </Annotations>
+                                    <Annotations Target="CarShowroomService.DraftAdministrativeData/LastChangedByUser">
+                                        <Annotation Term="Common.Label" String="{i18n>Draft_LastChangedByUser}"/>
+                                        </Annotations>
+                                        <Annotations Target="CarShowroomService.DraftAdministrativeData/InProcessByUser">
+                                            <Annotation Term="Common.Label" String="{i18n>Draft_InProcessByUser}"/>
+                                            </Annotations>
+                                            <Annotations Target="CarShowroomService.DraftAdministrativeData/DraftIsProcessedByMe">
+                                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                                <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsProcessedByMe}"/>
+                                                </Annotations>
+                                            </Schema>
+                                        </edmx:DataServices>
+                                    </edmx:Edmx>

@@ -11,3 +11,4 @@ annotate CarShowroomService.TyresDeatail with @(
     ]
 );
 
+using from './carshowroom/annotations';

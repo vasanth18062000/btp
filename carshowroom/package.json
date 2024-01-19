@@ -1,62 +1,65 @@
 {
-    "name": "carshowroom",
-    "version": "1.0.0",
-    "description": "A simple CAP project.",
-    "repository": "<Add your repository here>",
-    "license": "UNLICENSED",
-    "private": true,
-    "dependencies": {
-        "@sap/cds": "^7",
-        "@sap/xssec": "^3",
-        "express": "^4",
-        "passport": "^0"
-    },
-    "devDependencies": {
-        "@cap-js/sqlite": "^1",
-        "@sap/cds-dk": "^7",
-        "@sap/ux-specification": "UI5-1.120"
-    },
-    "scripts": {
-        "start": "cds-serve",
-        "watch-car": "cds watch --open car/webapp/index.html?sap-ui-xx-viewCache=false"
-    },
-    "sapux": [
-        "app/car"
-    ],
-    "cds": {
-        "requires": {
-            "[development]": {
-                "auth": {
-                    "kind": "mocked",
-                    "users": {
-                        "gopi@gmail.com": {
-                            "password": "admin",
-                            "roles": [
-                                "test"
-                            ]
-                        },
-                        "vasanth": {
-                            "roles": [
-                                "support"
-                            ]
-                        },
-                        "vel": {
-                            "roles": [
-                                "test"
-                            ]
-                        },
-                        "karthik": {
-                            "roles": [
-                                "support"
-                            ]
-                        }
-                    }
-                }
+  "name": "carshowroom",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "@sap/xssec": "^3",
+    "express": "^4",
+    "passport": "^0"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7",
+    "@sap/ux-specification": "^1.120.1",
+    "ui5-middleware-simpleproxy": "^3.2.10"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-car": "cds watch --open car/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-carshowroom": "cds watch --open carshowroom/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "sapux": [
+    "app/car"
+  ],
+  "cds": {
+    "requires": {
+      "[development]": {
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "gopi@gmail.com": {
+              "password": "admin",
+              "roles": [
+                "test"
+              ]
             },
-            "auth": {
-                "kind": "xsuaa",
-                "restrict_all_services": false
+            "vasanth": {
+              "roles": [
+                "support"
+              ]
+            },
+            "vel": {
+              "roles": [
+                "test"
+              ]
+            },
+            "karthik": {
+              "roles": [
+                "support"
+              ]
             }
+          }
         }
+      },
+      "auth": {
+        "kind": "xsuaa",
+        "restrict_all_services": false
+      }
     }
+  }
 }
