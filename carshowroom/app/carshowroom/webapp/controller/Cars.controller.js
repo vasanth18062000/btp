@@ -10,6 +10,19 @@ sap.ui.define([
         return Controller.extend("my.carshowroom.controller.Cars", {
             onInit: function () {
 
+            },
+
+            // onPress: function(){
+            //     var oRouter = sap.ui.UIComponent.getRouterFor(this);
+
+            //     oRouter.navTo("RouteDetails", {});
+            // }
+
+            onPress() {
+                console.log("hii iam cars");
+                const oRouter = this.getOwnerComponent().getRouter();
+                oRouter.navTo("RouteCars");
             }
+        
         });
     });
