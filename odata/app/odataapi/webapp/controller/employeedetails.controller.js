@@ -8,24 +8,25 @@ sap.ui.define([
 
         return Controller.extend("ns.odataapi.controller.employeedetails", {
             onInit: function () {
-
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this); //Get Hold of Router
+                oRouter.getRoute("detail").attachPatternMatched(this._onObjectMatched, this); //Attach Router Pattern
             
             },
 
-            onNavBack() {
-                const oHistory = History.getInstance();
-                const sPreviousHash = oHistory.getPreviousHash();
-    
-                if (sPreviousHash !== undefined) {
-                    window.history.go(-1);
-                } else {
-                    // const oRouter = this.getOwnerComponent().getRouter();
+            _onObjectMatched: function(oEvent) {
+                //Bind the Context to Detail View
+                this.getView().bindElement({
+                  path: "/" + oEvent.getParameter("arguments").employeePath,
+                  model: "view"
+                });
+              },
 
-                    var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-
-                    oRouter.navTo("overview");
-                }
-            }
+            onNavBack: function() {
+                //Navigation Back
+                var oHistory = sap.ui.core.routing.History.getInstance();
+                var sPreviousHash = oHistory.getPreviousHash();
+                window.history.go(-1);
+              
 
 
         });

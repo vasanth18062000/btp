@@ -113,7 +113,7 @@
           ]
         },
         {
-          "pattern": "detail/{employeedetail}",
+          "pattern": "detail/{invoice}",
           "name": "detail",
           "target": ["detail"]
         },
