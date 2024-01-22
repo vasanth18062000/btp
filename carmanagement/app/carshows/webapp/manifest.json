@@ -1,7 +1,7 @@
 {
   "_version": "1.59.0",
   "sap.app": {
-    "id": "ns.carshowroom",
+    "id": "ns.carshows",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -13,7 +13,7 @@
     "sourceTemplate": {
       "id": "@sap/generator-fiori:basic",
       "version": "1.12.1",
-      "toolsId": "396b6b68-0170-4a09-ab27-65dd366c6bda"
+      "toolsId": "2afe1fe2-fd77-4634-b4fd-92c8703cbca1"
     },
     "dataSources": {
       "mainService": {
@@ -51,7 +51,6 @@
         "sap.m": {},
         "sap.ui.core": {},
         "sap.f": {},
-        "sap.uxap": {},
         "sap.suite.ui.generic.template": {},
         "sap.ui.comp": {},
         "sap.ui.generic.app": {},
@@ -67,7 +66,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "ns.carshowroom.i18n.i18n"
+          "bundleName": "ns.carshows.i18n.i18n"
         }
       },
       "": {
@@ -93,47 +92,45 @@
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
         "async": true,
-        "viewPath": "ns.carshowroom.view",
+        "viewPath": "ns.carshows.view",
         "controlAggregation": "pages",
         "controlId": "app",
         "clearControlAggregation": false
       },
       "routes": [
         {
-          "name": "Routecar",
-          "pattern": ":?query:",
-          "target": [
-            "Targetcar"
-          ]
+          "name": "RoutecarShows",
+          "pattern": "",
+          "target": ["TargetcarShows"]
         },
         {
-          "pattern": "detail/{invoicePath}",
           "name": "detail",
+          "pattern": "detail/{invoicePath}",
           "target": ["detail"]
         }
       ],
       "targets": {
-        "Targetcar": {
+        "TargetcarShows": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "car",
-          "viewName": "car"
+          "viewId": "carShows",
+          "viewName": "carShows"
         },
         "detail": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "detail",
-          "viewName":"Detail"
+          "viewId": "Detail",
+          "viewName": "Detail"
         }
       }
     },
     "rootView": {
-      "viewName": "ns.carshowroom.view.App",
+      "viewName": "ns.carshows.view.App",
       "type": "XML",
-      "async": false,
-      "id": "fcl"
+      "async": true,
+      "id": "App"
     }
   }
 }

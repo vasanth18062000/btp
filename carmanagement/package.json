@@ -24,7 +24,8 @@
     "watch-car": "cds watch --open car/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-modelvarient": "cds watch --open modelvarient/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-carshowroom": "cds watch --open carshowroom/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-car2": "cds watch --open car2/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-car2": "cds watch --open car2/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-carshows": "cds watch --open carshows/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "sapux": [
     "app/car",

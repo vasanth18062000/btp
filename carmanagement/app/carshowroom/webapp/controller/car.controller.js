@@ -14,7 +14,8 @@ sap.ui.define([
 
         return Controller.extend("ns.carshowroom.controller.car", {
             onInit: function () {
-          
+                this.oRouter = this.getOwnerComponent().getRouter();
+
             },
             onFilterCar(oEvent) {
                 // build filter array
@@ -29,11 +30,23 @@ sap.ui.define([
                 const oBinding = oList.getBinding("items");
                 oBinding.filter(aFilter);
             },
-		onListItemPress: function () {
+		onListItemPress: function (oEvent) {
 			var oFCL = this.oView.getParent().getParent();
 			oFCL.setLayout(fioriLibrary.LayoutType.TwoColumnsMidExpanded);
                   const oModel = new JSONModel(Car);
                 this.getView().setModel(oModel);
-		}
+                const oItem = oEvent.getSource();
+                const oRouter = this.getOwnerComponent().getRouter();
+                oRouter.navTo("detail", {
+                    invoicePath: window.encodeURIComponent(oItem.getBindingContext("Car").getPath().substr(1))
+                });
+		},
+        // onPress(oEvent) {
+		// 	const oItem = oEvent.getSource();
+		// 	const oRouter = this.getOwnerComponent().getRouter();
+		// 	oRouter.navTo("detail", {
+		// 		invoicePath: window.encodeURIComponent(oItem.getBindingContext("invoice").getPath().substr(1))
+		// 	});
+		// }
         });
     });

@@ -1,7 +1,7 @@
-<mvc:View controllerName="ns.carshowroom.controller.car"
+<mvc:View controllerName="ns.carshows.controller.carShows"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
-       <Shell id="_IDGenShell1">
+ <Shell id="_IDGenShell1">
     <Page id="page" title="{i18n>title}">
  <content>
             <Table id="_IDGenTable1" items="{/Car}" >
@@ -27,8 +27,8 @@
                    </columns>
                    <items>
                 
-                <ColumnListItem type="Navigation"
-                press=".onListItemPress " id="_IDGenColumnListItem1" >
+                <ColumnListItem   type="Navigation"
+                press=".onPress" id="_IDGenColumnListItem1" >
                         <cells>
                             <Text id="_IDGenText1" text="{Id}" ></Text>
                             <Text id="_IDGenText2" text="{carName}"></Text>
@@ -39,5 +39,4 @@
             </Table>
         </content>    </Page>
         </Shell>
-
 </mvc:View>

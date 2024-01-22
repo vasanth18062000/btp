@@ -5,14 +5,12 @@
 sap.ui.define([
         "sap/ui/core/UIComponent",
         "sap/ui/Device",
-        "ns/carshowroom/model/models",
-        'sap/ui/model/json/JSONModel',
-
+        "ns/carshows/model/models"
     ],
-    function (UIComponent, Device, models,JSONModel) {
+    function (UIComponent, Device, models) {
         "use strict";
 
-        return UIComponent.extend("ns.carshowroom.Component", {
+        return UIComponent.extend("ns.carshows.Component", {
             metadata: {
                 manifest: "json"
             },
@@ -23,21 +21,14 @@ sap.ui.define([
              * @override
              */
             init: function () {
-                var oProductsModel;
-
                 // call the base component's init function
                 UIComponent.prototype.init.apply(this, arguments);
 
                 // enable routing
                 this.getRouter().initialize();
-			// set products demo model on this sample
-			oProductsModel = new JSONModel(sap.ui.require.toUrl('sap/ui/demo/mock') + '/Car');
-			oProductsModel.setSizeLimit(1000);
-			this.setModel(oProductsModel, 'Car');
 
                 // set the device model
                 this.setModel(models.createDeviceModel(), "device");
-
             }
         });
     }

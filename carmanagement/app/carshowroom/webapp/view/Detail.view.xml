@@ -18,7 +18,6 @@ xmlns="sap.uxap"
             <expandedHeading>
 					<m:Title text="{Car>carName}" wrapping="true" class="sapUiSmallMarginEnd"/>
 				</expandedHeading>
-
 				<snappedHeading>
 					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
 						<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
@@ -27,7 +26,7 @@ xmlns="sap.uxap"
 								displaySize="S"
 								displayShape="Square"
 								class="sapUiTinyMarginEnd"/>
-							<m:Title text="{products>Name}" wrapping="true"/>
+							<m:Title text="{Car>carName}" wrapping="true"/>
 						</m:FlexBox>
 					</m:FlexBox>
 				</snappedHeading>
@@ -93,7 +92,7 @@ xmlns="sap.uxap"
 				</subSections>
 			</ObjectPageSection>
 
-			<ObjectPageSection title="colour">
+			<ObjectPageSection title="available colour">
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>

@@ -5,7 +5,7 @@
     displayBlock="true">
     <Page title="{i18n>homePageTitle}">
         <content>
-<mvc:XMLView viewName="ns.carshowroom.view.car" />
+<!-- <mvc:XMLView viewName="ns.carshowroom.view.car" /> -->
 </content>
     </Page>
 </mvc:View>
