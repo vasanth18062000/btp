@@ -10,7 +10,7 @@
     "@sap/cds": "^7",
     "@sap/xssec": "^3",
     "express": "^4",
-    "passport": "^0"
+    "passport": "^0" 
   },
   "scripts": {
     "start": "cds-serve",
@@ -28,37 +28,12 @@
             "headers":{
               "APIKey":"QMIWVjrNZus63IiYMopzyyvm6qNceIGk"
             }
-          },
-        
-          "auth": {
-            "kind": "mocked",
-            "users": {
-              "incident.support@tester.sap.com": {
-                "password": "initial",
-                "roles": [
-                  "support"
-                ]
-              },
-              "devi": {
-                "roles": [
-                  "support"
-                ]
-              },
-              "karthi": {
-                "roles": [
-                  "support"
-                ]
-              }
-            }
           }
-        }
-      },
-      "[sandbox]":{
-        "auth":{
-          "kind":"xsuaa",
-          "restrict_all_services":false
+        
+          
         }
       }
+      
     },
      "auth": "xsuaa"
     },

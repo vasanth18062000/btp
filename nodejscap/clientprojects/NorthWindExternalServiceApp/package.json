@@ -1,5 +1,5 @@
 {
-  "name": "NorthWindExternalServiceApp",
+  "name": "NorthWindExternalServiceApp", 
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "repository": "<Add your repository here>",
@@ -24,6 +24,7 @@
       "northwind": {
         "kind": "odata",
         "model": "srv/external/northwind",
+        "impl":"",
         "[backend]": {
           "credentials": {
             "url": "https://services.odata.org/Experimental/OData/OData.svc"

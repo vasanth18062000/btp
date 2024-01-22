@@ -1,0 +1,94 @@
+{
+ "meta": {
+  "creator": "cds-dk 7.4.1"
+ },
+ "$version": "2.0",
+ "definitions": {
+  "API_BANKDETAIL_SRV": {
+   "kind": "service",
+   "@cds.external": true,
+   "@m.IsDefaultEntityContainer": "true",
+   "@sap.message.scope.supported": "true",
+   "@sap.supported.formats": "atom json xlsx"
+  },
+  "API_BANKDETAIL_SRV.A_BankDetail": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.creatable": "false",
+   "@sap.updatable": "false",
+   "@sap.deletable": "false",
+   "@sap.content.version": "1",
+   "@sap.label": "Bank Details",
+   "elements": {
+    "BankCountry": {
+     "key": true,
+     "type": "cds.String",
+     "length": 3,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Bank Country/Region",
+     "@sap.quickinfo": "Bank Country/Region Key",
+     "notNull": true
+    },
+    "BankInternalID": {
+     "key": true,
+     "type": "cds.String",
+     "length": 15,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Bank Key",
+     "@sap.quickinfo": "Bank Keys",
+     "notNull": true
+    },
+    "BankName": {
+     "type": "cds.String",
+     "length": 60,
+     "@sap.label": "Bank Name",
+     "@sap.quickinfo": "Name of Financial Institution"
+    },
+    "SWIFTCode": {
+     "type": "cds.String",
+     "length": 11,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "SWIFT/BIC",
+     "@sap.quickinfo": "SWIFT/BIC for International Payments"
+    },
+    "BankGroup": {
+     "type": "cds.String",
+     "length": 2,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Bank group",
+     "@sap.quickinfo": "Bank group (bank network)"
+    },
+    "BankNumber": {
+     "type": "cds.String",
+     "length": 15,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Bank Number"
+    },
+    "Region": {
+     "type": "cds.String",
+     "length": 3,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Region",
+     "@sap.quickinfo": "Region (State, Province, County)"
+    },
+    "StreetName": {
+     "type": "cds.String",
+     "length": 35,
+     "@sap.label": "Street",
+     "@sap.quickinfo": "Street and House Number"
+    },
+    "CityName": {
+     "type": "cds.String",
+     "length": 35,
+     "@sap.label": "City"
+    },
+    "Branch": {
+     "type": "cds.String",
+     "length": 40,
+     "@sap.label": "Bank Branch"
+    }
+   }
+  }
+ }
+}

@@ -13,7 +13,7 @@
     "passport": "^0"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^1",
+   
     "@sap/cds-dk": "^7"
   },
   "scripts": {
@@ -21,6 +21,12 @@
   },
   "cds": {
     "requires": {
+      "[production]":{
+        "credentials" :{
+          
+             
+      },
+      
       "auth": "xsuaa"
     }
   }

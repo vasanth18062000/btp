@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="bankdetails" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="BankDetail" EntityType="bankdetails.BankDetail"/>
+            </EntityContainer>
+            <EntityType Name="BankDetail">
+                <Key>
+                    <PropertyRef Name="BankCountry"/>
+                    <PropertyRef Name="BankInternalID"/>
+                </Key>
+                <Property Name="BankCountry" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <Property Name="BankInternalID" Type="Edm.String" MaxLength="15" Nullable="false"/>
+                <Property Name="BankName" Type="Edm.String" MaxLength="60"/>
+                <Property Name="SWIFTCode" Type="Edm.String" MaxLength="11"/>
+                <Property Name="BankGroup" Type="Edm.String" MaxLength="2"/>
+                <Property Name="BankNumber" Type="Edm.String" MaxLength="15"/>
+                <Property Name="Region" Type="Edm.String" MaxLength="3"/>
+                <Property Name="StreetName" Type="Edm.String" MaxLength="35"/>
+                <Property Name="CityName" Type="Edm.String" MaxLength="35"/>
+                <Property Name="Branch" Type="Edm.String" MaxLength="40"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
