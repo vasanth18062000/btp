@@ -1,45 +1,26 @@
-<mvc:View controllerName="my.carshowroom.controller.Carsdetails"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+<mvc:View
+    controllerName="my.carshowroom.controller.Carsdetails"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+
 
     <Page
         id="page"
         title="{i18n>detailsTitle}"
     >
-        <content>
+    
+        <!-- <content>
             <Table
                 id="_IDGenTable1"
-                items="{/cars((ID=?,IsActiveEntity=true))}"
+                items="{/cars>invoicePath}"
             >
                 <columns>
                     <Column id="_IDGenColumn1">
                         <Label
                             id="_IDGenLabel1"
-                            text="List"
-                        />
-                    </Column>
-                    <Column id="_IDGenColumn2">
-                        <Label
-                            id="_IDGenLabel2"
-                            text="carName"
-                        />
-                    </Column>
-                    <Column id="_IDGenColumn3">
-                        <Label
-                            id="_IDGenLabel3"
-                            text="carModel"
-                        />
-                    </Column>
-                    <Column id="_IDGenColumn4">
-                        <Label
-                            id="_IDGenLabel4"
-                            text="engineType"
-                        />
-                    </Column>
-                    <Column id="_IDGenColumn5">
-                        <Label
-                            id="_IDGenLabel5"
-                            text="modelYear"
+                            text="Details"
                         />
                     </Column>
                 </columns>
@@ -52,29 +33,28 @@
                         <cells>
                             <Text
                                 id="_IDGenText1"
-                                text="{ID}"
-                            />
-                            <Text
-                                id="_IDGenText2"
                                 text="{carName}"
-                            />
-                            <Text
-                                id="_IDGenText3"
-                                text="{carModel}"
-                            />
-                            <Text
-                                id="_IDGenText4"
-                                text="{engineType}"
-                            />
-                            <Text
-                                id="_IDGenText5"
-                                text="{modelYear}"
                             />
                         </cells>
                     </ColumnListItem>
                 </items>
             </Table>
-        </content>
-    </Page>
+        </content> -->
 
- </mvc:View>
+
+
+
+        <List items="{/cars>invoice}">
+        
+        <ObjectListItem >
+        
+        <attributes>
+        <ObjectAttribute text="{carName}"></ObjectAttribute>
+        
+        </attributes>
+        
+        </ObjectListItem>
+        
+        </List>
+    </Page>
+</mvc:View>

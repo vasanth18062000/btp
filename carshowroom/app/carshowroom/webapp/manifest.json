@@ -44,7 +44,7 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
+    "flexEnabled": false,
     "dependencies": {
       "minUI5Version": "1.120.4",
       "libs": {
@@ -100,14 +100,14 @@
       "routes": [
         {
           "name": "RouteDetails",
-          "pattern": ":?query:",
+          "pattern": "",
           "target": [
             "TargetCars"
           ]
         },
         {
           "name": "RouteCars",
-          "pattern": "Carsdetails",
+          "pattern": "Carsdetails/{invoicePath}",
           "target": [
             "TargetCarsdetails"
           ]
@@ -131,6 +131,7 @@
         }
       }
     },
+
     "rootView": {
       "viewName": "my.carshowroom.view.App",
       "type": "XML",

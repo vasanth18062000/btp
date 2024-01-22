@@ -1,9 +1,10 @@
-<mvc:View controllerName="my.carshowroom.controller.Cars"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-   
-
-     <Page
+<mvc:View
+    controllerName="my.carshowroom.controller.Cars"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Page
         id="page"
         title="{i18n>title}"
     >
@@ -12,6 +13,20 @@
                 id="_IDGenTable1"
                 items="{/cars}"
             >
+                <headerToolbar>
+                    <Toolbar id="_IDGenToolbar1">
+                        <Title
+                            id="_IDGenTitle1"
+                            text="{i18n>carListTitle}"
+                        />
+                        <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                        <SearchField
+                            id="_IDGenSearchField1"
+                            width="50%"
+                            search=".onFilterCar"
+                        />
+                    </Toolbar>
+                </headerToolbar>
                 <columns>
                     <Column id="_IDGenColumn1">
                         <Label
@@ -22,25 +37,25 @@
                     <Column id="_IDGenColumn2">
                         <Label
                             id="_IDGenLabel2"
-                            text="carName"
+                            text="Car Name"
                         />
                     </Column>
                     <Column id="_IDGenColumn3">
                         <Label
                             id="_IDGenLabel3"
-                            text="carModel"
+                            text="Car Model"
                         />
                     </Column>
                     <Column id="_IDGenColumn4">
                         <Label
                             id="_IDGenLabel4"
-                            text="engineType"
+                            text="Engine Type"
                         />
                     </Column>
                     <Column id="_IDGenColumn5">
                         <Label
                             id="_IDGenLabel5"
-                            text="modelYear"
+                            text="Model Year"
                         />
                     </Column>
                 </columns>
