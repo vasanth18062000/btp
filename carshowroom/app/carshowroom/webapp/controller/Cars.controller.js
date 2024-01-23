@@ -38,7 +38,7 @@ sap.ui.define(
       
         var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
         var SelectedItem=oEvent.getSource().getBindingContext().getProperty("ID");
-        oRouter.navTo("RouteCars", { invoicePath: encodeURIComponent(SelectedItem)   });
+        oRouter.navTo("RouteCars", { invoicePath: encodeURIComponent(SelectedItem)});
         }
   });
   }

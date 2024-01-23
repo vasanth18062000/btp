@@ -101,17 +101,12 @@
         {
           "name": "RouteDetails",
           "pattern": "",
-          "target": [
-            "TargetCars"
-          ]
+          "target": ["TargetCars"]
         },
         {
           "name": "RouteCars",
           "pattern": "Carsdetails/{invoicePath}",
-          "target": [
-            "TargetCarsdetails"
-          ]
-
+          "target": ["TargetCarsdetails"]
         }
       ],
       "targets": {

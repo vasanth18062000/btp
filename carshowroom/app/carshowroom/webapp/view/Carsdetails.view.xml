@@ -1,60 +1,44 @@
 <mvc:View
+    xmlns:table="sap.ui.table"
     controllerName="my.carshowroom.controller.Carsdetails"
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
 >
-
-
     <Page
         id="page"
         title="{i18n>detailsTitle}"
     >
-    
-        <!-- <content>
-            <Table
-                id="_IDGenTable1"
-                items="{/cars>invoicePath}"
-            >
-                <columns>
-                    <Column id="_IDGenColumn1">
-                        <Label
-                            id="_IDGenLabel1"
-                            text="Details"
-                        />
-                    </Column>
-                </columns>
-                <items>
-                    <ColumnListItem
-                        id="_IDGenColumnListItem1"
-                        press="onPress"
-                        type="Navigation"
-                    >
-                        <cells>
-                            <Text
-                                id="_IDGenText1"
-                                text="{carName}"
-                            />
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
-        </content> -->
+        <VBox
+            alignItems="Center"
+            justifyContent="Center"
+            height="100%"
+            width="100%"
+            class="sapUiContentPadding"
+        >
+            <Text
+                text="Car Name : {carName}"
+                class="bigFont"
+            />
+            <Text
+                text="Car Model : {carModel}"
+                class="bigFont"
+            />
+            <Text
+                text="Engine Type : {engineType}"
+                class="bigFont"
+            />
+            <Text
+                text="Car Model : {modelYear}"
+                class="bigFont"
+            />
 
-
-
-
-        <List items="{/cars>invoice}">
-        
-        <ObjectListItem >
-        
-        <attributes>
-        <ObjectAttribute text="{carName}"></ObjectAttribute>
-        
-        </attributes>
-        
-        </ObjectListItem>
-        
-        </List>
+            <Image
+                src="{carImage}"
+                alt="Car Lable"
+                width="100px"
+                height="100px"
+            />
+        </VBox>
     </Page>
 </mvc:View>
