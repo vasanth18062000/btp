@@ -1,0 +1,23 @@
+<mvc:View controllerName="sap.ui.emp.controller.EmployeeList"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+        <List
+      headerText="EmployeeNames"
+      class="sapUiResponsiveMargin"
+      width="auto"
+      items="{/Employee}" >
+      
+         <items>
+         <ObjectListItem
+            title="{firstName}"
+         
+            >
+            </ObjectListItem>
+         
+      </items>
+   </List>
+        </content>
+    </Page>
+</mvc:View>

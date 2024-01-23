@@ -1,0 +1,40 @@
+<mvc:View controllerName="customer.controller.Customer"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+   <Page
+        id="page"
+        title="Customer"
+    >
+       <List
+        id="CustomerList"
+      headerText="{i18n>Customer List}"
+      class="sapUiResponsiveMargin"
+      width="auto"
+      items="{/Customer}" >
+      <headerToolbar>
+         <Toolbar>
+            <Title text="{i18n>Customer List}"/>
+            <ToolbarSpacer/>
+            <SearchField 
+               width="50%" 
+               search=".onFiltercustomer"/>
+         </Toolbar>
+      </headerToolbar>
+      <items>  
+               <ObjectListItem type="Navigation" press=".ObjectPage"
+               
+               title="{FirstName} {LastName}"
+               >
+               </ObjectListItem>
+      </items>
+   </List>
+         <footer>
+            <Bar >
+                <contentRight>
+                    <Button id="idbtnCreate" text="Create Customer" press="Create" icon="sap-icon://add-contact"></Button>
+                
+                </contentRight>
+            </Bar>
+         </footer> 
+    </Page>
+</mvc:View>
