@@ -1,0 +1,3 @@
+id,addressLine1,addressLine2,addressLine3,addressLine4,city_id,state_id,pincode,country_code,customer_id,addressType_id
+2001,royal nagar,porur,kanchipuram,chennai,3001,4001,641606,IN,1001,5001
+2002,anna nagar,guindy,chennai,chennai,3001,4001,603733,IN,1001,5001

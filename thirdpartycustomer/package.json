@@ -1,0 +1,41 @@
+{
+  "name": "thirdpartycustomer",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1"
+    
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-customer": "cds watch --open customer/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-company": "cds watch --open company/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-salesarea": "cds watch --open salesarea/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-unloadingpoint": "cds watch --open unloadingpoint/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-taxgrouping": "cds watch --open taxgrouping/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-text": "cds watch --open text/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "cds": {
+    "requires": {
+      "API_BUSINESS_PARTNER": {
+        "kind": "odata-v2",
+        "model": "srv/external/API_BUSINESS_PARTNER"
+      }
+    }
+  },
+  "sapux": [
+    "app/customer",
+    "app/company",
+    "app/salesarea",
+    "app/unloadingpoint",
+    "app/taxgrouping",
+    "app/text"
+  ]
+}
