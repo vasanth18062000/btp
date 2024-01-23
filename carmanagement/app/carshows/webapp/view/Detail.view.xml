@@ -4,15 +4,10 @@
 	xmlns:mvc="sap.ui.core.mvc">
 	<Page id="page"
 		showNavButton="true" navButtonPress="oNavButton" title="{i18n>detailPageTitle}">
-
-
-		<List >
-		
-		</List>
 		<content>
-		<VBox>
-		<Text text="{carName}"/>
-		</VBox>
+		<Text text="CARNAME     : {carName}"/>
+		<Text text="MANUFACTURE : {manufactureDate}"/>
+		<!-- <Text text="CARNAME : {noOfPpl}"/> -->
 		</content>
-            </Page>
+        </Page>
 </mvc:View>

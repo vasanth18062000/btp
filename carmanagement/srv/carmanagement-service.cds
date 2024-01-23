@@ -11,5 +11,5 @@ service CarManagementService{
     entity TyreType as projection on task.TyreType;
 }
 
-annotate CarManagementService.Car with @odata.draft.enabled;
+// annotate CarManagementService.Car with @odata.draft.enabled;
 // annotate CarManagementService.Car with @(requires: 'support');

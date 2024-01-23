@@ -9,6 +9,7 @@
     "@sap/approuter": "^15.0.0",
     "@sap/cds": "^7",
     "@sap/cds-hana": "^2",
+    "@sap/ux-cds-odata-language-server-extension": "^1.12.2",
     "@sap/xssec": "^3",
     "express": "^4",
     "jwt-auth": "^2.0.1",
@@ -33,8 +34,8 @@
     "app/car2"
   ],
   "cds": {
-    "requires": {
-      "db": "hana"
+    "devDependencies": {
+      "@cap-js/sqlite": "^1"
     }
   }
 }

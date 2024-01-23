@@ -13,12 +13,12 @@ sap.ui.define([
           oArgs=oEvent.getParameter("arguments");
           oView=this.getView();
           oView.bindElement({
-            path:"/Car("+oArgs.invoicePath+")",
-            event:{
+            path:"/Car("+oArgs.invoicePath+")"
+            // event:{
 
-              dataRequster:function(){oView.setBusy(true)},
-              dataReceived:function(){oView.setBusy(false)},
-            },
+            //   dataRequster:function(){oView.setBusy(true)},
+            //   dataReceived:function(){oView.setBusy(false)},
+            // },
           });
         },
         oNavButton:function(oEvent){
