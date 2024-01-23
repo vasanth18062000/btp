@@ -1,13 +1,14 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast"
+    "sap/m/MessageToast",
+    "sap/m/MessageBox"
     
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
     function (Controller,
-	MessageToast) {
+	MessageToast,MessageBox) {
         "use strict";
 
         return Controller.extend("customer.controller.Create", {
@@ -30,10 +31,12 @@ sap.ui.define([
                 oModel.create("/Customer", oEntry, {
                     method: "POST",
                     success: function () {
-                        MessageToast.show("Added Successfully");
+                       // MessageToast.show("Added Successfully");
+                        MessageBox.show("Success",MessageBox.Icon.SUCCESS,"Customer Detail Added");
                     },
                     error: function (e) {
                         MessageToast.show("Something went wrong");
+                        MessageBox.show("Id  Already Exist",MessageBox.Icon.ERROR,"customer not added");
                     }
                 });
 
