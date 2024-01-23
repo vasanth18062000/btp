@@ -1,0 +1,18 @@
+<mvc:View
+    xmlns:table="sap.ui.table"
+    controllerName="my.carshowroom.controller.Modeldetails"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <App>
+        <table:Table>
+            <table:columns>
+                <table:Column>
+                    <Text text="klsdfxcm" />
+                </table:Column>
+            </table:columns>
+        </table:Table>
+    </App>
+</mvc:View>
