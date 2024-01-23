@@ -5,20 +5,21 @@ sap.ui.define([
 
 	return Controller.extend("ns.carshowroom.controller.Detail", {
 		onInit() {
-			const oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("detail").attachPatternMatched(this.onObjectMatched, this);
-		},
+			var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.getRoute("detail").attachMatched(this.onObjectMatched, this); //Attach Router Pattern
+			  },
 
 		onObjectMatched(oEvent) {
-			this.getView().bindElement({
-				path: "/" + window.decodeURIComponent(oEvent.getParameter("arguments").invoicePath),
-				model: "Car"
+			var oArgs,oView;
+			oArgs=oEvent.getParameter("arguments");
+			oView=this.getView();
+			oView.bindElement({
+			  path:"/Car("+oArgs.invoicePath+")"
 			});
-		},
+		  },
 		onEditToggleButtonPress: function() {
 			var oObjectPage = this.getView().byId("ObjectPageLayout"),
 				bCurrentShowFooterState = oObjectPage.getShowFooter();
-
 			oObjectPage.setShowFooter(!bCurrentShowFooterState);
 		}
 	});

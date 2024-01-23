@@ -16,17 +16,17 @@ xmlns="sap.uxap"
         <headerTitle>
 			<ObjectPageDynamicHeaderTitle>
             <expandedHeading>
-					<m:Title text="{Car>carName}" wrapping="true" class="sapUiSmallMarginEnd"/>
+					<m:Title text="{carName}" wrapping="true" class="sapUiSmallMarginEnd"/>
 				</expandedHeading>
 				<snappedHeading>
 					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
 						<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
-							<f:Avatar
+							<m:Avatar
 								src="https://ui5.sap.com/{products>ProductPicUrl}"
 								displaySize="S"
 								displayShape="Square"
 								class="sapUiTinyMarginEnd"/>
-							<m:Title text="{Car>carName}" wrapping="true"/>
+							<m:Title text="{carName}" wrapping="true"/>
 						</m:FlexBox>
 					</m:FlexBox>
 				</snappedHeading>
@@ -50,11 +50,11 @@ xmlns="sap.uxap"
         
 		<headerContent>
 			<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
-				<f:Avatar
+				<m:Avatar
 					displaySize="L"
 					displayShape="Square"
 					class="sapUiTinyMarginEnd">
-				</f:Avatar>
+				</m:Avatar>
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
 					<m:Label text="Main Category"/>
 				</m:VBox>

@@ -2,12 +2,20 @@
 	controllerName="ns.carshows.controller.Detail"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
+	<Shell>
 	<Page id="page"
 		showNavButton="true" navButtonPress="oNavButton" title="{i18n>detailPageTitle}">
 		<content>
-		<Text text="CARNAME     : {carName}"/>
-		<Text text="MANUFACTURE : {manufactureDate}"/>
+		<VBox  alignItems="Center"
+        justifyContent="Start"
+        height="100%">
 		<!-- <Text text="CARNAME : {noOfPpl}"/> -->
+        <Text class="bigFont" text="CARNAME     : {carName}"/>
+        <Text class="bigFont" text="MANUFACTURE : {manufactureDate}"/>
+		<Text class="bigFont" />
+		<!-- <Button  press=".onListItemPress " text="VARIENT"></Button> -->
+		</VBox>
 		</content>
         </Page>
+		</Shell>
 </mvc:View>

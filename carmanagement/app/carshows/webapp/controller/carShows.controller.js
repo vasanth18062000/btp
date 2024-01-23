@@ -9,7 +9,7 @@ sap.ui.define([
 
         return Controller.extend("ns.carshows.controller.carShows", {
             onInit: function () {
-
+                // this.onRead();
             },
             onFilterCar(oEvent) {
                 // build filter array
@@ -24,9 +24,29 @@ sap.ui.define([
                 const oBinding = oList.getBinding("items");
                 oBinding.filter(aFilter);
             },
+        //     onRead:function(){
+        //     var oModel=this.getOwnerComponent().getModel();
+        //     var oJSONModel=new sap.ui.model.json.JSONModel();
+        //     var oBusyDialog= new sap.m.BusyDialog({
+        //         title:"Loading data",
+        //         text:"please wait......."
+        //     });
+        //     oBusyDialog.open();
+        //     oModel.read("/Car",{
+        //         success:function(response){
+        //             oBusyDialog.close();
+        //             oJSONModel.setData(response.results);
+        //             this.getView().setModel(oJSONModel,"ca");
+        //         }.bind(this),
+        //         error:function(error){
+        //             oBusyDialog.close();
+        //         }
+        //     })
+        // },
             onPress(oEvent) {
                 // var oItem = oEvent.getSource(); //Get the Selected Item
                 // var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+               
                 var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
                 var SelectedItem=oEvent.getSource().getBindingContext().getProperty("Id");
                 oRouter.navTo("detail", { invoicePath: SelectedItem });

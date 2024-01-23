@@ -4,7 +4,7 @@
  <Shell id="_IDGenShell1">
     <Page id="page" title="{i18n>title}">
  <content>
-            <Table id="_IDGenTable1" items="{/Car}" >
+            <Table id="_IDGenTable1" items="{path: '/Car' , parameters: { 'expand' : 'noOfPassanger' }}" >
               <headerToolbar >
          <Toolbar>
             <Title text="{i18n>carListTitle}" />
@@ -24,17 +24,23 @@
                     <Column id="_IDGenColumn3">
                     <Label id="_IDGenLabel3" text="manufactureDate"></Label>
                     </Column>
+                       <!-- <Column id="_IDGenColumn4">
+                    <Label id="_IDGenLabel4" text="noOfPpl"></Label>
+                    </Column> -->
                    </columns>
                    <items>
-                
                 <ColumnListItem   type="Navigation"
                 press=".onPress" id="_IDGenColumnListItem1" >
                         <cells>
                             <Text id="_IDGenText1" text="{Id}" ></Text>
                             <Text id="_IDGenText2" text="{carName}"></Text>
                             <Text id="_IDGenText3" text="{manufactureDate}"></Text>
+                            <!-- <Text id="_IDGenText4" text="{noOfPassanger/noOfPpl}"></Text> -->
                         </cells>                    
                     </ColumnListItem>
+                    <!-- <ObjectListItem>
+                    <ObjectAttribute text="{noOfPassanger/noOfPpl}"/>
+                    </ObjectListItem> -->
                 </items>
             </Table>
         </content>    </Page>
