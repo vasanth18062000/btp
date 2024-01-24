@@ -36,7 +36,7 @@ sap.ui.define([
                     },
                     error: function (e) {
                         MessageToast.show("Something went wrong");
-                        MessageBox.show("Id  Already Exist",MessageBox.Icon.ERROR,"customer not added");
+                        MessageBox.show("Id Already Exist",MessageBox.Icon.ERROR,"Customer Not Added");
                     }
                 });
 

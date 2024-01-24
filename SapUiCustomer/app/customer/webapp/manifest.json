@@ -125,6 +125,13 @@
           "target": [
             "Object"
           ]
+        },
+        {
+          "name": "Edit",
+          "pattern": "Edit{Id}",
+          "target": [
+            "Edit"
+          ]
         }
       ],
       "targets": {
@@ -155,6 +162,13 @@
           "clearControlAggregation": false,
           "viewId": "Object",
           "viewName": "Object"
+        },
+        "Edit": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Edit",
+          "viewName": "Edit"
         }
       
         

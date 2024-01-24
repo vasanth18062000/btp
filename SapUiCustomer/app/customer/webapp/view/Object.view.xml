@@ -24,6 +24,8 @@
 				<content>
 					<f:SimpleForm>
 						<f:content>
+							<Label text="{i18n>ID}" />
+							<Text text="{Id}" id="Id"/>
 							<Label text="{i18n>FirstName}"/>
 							<Text text="{FirstName}"/>
 							<Label text="{i18n>LastName}"/>
@@ -40,8 +42,8 @@
 		 <footer>
             <Bar >
                 <contentRight>
-                    <Button id="idbtnEdit" text="Edit" press="edit" icon="sap-icon://edit"></Button>
-					<Button id="idbtnCancel" text="Cancel" press=".onNavBack" icon="sap-icon://decline"></Button>
+                    <Button id="idbtnEdit" text="Edit" press="onEdit" icon="sap-icon://edit"></Button>
+					<Button id="idbtnCancel" text="Delete" press="onDelete" icon="sap-icon://decline"></Button>
                 
                 </contentRight>
             </Bar>

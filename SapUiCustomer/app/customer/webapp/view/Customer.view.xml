@@ -21,8 +21,8 @@
          </Toolbar>
       </headerToolbar>
       <items>  
-               <ObjectListItem type="Navigation" press=".ObjectPage"
-               
+               <ObjectListItem type="Navigation" press=".ObjectPage" 
+            
                title="{FirstName} {LastName}"
                >
                </ObjectListItem>
@@ -32,7 +32,6 @@
             <Bar >
                 <contentRight>
                     <Button id="idbtnCreate" text="Create Customer" press="Create" icon="sap-icon://add-contact"></Button>
-                
                 </contentRight>
             </Bar>
          </footer> 
