@@ -51,6 +51,7 @@
         "sap.m": {},
         "sap.ui.core": {},
         "sap.f": {},
+				"sap.uxap": {},
         "sap.suite.ui.generic.template": {},
         "sap.ui.comp": {},
         "sap.ui.generic.app": {},
@@ -119,18 +120,18 @@
         },
         "detail": {
           "viewType": "XML",
-          "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "Detail",
-          "viewName": "Detail"
+          "viewId": "DetailVarient",
+          "viewName": "DetailVarient",
+          "transition": "flip"
         }
       }
     },
     "rootView": {
       "viewName": "ns.carshows.view.App",
       "type": "XML",
-      "async": true,
-      "id": "App"
+      "async": false,
+      "id": "fcl"
     }
   }
 }
