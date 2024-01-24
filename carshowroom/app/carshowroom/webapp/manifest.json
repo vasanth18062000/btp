@@ -121,8 +121,8 @@
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "Carsdetails",
-          "viewName": "Carsdetails"
+          "viewId": "Modeldetails",
+          "viewName": "Modeldetails"
         }
       }
     },

@@ -38,6 +38,8 @@ entity SeatsDetails {
 
   key ID        : Integer;
       noOfSeats : String;
+      car         : Composition of Car;
+      
 
 }
 

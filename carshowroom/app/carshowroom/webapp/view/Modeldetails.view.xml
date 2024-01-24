@@ -1,18 +1,14 @@
 <mvc:View
-    xmlns:table="sap.ui.table"
-    controllerName="my.carshowroom.controller.Modeldetails"
-    xmlns:html="http://www.w3.org/1999/xhtml"
+    controllerName="my.carshowroom.controller.Carsdetails"
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
 >
-    <App>
-        <table:Table>
-            <table:columns>
-                <table:Column>
-                    <Text text="klsdfxcm" />
-                </table:Column>
-            </table:columns>
-        </table:Table>
-    </App>
+    <Page title="{i18n>detailsTitle}">
+        <content>
+            <mvc:XMLView viewName="my.carshowroom.view.Carsdetails" />
+            <mvc:XMLView viewName="my.carshowroom.view.Varient" />
+            
+        </content>
+    </Page>
 </mvc:View>

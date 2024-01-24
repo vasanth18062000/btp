@@ -1,5 +1,5 @@
-ID,noOfSeats
-201,four
-202,four
-203,five
-204,two
+ID,noOfSeats,car_ID
+201,four,1
+202,four,2
+203,five,3
+204,two,4

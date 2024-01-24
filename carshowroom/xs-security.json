@@ -3,6 +3,10 @@
     {
       "name": "$XSAPPNAME.support",
       "description": "support"
+    },
+    {
+      "name": "$XSAPPNAME.test",
+      "description": "test"
     }
   ],
   "attributes": [],

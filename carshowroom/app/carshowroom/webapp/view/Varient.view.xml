@@ -1,0 +1,51 @@
+<mvc:View
+    controllerName="my.carshowroom.controller.Varient"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+>
+
+
+    
+     
+    <List items="{path: '/cars', parameters: {expand: 'passengerDetails,currencyDetails'}}">
+        <ObjectListItem>
+            <attributes>
+                <ObjectAttribute
+                    class="bigFont"
+                    title="Tyre Brand"
+                    text="{gender}"
+                />
+
+                <ObjectAttribute
+                    class="bigFont"
+                    title="Tyres Type"
+                    text="{passengerList}"
+                />
+
+                <ObjectAttribute
+                    class="bigFont"
+                    title=""
+                    text="{}"
+                />
+
+                <ObjectAttribute
+                    class="bigFont"
+                    title=""
+                    text="{}"
+                />
+            </attributes>
+        </ObjectListItem>
+    </List>
+
+    <Bar>
+        <contentLeft>
+            <Title
+                text="Engine Details"
+                level="H1"
+                titleStyle="H3"
+            />
+        </contentLeft>
+    </Bar>
+
+</mvc:View>

@@ -6,63 +6,72 @@
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
+
 >
-    <Page
-        id="page"
-        title="{i18n>detailsTitle}"
-    >
-        <VBox>
-            <Image
-                src="{carImage}"
-                alt="Car Lable"
-                width="100px"
-                height="100px"
+
+<Bar >
+        <contentLeft>
+            <Title
+                text="Car Details"
+                level="H1"
+                titleStyle="H3"
             />
-        </VBox>
-        <List>
-            <ObjectListItem>
-                <attributes>
-                    <ObjectAttribute
-                        class="bigFont"
-                        title="Car Name"
-                        text="{carName}"
-                    />
-
-                    <ObjectAttribute
-                        class="bigFont"
-                        title="Car Model"
-                        text="{carModel}"
-                    />
-
-                    <ObjectAttribute
-                        class="bigFont"
-                        title="Engine Type"
-                        text="{engineType}"
-                    />
-
-                    <ObjectAttribute
-                        class="bigFont"
-                        title="Model Year"
-                        text="{modelYear}"
-                    />
-                </attributes>
-            </ObjectListItem>
-        </List>
-        
-        <Bar>
-            <contentLeft>
-                <Title
-                    text="colour Varient"
-                    level="H1"
-                    titleStyle="H3"
+        </contentLeft>
+    </Bar>
+    <VBox
+        alignItems="Center"
+        justifyContent="Start"
+    >
+        <Image
+            src="{carImage}"
+            alt="Car Lable"
+            width="100px"
+            height="100px"
+        />
+    </VBox>
+    <List>
+        <ObjectListItem>
+            <attributes>
+                <ObjectAttribute
+                    class="bigFont"
+                    title="Car Name"
+                    text="{carName}"
                 />
-            </contentLeft>
-        </Bar>
 
-        <List />
+                <ObjectAttribute
+                    class="bigFont"
+                    title="Car Model"
+                    text="{carModel}"
+                />
 
-        <content>
-            <!-- <mvc:XMLView viewData="my.carshowroom.controller.Modeldetails"></mvc:XMLView> -->
-        </content>
-    </Page>
+                <ObjectAttribute
+                    class="bigFont"
+                    title="Engine Type"
+                    text="{engineType}"
+                />
+
+                <ObjectAttribute
+                    class="bigFont"
+                    title="Model Year"
+                    text="{modelYear}"
+                />
+            </attributes>
+        </ObjectListItem>
+    </List>
+
+    <Bar >
+        <contentLeft>
+            <Title
+                text="Tyre Details"
+                level="H1"
+                titleStyle="H3"
+            />
+        </contentLeft>
+    </Bar>
+
+   
+
+    <!-- <content> -->
+    <!-- <mvc:XMLView viewData="my.carshowroom.controller.Modeldetails"></mvc:XMLView> -->
+    <!-- </content> -->
 </mvc:View>

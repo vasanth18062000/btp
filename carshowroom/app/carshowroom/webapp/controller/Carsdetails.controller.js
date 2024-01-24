@@ -27,7 +27,7 @@ sap.ui.define(
           //   dataReceived:function(){oView.setBusy(false)},
           // },
         });
-      },
+      }
     });
   }
 );
