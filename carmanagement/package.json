@@ -36,6 +36,9 @@
   "cds": {
     "devDependencies": {
       "@cap-js/sqlite": "^1"
+    },
+    "requires": {
+      "db": "hana"
     }
   }
 }

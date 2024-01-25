@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="ns.carshows.controller.Varient"
+    controllerName="ns.carshows.controller.ModelDetail"
 xmlns="sap.uxap"
 	xmlns:m="sap.m"
 	xmlns:f="sap.f"
@@ -15,9 +15,8 @@ xmlns="sap.uxap"
 		upperCaseAnchorBar="false">
 		<headerTitle >
 			<ObjectPageDynamicHeaderTitle >
-
 			<expandedHeading >
-					<m:Title  text="dfs" wrapping="true" class="sapUiSmallMarginEnd"/>
+					<m:Title  text="Model details" wrapping="true" class="sapUiSmallMarginEnd"/>
 				</expandedHeading>
 
 				<snappedHeading>
@@ -71,47 +70,23 @@ xmlns="sap.uxap"
 			</m:FlexBox>
 		</headerContent>
 
+
 		<sections>
-			<ObjectPageSection title="General Information">
-				<subSections>
-					<ObjectPageSubSection>
-						<blocks>
-							<form:SimpleForm
-								maxContainerCols="2"
-								editable="false"
-								layout="ResponsiveGridLayout"
-								labelSpanL="12"
-								labelSpanM="12"
-								emptySpanL="0"
-								emptySpanM="0"
-								columnsL="1"
-								columnsM="1">
-								<form:content>
-									<m:Label text="Product ID"/>
-									<m:Label text="Description"/>
-									<m:Label text="Supplier"/>
-								</form:content>
-							</form:SimpleForm>
-						</blocks>
-					</ObjectPageSubSection>
-				</subSections>
-			</ObjectPageSection>
-
-
-			<ObjectPageSection title="Suppliers">
+			<ObjectPageSection title="Seat Capacity">
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>
 							<m:Table
-								id="suppliersTable"
-								items="{path : 'modelVarient/colour'}">
+								id="ColoursTable"
+								items="{path : 'seatCapacity'}">
 								<m:columns>
 									<m:Column/>
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem>
 										<m:cells>
-											<m:ObjectIdentifier text="{colours}"/>
+											<m:ObjectIdentifier text="{capacity}"/>
+											<m:ObjectIdentifier text="{seatBrand}"/>
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>
@@ -120,8 +95,55 @@ xmlns="sap.uxap"
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
+
+
+			<ObjectPageSection title="Tyre Brand">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<m:Table
+								id="suppliersTable"
+								items="{path : 'noOfTyre'}">
+								<m:columns>
+									<m:Column/>
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem>
+										<m:cells>
+											<m:ObjectIdentifier text="{tyreBrand}"/>
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+
+			<ObjectPageSection title="Engine Type">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<m:Table
+								id="engineTable"
+								items="{path : 'engineType'}">
+								<m:columns>
+									<m:Column/>
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem>
+										<m:cells>
+											<m:ObjectIdentifier text="{engineType}"/>
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
 		</sections>
-
-
 	</ObjectPageLayout>
 </mvc:View>

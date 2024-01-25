@@ -108,6 +108,11 @@
           "name": "detail",
           "pattern": "detail/{invoicePath}",
           "target": ["detail"]
+        },
+        {
+          "name": "modeldetail",
+          "pattern": "modeldetail/{modelpath}",
+          "target": ["modeldetail"]
         }
       ],
       "targets": {
@@ -118,6 +123,10 @@
           "viewId": "carShows",
           "viewName": "carShows"
         },
+        "modeldetail": {
+          "viewId": "DetailVarient",
+          "viewName": "DetailVarient"  
+              },
         "detail": {
           "viewType": "XML",
           "clearControlAggregation": false,
