@@ -16,7 +16,6 @@ entity Car {
       engineType       : String;
       modelYear        : String;
       seatsDetails     : Composition of SeatsDetails;
-      // tubeDetails      : Composition of TubeDetails;
       engineDetails    : Composition of EngineDetails;
       currencyDetails  : Association to CurrencyDetails;
       carImage         : String;

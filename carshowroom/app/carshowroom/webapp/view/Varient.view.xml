@@ -4,35 +4,97 @@
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
 >
-
-
-    
-     
-    <List items="{path: '/cars', parameters: {expand: 'passengerDetails,currencyDetails'}}">
+    <List items="{path: 'modelVarient'}">
         <ObjectListItem>
             <attributes>
                 <ObjectAttribute
                     class="bigFont"
-                    title="Tyre Brand"
+                    title="Model"
+                    text="{carModel}"
+                />
+
+                <ObjectAttribute
+                    class="bigFont"
+                    title="Varient"
+                    text="{carVarient}"
+                />
+            </attributes>
+        </ObjectListItem>
+    </List>
+
+    <Bar>
+        <contentLeft>
+            <Title
+                text="Passenger Details"
+                level="H1"
+                titleStyle="H3"
+            />
+        </contentLeft>
+    </Bar>
+
+    <List items="{path: 'passengerDetails'}">
+        <ObjectListItem>
+            <attributes>
+                <ObjectAttribute
+                    class="bigFont"
+                    title="Gender"
                     text="{gender}"
                 />
 
                 <ObjectAttribute
                     class="bigFont"
-                    title="Tyres Type"
+                    title="Passenger List"
                     text="{passengerList}"
                 />
+            </attributes>
+        </ObjectListItem>
+    </List>
 
+    <Bar>
+        <contentLeft>
+            <Title
+                text="Colour Details"
+                level="H1"
+                titleStyle="H3"
+            />
+        </contentLeft>
+    </Bar>
+
+    <List items="{path: 'colour'}">
+        <ObjectListItem>
+            <attributes>
                 <ObjectAttribute
                     class="bigFont"
-                    title=""
-                    text="{}"
+                    title="Car Colour"
+                    text="{carColourVarient}"
+                />
+            </attributes>
+        </ObjectListItem>
+    </List>
+
+    <Bar>
+        <contentLeft>
+            <Title
+                text="Tyres Details"
+                level="H1"
+                titleStyle="H3"
+            />
+        </contentLeft>
+    </Bar>
+
+    <List items="{path: 'tyres'}">
+        <ObjectListItem>
+            <attributes>
+                <ObjectAttribute
+                    class="bigFont"
+                    title="Tyre Brand"
+                    text="{tyreBrand}"
                 />
 
                 <ObjectAttribute
                     class="bigFont"
-                    title=""
-                    text="{}"
+                    title="Tube or Tubeless"
+                    text="{tyreType}"
                 />
             </attributes>
         </ObjectListItem>
@@ -48,4 +110,81 @@
         </contentLeft>
     </Bar>
 
+    <List
+        items="{path: '/cars('oArgs.invoicePath')', parameters: {expand: 'engineDetails'}}"
+    >
+        <ObjectListItem>
+            <attributes>
+                <ObjectAttribute
+                    class="bigFont"
+                    title="Engine CC"
+                    text="{engineDetails/engineCC}"
+                />
+
+                <ObjectAttribute
+                    class="bigFont"
+                    title="Oil Capcity"
+                    text="{engineDetails/OilCapacity}"
+                />
+            </attributes>
+        </ObjectListItem>
+    </List>
+
+    <Bar>
+        <contentLeft>
+            <Title
+                text="Seat Details"
+                level="H1"
+                titleStyle="H3"
+            />
+        </contentLeft>
+    </Bar>
+
+    <List
+        items="{path: '/cars('oArgs.invoicePath')', parameters: {expand: 'seatsDetails'}}"
+    >
+        <ObjectListItem>
+            <attributes>
+                <ObjectAttribute
+                    class="bigFont"
+                    title="Number Of Seats"
+                    text="{seatsDetails/noOfSeats}"
+                />
+            </attributes>
+        </ObjectListItem>
+    </List>
+
+    <Bar>
+        <contentLeft>
+            <Title
+                text="Currency Details"
+                level="H1"
+                titleStyle="H3"
+            />
+        </contentLeft>
+    </Bar>
+
+    <List
+        items="{path: '/cars('oArgs.invoicePath')', parameters: {expand: 'currencyDetails'}}"
+    >
+        <ObjectListItem>
+            <attributes>
+                <ObjectAttribute
+                    class="bigFont"
+                    title="Currency Type"
+                    text="{currencyDetails/currencyType}"
+                />
+
+                <ObjectAttribute
+                    class="bigFont"
+                    title="Price"
+                    text="{currencyDetails/price}"
+                />
+            </attributes>
+        </ObjectListItem>
+    </List>
+
+    
+    
+     
 </mvc:View>

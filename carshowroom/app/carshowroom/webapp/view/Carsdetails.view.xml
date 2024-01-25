@@ -62,7 +62,7 @@
     <Bar >
         <contentLeft>
             <Title
-                text="Tyre Details"
+                text="Model Details"
                 level="H1"
                 titleStyle="H3"
             />

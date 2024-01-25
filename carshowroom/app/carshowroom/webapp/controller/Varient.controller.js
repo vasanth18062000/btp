@@ -16,9 +16,9 @@ sap.ui.define(
           oView = this.getView();
           oView.bindElement({
             path: "/cars(" + oArgs.invoicePath + ")",
-            parameters: {
-              expand: "passengerDetails,currencyDetails"
-           }
+          //   parameters: {
+          //     expand: "engineDetails"
+          //  }
           });
         }
       });
