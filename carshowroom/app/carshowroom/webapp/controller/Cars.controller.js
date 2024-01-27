@@ -31,15 +31,35 @@ sap.ui.define(
       //   console.log("hii iam cars");
       //   const oRouter = this.getOwnerComponent().getRouter();
       //   oRouter.navTo("RouteCars");
-        
+
       // },
 
       onPress(oEvent) {
-      
-        var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
-        var SelectedItem=oEvent.getSource().getBindingContext().getProperty("ID");
-        oRouter.navTo("RouteCars", { invoicePath: encodeURIComponent(SelectedItem)});
-        }
-  });
+        console.log("hii i am car parts");
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        var SelectedItem = oEvent
+          .getSource()
+          .getBindingContext()
+          .getProperty("ID");
+        oRouter.navTo("RouteCars", {
+          invoicePath: encodeURIComponent(SelectedItem),
+        });
+      },
+
+      onThemeToggleChange: function (oEvent) {
+        var bDarkTheme = oEvent.getParameter("state");
+
+        // Apply the selected theme
+        this.applyTheme(bDarkTheme);
+      },
+
+      applyTheme: function (bDarkTheme) {
+        // Choose the appropriate theme based on the toggle state
+        var sTheme = bDarkTheme ? "sap_belize_hcb" : "sap_belize_plus";
+
+        // Apply the theme
+        sap.ui.getCore().applyTheme(sTheme);
+      },
+    });
   }
 );

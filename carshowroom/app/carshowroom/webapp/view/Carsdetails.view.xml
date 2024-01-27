@@ -68,9 +68,6 @@
             />
         </contentLeft>
     </Bar>
-
-   
-
     <!-- <content> -->
     <!-- <mvc:XMLView viewData="my.carshowroom.controller.Modeldetails"></mvc:XMLView> -->
     <!-- </content> -->

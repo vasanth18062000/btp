@@ -9,6 +9,24 @@
         title="{i18n>title}"
     >
         <content>
+            <ObjectHeader
+                responsive="true"
+                title="{i18n>title}"
+                intro="Welcome To Car Showroom"
+                icon="sap-icon://car-rental"
+            >
+            
+            
+            </ObjectHeader>
+
+            <!-- Toggle Switch for Theme -->
+            <FlexBox justifyContent="Start" alignItems="Center">
+            <Text text="Theme :" />
+            <Switch
+                state="{/darkTheme}"
+                change="onThemeToggleChange"
+            />
+            </FlexBox>
             <Table
                 id="_IDGenTable1"
                 items="{/cars}"

@@ -29,20 +29,30 @@
   },
   "sap.ui": {
     "technology": "UI5",
+
+
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    },
+    
     "icons": {
-      "icon": "",
+      "icon": "sap-icon://Fiori2/Fiori2",
       "favIcon": "",
       "phone": "",
       "phone@2": "",
       "tablet": "",
       "tablet@2": ""
+
     },
-    "deviceTypes": {
-      "desktop": true,
-      "tablet": true,
-      "phone": true
-    }
+
+    
+    "fullWidth": true
+
   },
+
+
   "sap.ui5": {
     "flexEnabled": false,
     "dependencies": {
@@ -55,7 +65,9 @@
         "sap.ui.comp": {},
         "sap.ui.generic.app": {},
         "sap.ui.table": {},
-        "sap.ushell": {}
+        "sap.ushell": {},
+        "sap.ui.layout": {},
+        "sap.uxap": {}
       }
     },
     "contentDensities": {
@@ -80,6 +92,10 @@
         }
       }
     },
+
+    "resourceBundle": "i18n/i18n.properties",
+    "supportedThemes": ["sap_belize_plus", "sap_fiori_3_dark"],
+    
     "resources": {
       "css": [
         {

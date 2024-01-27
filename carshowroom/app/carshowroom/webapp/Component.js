@@ -20,7 +20,14 @@ sap.ui.define([
              * @public
              * @override
              */
+
+
+
+
+                   // theme 
+
             init: function () {
+                sap.ui.getCore().applyTheme("sap_belize_plus");
                 // call the base component's init function
                 UIComponent.prototype.init.apply(this, arguments);
 
@@ -30,6 +37,10 @@ sap.ui.define([
                 // set the device model
                 this.setModel(models.createDeviceModel(), "device");
             }
+
+
+
+
         });
     }
 );
