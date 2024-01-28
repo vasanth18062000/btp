@@ -1,0 +1,24 @@
+<mvc:View controllerName="ui52.controller.View"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+       
+<List
+   id="Books"
+      headerText="{i18n>BooksList}"
+      class="sapUiResponsiveMargin"
+      width="auto"
+      items="{/Books}" >
+      
+      <items>  
+                             <ObjectListItem type="Navigation" press=".ObjectPage" 
+            
+               title="{title}"
+               >
+               </ObjectListItem>
+
+      </items>
+   </List>
+
+    </Page>
+</mvc:View>

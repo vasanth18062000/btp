@@ -1,0 +1,51 @@
+<mvc:View
+    controllerName="library.controller.Create"
+    xmlns:mvc="sap.ui.core.mvc"
+
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Page
+        id="page"
+        title="Create Customer"
+    >
+        <content>
+       
+        <sap.ui.layout.form:Form xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true">
+            <sap.ui.layout.form:formContainers>
+                <sap.ui.layout.form:FormContainer>
+                    <sap.ui.layout.form:formElements>
+                        <sap.ui.layout.form:FormElement label="Id">
+                           <Input id="id"/>
+                        </sap.ui.layout.form:FormElement>
+                        <sap.ui.layout.form:FormElement label="BookName">
+                            <Input id="BookName" />
+                        </sap.ui.layout.form:FormElement>
+                         <sap.ui.layout.form:FormElement label="Price">
+                            <Input id="Price" />
+                        </sap.ui.layout.form:FormElement>
+                        <sap.ui.layout.form:FormElement label="Describtion">
+                            <Input id="Describtion" />
+                        </sap.ui.layout.form:FormElement>
+                        <sap.ui.layout.form:FormElement label="Author">
+                            <Input id="Author" />
+                        </sap.ui.layout.form:FormElement>
+                    </sap.ui.layout.form:formElements>
+                </sap.ui.layout.form:FormContainer>
+            </sap.ui.layout.form:formContainers>
+            <sap.ui.layout.form:layout>
+                <sap.ui.layout.form:ResponsiveGridLayout/>
+            </sap.ui.layout.form:layout></sap.ui.layout.form:Form>
+    </content>
+   
+   
+         <footer>
+            <Bar >
+                <contentRight>
+                    <Button  text="Save" press="onCreate" icon="sap-icon://save"></Button>
+                    <Button  text="cancel" press="oncancel" icon="sap-icon://decline"></Button>
+                </contentRight>
+            </Bar>
+         </footer> 
+    </Page>
+</mvc:View>

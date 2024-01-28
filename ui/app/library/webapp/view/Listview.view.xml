@@ -1,0 +1,32 @@
+<mvc:View controllerName="library.controller.Listview"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+ <List
+   
+      headerText="{i18n>Collection of Books}"
+      class="sapUiResponsiveMargin"
+      width="auto"
+      items="{/Bookshop}" >
+      
+      <items>  
+               <ObjectListItem
+               
+            title=" {BookName}"
+            type="Navigation"
+            press="onPress"
+               >
+               </ObjectListItem>
+      </items>
+   </List>
+    <footer>
+ <Bar>
+
+<contentRight>
+<Button id = "idbCreate" text = "Create entry" press="onSbmit"></Button>
+</contentRight>
+ </Bar>
+   </footer>
+    <content />
+    </Page>
+</mvc:View>

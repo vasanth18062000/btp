@@ -1,0 +1,36 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" controllerName="ui5.controller.Object">
+    <Page title="{i18n>Book List}"
+    showNavButton="true"
+    navButtonPress=".onNavBack"
+    >
+        <ObjectHeader intro="{i18n>Details Books}"/>
+      
+        <sap.ui.layout.form:Form xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true">
+            <sap.ui.layout.form:formContainers>
+                <sap.ui.layout.form:FormContainer>
+                    <sap.ui.layout.form:formElements>
+                        <sap.ui.layout.form:FormElement label="Id" id="bookshop">
+                            <Text text="{ID}" ></Text>
+                        
+                        </sap.ui.layout.form:FormElement>
+                         <sap.ui.layout.form:FormElement label="Title">
+                            <Text text="{title}" ></Text>
+                        </sap.ui.layout.form:FormElement>
+                         <sap.ui.layout.form:FormElement label="discrib">
+                         
+                            <Text text="{discrib}" ></Text>
+                        </sap.ui.layout.form:FormElement>
+                         <sap.ui.layout.form:FormElement label="price">
+                            <Text text="{price}" ></Text>
+                        </sap.ui.layout.form:FormElement>
+                    </sap.ui.layout.form:formElements>
+                </sap.ui.layout.form:FormContainer>
+            </sap.ui.layout.form:formContainers>
+            <sap.ui.layout.form:layout>
+                <sap.ui.layout.form:ResponsiveGridLayout/>
+            </sap.ui.layout.form:layout></sap.ui.layout.form:Form>
+            
+    <content/>
+            
+    </Page>
+</mvc:View>

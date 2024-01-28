@@ -1,0 +1,31 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" 
+controllerName="ui5.controller.Book" 
+displayBlock="true">
+<Page id="page" title="{i18n>title}">
+ <List
+   
+      headerText="{i18n>Collection of Books}"
+      class="sapUiResponsiveMargin"
+      width="auto"
+      items="{/Bookshop}" >
+      
+      <items>  
+               <ObjectListItem
+               
+            title=" {BookName}"
+            type="Navigation"
+            press="onPress"
+               >
+               </ObjectListItem>
+      </items>
+   </List>
+    <footer>
+ <Bar>
+
+<contentRight>
+<Button id = "idbCreate" text = "Create entry" press="onSbmit"></Button>
+</contentRight>
+ </Bar>
+   </footer>
+     </Page>
+</mvc:View>

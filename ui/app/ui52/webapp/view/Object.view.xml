@@ -1,0 +1,25 @@
+<mvc:View controllerName="ui52.controller.Object"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+
+<Page title="{i18n>Employee Detail Page}"
+navButtonPress=".onNavBack"
+ showNavButton="true">
+
+ <sap.ui.layout.form:Form xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true">
+            <sap.ui.layout.form:formContainers>
+                <sap.ui.layout.form:FormContainer>
+                    <sap.ui.layout.form:formElements>
+                        <sap.ui.layout.form:FormElement label="ID">
+                            <Text text="{ID}" ></Text>
+
+                            </sap.ui.layout.form:FormElement>
+                    </sap.ui.layout.form:formElements>
+                </sap.ui.layout.form:FormContainer>
+            </sap.ui.layout.form:formContainers>
+            <sap.ui.layout.form:layout>
+            </sap.ui.layout.form:layout></sap.ui.layout.form:Form>
+
+</Page>
+    
+    </mvc:View>

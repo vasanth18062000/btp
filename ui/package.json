@@ -1,0 +1,29 @@
+{
+  "name": "ui",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "@sap/cds-hana": "^2",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/ux-specification": "^1.120.2"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-ui5": "cds watch --open ui5/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-ui52": "cds watch --open ui52/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-library": "cds watch --open library/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "cds": {
+    "requires": {
+      "db": "hana"
+    }
+  }
+}
