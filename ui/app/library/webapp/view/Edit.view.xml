@@ -1,0 +1,56 @@
+<mvc:View
+	controllerName="library.controller.Edit"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+<Page
+        id="page"
+        title="Edit Customer"
+    >
+        <content>
+       
+        <sap.ui.layout.form:Form xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true">
+            <sap.ui.layout.form:formContainers>
+                <sap.ui.layout.form:FormContainer>
+                    <sap.ui.layout.form:formElements>
+                        <sap.ui.layout.form:FormElement label="id">
+                            <Input id="id" value="{id}" />
+                        </sap.ui.layout.form:FormElement>
+                        <sap.ui.layout.form:FormElement label="Book name">
+                            <Input id="BookName" value="{BookName}" />
+                        </sap.ui.layout.form:FormElement>
+                         <sap.ui.layout.form:FormElement label="Price">
+                            <Input id="Price" value="{Price}" />
+                        </sap.ui.layout.form:FormElement>
+                        <sap.ui.layout.form:FormElement label="Describtion">
+                            <Input id="Describtion" value="{Describtion}"/>
+                        </sap.ui.layout.form:FormElement>
+                        <sap.ui.layout.form:FormElement label="Author">
+                            <Input id="Author" value="{Author}"/>
+                        </sap.ui.layout.form:FormElement>
+                    </sap.ui.layout.form:formElements>
+                </sap.ui.layout.form:FormContainer>
+            </sap.ui.layout.form:formContainers>
+            <sap.ui.layout.form:layout>
+                <sap.ui.layout.form:ResponsiveGridLayout/>
+            </sap.ui.layout.form:layout></sap.ui.layout.form:Form>
+    </content>
+   
+   
+         <footer>
+            <Bar >
+                <contentRight>
+                    <Button  text="Update" press="update" icon="sap-icon://save"></Button>
+                    <Button  text="cancel" press=".onNavBack" icon="sap-icon://decline"></Button>
+                </contentRight>
+            </Bar>
+         </footer> 
+    </Page>
+
+
+
+</mvc:View>

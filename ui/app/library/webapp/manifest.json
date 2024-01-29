@@ -58,6 +58,19 @@
         "sap.ushell": {}
       }
     },
+
+    "config": {
+			"library": {
+				"files": [
+					"SlideTile.view.xml",
+					"Page.controller.js",
+					"manifest.json"
+				]
+			}
+		},
+
+
+
     "contentDensities": {
       "compact": true,
       "cozy": true
@@ -98,6 +111,7 @@
         "clearControlAggregation": false
       },
       "routes": [
+        
         {
           "name": "RouteListview",
           "pattern": ":?query:",
@@ -119,6 +133,14 @@
           "pattern": "Object/{bookshop}",
           "target": [
             "Object"
+          ]
+        },
+
+        {
+          "name": "Edit",
+          "pattern": "Edit{id}",
+          "target": [
+            "Edit"
           ]
         }
 
@@ -146,6 +168,15 @@
           "clearControlAggregation": false,
           "viewId": "Object",
           "viewName": "Object"
+        }
+        ,
+
+        "Edit": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Edit",
+          "viewName": "Edit"
         }
       }
     },
