@@ -43,6 +43,14 @@
                     </ObjectListItem> -->
                 </items>
             </Table>
-        </content>    </Page>
+        </content>   
+        <footer>
+        <Bar >
+        <contentRight>
+        <Button id="idbtnCreate" text="Create" press=".onAdd" icon="sap-icon://add"></Button>
+        </contentRight>
+        </Bar>
+        </footer>
+         </Page>
         </Shell>
 </mvc:View>

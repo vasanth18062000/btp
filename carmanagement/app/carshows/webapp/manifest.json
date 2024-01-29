@@ -110,6 +110,11 @@
           "target": ["detail"]
         },
         {
+          "name": "createView",
+          "pattern": "createView",
+          "target": ["createView"]
+        },
+        {
           "name": "modeldetail",
           "pattern": "modeldetail/{modelpath}",
           "target": ["modeldetail"]
@@ -127,6 +132,10 @@
           "viewId": "DetailVarient",
           "viewName": "DetailVarient"  
               },
+              "createView": {
+                "viewId": "Create",
+                "viewName": "Create"  
+                    },
         "detail": {
           "viewType": "XML",
           "clearControlAggregation": false,

@@ -144,6 +144,29 @@ xmlns="sap.uxap"
 				</subSections>
 			</ObjectPageSection>
 
+			<ObjectPageSection title="Type">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<m:Table
+								id="enginTable"
+								items="{mainService>/Car}" mode="SingleSelectMaster"> 
+								<m:columns>
+									<m:Column/>
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem>
+										<m:cells>
+											<m:ObjectIdentifier text="{mainService>modelVarient/models}"/>
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
 		</sections>
 	</ObjectPageLayout>
 </mvc:View>

@@ -52,6 +52,11 @@ sap.ui.define([
                 var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
                 var SelectedItem=oEvent.getSource().getBindingContext().getProperty("Id");
                 oRouter.navTo("detail", { invoicePath: SelectedItem });
+                },
+
+                // for create
+                onAdd:function(){
+                    this.getOwnerComponent().getRouter().navTo("createView");
                 }
         });
     });
