@@ -5,12 +5,12 @@
 sap.ui.define([
         "sap/ui/core/UIComponent",
         "sap/ui/Device",
-        "ns/odataapi/model/models"
+        "ns/hanacrud/model/models"
     ],
     function (UIComponent, Device, models) {
         "use strict";
 
-        return UIComponent.extend("ns.sample.Component", {
+        return UIComponent.extend("ns.hanacrud.Component", {
             metadata: {
                 manifest: "json"
             },

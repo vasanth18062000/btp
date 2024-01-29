@@ -6,13 +6,12 @@ xmlns:smarttable="sap.ui.comp.smarttable"
 
 >
 
-<App id="app001">
-<Page id="page001" title="{i18n>title}">
+<Page >
 
 <content>
 
 
-<Table id="table002"  items="{/A_BusinessPartner}">
+<Table items="{/A_BusinessPartner}">
 
 <columns>
                     <Column width="10%" > 
@@ -41,16 +40,14 @@ xmlns:smarttable="sap.ui.comp.smarttable"
                     </ColumnListItem>
                 </items>
 
+
 </Table>
+
 
 
 </content>
 
+
 </Page>
-
-</App>
-
-
-
 
 </mvc:View>

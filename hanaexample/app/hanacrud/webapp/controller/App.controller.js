@@ -5,8 +5,9 @@ sap.ui.define(
     function(BaseController) {
       "use strict";
   
-      return BaseController.extend("ns.odataapi.controller.App", {
-          onInit: function(){}
+      return BaseController.extend("ns.hanacrud.controller.App", {
+        onInit: function() {
+        }
       });
     }
   );

@@ -10,33 +10,22 @@ sap.ui.define([
 
             },
 
-           
-                
-         nextpage : function (oEvent) {
+            onInit: function () {
 
+            },
 
+            nextpage: function(oEvent){
+                //const oItem = oEvent.getSource();
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            var selectedItemSupplierId = oEvent.getSource().getBindingContext().getProperty("ETag");
+            oRouter.navTo("detail",{invoice:selectedItemSupplierId}
 
-            // const oItem = oEvent.getSource();
+            );
 
-            var employeeId =oEvent.getSource().getBindingContext().getProperty("A_BusinessPartner");
-            oRouter.navTo("detail", {id: employeeId});
+        }
 
-
-            var oRouter =sap.ui.core.UIComponent.getRouterfor(this);
-                //     oRouter.navTo("detail",{"BusinessPartner":"11"})
-				// employeedetail: window.decodeURIComponent(oItem.getBindingContext("detail/BusinessPartner").getPath().substr(1));
-			
-        // }
-    
-
-
-            // const oItem = oEvent.getSource();
-			// const oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("detail", {
-				invoice: window.decodeURIComponent(oItem.getBindingContext("invoice").getPath().substr(1))
-			});
-                }
+           
+            
 
         });
     });

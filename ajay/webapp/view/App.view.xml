@@ -1,4 +1,8 @@
-<mvc:View xmlns:form="sap.ui.layout.form" xmlns:launchpad="sap.ushell.ui.launchpad" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" controllerName="sap.com.ajay.controller.App" displayBlock="false">
+<mvc:View xmlns:form="sap.ui.layout.form" xmlns:launchpad="sap.ushell.ui.launchpad" 
+
+xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" 
+
+xmlns:l="sap.ui.layout" controllerName="sap.com.ajay.controller.App" displayBlock="false">
     
 
 <Page xmlns="sap.m" id="pageId">

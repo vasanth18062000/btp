@@ -1,7 +1,7 @@
 {
   "_version": "1.59.0",
   "sap.app": {
-    "id": "ns.odataapi",
+    "id": "ns.hanacrud",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -13,15 +13,15 @@
     "sourceTemplate": {
       "id": "@sap/generator-fiori:basic",
       "version": "1.12.1",
-      "toolsId": "90bfec00-f0c5-4cb7-b41f-655cbbec12d1"
+      "toolsId": "b242f8c7-b594-42be-848f-ba4c79902922"
     },
     "dataSources": {
       "mainService": {
-        "uri": "/odata/v4/link-api/",
+        "uri": "/odata/v4/hanaservice/",
         "type": "OData",
         "settings": {
           "annotations": [],
-          "localUri": "localService/metadata.xml",
+          "localUri": "metadata.xml",
           "odataVersion": "4.0"
         }
       }
@@ -56,7 +56,6 @@
         "sap.ui.generic.app": {},
         "sap.ui.table": {},
         "sap.ushell": {}
-       
       }
     },
     "contentDensities": {
@@ -67,7 +66,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "ns.odataapi.i18n.i18n"
+          "bundleName": "ns.hanacrud.i18n.i18n"
         }
       },
       "": {
@@ -93,73 +92,62 @@
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
         "async": true,
-        "viewPath": "ns.odataapi.view",
+        "viewPath": "ns.hanacrud.view",
         "controlAggregation": "pages",
         "controlId": "app",
-        "transition": "slide"
+        "clearControlAggregation": false
       },
       "routes": [
         {
-          "name": "Routeemployeelist",
+          "name": "RouteMain",
           "pattern": ":?query:",
           "target": [
-            "Targetemployeelist"
+            "TargetMain"
           ]
         },
         {
-          "pattern": "detail/{invoice}",
           "name": "detail",
-          "target": ["detail"]
+          "pattern": "detail/{customerdetail}",
+          "target": [
+            "Detail"
+          ]
         },
 
         {
-          "pattern": "overview",
-          "name": "overview",
-          "target": "[overview]"
+          "name": "create",
+          "pattern": "create",
+          "target": [
+            "Create"
+          ]
         }
-  
+
       ],
-      "targets":
-      {
-      
-      
-        "Targetemployeelist": {
+      "targets": {
+        "TargetMain": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "list",
-          "viewName": "employeelist"
+          "viewId": "Main",
+          "viewName": "Main"
         },
 
-        "detail": {
+        "Detail":{
 
-          "viewType" : "XML",
-          "transition" : "flip",
-          "clearControlAggregation" : false,
-          "viewId" : "employeedetails",
-          "viewName" : "employeedetails"
-
+            "viewName": "Detail"  
         },
 
-        "overview": {
+        "Create":{
 
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "list",
-          "viewName": "employeelist"
+          "viewName": "Create"
 
-
-        }      
-      
+        }
       }
     },
     "rootView": {
-      "viewName": "ns.odataapi.view.App",
+      "viewName": "ns.hanacrud.view.App",
       "type": "XML",
       "async": true,
       "id": "App"
     }
   }
 }
-

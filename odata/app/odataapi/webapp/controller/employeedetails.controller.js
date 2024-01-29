@@ -1,33 +1,32 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
-    "sap/ui/core/routing/History"
+    "sap/ui/core/mvc/Controller"
 ],
   
-    function (Controller,History) {
+    function (Controller) {
         "use strict";
 
         return Controller.extend("ns.odataapi.controller.employeedetails", {
-            onInit: function () {
-                var oRouter = sap.ui.core.UIComponent.getRouterFor(this); //Get Hold of Router
-                oRouter.getRoute("detail").attachPatternMatched(this._onObjectMatched, this); //Attach Router Pattern
-            
-            },
-
-            _onObjectMatched: function(oEvent) {
-                //Bind the Context to Detail View
-                this.getView().bindElement({
-                  path: "/" + oEvent.getParameter("arguments").employeePath,
-                  model: "view"
-                });
-              },
-
-            onNavBack: function() {
-                //Navigation Back
-                var oHistory = sap.ui.core.routing.History.getInstance();
-                var sPreviousHash = oHistory.getPreviousHash();
-                window.history.go(-1);
-              
-
-
-        });
-    });
+            onInit() {
+                // this.getRouterInfo().getRoute('ObjectView').attachPatternMatched(this._onRouteMatched,this);
+                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                 oRouter.getRoute("detail").attachMatched(this.onObjectMatched, this);
+             },
+             onObjectMatched(oEvent) {
+                 var oArgs,oView;
+                 oArgs=oEvent.getParameter("arguments");
+                 oView=this.getView();
+                 oView.bindElement({
+                     path:"A_BusinessPartner('"+oArgs.invoice+"')",
+                     event:{
+                         dataRequester:function(){oView.setBusy(true)},
+                         dataReceived:function(){oView.setBusy(false)},
+                     },
+                 });
+     
+                 // this.getView().bindElement({
+                 //  path: "/" + window.decodeURIComponent(oEvent.getParameter("arguments").invoicePath),
+                 //  model: "invoice"
+                 // });
+             }
+         });
+     });

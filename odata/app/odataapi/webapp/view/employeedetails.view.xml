@@ -1,93 +1,58 @@
-<mvc:View xmlns:table="sap.ui.table" xmlns:smartfilterbar="sap.ui.comp.smartfilterbar" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ns.odataapi.controller.employeedetails" displayBlock="true">
+<mvc:View xmlns:table="sap.ui.table"  xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" 
 
-<App>
-<pages >
-	
-	<Page
-		title="{ETag}" showNavButton="true" navButtonPress=".onNavBack" >
 
-		<Bar >
-		<contentMiddle>
-		
-		<Title text="{BusinessPartnerName}'s Detail " ></Title>
-		
-		</contentMiddle>
-		
-		</Bar>
-
-			
-
-			
-		<content >
-
-	
-<ObjectHeader
+controllerName="ns.odataapi.controller.employeedetails" displayBlock="true">
 
 
 	
-	>
+	<Page >
+
+<content>
+
+
+<Table items="{A_BusinessPartner}">
+
+<columns>
+                    <Column width="10%" > 
+                        <Label text="Customer Id"></Label>
+                    </Column>
+                     <Column width="20%">
+                        <Label text="Customer Name"></Label>
+                    </Column>
+                    <Column width="30%">
+                    <Label text="ETag"></Label>
+                    </Column>
+                    <Column width="5%">
+                   
+                    </Column>
+                   </columns>
+                   <items>
+                
+                <ColumnListItem press="nextpage" type="Navigation">
+                        <cells>
+                            <Text text="{BusinessPartner}" ></Text>
+                            <Text text="{BusinessPartnerName}"></Text>
+                            <Text text="{ETag}"></Text>
+                            <Button icon="sap-icon://open-command-field" id="button001" press=".nextpage"></Button>
+                         
+                        </cells>                    
+                    </ColumnListItem>
+                </items>
+
+
+</Table>
+
+
+
+</content>
+
+
+</Page>
 
 
 
 
-	
 
-	<attributes>
-
-	
-
-	
-					
-						
-
-						<ObjectAttribute
-						title="{i18n>FirstName}"
-						text="{PersonFullName}"/>
-
-						<ObjectAttribute
-						title="{i18n>LasttName}"
-						text="{products>LastName}"/>
-
-						<ObjectAttribute
-						title="{i18n>Address}"
-						text="{products>Address}"/>
-
-						<ObjectAttribute
-						title="{i18n>City}"
-						text="{products>City}"/>
-
-							<ObjectAttribute
-						title="{i18n>PostalCode}"
-						text="{products>PostalCode}"/>
-
-						<ObjectAttribute
-						title="{i18n>Country}"
-						text="{products>Country}"/>
-
-						<ObjectAttribute
-						title="{i18n>HomePhone}"
-						text="{products>HomePhone}"/>
-
-					
-
-						</attributes>
-
-						
-					
-
-</ObjectHeader>
-
-
-		
-
-		
-
-
-	</content>
-	</Page>
-
-</pages>
-	</App>
 
 
 
