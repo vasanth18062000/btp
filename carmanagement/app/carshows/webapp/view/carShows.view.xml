@@ -1,56 +1,66 @@
 <mvc:View controllerName="ns.carshows.controller.carShows"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
- <Shell id="_IDGenShell1">
-    <Page id="page" title="{i18n>title}">
- <content>
-            <Table id="_IDGenTable1" items="{path: '/Car' , parameters: { 'expand' : 'noOfPassanger' }}" >
-              <headerToolbar >
-         <Toolbar>
-            <Title text="{i18n>carListTitle}" />
-            <ToolbarSpacer/>
-            <SearchField 
-               width="50%" 
-               search=".onFilterCar"/>
-         </Toolbar>
-      </headerToolbar>
-                <columns>
-                    <Column id="_IDGenColumn1" >
-                        <Label id="_IDGenLabel1" text="Id" ></Label>
-                    </Column>
-                     <Column id="_IDGenColumn2">
-                        <Label id="_IDGenLabel2" text="carName"></Label>
-                    </Column>
-                    <Column id="_IDGenColumn3">
-                    <Label id="_IDGenLabel3" text="manufactureDate"></Label>
-                    </Column>
-                       <!-- <Column id="_IDGenColumn4">
-                    <Label id="_IDGenLabel4" text="noOfPpl"></Label>
-                    </Column> -->
-                   </columns>
-                   <items>
-                <ColumnListItem   type="Navigation"
-                press=".onPress" id="_IDGenColumnListItem1" >
-                        <cells>
-                            <Text id="_IDGenText1" text="{Id}" ></Text>
-                            <Text id="_IDGenText2" text="{carName}"></Text>
-                            <Text id="_IDGenText3" text="{manufactureDate}"></Text>
-                            <!-- <Text id="_IDGenText4" text="{noOfPassanger/noOfPpl}"></Text> -->
-                        </cells>                    
-                    </ColumnListItem>
-                    <!-- <ObjectListItem>
-                    <ObjectAttribute text="{noOfPassanger/noOfPpl}"/>
-                    </ObjectListItem> -->
-                </items>
-            </Table>
-        </content>   
-        <footer>
-        <Bar >
-        <contentRight>
-        <Button id="idbtnCreate" text="Create" press=".onAdd" icon="sap-icon://add"></Button>
-        </contentRight>
-        </Bar>
-        </footer>
-         </Page>
-        </Shell>
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+
+    <Shell id="_IDGenShell1">
+        <Page id="page" title="{i18n>title}">
+            <content>
+                <Table id="_IDGenTable1" items="{path: '/Car', parameters: {'expand': 'noOfPassanger'}}">
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="{i18n>carListTitle}" />
+                            <ToolbarSpacer />
+                            <SearchField width="50%" search=".onFilterCar" />
+                        </Toolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column id="_IDGenColumn1">
+                            <Label id="_IDGenLabel1" text="{i18n>id}" />
+                        </Column>
+                        <Column id="_IDGenColumn2">
+                            <Label id="_IDGenLabel2" text="{i18n>carName}" />
+                        </Column>
+                        <Column id="_IDGenColumn3">
+                            <Label id="_IDGenLabel3" text="{i18n>manufactureDate}" />
+                        </Column>
+                           <Column id="_IDGenColumn4">
+                            <Label id="_IDGenLabel4" text="Update" />
+                        </Column>
+                           <Column id="_IDGenColumn5">
+                            <Label id="_IDGenLabel5" text="Delete" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem type="Navigation" press=".onPress" id="_IDGenColumnListItem1">
+                            <cells>
+                                <Text id="_IDGenText1" text="{Id}" />
+                                <Text id="_IDGenText2" text="{carName}" />
+                                <Text id="_IDGenText3" text="{manufactureDate}" />
+                                <Button
+                                text="Update"
+                                icon="sap-icon://edit"
+                                press="onUpdate"
+                                type="Emphasized"
+                            />
+                            <Button
+                                text="Delete"
+                                icon="sap-icon://delete"
+                                press="onDelete"
+                                type="Emphasized"
+                            />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </content>
+            <footer>
+                <Bar>
+                    <contentRight>
+                        <Button text="{i18n>addCar}" press=".onOpenDialog" type="Emphasized" />
+                    </contentRight>
+                </Bar>
+            </footer>
+        </Page>
+    </Shell>
 </mvc:View>

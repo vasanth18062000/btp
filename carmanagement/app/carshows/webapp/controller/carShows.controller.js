@@ -1,12 +1,16 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
+	"sap/ui/model/FilterOperator",
+    "sap/ui/core/Fragment",
+    "sap/m/MessageBox",
+    "sap/m/MessageToast"
+
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller,Filter, FilterOperator) {
+    function (Controller,Filter, FilterOperator,Fragment,MessageBox,MessageToast) {
         "use strict";
 
         return Controller.extend("ns.carshows.controller.carShows", {
@@ -57,6 +61,91 @@ sap.ui.define([
                 // for create
                 onAdd:function(){
                     this.getOwnerComponent().getRouter().navTo("createView");
-                }
+                },
+
+                //pop up open
+                onOpenDialog() {
+                    console.log("hai")
+                    // create dialog lazily
+                    this.pDialog ??= this.loadFragment({
+                      name: "ns.carshows.view.AddFragement",
+                    });
+                    this.pDialog.then((oDialog) => oDialog.open());
+                  },
+                  onSave:function(){
+                    console.log("hai");
+                    var payload ={
+                        Id:this.getView().byId("_IDLabel1").getValue(),
+                        carName:this.getView().byId("_IDLabel2").getValue(),
+                        manufactureDate:this.getView().byId("_IDLabel3").getValue()
+                    };
+                    console.log("hai");
+                    var oModel=this.getView().getModel();
+                    oModel.create("/Car",payload,{
+                        method:"POST",
+                        success:function(response){
+                            MessageBox.show("New car is added",MessageBox.Icon.SUCCESS,"car is added..!");
+                            this.clearForm();
+                        },
+                        error:function(error){
+                            MessageBox.show("some error is occured",MessageBox.Icon.ERROR,"oops error..!");
+                            this.clearForm();
+                        }
+                    });
+                },
+                   //pop up close
+                   onCloseDialog: function () {
+                    console.log("hai");
+                    this.byId("AddcarDialog").close();
+                    this.clearForm();
+                  },
+                  //clearing the form
+                  clearForm:function(){
+                    this.getView().byId("_IDLabel1").setValue(""),
+                    this.getView().byId("_IDLabel2").setValue(""),
+                    this.getView().byId("_IDLabel3").setValue("")
+                  },
+                  //edit
+                  onUpdate:function(oEvent){
+                    this.onOpenDialog()
+                    var carId=oEvent.getSource().getBindingContext().getProperty("Id");
+                    console.log(carId);
+                    var payload ={
+                        Id:this.getView().byId("_IDLabel1").getValue(),
+                        carName:this.getView().byId("_IDLabel2").getValue(),
+                        manufactureDate:this.getView().byId("_IDLabel3").getValue()
+                    };
+                    console.log("hai");
+                    var oModel=this.getView().getModel();
+                    oModel.update("/Car",payload,{
+                        method:"update",
+                        success:function(response){
+                            MessageToast.show("car is successfully added");
+                            this.clearForm();
+                        },
+                        error:function(error){
+                            MessageToast.show("some error is occured");
+                            this.clearForm();
+                        }
+                    });
+                },
+                  //deleting
+                  onDelete:function(oEvent){
+                    console.log("hai");
+                    var carId=oEvent.getSource().getBindingContext().getProperty("Id");
+                    console.log(carId);
+                    var oModel=this.getView().getModel();
+                    oModel.remove("/Car("+carId+")",{
+                        method:"delete",
+                        success:function(response){
+                            MessageToast.show("car is successfully deleted");
+                        }.bind(this),
+                        error:function(error){
+                            MessageToast.show("some error is occured");
+
+                        }
+                    });
+                  }
+               
         });
     });
