@@ -6,21 +6,7 @@
     <Page >
     
     <content>
-    
-    <!-- <form:SimpleForm title="Create a new User" editable="true" layout="ResponsiveGridLayout">
-    
-    <form:content>
-    
-    <Label text="Customer Id" required="true"></Label>
-    <Input id="customerId"></Input>
-    <Label text="First Name" required="true"></Label>
-    <Input id="customerFirstName"></Input>
-    <Label text="Last Name" required="true" ></Label>
-    <Input id="customerLastName"></Input>
-    
-    </form:content>
-    
-    </form:SimpleForm> -->
+  
 
 
     <sap.ui.layout.form:Form xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true">

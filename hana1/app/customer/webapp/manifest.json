@@ -1,7 +1,7 @@
 {
   "_version": "1.59.0",
   "sap.app": {
-    "id": "ns.hanacrud",
+    "id": "ns.customer",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -12,8 +12,8 @@
     "resources": "resources.json",
     "sourceTemplate": {
       "id": "@sap/generator-fiori:basic",
-      "version": "1.12.1",
-      "toolsId": "b242f8c7-b594-42be-848f-ba4c79902922"
+      "version": "1.12.2",
+      "toolsId": "49756781-739a-4a56-9ea7-198c373a1872"
     },
     "dataSources": {
       "mainService": {
@@ -66,7 +66,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "ns.hanacrud.i18n.i18n"
+          "bundleName": "ns.customer.i18n.i18n"
         }
       },
       "": {
@@ -92,7 +92,7 @@
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
         "async": true,
-        "viewPath": "ns.hanacrud.view",
+        "viewPath": "ns.customer.view",
         "controlAggregation": "pages",
         "controlId": "app",
         "clearControlAggregation": false
@@ -105,22 +105,21 @@
             "TargetMain"
           ]
         },
+
         {
-          "name": "detail",
-          "pattern": "detail/{customerdetail}",
-          "target": [
-            "Detail"
-          ]
+
+          "name": "create",
+          "pattern": "create",
+          "target": ["create"]
         },
 
         {
-          "name": "create",
-          "pattern": "create",
-          "target": [
-            "Create"
-          ]
-        }
+          "name": "object",
+          "pattern": "object/{objectid}",
+          "target": ["object"]
 
+
+        }
       ],
       "targets": {
         "TargetMain": {
@@ -131,20 +130,23 @@
           "viewName": "Main"
         },
 
-        "Detail":{
+        "create": {
 
-            "viewName": "Detail"  
+          "viewName": "Create",
+          "transition": "flip"
+
         },
 
-        "Create":{
+        "object": {
 
-          "viewName": "Create"
+          "viewName": "Object",
+          "transition": "show"
 
         }
       }
     },
     "rootView": {
-      "viewName": "ns.hanacrud.view.App",
+      "viewName": "ns.customer.view.App",
       "type": "XML",
       "async": true,
       "id": "App"

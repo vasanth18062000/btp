@@ -1,5 +1,3 @@
-using { cuid } from '@sap/cds/common';
-
 namespace hanaexample.db;
 
 entity Customer {
@@ -7,10 +5,10 @@ entity Customer {
     key customerId: String;
     customerFirstName: String;
     customerLastName: String;
-    address : Association to many Addresss on address.customer=$self;
+    address : Association to Addresss;
 
 }
-  
+
 entity Addresss {
 
     key adressId: String;

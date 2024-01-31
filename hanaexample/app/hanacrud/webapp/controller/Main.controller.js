@@ -1,14 +1,10 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
-
-    "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator",
-    "sap/ui/model/FilterType"
+    "sap/ui/core/mvc/Controller"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller,Filter,FilterOperator,FilterType) {
+    function (Controller) {
         "use strict";
 
         return Controller.extend("ns.hanacrud.controller.Main", {
@@ -28,8 +24,10 @@ sap.ui.define([
 
         onCreateProduct:function(oEvent){
 
-            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-            // var selectcustomerId = oEvent.getSource().getBindingContext().getProperty("customerId");
+            // var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+
+            const oRouter= this.getOwnerComponent().getRouter();
+          
             oRouter.navTo("create");
 
         },
