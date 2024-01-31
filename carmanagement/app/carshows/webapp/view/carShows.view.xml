@@ -40,7 +40,7 @@
                                 <Button
                                 text="Update"
                                 icon="sap-icon://edit"
-                                press="onUpdate"
+                                press="onOpenUpdateDialog"
                                 type="Emphasized"
                             />
                             <Button

@@ -12,7 +12,6 @@ sap.ui.define([
      */
     function (Controller,Filter, FilterOperator,Fragment,MessageBox,MessageToast) {
         "use strict";
-
         return Controller.extend("ns.carshows.controller.carShows", {
             onInit: function () {
                 // this.onRead();
@@ -62,16 +61,7 @@ sap.ui.define([
                 onAdd:function(){
                     this.getOwnerComponent().getRouter().navTo("createView");
                 },
-
-                //pop up open
-                onOpenDialog() {
-                    console.log("hai")
-                    // create dialog lazily
-                    this.pDialog ??= this.loadFragment({
-                      name: "ns.carshows.view.AddFragement",
-                    });
-                    this.pDialog.then((oDialog) => oDialog.open());
-                  },
+                  //create
                   onSave:function(){
                     console.log("hai");
                     var payload ={
@@ -93,12 +83,39 @@ sap.ui.define([
                         }
                     });
                 },
+                 //pop up open
+                 onOpenDialog() {
+                    console.log("hai")
+                    // create dialog lazily
+                    this.pDialog ??= this.loadFragment({
+                      name: "ns.carshows.view.AddFragement",
+                    });
+                    this.pDialog.then((oDialog) => oDialog.open());
+                  },
+                  onOpenUpdateDialog(oEvent) {
+                    console.log("hai update")
+                    this.carId=oEvent.getSource().getBindingContext().getProperty("Id");
+                    console.log(this.carId);
+                    // create dialog lazily
+                    this.pDialog ??= this.loadFragment({
+                      name: "ns.carshows.view.UpdateFragement",
+                    });
+                    this.pDialog.then((oDialog) => oDialog.open());
+                  },
                    //pop up close
                    onCloseDialog: function () {
                     console.log("hai");
                     this.byId("AddcarDialog").close();
+                    window.location.reload();
                     this.clearForm();
                   },
+                    //pop up close
+                    onCloseUpdateDialog: function () {
+                        console.log("hai");
+                        this.byId("UpdatecarDialog").close();
+                        window.location.reload();
+                        this.clearForm();
+                      },
                   //clearing the form
                   clearForm:function(){
                     this.getView().byId("_IDLabel1").setValue(""),
@@ -106,21 +123,27 @@ sap.ui.define([
                     this.getView().byId("_IDLabel3").setValue("")
                   },
                   //edit
-                  onUpdate:function(oEvent){
-                    this.onOpenDialog()
-                    var carId=oEvent.getSource().getBindingContext().getProperty("Id");
-                    console.log(carId);
+                  onUpdate:function(){
+                    // this.onOpenDialog()
+                    // var carId=oEvent.getSource().getBindingContext().getProperty("Id");
+                    console.log(this.carId);
+                    // var carN=oEvent.getSource().getBindingContext().getProperty("carName");
+                    // var carM=oEvent.getSource().getBindingContext().getProperty("manufactureDate");
+                    // console.log(carId);
+                    // console.log(carN);
+                    // console.log(carM);
                     var payload ={
-                        Id:this.getView().byId("_IDLabel1").getValue(),
+                        // Id:this.getView().byId("_IDLabel1").getValue(),
                         carName:this.getView().byId("_IDLabel2").getValue(),
                         manufactureDate:this.getView().byId("_IDLabel3").getValue()
                     };
+                    // this.getView().getModel().byId("_IDLabel1").setData(this.carId);
                     console.log("hai");
                     var oModel=this.getView().getModel();
-                    oModel.update("/Car",payload,{
-                        method:"update",
+                    oModel.update("/Car("+this.carId+")",payload,{
+                        method:"UPDATE",
                         success:function(response){
-                            MessageToast.show("car is successfully added");
+                            MessageToast.show("car is successfully updated");
                             this.clearForm();
                         },
                         error:function(error){

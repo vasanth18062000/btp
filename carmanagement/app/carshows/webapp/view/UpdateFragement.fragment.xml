@@ -1,5 +1,5 @@
 <core:FragmentDefinition
-    controllerName="ns.carshows.controller.Delete"
+    controllerName="ns.carshows.controller.carShows"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
@@ -7,30 +7,27 @@
     displayBlock="true"
 >
     <Dialog 
-        id="AddcarDialog"
-        title="Add Car"
+        id="UpdatecarDialog"
+        title="UPDATE"
         visible="true"
     >
         <VBox class="edit">
-            <Label text="ID:" />
-            <Input
+            <!-- <Label text="ID:" />
+            <Input 
                 id="_IDLabel1"
-                value="{}"
-                placeholder="id"
-            />
+                placeholder="id"  value="{/Id}"
+            /> -->
 
             <Label text="Car Name:" />
             <Input
                 id="_IDLabel2"
-                value="{}"
-                placeholder="name"
+                placeholder="name" value="{/carName}"
             />
 
             <Label text="manufactureDate:" />
             <Input
                 id="_IDLabel3"
-                value="{}"
-                placeholder="model"
+                placeholder="model" value="{/manufactureDate}"
             />
             <Page class ="carfooter">
                 <footer>
@@ -39,12 +36,12 @@
                             <Button
                                 text="Save"
                                 icon="sap-icon://save"
-                                press=".onSave"
+                                press=".onUpdate"
                             />
                             <Button
                                 text="Cancel"
                                 icon="sap-icon://cancel"
-                                press=".onCloseDialog"
+                                press=".onCloseUpdateDialog"
                             />
                         </contentRight>
                     </Bar>
