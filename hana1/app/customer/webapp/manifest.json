@@ -108,6 +108,13 @@
 
         {
 
+          "name": "main",
+          "pattern": "main",
+          "target": ["main"]
+        },
+
+        {
+
           "name": "create",
           "pattern": "create",
           "target": ["create"]
@@ -126,14 +133,14 @@
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "Main",
-          "viewName": "Main"
+          "viewId": "Tile",
+          "viewName": "Tile"
         },
 
         "create": {
 
           "viewName": "Create",
-          "transition": "flip"
+          "transition": "fade"
 
         },
 
@@ -141,6 +148,13 @@
 
           "viewName": "Object",
           "transition": "show"
+
+        },
+
+        "main":{
+
+          "viewName": "Main",
+          "transition": "slide"
 
         }
       }
