@@ -23,6 +23,15 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: carshowroom-auth
+      - name: carshowroom-db
+
+  - name: carshowroom-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: carshowroom-db
 
 resources:
   - name: carshowroom-auth
@@ -34,3 +43,8 @@ resources:
       config:
         xsappname: carshowroom-${org}-${space}
         tenant-mode: dedicated
+  - name: carshowroom-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared

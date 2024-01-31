@@ -10,11 +10,11 @@
          <ObjectHeader
                 responsive="true"
                 title="{carName}"
-                intro="Welcome To Car Showroom"
+                intro="Welcome To {carName} Showroom"
                 icon="sap-icon://car-rental"
             />
-            <mvc:XMLView viewName="my.carshowroom.view.Carsdetails" />
-            <mvc:XMLView viewName="my.carshowroom.view.Varient" />
+            <mvc:XMLView viewName="my.carshowroom.view.Carsdetails"/>
+            <mvc:XMLView viewName="my.carshowroom.view.Varient"/>
         </content>
     </Page>
 </mvc:View>

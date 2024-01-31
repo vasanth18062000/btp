@@ -14,19 +14,39 @@
                 title="{i18n>title}"
                 intro="Welcome To Car Showroom"
                 icon="sap-icon://car-rental"
-            >
-            
-            
-            </ObjectHeader>
+            />
 
             <!-- Toggle Switch for Theme -->
-            <FlexBox justifyContent="Start" alignItems="Center">
-            <Text text="Theme :" />
-            <Switch
+            <!-- <FlexBox justifyContent="Start" alignItems="Center"> -->
+            <!-- <Text text="Theme :" /> -->
+            <!-- <Switch
                 state="{/darkTheme}"
                 change="onThemeToggleChange"
-            />
-            </FlexBox>
+            /> -->
+            <!-- <items> -->
+            <!-- <Button text="Add Car" press="onRightButtonPress" /> -->
+            <!-- </items>  -->
+            <!-- </FlexBox> -->
+
+            <Bar>
+                <contentRight>
+                    <Text text="Dark Theme :" />
+                    <Switch
+                        state="{/darkTheme}"
+                        change="onThemeToggleChange"
+                    />
+                </contentRight>
+
+                <contentMiddle>
+                    <Button
+                        text="Add Car"
+                        icon="sap-icon://car-rental"
+                        press=".onOpenDialog"
+                        type="Emphasized"
+                    />
+                </contentMiddle>
+            </Bar>
+
             <Table
                 id="_IDGenTable1"
                 items="{/cars}"
@@ -76,6 +96,18 @@
                             text="Model Year"
                         />
                     </Column>
+                    <Column id="_IDGenColumn6">
+                        <Label
+                            id="_IDGenLabel6"
+                            text="Update Action"
+                        />
+                    </Column>
+                    <Column id="_IDGenColumn7">
+                        <Label
+                            id="_IDGenLabel7"
+                            text="Delete Action"
+                        />
+                    </Column>
                 </columns>
                 <items>
                     <ColumnListItem
@@ -103,6 +135,20 @@
                             <Text
                                 id="_IDGenText5"
                                 text="{modelYear}"
+                            />
+
+                            <Button
+                                text="Updata"
+                                icon="sap-icon://edit"
+                                press=".onOpenUpdateDialog"
+                                type="Emphasized"
+                            />
+
+                            <Button
+                                text="Delete"
+                                icon="sap-icon://delete"
+                                press="onDelete"
+                                type="Emphasized"
                             />
                         </cells>
                     </ColumnListItem>

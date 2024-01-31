@@ -7,15 +7,27 @@ sap.ui.define(["sap/ui/core/mvc/Controller"], function (Controller) {
       oRouter.getRoute("RouteCars").attachMatched(this.onObjectMatched, this); //Attach Router Pattern
     },
     onObjectMatched(oEvent) {
-      var oArgs, oView;
+      var oArgs, oView, oId;
       oArgs = oEvent.getParameter("arguments");
-      oView = this.getView();
+      (oView = this.getView()), (oId = oArgs.invoicePath);
       oView.bindElement({
-        path: "/cars(" + oArgs.invoicePath + ")",
-        //   parameters: {
-        //     expand: "engineDetails"
-        //  }
+        path: "/cars(" + oId + ")",
+        parameters: {
+          expand: "engineDetails,seatsDetails,currencyDetails",
+        },
       });
+    },
+
+    onOpenDialog() {
+      // create dialog lazily
+      this.pDialog ??= this.loadFragment({
+        name: "my.carshowroom.view.TubeDialog",
+      });
+
+      this.pDialog.then((oDialog) => oDialog.open());
+    },
+    onCloseDialog: function () {
+      this.byId("TubeDialog").close();
     },
   });
 });

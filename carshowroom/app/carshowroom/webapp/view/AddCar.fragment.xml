@@ -1,0 +1,150 @@
+<core:FragmentDefinition
+    controllerName="my.carshowroom.controller.Cars"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    displayBlock="true"
+>
+    <!-- <Dialog id="AddcarDialog">
+        <Page
+            title="Add Car"
+            showNavButton="true"
+            navButtonPress=""
+        >
+            <content>
+                <core:Icon
+                    src="sap-icon://car-rental"
+                    size="8rem"
+                />
+
+                <f:SimpleForm
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanL="2"
+                >
+                    <f:content>
+                        <Label
+                            text="Id"
+                            required="true"
+                        />
+                        <Input />
+                        <Label
+                            text="car name"
+                            required="true"
+                        />
+                        <Input />
+                        <Label
+                            text="Manufature date"
+                            required="true"
+                        />
+                        <Input />
+                    </f:content>
+                </f:SimpleForm>
+            </content>
+
+            <footer>
+                <Bar>
+                    <contentRight>
+                        <Button
+                            text="Save"
+                            icon="sap-icon://save"
+                            press="onSave"
+                        />
+                        <Button
+                            text="Cancel"
+                            icon="sap-icon://cancel"
+                            press=".onCloseDialog"
+                        />
+                    </contentRight>
+                </Bar>
+            </footer>
+        </Page>
+
+         <beginButton>
+            <Button
+                text="{i18n>dialogCloseButtonText}"
+                press=".onCloseDialog"
+            />
+        </beginButton>
+    </Dialog> -->
+
+    <Dialog
+        id="AddcarDialog"
+        title="Add Car"
+        visible="true"
+    >
+        <VBox class="edit">
+            <Label required="true" text="ID:" />
+            <Input
+                required="true"
+                id="Label1"
+                value="{}"
+                placeholder="id"
+            />
+
+            <Label required="true" text="Car Name:" />
+            <Input
+                required="true"
+                id="Label2"
+                value="{}"
+                placeholder="name"
+            />
+
+            <Label required="true" text="Car Model:" />
+            <Input
+                required="true"
+                id="Label3"
+                value="{}"
+                placeholder="model"
+            />
+
+            <Label required="true" text="Engine Type:" />
+            <Input
+                required="true"
+                id="Label4"
+                value="{}"
+                placeholder="type"
+            />
+
+            <Label required="true" text="Model Year:" />
+            <Input
+                required="true"
+                id="Label5"
+                value="{}"
+                placeholder="modelyear"
+            />
+
+            <Page class="carfooter">
+                <footer>
+                    <Bar>
+                        <contentRight>
+                            <Button
+                                text="Save"
+                                icon="sap-icon://save"
+                                press="onSubmitFormPress"
+                            />
+                            <Button
+                                text="Cancel"
+                                icon="sap-icon://cancel"
+                                press=".onCloseDialog"
+                            />
+                        </contentRight>
+                    </Bar>
+                </footer>
+            </Page>
+
+            <!-- <Button
+                text="Submit"
+                press="onSubmitFormPress"
+            /> -->
+        </VBox>
+
+        <!-- <beginButton>
+            <Button
+                text="Close"
+                press=".onCloseDialog"
+            />
+        </beginButton> -->
+    </Dialog>
+</core:FragmentDefinition>

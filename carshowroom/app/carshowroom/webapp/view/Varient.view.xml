@@ -99,6 +99,15 @@
             </attributes>
         </ObjectListItem>
     </List>
+    <Bar class="align">
+        <contentMiddle>
+            <Button
+                text="Tube Details"
+                press=".onOpenDialog"
+                type="Emphasized"
+            />
+        </contentMiddle>
+    </Bar>
 
     <Bar>
         <contentLeft>
@@ -110,9 +119,7 @@
         </contentLeft>
     </Bar>
 
-    <List
-        items="{path: '/cars('oArgs.invoicePath')', parameters: {expand: 'engineDetails'}}"
-    >
+    <List items="{path: '/cars('oId')', parameters: {expand: 'engineDetails'}}">
         <ObjectListItem>
             <attributes>
                 <ObjectAttribute
@@ -140,9 +147,7 @@
         </contentLeft>
     </Bar>
 
-    <List
-        items="{path: '/cars('oArgs.invoicePath')', parameters: {expand: 'seatsDetails'}}"
-    >
+    <List items="{path: '/cars('oId')', parameters: {expand: 'seatsDetails'}}">
         <ObjectListItem>
             <attributes>
                 <ObjectAttribute
@@ -165,7 +170,7 @@
     </Bar>
 
     <List
-        items="{path: '/cars('oArgs.invoicePath')', parameters: {expand: 'currencyDetails'}}"
+        items="{path: '/cars('oId')', parameters: {expand: 'currencyDetails'}}"
     >
         <ObjectListItem>
             <attributes>

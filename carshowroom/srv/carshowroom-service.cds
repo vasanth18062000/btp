@@ -14,7 +14,7 @@ service CarShowroomService {
     
     // annotate CarShowroomService with @(requires: 'support');
     annotate my.Car with @(requires: 'test');
-    //annotate my.Car with @odata.draft.enabled;
+    // annotate my.Car with @odata.draft.enabled;
     
 
 

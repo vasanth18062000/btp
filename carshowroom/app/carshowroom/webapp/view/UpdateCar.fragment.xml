@@ -1,0 +1,165 @@
+<core:FragmentDefinition
+    controllerName="my.carshowroom.controller.Cars"
+    xmlns:secondary="my.carshowroom.controller.Carsdetails"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    displayBlock="true"
+>
+    <!-- <Dialog id="AddcarDialog">
+        <Page
+            title="Add Car"
+            showNavButton="true"
+            navButtonPress=""
+        >
+            <content>
+                <core:Icon
+                    src="sap-icon://car-rental"
+                    size="8rem"
+                />
+
+                <f:SimpleForm
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanL="2"
+                >
+                    <f:content>
+                        <Label
+                            text="Id"
+                            required="true"
+                        />
+                        <Input />
+                        <Label
+                            text="car name"
+                            required="true"
+                        />
+                        <Input />
+                        <Label
+                            text="Manufature date"
+                            required="true"
+                        />
+                        <Input />
+                    </f:content>
+                </f:SimpleForm>
+            </content>
+
+            <footer>
+                <Bar>
+                    <contentRight>
+                        <Button
+                            text="Save"
+                            icon="sap-icon://save"
+                            press="onSave"
+                        />
+                        <Button
+                            text="Cancel"
+                            icon="sap-icon://cancel"
+                            press=".onCloseDialog"
+                        />
+                    </contentRight>
+                </Bar>
+            </footer>
+        </Page>
+
+         <beginButton>
+            <Button
+                text="{i18n>dialogCloseButtonText}"
+                press=".onCloseDialog"
+            />
+        </beginButton>
+    </Dialog> -->
+
+    <Dialog
+        id="UpdateCarDialog"
+        title="Update Car"
+        visible="true"
+    >
+        <VBox class="edit">
+            <!-- <Label
+                required="true"
+                text="ID:"
+            />
+            <Input
+                id="Label1"
+                value="{ID}"
+                placeholder="id"
+            /> -->
+
+            <Label
+                required="true"
+                text="Car Name:"
+            />
+            <Input
+                required="true"
+                id="Label2"
+                value="{carName}"
+                placeholder="{carName}"
+            />
+
+            <Label
+                required="true"
+                text="Car Model:"
+            />
+            <Input
+                required="true"
+                id="Label3"
+                value="{carModel}"
+                placeholder="{carModel}"
+            />
+
+            <Label
+                required="true"
+                text="Engine Type:"
+            />
+            <Input
+                required="true"
+                id="Label4"
+                value="{engineType}"
+                placeholder="{engineType}"
+            />
+
+            <Label
+                required="true"
+                text="Model Year:"
+            />
+            <Input
+                required="true"
+                id="Label5"
+                value="{modelYear}"
+                placeholder="{modelYear}"
+            />
+
+            <Page class="carfooter">
+                <footer>
+                    <Bar>
+                        <contentRight>
+                            <Button
+                                text="Update"
+                                icon="sap-icon://save"
+                                press="onUpdate"
+                            />
+                            <Button
+                                text="Cancel"
+                                icon="sap-icon://cancel"
+                                press=".onCloseDialog"
+                            />
+                        </contentRight>
+                    </Bar>
+                </footer>
+            </Page>
+
+            <!-- <Button
+                text="Submit"
+                press="onSubmitFormPress"
+            /> -->
+        </VBox>
+
+        <!-- <beginButton>
+            <Button
+                text="Close"
+                press=".onCloseDialog"
+            />
+        </beginButton> -->
+    </Dialog>
+</core:FragmentDefinition>
