@@ -4,7 +4,7 @@
     displayBlock="true"
     xmlns="sap.m"
 >
-    <Page title="{i18n>title}">
+    <Page title="{i18n>title}" titleAlignment="Center">
         <content>
 
          <ObjectHeader

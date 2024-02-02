@@ -13,7 +13,44 @@ sap.ui.define(
     "use strict";
 
     return Controller.extend("my.carshowroom.controller.Cars", {
-      onInit: function () {},
+      onInit: function () {
+
+      // var isDisabled = localStorage.getItem("isDisabled");
+      // if (isDisabled === "true") {
+      //   this.oSwitch = this.getView().byId("mySwitch");
+      //  // this.oSwitch.setEnabled(true);
+      // }
+
+
+      
+
+
+      },
+      onThemeToggleChange: function (oEvent) {
+        var bDarkTheme = oEvent.getParameter("state");
+
+      //   if (bDarkTheme) {
+      //   localStorage.setItem("isDisabled", "true");
+      //   window.location.reload();
+
+      // } else {
+      //   this.oSwitch.setEnabled(true);
+      //   localStorage.removeItem("isDisabled");
+      // }
+
+        // Apply the selected theme
+        this.applyTheme(bDarkTheme);
+        
+      },
+
+      applyTheme: function (bDarkTheme) {
+        // Choose the appropriate theme based on the toggle state
+        var sTheme = bDarkTheme ? "sap_fiori_3_dark" : "sap_belize_plus";
+   
+        // Apply the theme
+        sap.ui.getCore().applyTheme(sTheme);
+        
+      },
 
       onFilterCar(oEvent) {
         // build filter array
@@ -22,7 +59,6 @@ sap.ui.define(
         if (sQuery) {
           aFilter.push(new Filter("carName", FilterOperator.Contains, sQuery));
         }
-
         // filter binding
         const oList = this.byId("_IDGenTable1");
         const oBinding = oList.getBinding("items");
@@ -35,23 +71,10 @@ sap.ui.define(
           .getSource()
           .getBindingContext()
           .getProperty("ID");
-          console.log(oRouter);
+        console.log(oRouter);
         oRouter.navTo("RouteCars", {
           invoicePath: encodeURIComponent(SelectedItem),
         });
-      },
-
-      onThemeToggleChange: function (oEvent) {
-        var bDarkTheme = oEvent.getParameter("state");
-        // Apply the selected theme
-        this.applyTheme(bDarkTheme);
-      },
-
-      applyTheme: function (bDarkTheme) {
-        // Choose the appropriate theme based on the toggle state
-        var sTheme = bDarkTheme ? "sap_belize_hcb" : "sap_belize_plus";
-        // Apply the theme
-        sap.ui.getCore().applyTheme(sTheme);
       },
 
       // Add Car
@@ -126,9 +149,8 @@ sap.ui.define(
       },
 
       onUpdate: function () {
-
         var payload = {
-         // ID: this.getView().byId("Label1").getValue(),
+          // ID: this.getView().byId("Label1").getValue(),
           carName: this.getView().byId("Label2").getValue(),
           carModel: this.getView().byId("Label3").getValue(),
           engineType: this.getView().byId("Label4").getValue(),
@@ -151,12 +173,30 @@ sap.ui.define(
 
       //Delete Car
       onDelete: function (oEvent) {
-        console.log("hai");
+        var that = this;
+        MessageBox.confirm("Are you sure you want to delete?", {
+          title: "Confirmation",
+          onClose: function (oAction) {
+            if (oAction === MessageBox.Action.OK) {
+              // User confirmed the deletion, perform the deletion logic here
+              that.performDelete(oEvent);
+            }
+          },
+        });
+      },
+      performDelete: function (oEvent) {
+        console.log("Deletion confirmed");
+        // var carId = oEvent.getSource().getBindingContext().getProperty("ID");
+
+        //  if (!oEvent) {
+        //   console.error("delete is error");
+        //   return;
+        // }
         var carId = oEvent.getSource().getBindingContext().getProperty("ID");
         console.log(carId);
         var oModel = this.getView().getModel();
         oModel.remove("/cars(" + carId + ")", {
-          method: "delete",
+          method: "DELETE",
           success: function (response) {
             MessageToast.show("car is successfully deleted");
           }.bind(this),

@@ -30,13 +30,12 @@
   "sap.ui": {
     "technology": "UI5",
 
-
     "deviceTypes": {
       "desktop": true,
       "tablet": true,
       "phone": true
     },
-    
+
     "icons": {
       "icon": "sap-icon://Fiori2/Fiori2",
       "favIcon": "",
@@ -44,14 +43,10 @@
       "phone@2": "",
       "tablet": "",
       "tablet@2": ""
-
     },
 
-    
     "fullWidth": true
-
   },
-
 
   "sap.ui5": {
     "flexEnabled": false,
@@ -95,7 +90,7 @@
 
     "resourceBundle": "i18n/i18n.properties",
     "supportedThemes": ["sap_belize_plus", "sap_fiori_3_dark"],
-    
+
     "resources": {
       "css": [
         {
@@ -120,6 +115,16 @@
           "target": ["TargetCars"]
         },
         {
+          "name": "Startpage",
+          "pattern": "",
+          "target": ["Startpage"]
+        },
+        {
+          "name": "Cars",
+          "pattern": "Cars",
+          "target": ["Cars"]
+        },
+        {
           "name": "RouteCars",
           "pattern": "Carsdetails/{invoicePath}",
           "target": ["TargetCarsdetails"]
@@ -130,9 +135,17 @@
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
+          "viewId": "Startpage",
+          "viewName": "Startpage"
+        },
+        "Cars": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
           "viewId": "Cars",
           "viewName": "Cars"
         },
+
         "TargetCarsdetails": {
           "viewType": "XML",
           "transition": "slide",

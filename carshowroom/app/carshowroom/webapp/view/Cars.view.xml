@@ -7,6 +7,7 @@
     <Page
         id="page"
         title="{i18n>title}"
+        titleAlignment="Center"
     >
         <content>
             <ObjectHeader
@@ -31,10 +32,47 @@
             <Bar>
                 <contentRight>
                     <Text text="Dark Theme :" />
+
                     <Switch
+                        id="mySwitch"
+                        state="true"
+                        change="onThemeToggleChange"
+                    >
+                        <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData>
+                    </Switch>
+
+                    <!-- <Button
+                        id="b1"
+                        text="Toggle Footer"
+                        press="toggleFooter"
+                    />
+                    <ToggleButton
+                        id="togid"
+                        text="Hide Footer"
+                        icon="sap-icon://hide"
+                        press="toggleVisibility"
+                    />
+
+                    <OverflowToolbar style="Clear">
+                        <ToolbarSpacer />
+                        <Button
+                            type="Accept"
+                            text="Accept"
+                        />
+                        <Button
+                            type="Reject"
+                            text="Reject"
+                        />
+                    </OverflowToolbar> -->
+
+                    <!-- <Switch 
+                        
+                        id="mySwitch"
                         state="{/darkTheme}"
                         change="onThemeToggleChange"
-                    />
+                    /> -->
                 </contentRight>
 
                 <contentMiddle>

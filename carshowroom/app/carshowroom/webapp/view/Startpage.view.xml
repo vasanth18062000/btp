@@ -1,0 +1,27 @@
+<mvc:View
+    controllerName="my.carshowroom.controller.Startpage"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+>
+     <Page title="Welcome to Carshowroom">
+        <layout:VerticalLayout class="sapUiResponsiveMargin">
+            <Title
+                titleStyle="H2"
+                text="CarShowroom"
+                class="sapUiTinyMarginBegin" />
+            <layout:HorizontalLayout allowWrapping="true">
+                <GenericTile
+                    class="sapUiTinyMarginBegin sapUiTinyMarginTop"
+                    header=""
+                    press=".onNavToFlow"
+                    backgroundImage="https://img.freepik.com/premium-vector/golden-color-elegant-luxury-3d-automotive-logo_657998-5.jpg">
+                    
+                    
+                </GenericTile>
+               
+            </layout:HorizontalLayout>
+        </layout:VerticalLayout>
+    </Page>
+</mvc:View>
