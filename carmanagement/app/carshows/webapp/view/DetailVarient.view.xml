@@ -10,10 +10,11 @@
 					<m:headerContent>
 						<m:Image src="{carimage}" width="62px" height="62px" press="handleImagePress" />
 			</m:headerContent>
+			            <mvc:XMLView viewName="ns.carshows.view.Detail" />
+
 			<f:FlexibleColumnLayout id="flexibleColumnLayout" backgroundDesign="Solid">
 		<f:beginColumnPages>
 			<mvc:XMLView viewName="ns.carshows.view.Varient"/>
-            <mvc:XMLView viewName="ns.carshows.view.Detail" />
             		</f:beginColumnPages>
 					<f:midColumnPages>
             <mvc:XMLView id="detailView" viewName="ns.carshows.view.ModelDetail" />

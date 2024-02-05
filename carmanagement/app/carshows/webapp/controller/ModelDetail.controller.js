@@ -10,7 +10,6 @@ sap.ui.define([
 		onInit() {
             var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.getRoute("modeldetail").attachMatched(this.onObjectMatched, this); //Attach Router Pattern
-      
           },
           onObjectMatched(oEvent) {
             var oArgs,oView;
@@ -22,6 +21,16 @@ sap.ui.define([
               //     expand: "colour"
               //  }
             });
+          },
+          onOpenDialog() {
+            // create dialog lazily
+            this.pDialog ??= this.loadFragment({
+              name: "ns.carshows.view.TubeFragement",
+            });
+            this.pDialog.then((oDialog) => oDialog.open());
+          },
+          onCloseDialog: function () {
+            this.byId("TubeDialog").close();
           }
         
 

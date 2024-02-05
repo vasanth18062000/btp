@@ -3,6 +3,7 @@ COLUMN TABLE CarManagementService_Car_drafts (
   carName NVARCHAR(5000) NULL,
   manufactureDate NVARCHAR(5000) NULL,
   carimage NVARCHAR(5000) NULL,
+  description NVARCHAR(5000) NULL,
   IsActiveEntity BOOLEAN,
   HasActiveEntity BOOLEAN,
   HasDraftEntity BOOLEAN,

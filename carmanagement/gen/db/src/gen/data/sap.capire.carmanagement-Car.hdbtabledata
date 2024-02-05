@@ -16,7 +16,8 @@
           "ID",
           "CARNAME",
           "MANUFACTUREDATE",
-          "CARIMAGE"
+          "CARIMAGE",
+          "DESCRIPTION"
         ],
         "include_filter": []
       },
@@ -24,7 +25,8 @@
         "ID": "Id",
         "CARNAME": "carName",
         "MANUFACTUREDATE": "manufactureDate",
-        "CARIMAGE": "carimage"
+        "CARIMAGE": "carimage",
+        "DESCRIPTION": "description"
       }
     }
   ]

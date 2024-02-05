@@ -168,7 +168,10 @@ sap.ui.define([
 
                         }
                     });
+                  },
+                  onChange:function(oEvent){
+                    var carLanguage=oEvent.getParameter("selectedItem").getKey();
+                    sap.ui.getCore().getConfiguration().setLanguage(carLanguage);
                   }
-               
         });
     });

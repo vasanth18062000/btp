@@ -8,7 +8,7 @@
 >
     <Dialog 
         id="AddcarDialog"
-        title="Add Car"
+        title="{i18n>addCar}"
         visible="true"
     >
         <VBox class="edit">

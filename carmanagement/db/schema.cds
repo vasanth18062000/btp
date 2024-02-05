@@ -8,13 +8,14 @@ entity Car{
     // type: String;
     modelVarient:  Composition of  many ModelVarient on modelVarient.models=$self;
     carimage :String;
+    description: String;
 }
 
 entity ModelVarient{
     key Id: Integer;
     modelName: String;
-    colour: Composition of Colours on colour.colour=$self;
-    price: Composition of  Prices on price.price=$self;
+    colour: Association to many Colours on colour.colour=$self;
+    price: Composition of many Prices on price.price=$self;
     engineType: Composition of  many Engine on engineType.engines=$self;
     noOfTyre: Composition of  many Tyre on noOfTyre.carTyre=$self;
     models: Association to  Car;
@@ -25,7 +26,6 @@ entity Colours{
     key Id: Integer;
     colours:String;
     colour:Association to ModelVarient;
-    cars : Association to Car;
 }
 
 entity Prices{
@@ -59,6 +59,7 @@ entity Tyre{
 entity TyreType{
     key Id: Integer;
     tyreType: String;
+    typeTyre: Association to Tyre;
 }
 
 entity Passanger{

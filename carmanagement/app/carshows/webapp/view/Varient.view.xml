@@ -32,5 +32,4 @@ growingThreshold="5">
                     </ColumnListItem>
                 </items>
             </Table>
-			
 </mvc:View>

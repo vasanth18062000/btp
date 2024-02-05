@@ -15,16 +15,14 @@
         "import_columns": [
           "ID",
           "COLOURS",
-          "COLOUR_ID",
-          "CARS_ID"
+          "COLOUR_ID"
         ],
         "include_filter": []
       },
       "column_mappings": {
         "ID": "Id",
         "COLOURS": "colours",
-        "COLOUR_ID": "colour_Id",
-        "CARS_ID": "cars_Id"
+        "COLOUR_ID": "colour_Id"
       }
     }
   ]
