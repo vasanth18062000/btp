@@ -5,23 +5,58 @@
     xmlns="sap.m"
     xmlns:layout="sap.ui.layout"
 >
-     <Page title="Welcome to Carshowroom">
+    <Page
+        class="startpage"
+        title="Welcome to Carshowroom"
+        titleAlignment="Center"
+    >
         <layout:VerticalLayout class="sapUiResponsiveMargin">
             <Title
                 titleStyle="H2"
-                text="CarShowroom"
-                class="sapUiTinyMarginBegin" />
+                text="Car Dealer Support"
+                class="sapUiTinyMarginBegin"
+            />
             <layout:HorizontalLayout allowWrapping="true">
                 <GenericTile
                     class="sapUiTinyMarginBegin sapUiTinyMarginTop"
-                    header=""
+                    header="Car Showroom"
                     press=".onNavToFlow"
-                    backgroundImage="https://img.freepik.com/premium-vector/golden-color-elegant-luxury-3d-automotive-logo_657998-5.jpg">
-                    
-                    
+                    backgroundImage="https://t4.ftcdn.net/jpg/03/24/10/63/360_F_324106326_rUJeDeC7RjP2wB4IojFhIB5bGKCnA5Cs.jpg"
+                />
+
+                <GenericTile
+                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                    header="WhasApp and mail and Tollfree Support"
+                    subheader=""
+                    press="pressPopup"
+                    appShortcut="Car Deal"
+                    systemInfo="24/7 Support"
+                    backgroundImage="https://blog.peppercloud.com/content/images/2023/04/WhatsApp-Vs-SMS-vs-Email-marketing-1.jpg"
+                >
+                    <TileContent>
+                        <ImageContent src="" />
+                    </TileContent>
                 </GenericTile>
-               
             </layout:HorizontalLayout>
+
+            <VBox
+                alignItems="Center"
+                justifyContent="Center"
+                width="100%"
+                height="100%"
+            >
+                <Text
+                    class="starttext"
+                    text="Creating an environmentally sustainable automotive supply chain can be a difficult task. This is because of the complexity involved in sourcing thousands of components from different parts of the world."
+                    width="80%"
+                />
+
+                <Text
+                    class="starttext1"
+                    text="However, it is possible to make end-to-end automotive logistics green by understanding the different obstacles involved in the process and concentrating on implementing one sustainability initiative at a time."
+                    width="60%"
+                />
+            </VBox>
         </layout:VerticalLayout>
     </Page>
 </mvc:View>

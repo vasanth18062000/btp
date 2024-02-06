@@ -14,57 +14,62 @@ sap.ui.define(
 
     return Controller.extend("my.carshowroom.controller.Cars", {
       onInit: function () {
+        // var isDisabled = localStorage.getItem("isDisabled");
+        // if (isDisabled === "true") {
+        //   this.oSwitch = this.getView().byId("mySwitch");
+        //  // this.oSwitch.setEnabled(true);
+        // }
+        // Set the default language (English)
 
-      // var isDisabled = localStorage.getItem("isDisabled");
-      // if (isDisabled === "true") {
-      //   this.oSwitch = this.getView().byId("mySwitch");
-      //  // this.oSwitch.setEnabled(true);
-      // }
-
-
-      
-
-
+        
+        //language
+        //sap.ui.getCore().getConfiguration().setLanguage("en");
       },
+
+      //language implement
+      onChangeLanguage: function (oEvent) {
+        var SelectedItemKey = oEvent.getParameter("selectedItem").getKey();
+        sap.ui.getCore().getConfiguration().setLanguage(SelectedItemKey);
+      },
+
       onThemeToggleChange: function (oEvent) {
         var bDarkTheme = oEvent.getParameter("state");
 
-      //   if (bDarkTheme) {
-      //   localStorage.setItem("isDisabled", "true");
-      //   window.location.reload();
+        //   if (bDarkTheme) {
+        //   localStorage.setItem("isDisabled", "true");
+        //   window.location.reload();
 
-      // } else {
-      //   this.oSwitch.setEnabled(true);
-      //   localStorage.removeItem("isDisabled");
-      // }
+        // } else {
+        //   this.oSwitch.setEnabled(true);
+        //   localStorage.removeItem("isDisabled");
+        // }
 
         // Apply the selected theme
         this.applyTheme(bDarkTheme);
-        
       },
 
       applyTheme: function (bDarkTheme) {
         // Choose the appropriate theme based on the toggle state
-        var sTheme = bDarkTheme ? "sap_fiori_3_dark" : "sap_belize_plus";
-   
+        //var sTheme = bDarkTheme ? "sap_fiori_3_dark" : "sap_belize_plus";
+        var sTheme = bDarkTheme ? "sap_horizon_dark" : "sap_horizon";
+
         // Apply the theme
         sap.ui.getCore().applyTheme(sTheme);
-        
       },
 
+      //search filter
       onFilterCar(oEvent) {
-        // build filter array
         const aFilter = [];
         const sQuery = oEvent.getParameter("query");
         if (sQuery) {
           aFilter.push(new Filter("carName", FilterOperator.Contains, sQuery));
         }
-        // filter binding
         const oList = this.byId("_IDGenTable1");
         const oBinding = oList.getBinding("items");
         oBinding.filter(aFilter);
       },
 
+      //route to cardetail page
       onPress(oEvent) {
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
         var SelectedItem = oEvent
@@ -171,7 +176,7 @@ sap.ui.define(
         });
       },
 
-      //Delete Car
+      //Delete Car with confirmation alert
       onDelete: function (oEvent) {
         var that = this;
         MessageBox.confirm("Are you sure you want to delete?", {

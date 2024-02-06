@@ -27,7 +27,7 @@ sap.ui.define([
                    // theme 
 
             init: function () {
-                sap.ui.getCore().applyTheme("sap_belize_plus");
+                sap.ui.getCore().applyTheme("sap_horizon");
                 // call the base component's init function
                 UIComponent.prototype.init.apply(this, arguments);
 

@@ -1,0 +1,72 @@
+<core:FragmentDefinition
+    controllerName="my.carshowroom.controller.Varient"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Dialog
+        id="supportDialog"
+        title="Customer Support"
+    >
+        <Panel
+            class="sapUiResponsiveMargin"
+            width="auto"
+        >
+            <content>
+                <Bar class="bar1">
+                    <contentLeft>
+                        <Image
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/479px-WhatsApp_icon.png"
+                            alt=""
+                            width="40px"
+                            height="40px"
+                        />
+                        <Link
+                            text="Send WhatsApp"
+                            href="https://wa.me/9442622499?text=chat%20from%20carshowroom"
+                            target="_blank"
+                        />
+                    </contentLeft>
+                </Bar>
+
+                <Bar class="bar1">
+                    <contentLeft>
+                        <Image
+                            src="https://logos-world.net/wp-content/uploads/2020/11/Gmail-Logo.png"
+                            alt=""
+                            width="40px"
+                            height="20px"
+                        />
+                        <Link
+                            text="Send Email"
+                            href="mailto:gkannan502@gmail.com?subject=Subject%20body=Hello%20from%20SAPUI5"
+                            target="_blank"
+                        />
+                    </contentLeft>
+                </Bar>
+
+                <Bar class="bar1">
+                    <contentLeft>
+                        <Image
+                            src="https://www.inventicons.com/uploads/iconset/644/wm/512/call-84.png"
+                            alt=""
+                            width="40px"
+                            height="40px"
+                        />
+                        <Link
+                            text="Chat or Call with CustomerCare"
+                            href="tel:+1234567890"
+                            target="_blank"
+                        />
+                    </contentLeft>
+                </Bar>
+            </content>
+        </Panel>
+
+        <beginButton>
+            <Button
+                text="{i18n>TubeCloseButtonText}"
+                press=".onCloseDialog"
+            />
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

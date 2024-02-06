@@ -73,7 +73,9 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "my.carshowroom.i18n.i18n"
+          "bundleName": "my.carshowroom.i18n.i18n",
+          "supportedLocales": ["en","ta","de","ja"],
+          "fallbackLocale": "en"
         }
       },
       "": {
@@ -98,6 +100,8 @@
         }
       ]
     },
+
+    
     "routing": {
       "config": {
         "routerClass": "sap.m.routing.Router",

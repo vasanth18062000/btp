@@ -1,4 +1,38 @@
 /* Enter your custom styles here */
+.startpage {
+  background-color: rgb(110, 109, 109);
+  background-image: url(https://wallpapershome.com/images/pages/pic_h/15637.jpg);
+  background-size: 100%;
+}
+
+.sapUiTinyMarginBegin {
+  color: whitesmoke;
+}
+
+.starttext {
+  color: bisque;
+  font-style: italic;
+  font-weight: lighter;
+  font-size: 24px;
+  padding-top: 5%;
+}
+
+.starttext1 {
+  color: bisque;
+  font-style: italic;
+  font-weight: lighter;
+  font-size: 24px;
+  padding-top: 5%;
+}
+
+.bar1 {
+  padding-top: 4%;
+  padding-bottom: 4%;
+}
+
+.barEdit {
+  background-color: rgb(141, 141, 141);
+}
 
 .bigFont {
   font-weight: bold;
@@ -27,6 +61,6 @@
   padding-top: 3%;
 }
 
-
-
-
+.customDialog {
+  background-color: bisque;
+}

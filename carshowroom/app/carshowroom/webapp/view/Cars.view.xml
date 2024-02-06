@@ -3,6 +3,7 @@
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
+    xmlns:core="sap.ui.core"
 >
     <Page
         id="page"
@@ -13,7 +14,7 @@
             <ObjectHeader
                 responsive="true"
                 title="{i18n>title}"
-                intro="Welcome To Car Showroom"
+                intro="{i18n>intro}"
                 icon="sap-icon://car-rental"
             />
 
@@ -30,54 +31,48 @@
             <!-- </FlexBox> -->
 
             <Bar>
+                <contentLeft>
+                    <Text text="Language" />
+                    <Select
+                        forceSelection="true"
+                        change="onChangeLanguage"
+                    >
+                        <core:ListItem
+                            key="en"
+                            text="English"
+                        />
+                        <core:ListItem
+                            key="ta"
+                            text="Tamil"
+                        />
+                        <core:ListItem
+                            key="ja"
+                            text="Japanese"
+                        />
+                        <core:ListItem
+                            key="de"
+                            text="German"
+                        />
+                    </Select>
+                </contentLeft>
+
                 <contentRight>
-                    <Text text="Dark Theme :" />
+                    <Text text="{i18n>theme}" />
 
                     <Switch
                         id="mySwitch"
-                        state="true"
+                        state="false"
                         change="onThemeToggleChange"
                     >
                         <layoutData>
                             <FlexItemData growFactor="1" />
                         </layoutData>
                     </Switch>
-
-                    <!-- <Button
-                        id="b1"
-                        text="Toggle Footer"
-                        press="toggleFooter"
-                    />
-                    <ToggleButton
-                        id="togid"
-                        text="Hide Footer"
-                        icon="sap-icon://hide"
-                        press="toggleVisibility"
-                    />
-
-                    <OverflowToolbar style="Clear">
-                        <ToolbarSpacer />
-                        <Button
-                            type="Accept"
-                            text="Accept"
-                        />
-                        <Button
-                            type="Reject"
-                            text="Reject"
-                        />
-                    </OverflowToolbar> -->
-
-                    <!-- <Switch 
-                        
-                        id="mySwitch"
-                        state="{/darkTheme}"
-                        change="onThemeToggleChange"
-                    /> -->
                 </contentRight>
 
                 <contentMiddle>
                     <Button
-                        text="Add Car"
+                        text="{i18n>addcar}"
                         icon="sap-icon://car-rental"
                         press=".onOpenDialog"
                         type="Emphasized"
@@ -113,37 +108,37 @@
                     <Column id="_IDGenColumn2">
                         <Label
                             id="_IDGenLabel2"
-                            text="Car Name"
+                            text="{i18n>carname}"
                         />
                     </Column>
                     <Column id="_IDGenColumn3">
                         <Label
                             id="_IDGenLabel3"
-                            text="Car Model"
+                            text="{i18n>carmodel}"
                         />
                     </Column>
                     <Column id="_IDGenColumn4">
                         <Label
                             id="_IDGenLabel4"
-                            text="Engine Type"
+                            text="{i18n>enginetype}"
                         />
                     </Column>
                     <Column id="_IDGenColumn5">
                         <Label
                             id="_IDGenLabel5"
-                            text="Model Year"
+                            text="{i18n>modelyear}"
                         />
                     </Column>
                     <Column id="_IDGenColumn6">
                         <Label
                             id="_IDGenLabel6"
-                            text="Update Action"
+                            text="{i18n>update}"
                         />
                     </Column>
                     <Column id="_IDGenColumn7">
                         <Label
                             id="_IDGenLabel7"
-                            text="Delete Action"
+                            text="{i18n>delete}"
                         />
                     </Column>
                 </columns>
@@ -176,14 +171,14 @@
                             />
 
                             <Button
-                                text="Updata"
+                                text="{i18n>updateAction}"
                                 icon="sap-icon://edit"
                                 press=".onOpenUpdateDialog"
                                 type="Emphasized"
                             />
 
                             <Button
-                                text="Delete"
+                                text="{i18n>deleteAction}"
                                 icon="sap-icon://delete"
                                 press="onDelete"
                                 type="Emphasized"

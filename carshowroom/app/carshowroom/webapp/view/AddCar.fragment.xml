@@ -75,7 +75,10 @@
         visible="true"
     >
         <VBox class="edit">
-            <Label required="true" text="ID:" />
+            <Label
+                required="true"
+                text="ID:"
+            />
             <Input
                 required="true"
                 id="Label1"
@@ -83,7 +86,10 @@
                 placeholder="id"
             />
 
-            <Label required="true" text="Car Name:" />
+            <Label
+                required="true"
+                text="Car Name:"
+            />
             <Input
                 required="true"
                 id="Label2"
@@ -91,7 +97,10 @@
                 placeholder="name"
             />
 
-            <Label required="true" text="Car Model:" />
+            <Label
+                required="true"
+                text="Car Model:"
+            />
             <Input
                 required="true"
                 id="Label3"
@@ -99,7 +108,10 @@
                 placeholder="model"
             />
 
-            <Label required="true" text="Engine Type:" />
+            <Label
+                required="true"
+                text="Engine Type:"
+            />
             <Input
                 required="true"
                 id="Label4"
@@ -107,7 +119,10 @@
                 placeholder="type"
             />
 
-            <Label required="true" text="Model Year:" />
+            <Label
+                required="true"
+                text="Model Year:"
+            />
             <Input
                 required="true"
                 id="Label5"
