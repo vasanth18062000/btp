@@ -19,5 +19,12 @@
             press=".onNavToFlow"
             backgroundImage="https://www.shutterstock.com/image-vector/car-shop-logo-text-written-260nw-2070183179.jpg"
         />
+        <GenericTile
+            backgroundImage="./images/help.png"
+            class="sapUiTinyMarginBegin sapUiTinyMarginTop"
+            header=""
+            press=".onNavToHelp"
+            />
+                        
     </FlexBox>
 </mvc:View>

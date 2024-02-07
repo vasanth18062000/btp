@@ -4,7 +4,7 @@ sap.ui.define(
     ],
     function(Controller) {
       "use strict";
-  
+
       return Controller.extend("ns.carshows.controller.TilePage", {
         onInit: function() {
         },
@@ -13,7 +13,15 @@ sap.ui.define(
             console.log("haoi");
             oRouter.navTo("RoutecarShows");
         },
-        
+        onNavToHelp:function(){
+          this.pDialog ??= this.loadFragment({
+            name: "ns.carshows.view.HelpFragement",
+          });
+          this.pDialog.then((oDialog) => oDialog.open());
+        },
+        onClose:function(){
+          this.byId("AddcarDialog").close();
+        }
       });
     }
   );

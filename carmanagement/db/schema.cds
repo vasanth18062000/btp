@@ -9,6 +9,7 @@ entity Car{
     modelVarient:  Composition of  many ModelVarient on modelVarient.models=$self;
     carimage :String;
     description: String;
+    
 }
 
 entity ModelVarient{

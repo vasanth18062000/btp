@@ -1,0 +1,35 @@
+<mvc:View 	xmlns:l="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+	xmlns:rte="sap.ui.richtexteditor" 
+	xmlns:unified="sap.ui.unified"
+	xmlns="sap.suite.ui.commons.imageeditor"
+	width="100%"
+	height="100%"
+    controllerName="ns.propose.controller.TemplateCreation"
+>
+    <m:Page id="_IDGenPage1" title="Proposal Client Form">
+<m:Table id="idFrame"  >
+<m:headerToolbar>
+<m:Toolbar id="_IDGenToolbar1">
+<m:Label text="MAIN" id="_IDGenLabel1"></m:Label>
+<m:ToolbarSpacer id="_IDGenToolbarSpacer1" ></m:ToolbarSpacer>
+<m:Button id="_IDGenButton1" icon="sap-icon://add" press="onAddRowTextArea"></m:Button>
+<m:Button id="_IDGenButton" icon="sap-icon://add" press="onAddRowImage"></m:Button>
+</m:Toolbar>
+</m:headerToolbar>
+<m:columns>
+<m:Column id="_IDGenColumn1" ></m:Column>
+</m:columns>
+<m:items>
+<m:ColumnListItem id="_IDGenColumnListItem1" >
+<m:cells>
+
+</m:cells>
+</m:ColumnListItem>
+</m:items>
+</m:Table>
+<m:Button id="_IDGenButton2" text="PrintFrame" press="onPrintButtonClick"/>
+    </m:Page>
+</mvc:View>

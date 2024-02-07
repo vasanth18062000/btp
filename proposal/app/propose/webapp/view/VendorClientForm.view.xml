@@ -1,0 +1,51 @@
+<mvc:View xmlns:unified="sap.ui.unified"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    controllerName="ns.propose.controller.VendorClientForm"
+>
+    <Page id="_IDGenPage1" title="Proposal Client Form">
+        <content>
+            <f:SimpleForm
+                id="clientForm"
+                title="Client Details"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+            >
+                <f:content>
+                    <Label id="_IDGenLabel1" text="ID" />
+                    <Input editable="false" width="18%" id="clientId"/>
+
+                    <Label id="_IDGenLabel2" text="Vendor Name" />
+                    <Input width="18%" id="clientName"/>
+
+                    <Label id="_IDGenLabel3" text="Vendor Logo" />
+
+                    <HBox id="_IDGenHBox1" >
+                    <unified:FileUploader id="fileUploader" 
+                            name="fileUploader"
+                            placeholder="Upload Client Logo"
+                            uploadUrl="upload/" 
+                            uploadComplete="onUploadComplete"
+                            change="onFileSelect"
+                        
+                            >
+                            </unified:FileUploader>
+                    
+                    </HBox>
+                    
+
+                    <Label id="_IDGenLabel4" text="Vendor Contact" />
+                    <Input width="18%" id="clientContact"/>
+                </f:content>
+            </f:SimpleForm>
+
+            <Button id="_IDGenButton1" text="Save" press="onSave" type="Accept" icon="sap-icon://accept"/>
+
+        </content>
+    </Page>
+</mvc:View>
