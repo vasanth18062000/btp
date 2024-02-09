@@ -1,7 +1,7 @@
 {
   "_version": "1.59.0",
   "sap.app": {
-    "id": "ns.propose",
+    "id": "pro.pro",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -13,7 +13,7 @@
     "sourceTemplate": {
       "id": "@sap/generator-fiori:basic",
       "version": "1.12.1",
-      "toolsId": "6b50c97f-ca46-4bde-b81e-387c70cbb4ab"
+      "toolsId": "71d847d0-312b-4c8e-afec-6e45d6e8e12c"
     },
     "dataSources": {
       "mainService": {
@@ -55,8 +55,7 @@
         "sap.ui.comp": {},
         "sap.ui.generic.app": {},
         "sap.ui.table": {},
-        "sap.ushell": {},
-        "sap.ui.unified": {}
+        "sap.ushell": {}
       }
     },
     "contentDensities": {
@@ -67,7 +66,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "ns.propose.i18n.i18n"
+          "bundleName": "pro.pro.i18n.i18n"
         }
       },
       "": {
@@ -93,66 +92,32 @@
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
         "async": true,
-        "viewPath": "ns.propose.view",
+        "viewPath": "pro.pro.view",
         "controlAggregation": "pages",
         "controlId": "app",
         "clearControlAggregation": false
       },
       "routes": [
         {
-          "name": "Routepropose",
-          "pattern": "",
+          "name": "Routepro",
+          "pattern": ":?query:",
           "target": [
-            "Targetpropose"
-          ]
-        },
-        {
-          "name": "vendorForm",
-          "pattern": "vendorForm",
-          "target": [
-            "vendorForm"
-          ]
-        },
-        {
-          "name": "clientForm",
-          "pattern": "clientForm",
-          "target": [
-            "clientForm"
-          ]
-        },
-        {
-          "name": "templateCreation",
-          "pattern": "templateCreation",
-          "target": [
-            "templateCreation"
+            "Targetpro"
           ]
         }
       ],
       "targets": {
-        "Targetpropose": {
+        "Targetpro": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "Main",
-          "viewName": "Main"
-        },
-        "vendorForm": {
-          "viewId": "VendorForm",
-          "viewName": "VendorForm"
-        },
-        "clientForm": {
-          "viewId": "ClientForm",
-          "viewName": "ClientForm"
-        },
-        "templateCreation": {
-          "viewId": "TemplateCreation",
-          "viewName": "TemplateCreation"
+          "viewId": "pro",
+          "viewName": "pro"
         }
-
       }
     },
     "rootView": {
-      "viewName": "ns.propose.view.App",
+      "viewName": "pro.pro.view.App",
       "type": "XML",
       "async": true,
       "id": "App"

@@ -2,3 +2,8 @@
 .desc{
     display: none;
   }
+  .vertical-center {
+    display: flex;
+    align-items: center;
+  }
+  

@@ -4,7 +4,7 @@ sap.ui.define([
 ], function (Controller, Fragment) {
     "use strict";
 
-    return Controller.extend("ns.propose.controller.VendorClientForm", {
+    return Controller.extend("ns.propose.controller.ClientForm", {
         onInit: function () {
             // Initialization code if needed
         }

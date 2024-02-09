@@ -31,18 +31,18 @@
 
                
                     <GenericTile id="_IDGenGenericTile1"
-                        header="Organisation Creation"
+                        header="vendor Creation"
                         width="15%"
-                        press=".onNavOrganization"
+                        press=".onNavVendor"
                     >
-                        <tileContent>
+                        <!-- <tileContent>
                             <TileContent id="_IDGenTileContent1">
                                 <Text id="_IDGenText2" text="create new details" />
                             </TileContent>
-                        </tileContent>
+                        </tileContent> -->
                     </GenericTile>
-               
-               <GenericTile press=".onNavTemplate" id="_IDGenGenericTile2" header="Template Creation"></GenericTile>
+               <GenericTile press=".onNavClient" id="_IDGenGenericTile2" header="client Creation"></GenericTile>
+               <GenericTile press=".onNavTemplate" id="_IDGenGenericTile3" header="Template Creation"></GenericTile>
             </content>
         </Page>
     </Shell>

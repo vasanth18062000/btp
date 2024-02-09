@@ -1,0 +1,76 @@
+<mvc:View xmlns:unified="sap.ui.unified"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    controllerName="ns.propose.controller.VendorForm"
+>
+    <Page id="_IDGenPage1">
+        <content>
+            <f:SimpleForm
+                id="ownerForm"
+                
+                title="Proposal Owner Details"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+            >
+                <f:content>
+                    <Label id="_IDGenLabel1" text="ID" />
+                    <Input editable="true" width="18%" id="id" value="{id}"/>
+                    <Label id="_IDGenLabel2" text="Name" />
+                    <Input width="18%" id="name" value="{name}"/>
+                    <Label id="_IDGenLabel3" text="Logo" />
+                    <HBox id="_IDGenHBox1">
+                        <unified:FileUploader id="fileUploader" 
+                            name="fileUploader"
+                            placeholder="Upload Owner Logo"
+                            uploadUrl="upload/" 
+                            uploadComplete="onUploadComplete"
+                            change="onFileSelect">
+                        </unified:FileUploader>
+                    </HBox>
+                </f:content>
+            </f:SimpleForm>
+            
+            <f:SimpleForm
+                id="contactForm"
+                title="Contact Details"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+            >
+                <f:content>
+                    <Label id="_IDGenLabel4" text="Door Number" />
+                    <Input width="18%" id="doorNumber" value="{proposalOwnerContact>doorNo}"/>
+                    <Label id="_IDGenLabel5" text="Street Name" />
+                    <Input width="18%" id="streetName" value="{proposalOwnerContact>streetName}"/>
+                    <Label id="_IDGenLabel6" text="City" />
+                    <Input width="18%" id="city" value="{proposalOwnerContact>city}"/>
+                    <Label id="_IDGenLabel7" text="Pincode" />
+                    <Input width="18%" id="pincode" value="{proposalOwnerContact>pincode}"/>
+                    <Label id="_IDGenLabel8" text="State" />
+                    <Input width="18%" id="state" value="{proposalOwnerContact>state}"/>
+                    <Label id="_IDGenLabel9" text="Country" />
+                    <Input width="18%" id="country" value="{proposalOwnerContact>Country}"/>
+                    <Label id="_IDGenLabel10" text="Mobile Number" />
+                    <Input width="18%" id="mobileNumber" value="{proposalOwnerContact>mobileNumber}"/>
+                    <Label id="_IDGenLabel11" text="Telephone Number" />
+                    <Input width="18%" id="telephoneNumber" value="{proposalOwnerContact>telephoneNumber}"/>
+                    <Label id="_IDGenLabel12" text="Email" />
+                    <Input width="18%" id="emailId" value="{proposalOwnerContact>emailId}"/>
+                    <Label id="_IDGenLabel13" text="Password" />
+                    <Input width="18%" id="password" value="{proposalOwnerContact>password}"/>
+                </f:content>
+            </f:SimpleForm>
+
+            <Button id="_IDGenButton1" text="Save" press="onSave" type="Accept" icon="sap-icon://accept"/>
+
+        </content>
+    </Page>
+</mvc:View>
