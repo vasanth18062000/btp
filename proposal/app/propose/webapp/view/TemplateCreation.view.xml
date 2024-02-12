@@ -9,9 +9,26 @@
 	height="100%"
     controllerName="ns.propose.controller.TemplateCreation"
 >
-<m:Shell id="_IDGenShell1" >
-    <m:Page id="_IDGenPage1" title="Proposal Form">
-      <m:OverflowToolbar id="_IDGenOverflowToolbar1">
+    <m:Page id="_IDGenPage1" >
+<m:customHeader>
+                <m:OverflowToolbar id="_IDGenOverflowToolbar1">
+                    <m:Bar id="_IDGenBar1">
+                        <m:contentLeft>
+                            <m:Image id="_IDGenImage1"
+                                src="{i18n>headerImage1}"
+                                width="100%"
+                                height="400%"
+                            />
+                        </m:contentLeft>
+                        <m:contentMiddle>
+                            <m:Text id="_IDGenText1" text="{i18n>headerTitle}" />
+                        </m:contentMiddle>
+                    </m:Bar>
+                </m:OverflowToolbar>
+            </m:customHeader>
+	<!-- <m:headerContent>
+	<m:Button id="_IDGenButton1" press="onPressSection"></m:Button></m:headerContent> -->
+      <!-- <m:OverflowToolbar id="_IDGenOverflowToolbar1">
 		<m:ToolbarSpacer id="_IDGenToolbarSpacer2"/>
 		<m:Label id="_IDGenLabel2" text = "Create Template"/>
     <m:MenuButton id="_IDGenMenuButton1" text="Section">
@@ -25,7 +42,7 @@
 				</m:Menu>
 			</m:menu>
 	</m:MenuButton>
-	</m:OverflowToolbar>
+	</m:OverflowToolbar> -->
          <!-- <m:VBox id="container" /> 
    
     <l:VerticalLayout id="idVerticalLayout" class="sapUiContentPadding" width="100%">
@@ -40,8 +57,12 @@
     
 
     <m:VBox id="fileContainer" /> -->
-    <m:VBox id="container" /> 
-<m:Table id="idFrame"  >
+    <m:FlexBox id="_IDGenFlexBox1" justifyContent="End">
+        <m:Button id="_IDGenBtton1" text="Add section" press="onPressSection"></m:Button>
+    </m:FlexBox>
+    <m:VBox id="container" />
+ 
+<!-- <m:Table id="idFrame"  >
 <m:headerToolbar>
 <m:Toolbar id="_IDGenToolbar1">
 <m:ToolbarSpacer id="_IDGenToolbarSpacer1" ></m:ToolbarSpacer>
@@ -57,9 +78,8 @@
 </m:cells>
 </m:ColumnListItem>
 </m:items>
-</m:Table> 
-<m:VBox id="fileContainer" />
+</m:Table>  -->
+<!-- <m:VBox id="fileContainer" /> -->
 <!-- <m:Button id="_IDGenButton2" text="PrintFrame" press="onPrintButtonClick"/> -->
     </m:Page>
-	</m:Shell>
 </mvc:View>
