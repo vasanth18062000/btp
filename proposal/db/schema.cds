@@ -1,73 +1,85 @@
-namespace com.ladera.proposalsystemmodels;
+namespace com.ladera.sap.btp.contract.proposal.systems;
 
-entity LoginCredentials{
-    key id      :   Integer;
-    organizationName:String(30);
-    emailId     :   String(50);
-    password    :   String(50);
-    createdBy   :   String(50);
-    createdAt   :   Timestamp;
-    modifiedBy  :   String(50);
-    modifiedAt  :   Timestamp;
-    }
+entity PS_USER{
+    key id                                :   Integer;
+    emailId                               :   String(50);
+    password                              :   String(50);
+    createdBy                             :   String(50);
+    createdAt                             :   Timestamp;
+    modifiedBy                            :   String(50);
+    modifiedAt                            :   Timestamp;
+}
 
-entity ProposalOwner{
-    key id      :   Integer;
-    name        :   String(100);
-    logo        :   LargeBinary;
-    createdBy   :   String(50);
-    createdAt   :   Timestamp;
-    modifiedBy  :   String(50);
-    modifiedAt  :   Timestamp;
-    proposalOwnerContact: Association to many ProposalOwnerContact on proposalOwnerContact.proposalOwner=$self;
+entity PS_VENDOR_ORG{
+    key id                                :   Integer;
+    name                                  :   String(100);
+    logo                                  :   LargeBinary;
+    website                                 :   String;
+    createdBy                             :   String(50);
+    createdAt                             :   Timestamp;
+    modifiedBy                            :   String(50);
+    modifiedAt                            :   Timestamp;
+    PS_VENDOR_ORG_CONTACT                 :   Association to many PS_VENDOR_ORG_CONTACT on PS_VENDOR_ORG_CONTACT.PS_VENDOR_ORG=$self;
+    // PS_DETAILS                            :   Association to PS_DETAILS;
     
 }
-entity ProposalOwnerContact{
-    key id      :   Integer;
-    doorNo      :   String(10);
-    streetName  :   String(50);
-    city        :   String(50);
-    pincode     :   String(50);
-    state       :   String(50);
-    Country     :   String(50);
-    mobileNumber:   String(50);
-    telephoneNumber:String(50);
-    emailId     :   String(50);
-    password    :   String(50);
-    createdBy   :   String(50);
-    createdAt   :   Timestamp;
-    modifiedBy  :   String(50);
-    modifiedAt  :   Timestamp;
-    proposalOwner:  Association to ProposalOwner;
+entity PS_VENDOR_ORG_CONTACT{
+    key id                                :   Integer;
+    addressLine1                          :   String(30);
+    addressLine2                          :   String(50);
+    addressLine3                          :   String(50);
+    city                                  :   String(50);
+    pincode                               :   String(50);
+    state                                 :   String(50);
+    country                               :   String(50);
+    contact_person_1_mobileNumber         :   String(50);
+    contact_person_1_telephoneNumber      :   String(50);
+    contact_person_1_emailId              :   String(50);
+    contact_person_2_mobileNumber         :   String(50);
+    contact_person_2_telephoneNumber      :   String(50);
+    contact_person_2_emailId              :   String(50);
+    createdBy                             :   String(50);
+    createdAt                             :   Timestamp;
+    modifiedBy                            :   String(50);
+    modifiedAt                            :   Timestamp;
+    PS_VENDOR_ORG                     :   Association to PS_VENDOR_ORG;
     
 }
-entity ProposalClient{
-    key id       :   Integer;
-    name         :   String(100);
-    logo         :   LargeBinary;
-    createdBy    :   String(50);
-    createdAt    :   Timestamp;
-    modifiedBy   :   String(50);
-    modifiedAt   :   Timestamp;
-    proposalClientContact :   Association to many ProposalClientContact on proposalClientContact.proposalClient=$self;
+//NOTE: CLIENT OR CALLED CUSTOMER
+entity PS_CUSTOMER_ORG{
+    key id                                 :   Integer;
+    name                                   :   String(100);
+    logo                                   :   LargeBinary;
+    website                                 :   String;
+    createdBy                              :   String(50);
+    createdAt                              :   Timestamp;
+    modifiedBy                             :   String(50);
+    modifiedAt                             :   Timestamp;
+    PS_CUSTOMER_ORG_CONTACT                :   Association to many PS_CUSTOMER_ORG_CONTACT on PS_CUSTOMER_ORG_CONTACT.PS_CUSTOMER_ORG=$self;
+    // PS_DETAILS                             :   Association to PS_DETAILS;
 }
-entity ProposalClientContact{
-    key id        :   Integer;
-    doorNo        :   String(10);
-    streetName    :   String(50);
-    city          :   String(50);
-    pincode       :   String(50);
-    state         :   String(50);
-    Country       :   String(50);
-    mobileNumber  :   String(50);
-    telephoneNumber:  String(50);
-    emailId       :   String(50);
-    password      :   String(50);
-    createdBy     :   String(50);
-    createdAt     :   Timestamp;
-    modifiedBy    :   String(50);
-    modifiedAt    :   Timestamp;
-    proposalClient:   Association to ProposalClient;
+
+
+entity PS_CUSTOMER_ORG_CONTACT{
+    key id                                 :   Integer;
+    addressLine1                           :   String(30);
+    addressLine2                           :   String(50);
+    addressLine3                           :   String(50);
+    city                                   :   String(50);
+    pincode                                :   String(50);
+    state                                  :   String(50);
+    country                                :   String(50);
+    contact_person_1_mobileNumber          :   String(50);
+    contact_person_1_telephoneNumber       :   String(50);
+    contact_person_1_emailId               :   String(50);
+    contact_person_2_mobileNumber          :   String(50);
+    contact_person_2_telephoneNumber       :   String(50);
+    contact_person_2_emailId               :   String(50);
+    createdBy                              :   String(50);
+    createdAt                              :   Timestamp;
+    modifiedBy                             :   String(50);
+    modifiedAt                             :   Timestamp;
+    PS_CUSTOMER_ORG                         :   Association to PS_CUSTOMER_ORG;
     
 }
 

@@ -1,7 +1,7 @@
 {
   "_version": "1.59.0",
   "sap.app": {
-    "id": "ns.propose",
+    "id": "nd.project1",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -13,16 +13,16 @@
     "sourceTemplate": {
       "id": "@sap/generator-fiori:basic",
       "version": "1.12.1",
-      "toolsId": "6b50c97f-ca46-4bde-b81e-387c70cbb4ab"
+      "toolsId": "eeef8974-26ff-4508-9135-e140777933fe"
     },
     "dataSources": {
       "mainService": {
-        "uri": "/v2/odata/v4/proposal/",
+        "uri": "/odata/v4/proposal/",
         "type": "OData",
         "settings": {
           "annotations": [],
           "localUri": "localService/metadata.xml",
-          "odataVersion": "2.0"
+          "odataVersion": "4.0"
         }
       }
     }
@@ -55,8 +55,7 @@
         "sap.ui.comp": {},
         "sap.ui.generic.app": {},
         "sap.ui.table": {},
-        "sap.ushell": {},
-        "sap.ui.unified": {}
+        "sap.ushell": {}
       }
     },
     "contentDensities": {
@@ -67,7 +66,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "ns.propose.i18n.i18n"
+          "bundleName": "nd.project1.i18n.i18n"
         }
       },
       "": {
@@ -93,77 +92,32 @@
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
         "async": true,
-        "viewPath": "ns.propose.view",
+        "viewPath": "nd.project1.view",
         "controlAggregation": "pages",
         "controlId": "app",
         "clearControlAggregation": false
       },
       "routes": [
         {
-          "name": "Routepropose",
-          "pattern": "",
+          "name": "RouteView1",
+          "pattern": ":?query:",
           "target": [
-            "Targetpropose"
-          ]
-        },
-        {
-          "name": "vendorForm",
-          "pattern": "vendorForm",
-          "target": [
-            "vendorForm"
-          ]
-        },
-        {
-          "name": "clientView",
-          "pattern": "clientView/{clientId}",
-          "target": [
-            "clientView"
-          ]
-        },
-        {
-          "name": "clientForm",
-          "pattern": "clientForm",
-          "target": [
-            "clientForm"
-          ]
-        },
-        {
-          "name": "templateCreation",
-          "pattern": "templateCreation",
-          "target": [
-            "templateCreation"
+            "TargetView1"
           ]
         }
       ],
       "targets": {
-        "Targetpropose": {
+        "TargetView1": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "Main",
-          "viewName": "Main"
-        },
-        "vendorForm": {
-          "viewId": "VendorForm",
-          "viewName": "VendorForm"
-        },
-        "clientForm": {
-          "viewId": "ClientForm",
-          "viewName": "ClientForm"
-        },
-        "clientView": {
-          "viewId": "ClientView",
-          "viewName": "ClientView"
-        },
-        "templateCreation": {
-          "viewId": "TemplateCreation",
-          "viewName": "TemplateCreation"
+          "viewId": "View1",
+          "viewName": "View1"
         }
-
       }
     },
     "rootView": {
-      "viewName": "ns.propose.view.App",
+      "viewName": "nd.project1.view.App",
       "type": "XML",
       "async": true,
       "id": "App"
