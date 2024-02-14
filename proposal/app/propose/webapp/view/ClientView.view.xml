@@ -3,32 +3,26 @@
     xmlns="sap.m"
     xmlns:f="sap.ui.layout.form"
     controllerName="ns.propose.controller.ClientView">
-<Page id="_IDGenPage1" >
-                                            
-                     	 <VBox id="_IDGenVBox1"
-        alignItems="Start"
-        justifyContent="Start"
-        height="100%"
-        class="centeredContainer">
-        				<Label id="_IDGenLabel3" class="bigFont" text="Name"></Label>
-		        <!-- <HBox id="_IDGenHBox1" justifyContent="Start" width="80%"> -->
-        <Text id="_IDGenText3" class="bigFont" textAlign="Center" text=" {name}"/>
-
-				<Label id="_IDGenLabel4" class="bigFont" text="Name"></Label>
-		        <!-- <HBox id="_IDGenHBox1" justifyContent="Start" width="80%"> -->
-        <Text id="_IDGenText4" class="bigFont" textAlign="Center" text=" {name}"/>
- <!-- </HBox> -->
- 				<Label id="_IDGenLabel5" class="bigFont" text="Name"></Label>
-		        <!-- <HBox id="_IDGenHBox1" justifyContent="Start" width="80%"> -->
-        <Text id="_IDGenText5" class="bigFont" textAlign="Center" text=" {name}"/>
-
-				<Label id="_IDGenLabel1" class="bigFont" text="Name"></Label>
-		        <!-- <HBox id="_IDGenHBox1" justifyContent="Start" width="80%"> -->
-        <Text id="_IDGenText1" class="bigFont" textAlign="Center" text=" {name}"/>
-
-		<!-- <Button  press=".onListItemPress " text="VARIENT"></Button> -->
-		</VBox>
-
-
-</Page>
+    <Page id="_IDGenPage1">
+        <f:SimpleForm
+            id="clientForm"
+            title="Preview"
+            layout="ResponsiveGridLayout"
+            labelSpanXL="3"
+            labelSpanL="3"
+            labelSpanM="3"
+            labelSpanS="12"
+            adjustLabelSpan="false">
+            <f:content>
+                <Label text="Client ID:" class="blueLabel"/>
+                <Text text="{id}" class="boldText"/>
+                <Label text="Client Name:" class="blueLabel"/>
+                <Text text="{name}" class="boldText"/>
+                <Label text="Client Website:" class="blueLabel"/>
+                <Text text="{website}" class="boldText"/>
+                <!-- <Text text="{path: 'PS_CUSTOMER_ORG_CONTACT', parameters: {expand: 'PS_CUSTOMER_ORG'}}"/> -->
+            </f:content>
+        </f:SimpleForm>
+        
+    </Page>
 </mvc:View>

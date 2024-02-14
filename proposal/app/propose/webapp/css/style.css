@@ -10,3 +10,10 @@
   .centerText {
     margin-left: 29px;
 }
+.blueLabel {
+  color: blue;
+}
+
+.boldText {
+  font-weight: bold;
+}

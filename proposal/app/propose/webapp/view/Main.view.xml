@@ -13,12 +13,6 @@
             <customHeader>
                 <OverflowToolbar id="_IDGenOverflowToolbar1">
                     <Bar id="_IDGenBar1">
-                        <contentLeft>
-                            <Image id="_IDGenImage1"
-                                src="{i18n>headerImage}"
-                                width="50%"
-                            />
-                        </contentLeft>
 
                         <contentMiddle>
                             <Text id="_IDGenText1" text="{i18n>headerTitle}" />
@@ -42,6 +36,8 @@
                         </tileContent> -->
                     </GenericTile>
                <GenericTile press=".onNavClient" id="_IDGenGenericTile2" header="client Creation"></GenericTile>
+                <GenericTile press=".onNavSupplierView" id="_IDGenGenericTile4" header="Supllier view"></GenericTile>
+               <GenericTile press=".onNavClientView" id="_IDGenGenericTile5" header="Client view"></GenericTile>
                <GenericTile press=".onNavTemplate" id="_IDGenGenericTile3" header="Template Creation"></GenericTile>
             </content>
         </Page>

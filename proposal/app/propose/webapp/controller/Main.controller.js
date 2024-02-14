@@ -22,6 +22,13 @@ sap.ui.define([
             var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.navTo("clientForm");
         },
+        onNavClientView: function(){
+            console.log("Vendor button clicked!");
+            // Navigate to the proposal form
+            // this.getOwnerComponent().getRouter().navTo("vendorclient");
+            var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("clientViewEdit");
+        },
 
         onNavTemplate: function(){
             console.log("Vendor button clicked!");

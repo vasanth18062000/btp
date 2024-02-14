@@ -4,9 +4,22 @@ sap.ui.define([
 ], function (Controller,MessageToast) {
     "use strict";
 
-    return Controller.extend("ns.propose.controller.ClientForm", {
+    return Controller.extend("ns.propose.controller.ClientUpdateForm", {
         onInit: function () {
+            var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.getRoute("clientUpdateForm").attachMatched(this.onObjectMatched, this); //Attach Router Pattern      
         },
+        onObjectMatched(oEvent) {
+            var oArgs,oView;
+            oArgs=oEvent.getParameter("arguments");
+            oView=this.getView();
+            console.log(oArgs.SelectedItem);
+            oView.bindElement({
+              path:"/ProposalCustomer("+oArgs.SelectedItem+")"
+          });
+  
+          },
+
         onNextClientDetails: function () {
             // Move to the "Contact Detail" tab in the IconTabBar
             this.getView().byId("iconTabBar").setSelectedKey("contactTab");
@@ -20,10 +33,10 @@ sap.ui.define([
             this.getView().byId("iconTabBar").setSelectedKey("contactTab2");
         },
 
-        onSave : function(){
+        onUpdate : function(){
             var oModel = this.getView().getModel();
             var that = this;
-
+            var sID=this.getView().byId("id").getValue()
                 console.log(oModel);
                 var oEntry = {
                    
@@ -33,8 +46,8 @@ sap.ui.define([
                   website:this.getView().byId("website").getValue()
                 };
                 console.log(oEntry);
-                oModel.create("/ProposalCustomer",oEntry,{
-                    method: "POST",
+                oModel.update("/ProposalCustomer("+sID+")",oEntry,{
+                    method: "UPDATE",
                     success: function () {
                         MessageToast.show("Added Successfully");
                         that.getView().byId("_IDGenButton2").setVisible(true);
@@ -58,8 +71,8 @@ sap.ui.define([
                           PS_CUSTOMER_ORG_id: proposalClientId
                         };
                         console.log(oEntrydetails);
-                oModel.create("/ProposalCustomerContact",oEntrydetails,{
-                    method: "POST",
+                oModel.update("/ProposalCustomerContact",oEntrydetails,{
+                    method: "UPDATE",
                     success: function () {
                         MessageToast.show(" contact Added Successfully");
                     }
