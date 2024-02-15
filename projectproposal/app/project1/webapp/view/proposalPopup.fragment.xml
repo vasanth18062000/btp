@@ -1,0 +1,37 @@
+<core:FragmentDefinition
+    controllerName="my.project1.controller.projectproposal"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Dialog
+        id="Dialogclose"
+        title="Action"
+    >
+        <Panel id="_IDGenPanel1"
+            class="sapUiResponsiveMargin"
+            width="auto"
+        >
+             <Bar id="_IDGenBar1" class="bar1">
+                    <contentMiddle>
+                        <Button id="_IDGenButton2"
+                        text="Vendor"
+                        press="pressVendorCreate"
+                        type="Emphasized"
+                    />
+                      <Button id="_IDGenButton3"
+                        text="Client"
+                        press="pressClientCreate"
+                        type="Emphasized"
+                    />
+                    </contentMiddle>
+                </Bar>
+        </Panel>
+
+        <beginButton>
+            <Button id="_IDGenButton1"
+                text="Close"
+                press=".onCloseDialog"
+            />
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

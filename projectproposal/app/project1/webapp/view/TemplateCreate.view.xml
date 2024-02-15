@@ -1,0 +1,61 @@
+<mvc:View
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:rte="sap.ui.richtexteditor"
+    controllerName="my.project1.controller.TemplateCreate"
+>
+    <Page
+        id="_IDGenPage1"
+        title="Proposal Form"
+        titleAlignment="Center"
+    >
+        <Table id="idFrame">
+            <headerToolbar>
+                <Toolbar id="_IDGenToolbar1">
+                    <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+
+                    <Button
+                        id="_IDGenButton1"
+                        icon="sap-icon://add"
+                        press="onAddRowTextArea"
+                        type="Emphasized"
+                    />
+                </Toolbar>
+            </headerToolbar>
+            <columns>
+                <Column id="_IDGenColumn1" />
+            </columns>
+            <items>
+                <ColumnListItem id="_IDGenColumnListItem1">
+                    <cells />
+                </ColumnListItem>
+            </items>
+        </Table>
+
+        <Bar
+            id="_IDGenBar1"
+            class="edit"
+        >
+            <contentLeft>
+                <Button
+                    id="IDGenButton2"
+                    text="Save"
+                    press="saveClick"
+                    type="Success"
+                    icon="sap-icon://accept"
+                />
+                <Button
+                    id="IDGenButton3"
+                    text="Preview"
+                    press="onPreviewPress"
+                    type="Emphasized"
+                    icon="sap-icon://table-view"
+                    enabled="{viewModel>/isPreviewButtonEnabled}"
+                />
+            </contentLeft>
+        </Bar>
+    </Page>
+</mvc:View>

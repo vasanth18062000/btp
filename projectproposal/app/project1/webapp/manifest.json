@@ -1,0 +1,194 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "my.project1",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.12.3",
+      "toolsId": "5fd09a0f-399d-4584-aaeb-8d9913e037c5"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/v2/odata/v4/my/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.120.6",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ui.layout": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "my.project1.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+
+
+        "sample": {
+          "files": [
+            "view/clientCreate.view.xml",
+            "controller/clientCreate.controller.js",
+            "manifest.json"
+          ]
+        },
+
+
+
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "my.project1.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "Routeprojectproposal",
+          "pattern": ":?query:",
+          "target": [
+            "Targetprojectproposal"
+          ]
+        },
+        {
+          "name": "vendorcreate",
+          "pattern": "createvendor",
+          "target": [
+            "vendorCreate"
+          ]
+        },
+        {
+          "name": "clientCreate",
+          "pattern": "createclient",
+          "target": [
+            "clientCreate"
+          ]
+        },
+        {
+          "name": "TemplateCreate",
+          "pattern": "templatecreate",
+          "target": [
+            "TemplateCreate"
+          ]
+        },
+        {
+          "name": "Preview",
+          "pattern": "Preview/{base64Content}",
+          "target": [
+            "Preview"
+          ]
+        }
+      ],
+      "targets": {
+        "Targetprojectproposal": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "projectproposal",
+          "viewName": "projectproposal"
+        },
+        "vendorCreate": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "vendorcreate",
+          "viewName": "vendorcreate"
+        },
+        "clientCreate": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "clientCreate",
+          "viewName": "clientCreate"
+        },
+        "TemplateCreate": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "TemplateCreate",
+          "viewName": "TemplateCreate"
+        },
+        "Preview": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Preview",
+          "viewName": "Preview"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "my.project1.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  }
+}

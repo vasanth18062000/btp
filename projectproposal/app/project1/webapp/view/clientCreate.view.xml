@@ -1,0 +1,95 @@
+<mvc:View
+    controllerName="my.project1.controller.projectproposal"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:unified="sap.ui.unified"
+>
+    <Page
+        id="page"
+        title="Client Create"
+        titleAlignment="Center"
+    >
+        <content>
+            <f:SimpleForm
+                id="vendorForm"
+                title="Client Details"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+            >
+                <f:content>
+                    <Label
+                        id="_IDGenLabel1"
+                        text="ID"
+                    />
+                    <Input
+                        editable="false"
+                        width="18%"
+                        id="id"
+                    />
+
+                    <Label
+                        id="_IDGenLabel2"
+                        text="Vendor Name"
+                    />
+                    <Input
+                        width="18%"
+                        id="vendorName"
+                    />
+
+                    <Label
+                        id="_IDGenLabel3"
+                        text="Vendor Logo"
+                    />
+
+                    <HBox id="_IDGenHBox1">
+                        <unified:FileUploader
+                            id="fileUploader"
+                            name="myFileUpload"
+                            uploadUrl="projectproposal\images"
+                            uploadComplete="handleUploadComplete"
+                            change="handleFileChange"
+                        />
+
+                       
+                        <Image
+                            id="uploadedImage"
+                            src="./projectproposal/images"
+                            width="200px"
+                            visible="false"
+                        />
+
+                        
+                    </HBox>
+
+                    <Label
+                        id="_IDGenLabel4"
+                        text="Vendor Contact"
+                    />
+                    <Input
+                        width="18%"
+                        id="vendorContact"
+                    />
+                </f:content>
+            </f:SimpleForm>
+
+            <Bar id="_IDGenBar1">
+                <contentMiddle>
+                    <Button
+                        id="_IDGenButton1"
+                        type="Emphasized"
+                        text="Save"
+                        press="onSave"
+                        icon="sap-icon://accept"
+                    />
+                </contentMiddle>
+            </Bar>
+        </content>
+    </Page>
+</mvc:View>

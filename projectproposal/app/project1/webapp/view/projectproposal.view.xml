@@ -1,0 +1,42 @@
+<mvc:View
+    controllerName="my.project1.controller.projectproposal"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+        titleAlignment="Center"
+    >
+        <content>
+            <GenericTile
+                id="_IDGenGenericTile1"
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="Vendor"
+                subheader=""
+                press="pressVendorCreate"
+                url=""
+            />
+
+            <GenericTile
+                id="_IDGenGenericTile2"
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="Client"
+                subheader=""
+                press="pressClientCreate"
+                url=""
+            />
+
+            <GenericTile
+                id="_IDGenGenericTile3"
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="Template Creation"
+                subheader=""
+                press="pressTemplate"
+                url=""
+            />
+        </content>
+    </Page>
+</mvc:View>
