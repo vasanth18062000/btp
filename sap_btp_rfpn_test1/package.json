@@ -1,0 +1,32 @@
+{
+  "name": "sap_btp_rfpn_test1",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "@sap/cds-hana": "^2",
+    "@sap/xssec": "^3.6.1",
+    "cds-swagger-ui-express": "^0.8.0",
+    "date-and-time": "^3.1.1",
+    "express": "^4",
+    "passport": "^0.7.0"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "cds": {
+    "requires": {
+      "[hybrid]": {
+        "db": "hana"
+      },
+      "auth": "mocked"
+    }
+  }
+}
