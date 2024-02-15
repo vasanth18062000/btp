@@ -5,7 +5,6 @@
     displayBlock="true"
     xmlns="sap.m"
 >
-    <Shell id="_IDGenShell1">
         <Page
             id="page"
             title="{i18n>title}"
@@ -22,24 +21,74 @@
             </customHeader>
             <content>
                 <Bar id="_IDGenBar2" class="mainpageBar" />
-
-               
-                    <GenericTile id="_IDGenGenericTile1"
-                        header="vendor Creation"
+   <GenericTile id="_IDGenGenericTile1"
+                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout "
+                        header="Supplier Creation"
                         width="15%"
                         press=".onNavVendor"
+                        
                     >
-                        <!-- <tileContent>
+                        <tileContent>
                             <TileContent id="_IDGenTileContent1">
-                                <Text id="_IDGenText2" text="create new details" />
+                                <Text id="_IDGenText2" text="Create Supplier" />
                             </TileContent>
-                        </tileContent> -->
+                        </tileContent>
                     </GenericTile>
-               <GenericTile press=".onNavClient" id="_IDGenGenericTile2" header="client Creation"></GenericTile>
-                <GenericTile press=".onNavSupplierView" id="_IDGenGenericTile4" header="Supllier view"></GenericTile>
-               <GenericTile press=".onNavClientView" id="_IDGenGenericTile5" header="Client view"></GenericTile>
-               <GenericTile press=".onNavTemplate" id="_IDGenGenericTile3" header="Template Creation"></GenericTile>
+                 <GenericTile id="_IDGenGenericTile2"
+                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout "
+                        header="Customer Creation"
+                        width="15%"
+                        press=".onNavClient"
+                    
+                    >
+                        <tileContent>
+                            <TileContent id="_IDGenTileContent2">
+                                <Text id="_IDGenText3" text="Create Customer" />
+                            </TileContent>
+                        </tileContent>
+                    </GenericTile>
+
+                     <GenericTile id="_IDGenGenericTile4"
+                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout "
+                        header="Supllier view"
+                        width="15%"
+                        press=".onNavSupplierViewEdit"
+                    
+                    >
+                        <tileContent>
+                            <TileContent id="_IDGenTileContent4">
+                                <Text id="_IDGenText4" text="View And Updation" />
+                            </TileContent>
+                        </tileContent>
+                    </GenericTile>
+                   <GenericTile id="_IDGenGenericTile5"
+                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout "
+                        header="Client view"
+                        width="15%"
+                        press=".onNavClientViewEdit"
+                    
+                    >
+                        <tileContent>
+                            <TileContent id="_IDGenTileContent5">
+                                <Text id="_IDGenText5" text="View And Updation" />
+                            </TileContent>
+                        </tileContent>
+                    </GenericTile>
+
+                                       <GenericTile id="_IDGenGenericTile3"
+                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout "
+                        header="Template Creation"
+                        width="15%"
+                        press=".onNavTemplate"
+                    
+                    >
+                        <tileContent>
+                            <TileContent id="_IDGenTileContent6">
+                                <Text id="_IDGenText6" text="Template" />
+                            </TileContent>
+                        </tileContent>
+                    </GenericTile>
+
             </content>
         </Page>
-    </Shell>
 </mvc:View>

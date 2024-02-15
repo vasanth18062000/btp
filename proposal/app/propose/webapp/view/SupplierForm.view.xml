@@ -1,10 +1,9 @@
 <mvc:View xmlns:unified="sap.ui.unified"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
     xmlns:f="sap.ui.layout.form"
-    controllerName="ns.propose.controller.ClientUpdateForm">
-
+    controllerName="ns.propose.controller.SupplierForm"
+>
     <Page id="_IDGenPage1">
           <customHeader>
             <OverflowToolbar id="_IDGenOverflowToolbar1">
@@ -140,5 +139,6 @@
                 </items>
             </IconTabBar>
 
-        </content>    </Page>
+        </content>
+    </Page>
 </mvc:View>

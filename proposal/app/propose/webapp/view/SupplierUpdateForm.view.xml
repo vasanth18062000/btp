@@ -3,7 +3,7 @@
     xmlns="sap.m"
     xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
     xmlns:f="sap.ui.layout.form"
-    controllerName="ns.propose.controller.ClientUpdateForm">
+    controllerName="ns.propose.controller.SupplierUpdateForm">
 
     <Page id="_IDGenPage1">
           <customHeader>
@@ -14,7 +14,7 @@
                     </contentLeft>
 
                     <contentMiddle>
-                        <Text id="_IDGenText1" text="{i18n>headerTitle}" />
+                        <Text id="_IDGenText1" text="Supplier Updation" />
                     </contentMiddle>
                 </Bar>
             </OverflowToolbar>
@@ -140,5 +140,6 @@
                 </items>
             </IconTabBar>
 
-        </content>    </Page>
+        </content>
+    </Page>
 </mvc:View>

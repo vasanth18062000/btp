@@ -4,10 +4,10 @@ sap.ui.define([
 ], function (Controller,MessageToast) {
     "use strict";
 
-    return Controller.extend("ns.propose.controller.ClientUpdateForm", {
+    return Controller.extend("ns.propose.controller.SupplierUpdateForm", {
         onInit: function () {
             var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
-            oRouter.getRoute("clientUpdateForm").attachMatched(this.onObjectMatched, this); //Attach Router Pattern      
+            oRouter.getRoute("supplierUpdateForm").attachMatched(this.onObjectMatched, this); //Attach Router Pattern      
         },
         onObjectMatched(oEvent) {
             var oArgs,oView;
@@ -15,7 +15,7 @@ sap.ui.define([
             oView=this.getView();
             console.log(oArgs.SelectedItem);
             oView.bindElement({
-              path:"/ProposalCustomer("+oArgs.SelectedItem+")"
+              path:"/ProposalSupplier("+oArgs.SelectedItem+")"
           });
   
           },
@@ -57,7 +57,7 @@ sap.ui.define([
                   website:this.getView().byId("website").getValue()
                 };
                 console.log(oEntry);
-                oModel.update("/ProposalCustomer("+sID+")",oEntry,{
+                oModel.update("/ProposalSupplier("+sID+")",oEntry,{
                     method: "UPDATE",
                     success: function () {
                         MessageToast.show("Added Successfully");
@@ -82,7 +82,7 @@ sap.ui.define([
                           PS_CUSTOMER_ORG_id: proposalClientId
                         };
                         console.log(oEntrydetails);
-                oModel.update("/ProposalCustomerContact",oEntrydetails,{
+                oModel.update("/ProposalSupplierContact",oEntrydetails,{
                     method: "UPDATE",
                     success: function () {
                         MessageToast.show(" contact Added Successfully");

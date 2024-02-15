@@ -1,26 +1,15 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
+    "sap/ui/core/Fragment",
     "sap/m/MessageToast"
-], function (Controller,MessageToast) {
+], function (Controller, Fragment,MessageToast) {
     "use strict";
 
-    return Controller.extend("ns.propose.controller.ClientUpdateForm", {
+    return Controller.extend("ns.propose.controller.SupplierForm", {
         onInit: function () {
-            var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
-            oRouter.getRoute("clientUpdateForm").attachMatched(this.onObjectMatched, this); //Attach Router Pattern      
+            // Initialization code if needed
         },
-        onObjectMatched(oEvent) {
-            var oArgs,oView;
-            oArgs=oEvent.getParameter("arguments");
-            oView=this.getView();
-            console.log(oArgs.SelectedItem);
-            oView.bindElement({
-              path:"/ProposalCustomer("+oArgs.SelectedItem+")"
-          });
-  
-          },
-
-          onNextVendorDetails: function () {
+        onNextVendorDetails: function () {
             // Move to the "Contact Detail" tab in the IconTabBar
             this.getView().byId("iconTabBar").setSelectedKey("contactTab");
         },
@@ -43,11 +32,11 @@ sap.ui.define([
            this.getView().byId("iconTabBar").setSelectedKey("contactTab1");
 
         },
+        
 
-        onUpdate : function(){
+        onSave : function(){
             var oModel = this.getView().getModel();
-            var that = this;
-            var sID=this.getView().byId("id").getValue()
+            //var that = this;
                 console.log(oModel);
                 var oEntry = {
                    
@@ -57,13 +46,13 @@ sap.ui.define([
                   website:this.getView().byId("website").getValue()
                 };
                 console.log(oEntry);
-                oModel.update("/ProposalCustomer("+sID+")",oEntry,{
-                    method: "UPDATE",
+                oModel.create("/ProposalSupplier",oEntry,{
+                    method: "POST",
                     success: function () {
                         MessageToast.show("Added Successfully");
-                        that.getView().byId("_IDGenButton2").setVisible(true);
-                        var proposalClientId = this.getView().byId("id").getValue();
-                        console.log(proposalClientId);
+                        // that.getView().byId("_IDGenButton2").setVisible(true);
+                        var proposalOwnerId = this.getView().byId("id").getValue();
+                        console.log(proposalOwnerId);
                         var oEntrydetails = {
                           id: this.getView().byId("ID").getValue(),
                           addressLine1: this.getView().byId("addressLine1").getValue(),
@@ -74,16 +63,19 @@ sap.ui.define([
                           state: this.getView().byId("state").getValue(),
                           country: this.getView().byId("country").getValue(),
                           contact_person_1_mobileNumber: this.getView().byId("contact_person_1_mobileNumber").getValue(),
-                          contact_person_1_telephoneNumber: this.getView().byId("contact_person_1_telephoneNumber").getValue(),
+                          //contact_person_1_telephoneNumber: this.getView().byId("contact_person_1_telephoneNumber").getValue(), 
                           contact_person_1_emailId: this.getView().byId("contact_person_1_emailId").getValue(),
                           contact_person_2_mobileNumber: this.getView().byId("contact_person_2_mobileNumber").getValue(),
-                          contact_person_2_telephoneNumber: this.getView().byId("contact_person_2_telephoneNumber").getValue(),
+                          //contact_person_2_telephoneNumber: this.getView().byId("contact_person_2_telephoneNumber").getValue(),
                           contact_person_2_emailId: this.getView().byId("contact_person_2_emailId").getValue(),
-                          PS_CUSTOMER_ORG_id: proposalClientId
+                          PS_VENDOR_ORG_id: proposalOwnerId
+                          
                         };
+                        
+                        
                         console.log(oEntrydetails);
-                oModel.update("/ProposalCustomerContact",oEntrydetails,{
-                    method: "UPDATE",
+                oModel.create("/ProposalSupplierContact",oEntrydetails,{
+                    method: "POST",
                     success: function () {
                         MessageToast.show(" contact Added Successfully");
                     }
@@ -91,16 +83,46 @@ sap.ui.define([
                 }.bind(this)
                 });
 
+                //validate Mobile Number
+    //             var mobileNumberRegex = /^[0-9]{10}$/;
 
+    //             var contactPerson1MobileNumber = this.getView().byId("contact_person_1_mobileNumber").getValue();
+    //             var contactPerson2MobileNumber = this.getView().byId("contact_person_2_mobileNumber").getValue();
+            
+    //             if (!mobileNumberRegex.test(contactPerson1MobileNumber)) {
+    //                 MessageToast.show("Invalid Mobile Number for Contact Person 1. Please enter a 10-digit number.");
+    //                 return;
+    //             }
+            
+    //             if (!mobileNumberRegex.test(contactPerson2MobileNumber)) {
+    //                 MessageToast.show("Invalid Mobile Number for Contact Person 2. Please enter a 10-digit number.");
+    //                 return;
+    //             }
+
+
+    //             // Validate email addresses
+    // var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // var contactPerson1Email = this.getView().byId("contact_person_1_emailId").getValue();
+    // var contactPerson2Email = this.getView().byId("contact_person_2_emailId").getValue();
+
+    // if (!emailRegex.test(contactPerson1Email)) {
+    //     MessageToast.show("Invalid Email Address for Contact Person 1. Please enter a valid email address.");
+    //     return;
+    // }
+
+    // if (!emailRegex.test(contactPerson2Email)) {
+    //     MessageToast.show("Invalid Email Address for Contact Person 2. Please enter a valid email address.");
+    //     return;
+    // }
         },
         onView:function(){
-            var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
+            const oRouter = this.getOwnerComponent().getRouter();
             var id=this.getView().byId("id").getValue();
             console.log(id);
-            oRouter.navTo("clientView",{
-                clientId: id
+            oRouter.navTo("supplierView",{
+                supplierId: id
             });
-        }
-     
-    });
+
+        }    });
 });

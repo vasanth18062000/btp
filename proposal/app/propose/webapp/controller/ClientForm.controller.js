@@ -7,19 +7,29 @@ sap.ui.define([
     return Controller.extend("ns.propose.controller.ClientForm", {
         onInit: function () {
         },
-        onNextClientDetails: function () {
+        onNextVendorDetails: function () {
             // Move to the "Contact Detail" tab in the IconTabBar
             this.getView().byId("iconTabBar").setSelectedKey("contactTab");
         },
         onNextContact1Details: function () {
-            // Move to the "Contact Detail" tab in the IconTabBar
+            
             this.getView().byId("iconTabBar").setSelectedKey("contactTab1");
         },
         onNextContact2Details: function () {
-            // Move to the "Contact Detail" tab in the IconTabBar
+            
             this.getView().byId("iconTabBar").setSelectedKey("contactTab2");
         },
+        onbackVendorDetails:function(){
+            this.getView().byId("iconTabBar").setSelectedKey("contactTab3");
+        },
+        onbackContact1Details:function(){
+            this.getView().byId("iconTabBar").setSelectedKey("contactTab");
 
+        },
+        onbackContact2Details:function(){
+           this.getView().byId("iconTabBar").setSelectedKey("contactTab1");
+
+        },
         onSave : function(){
             var oModel = this.getView().getModel();
             var that = this;

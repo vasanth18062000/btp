@@ -108,10 +108,10 @@
         },
         
         {
-          "name": "vendorForm",
-          "pattern": "vendorForm",
+          "name": "supplierForm",
+          "pattern": "supplierForm",
           "target": [
-            "vendorForm"
+            "supplierForm"
           ]
         },
         {
@@ -126,6 +126,13 @@
           "pattern": "clientView/{clientId}",
           "target": [
             "clientView"
+          ]
+        },
+        {
+          "name": "supplierView",
+          "pattern": "supplierView/{supplierId}",
+          "target": [
+            "supplierView"
           ]
         },
         {
@@ -150,6 +157,13 @@
           ]
         },
         {
+          "name": "supplierUpdateForm",
+          "pattern": "supplierUpdateForm/{SelectedItem}",
+          "target": [
+            "supplierUpdateForm"
+          ]
+        },
+        {
           "name": "templateCreation",
           "pattern": "templateCreation",
           "target": [
@@ -165,9 +179,9 @@
           "viewId": "Main",
           "viewName": "Main"
         },
-        "vendorForm": {
-          "viewId": "VendorForm",
-          "viewName": "VendorForm"
+        "supplierForm": {
+          "viewId": "SupplierForm",
+          "viewName": "SupplierForm"
         },
         "clientForm": {
           "viewId": "ClientForm",
@@ -176,6 +190,10 @@
         "clientView": {
           "viewId": "ClientView",
           "viewName": "ClientView"
+        },
+        "supplierView": {
+          "viewId": "SupplierView",
+          "viewName": "SupplierView"
         },
         "supplierViewEdit": {
           "viewId": "SupplierViewEdit",
@@ -188,6 +206,10 @@
         "clientUpdateForm": {
           "viewId": "ClientUpdateForm",
           "viewName": "ClientUpdateForm"
+        },
+        "supplierUpdateForm": {
+          "viewId": "SupplierUpdateForm",
+          "viewName": "SupplierUpdateForm"
         },
         "templateCreation": {
           "viewId": "TemplateCreation",
