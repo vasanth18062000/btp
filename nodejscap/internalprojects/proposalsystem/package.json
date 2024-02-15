@@ -1,0 +1,30 @@
+{
+  "name": "proposalsystem",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "@sap/hana-client": "^2.19.21",
+    "date-and-time": "^3.1.1",
+    "express": "^4",
+    "sap-hdbext-promisfied": "^2.202402.1"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "cds-swagger-ui-express": "^0.8.0"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "cds": {
+    "requires": {
+     "hana":{
+      "deploy-format":"hdbtable"
+     }
+
+    }
+  }
+}

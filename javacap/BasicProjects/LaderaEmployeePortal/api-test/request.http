@@ -1,0 +1,24 @@
+# ### Get all books
+GET http://localhost:8080/odata/v4/EmployeeService/Employee HTTP/1.1
+### Create a book
+POST http://localhost:8080/odata/v4/EmployeeService/Employee HTTP/1.1
+content-type: application/json
+
+{
+  "id": 103,
+  "name": "Wuthering Heights",
+  "email": "heights@gmail.com",
+  "mobile": "5678909876890"
+  }
+### Get the book
+GET http://localhost:8080/odata/v4/EmployeeService/Employee(id=101) HTTP/1.1
+### Update the book
+PATCH http://localhost:8080/odata/v4/EmployeeService/Employee(id=101) HTTP/1.1
+content-type: application/json
+
+{
+  "name": "psycho"
+}
+### Delete the book
+DELETE http://localhost:8080/odata/v4/EmployeeService/Employee(id=102) HTTP/1.1
+content-type: application/json

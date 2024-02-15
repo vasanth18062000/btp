@@ -1,0 +1,66 @@
+{
+    "_version": "1.8.0",
+    "sap.app": {
+     "id": "LaderaEmployeePortal",
+     "type": "application",
+     "title": "Search-Employees",
+     "description": "Find out your profile",
+     "dataSources": {
+      "EmployeeService": {
+       "uri": "/ladera/browse/",
+       "type": "OData",
+       "settings": {
+        "odataVersion": "4.0"
+       }
+      }
+     }
+    },
+    "sap.ui5": {
+     "dependencies": {
+      "libs": {
+       "sap.fe.templates": {}
+      }
+     },
+     "models": {
+      "": {
+       "dataSource": "EmployeeService",
+       "settings": {
+        "synchronizationMode": "None",
+        "operationMode": "Server",
+        "autoExpandSelect": true,
+        "earlyRequests": true,
+        "groupProperties": {
+         "default": {
+          "submit": "Auto"
+         }
+        }
+       }
+      }
+     },
+     "routing": {
+      "routes": [
+       {
+        "pattern": ":?query:",
+        "name": "EmployeesList",
+        "target": "EmployeesList"
+       }
+      ],
+      "targets": {
+       "EmployeesList": {
+        "type": "Component",
+        "id": "EmployeesList",
+        "name": "sap.fe.templates.ListReport",
+        "options": {
+         "settings": {
+          "entitySet": "Employee"
+         }
+        }
+       }
+      }
+     }
+    },
+    "sap.ui": {
+     "technology": "UI5",
+     "fullWidth": false
+    }
+   }

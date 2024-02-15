@@ -1,0 +1,16 @@
+
+---
+spring:
+  web.resources.static-locations: "file:./app"
+  config.activate.on-profile: default
+  sql.init.schema-locations: classpath:schema-h2.sql
+cds:
+  datasource.auto-config.enabled: false
+  odata-v4.endpoint.path: "/ladera"
+  security.mock.users:
+    - name: Velayutham
+      password: velayutham2399
+      roles: 
+       -admin
+    - name: Karthikeyan
+      password: karthi2399

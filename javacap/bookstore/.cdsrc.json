@@ -1,5 +1,7 @@
 {
-    "build": {
-        "target": "."
+  "requires": {
+    "[production]": {
+      "auth": "xsuaa"
     }
+  }
 }

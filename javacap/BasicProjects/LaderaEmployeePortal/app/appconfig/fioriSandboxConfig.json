@@ -1,0 +1,13 @@
+{
+    "defaultRenderer": "fiori2",
+    "applications": {
+      "search-employees": {
+        "title": "Search-Employees",
+        "description": "Find out your profile",
+        "additionalInformation": "SAPUI5.Component=LaderaEmployeePortal",
+        "applicationType": "URL",
+        "url": "/browse/webapp",
+        "navigationMode": "embedded"
+      }
+    }
+  }

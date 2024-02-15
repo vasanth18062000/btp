@@ -1,0 +1,21 @@
+# ### Create Order
+
+#  GET http://localhost:8080/odata/v4/BooksService/Books
+
+
+
+# POST http://localhost:8080/odata/v4/BooksService/Books
+# Content-Type: application/json
+# Authorization: Basic klaus:pass_klaus
+
+
+#  {"ID":"10","title":"Land Of Love","descr":"love fulfills","stock":10,"price":450,"author_ID":2} 
+
+ ### Read Products
+
+GET http://localhost:8080/odata/v4/AdminService/Products
+Accept: application/json
+Authorization: Basic sabine:pass_sabine
+
+
+
