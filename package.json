@@ -6,5 +6,9 @@
         "model": "srv/external/NorthWind"
       }
     }
+  },
+  "devDependencies": {
+    "@prettier/plugin-xml": "^3.2.2",
+    "prettier": "^3.1.1"
   }
 }

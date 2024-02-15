@@ -32,3 +32,6 @@ target/
 
 # @cap-js/cds-typer
 @cds-models
+
+# added by cds
+.cdsrc-private.json
