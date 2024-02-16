@@ -1,5 +1,5 @@
 {
-  "name": "saphub",
+  "name": "reflect",
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "repository": "<Add your repository here>",
@@ -7,6 +7,7 @@
   "private": true,
   "dependencies": {
     "@sap/cds": "^7",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
     "express": "^4"
   },
   "devDependencies": {
@@ -14,12 +15,5 @@
   },
   "scripts": {
     "start": "cds-serve"
-  },
-
-  "cds": { "requires": {
-    "sap-service": {"kind":"odata"},
-    "saphub-service": { "impl": "./local/module/path" }
-  }}
-
-  
+  }
 }

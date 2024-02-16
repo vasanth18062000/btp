@@ -1,12 +1,12 @@
 {
-  "name": "saphub",
+  "name": "context",
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "repository": "<Add your repository here>",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@sap/cds": "^7",
+    "@sap/cds": "^7.5.2",
     "express": "^4"
   },
   "devDependencies": {
@@ -14,12 +14,5 @@
   },
   "scripts": {
     "start": "cds-serve"
-  },
-
-  "cds": { "requires": {
-    "sap-service": {"kind":"odata"},
-    "saphub-service": { "impl": "./local/module/path" }
-  }}
-
-  
+  }
 }

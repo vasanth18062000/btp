@@ -1,5 +1,5 @@
 {
-  "name": "saphub",
+  "name": "messaging",
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "repository": "<Add your repository here>",
@@ -15,11 +15,17 @@
   "scripts": {
     "start": "cds-serve"
   },
-
-  "cds": { "requires": {
-    "sap-service": {"kind":"odata"},
-    "saphub-service": { "impl": "./local/module/path" }
-  }}
-
+    "cds": {
+      "requires": {
+        "MessagingService": {
+          "kind": "odata",
+          "model": "srv/MessaginService.cds"
+        },
+        "messaging": {
+          "kind": "local-messaging"
+        }
+      }
+    }
   
+
 }

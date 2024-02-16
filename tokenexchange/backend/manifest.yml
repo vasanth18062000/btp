@@ -1,0 +1,8 @@
+---
+applications:
+  - name: tokenexchangebackend
+    path: app
+    memory: 64M
+    
+    services:
+      - tokenexchangeBackendXsuaa

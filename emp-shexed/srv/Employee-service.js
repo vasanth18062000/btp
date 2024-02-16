@@ -1,7 +1,7 @@
 const cds = require('@sap/cds');
 
 // Reference HANA driver in the Node app and update the connection details
-let dbClass = require('sap-hdbext-promisfied')
+let dbClass = require('sap-hdbext-promisfied')  //npm module must be installed for this
 let hana = require('@sap/hana-client');
 
 // Modify the host IP and password based on your system information

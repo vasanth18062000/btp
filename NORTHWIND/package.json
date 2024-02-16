@@ -29,13 +29,18 @@
   },
   "cds": {
     "requires": {
+
       "Northwind": {
+        
         "kind": "odata",
         "model": "srv/external/Northwind",
         "[backend]": {
         "credentials": {
+          "csrf":true,
+          "csrfInBatch":true,
           "url": "https://services.odata.org/Experimental/OData/OData.svc"
         }
+       
        
       },
         "[production]": {

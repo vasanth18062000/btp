@@ -1,16 +1,1 @@
-{
-    "cds":{
-        "requires":{
-            "[backend]":{
-                "auth":{
-                "users":{
-                    "customer":{
-                        "password":"admin",
-                        "roles":["support"]
-                    }
-                }
-            }
-        }
-        }
-    }
-}
+{}

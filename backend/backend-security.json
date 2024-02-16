@@ -1,0 +1,11 @@
+{
+  "xsappname": "backendxsuaa",
+  "tenant-mode": "dedicated",
+  "scopes": [{
+    "name": "$XSAPPNAME.backendscope",
+    "granted-apps" : ["$XSAPPNAME(application, frontendxsuaa)"]
+}],
+  "attributes": [],
+  "role-templates": [],
+  "authorities-inheritance": false
+}

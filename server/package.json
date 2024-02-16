@@ -1,5 +1,5 @@
 {
-  "name": "saphub",
+  "name": "server",
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "repository": "<Add your repository here>",
@@ -14,12 +14,5 @@
   },
   "scripts": {
     "start": "cds-serve"
-  },
-
-  "cds": { "requires": {
-    "sap-service": {"kind":"odata"},
-    "saphub-service": { "impl": "./local/module/path" }
-  }}
-
-  
+  }
 }
