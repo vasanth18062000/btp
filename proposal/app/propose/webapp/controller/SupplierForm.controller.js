@@ -36,7 +36,7 @@ sap.ui.define([
 
         onSave : function(){
             var oModel = this.getView().getModel();
-            //var that = this;
+            var that = this;
                 console.log(oModel);
                 var oEntry = {
                    

@@ -13,7 +13,7 @@
                     </contentLeft>
 
                     <contentMiddle>
-                        <Text id="_IDGenText1" text="{i18n>headerTitle}" />
+                        <Text id="_IDGenText1" text="Supplier Creation" />
                     </contentMiddle>
                 </Bar>
             </OverflowToolbar>

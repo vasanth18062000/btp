@@ -47,10 +47,12 @@ sap.ui.define([
         onUpdate : function(){
             var oModel = this.getView().getModel();
             var that = this;
-            var sID=this.getView().byId("id").getValue()
-                console.log(oModel);
+            var sID=this.getView().byId("id").getValue();
+            var idss = this.getView().byId("ID").getValue(); // Assuming "ID" is an input field
+            console.log(idss);
+                        console.log(oModel);
+        
                 var oEntry = {
-                   
                    id: this.getView().byId("id").getValue(),
                    name: this.getView().byId("name").getValue(),
                   // logo: this.getView().byId("logo").getValue()
@@ -61,7 +63,7 @@ sap.ui.define([
                     method: "UPDATE",
                     success: function () {
                         MessageToast.show("Added Successfully");
-                        that.getView().byId("_IDGenButton2").setVisible(true);
+                        // that.getView().byId("_IDGenButton2").setVisible(true);
                         var proposalClientId = this.getView().byId("id").getValue();
                         console.log(proposalClientId);
                         var oEntrydetails = {
@@ -82,7 +84,8 @@ sap.ui.define([
                           PS_CUSTOMER_ORG_id: proposalClientId
                         };
                         console.log(oEntrydetails);
-                oModel.update("/ProposalSupplierContact",oEntrydetails,{
+                        
+                oModel.update("/ProposalSupplier("+sID+")?$expand=PS_VENDOR_ORG_CONTACT",oEntrydetails,{
                     method: "UPDATE",
                     success: function () {
                         MessageToast.show(" contact Added Successfully");

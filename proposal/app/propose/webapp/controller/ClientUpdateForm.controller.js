@@ -20,7 +20,7 @@ sap.ui.define([
   
           },
 
-          onNextVendorDetails: function () {
+          onNextClientDetails: function () {
             // Move to the "Contact Detail" tab in the IconTabBar
             this.getView().byId("iconTabBar").setSelectedKey("contactTab");
         },
@@ -32,14 +32,14 @@ sap.ui.define([
             
             this.getView().byId("iconTabBar").setSelectedKey("contactTab2");
         },
-        onbackVendorDetails:function(){
+        onbackClientDetails:function(){
             this.getView().byId("iconTabBar").setSelectedKey("contactTab3");
         },
-        onbackContact1Details:function(){
+        onbackClient1Details:function(){
             this.getView().byId("iconTabBar").setSelectedKey("contactTab");
 
         },
-        onbackContact2Details:function(){
+        onbackClient2Details:function(){
            this.getView().byId("iconTabBar").setSelectedKey("contactTab1");
 
         },

@@ -59,6 +59,10 @@
                     id="idResponsiveTable"
                     selectionChange="handleSelectionChange"
                     mode="SingleSelectMaster"
+                    growing="true"
+                    growingThreshold="3"
+                    growingDirection="Downwards"
+                    growingTriggerText="next"
                     
                 />
             </smarttable:SmartTable>
