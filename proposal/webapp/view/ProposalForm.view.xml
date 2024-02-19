@@ -1,0 +1,202 @@
+<mvc:View
+    controllerName="ns.proposal.controller.ProposalForm"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:wizard="sap.m.Wizard"
+>
+    <NavContainer>
+        <pages>
+            <Page
+                id="_IDGenPage1"
+                title="Proposal Client Form"
+                class="prorposal"
+                
+            >
+                <customHeader>
+                
+                <Bar >
+                
+                <contentMiddle>
+                
+                <Title text="Proposal Client Form" ></Title>
+                
+                </contentMiddle>
+                
+                
+                </Bar>
+                
+                </customHeader>
+
+                <Bar >
+                    <contentLeft>
+                        <Image
+                            src="{i18n>headerimage}"
+                            width="50%"
+                        />
+                    </contentLeft>
+
+                    <contentRight>
+                        <Image
+                            src="https://tier4marketing.com/wp-content/uploads/2015/10/Client-Logo-Placeholder.png"
+                            width="40%"
+                        />
+                    </contentRight>
+                </Bar>
+
+               
+                    <Wizard
+                        id="wizard"
+                        stepActivate="onStepChanged"
+                        
+                        showNextButton="true"
+                         class="proposalform"
+                        
+                    >
+                        <steps >
+                            <WizardStep
+                                id="wizard1"
+                                title="Step 1"
+                                nextStep="nextstep1"
+                                complete="true"
+                                class="proposalform"
+                              
+                            >
+                                <MessageStrip
+                                    class="sapUiSmallMarginBottom"
+                                    text="Enter the required details"
+                                    showIcon="true"
+                                />
+                                <VBox>
+                                    <Table
+                                        id="idFrame0"
+                                        growing="true"
+                                        growingDirection="Downwards"
+                                        class="table"
+                                    >
+                                        <headerToolbar>
+                                            <Toolbar id="_IDGenToolbar1">
+                                                <ToolbarSpacer
+                                                    id="_IDGenToolbarSpacer1"
+                                                />
+                                                <Button
+                                                    id="_IDGenButton1"
+                                                    press="onAddRowTextArea"
+                                                    text="Text Area"
+
+                                                    class="buttonfortool"
+                                                />
+                                                
+                                                <Button
+                                                    text="SubSection"
+                                                    class="buttonfortool"
+                                                    press="onSubSection"
+                                                />
+                                            </Toolbar>
+                                        </headerToolbar>
+                                        <columns>
+                                        
+                                            <Column id="coloumn1" >
+                                            
+                                            
+                                            
+                                            </Column>
+                                        </columns>
+
+                                        
+                                        <items>
+                                            <ColumnListItem
+                                                id="_IDGenColumnListItem1"
+                                            >
+                                                <cells />
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </VBox>
+                            </WizardStep>
+
+                            <WizardStep
+                                title="Step 2"
+                                id="wizard2"
+                                 class="proposalform"
+                            >
+                                <VBox>
+                                    <Table
+                                        id="idFrame1"
+                                        growing="true"
+                                        growingDirection="Downwards"
+                                        class="table"
+                                    >
+                                        <headerToolbar>
+                                            <Toolbar id="_IDGenToolbar2">
+                                                <ToolbarSpacer
+                                                    id="_IDGenToolbarSpacer2"
+                                                />
+                                                <Button
+                                                    id="_IDGenButton2"
+                                                    press="onAddRowTextArea"
+                                                    text="Text Area"
+                                                    class="buttonfortool"
+                                                />
+                                                
+                                                <Button
+                                                    text="SubSection"
+                                                    class="buttonfortool"
+                                                    press="onSubSection"
+                                                />
+                                            </Toolbar>
+                                        </headerToolbar>
+                                        <columns>
+                                            <Column id="coloumn2" />
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem
+                                                id="_IDGenColumnListItem2"
+                                            >
+                                                <cells />
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </VBox>
+                            </WizardStep>
+                        </steps>
+                          
+                          
+                  
+
+                    </Wizard>
+                
+
+                <footer>
+                    <Bar>
+                        <contentRight>
+                            <Button
+                                text="Next"
+                                press="onContinue"
+                                type="Emphasized"
+                                
+                            />
+                            <Button
+                                text="Save"
+                                press="onSave"
+                                type="Emphasized"
+                            />
+                            <Button
+                                text="Complete"
+                                press="onSave"
+                                type="Emphasized"
+                            />
+                            
+                            <Button
+                                text="Cancel"
+                                press="onCancel"
+                                type="Emphasized"
+                            />
+                        </contentRight>
+                    </Bar>
+                </footer>
+            </Page>
+        </pages>
+    </NavContainer>
+</mvc:View>
