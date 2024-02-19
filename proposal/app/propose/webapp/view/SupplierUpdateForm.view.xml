@@ -25,10 +25,12 @@
                             text="Supplier Updation"
                         />
                     </contentMiddle>
+                    
                 </Bar>
             </OverflowToolbar>
         </customHeader>
         <content>
+       
             <IconTabBar
                 class="sapUiSmallMarginBottom sapUiResponsiveContentPadding"
                 id="iconTabBar"
@@ -338,19 +340,22 @@
                                     type="Emphasized"
                                     icon="sap-icon://nav-back"
                                 />
-                                <Button
-                                    id="_IDGenButton1"
-                                    text="Update"
-                                    press="onUpdate"
-                                    type="Success"
-                                    icon="sap-icon://accept"
-                                />
+                              
                                 <!-- <Button id="_IDGenButton2" text="Preview" press="onView" type="Emphasized" icon="sap-icon://biometric-face"/> -->
                             </contentRight>
                         </Bar>
                     </IconTabFilter>
                 </items>
             </IconTabBar>
+            
         </content>
+    <footer>
+            <Bar id="_IDGenBar6">
+                <contentRight>
+                    <Button id="_IDGenButton9" text="Update" press="onUpdate" type="Success" icon="sap-icon://accept" />
+                </contentRight>
+            </Bar>
+        </footer>
     </Page>
+      
 </mvc:View>
