@@ -47,9 +47,10 @@ sap.ui.define([
         onUpdate : function(){
             var oModel = this.getView().getModel();
             var that = this;
-            var sID=this.getView().byId("id").getValue();
             var idss = this.getView().byId("ID").getValue(); // Assuming "ID" is an input field
             console.log(idss);
+
+            var sID=this.getView().byId("id").getValue();
                         console.log(oModel);
         
                 var oEntry = {
@@ -76,16 +77,14 @@ sap.ui.define([
                           state: this.getView().byId("state").getValue(),
                           country: this.getView().byId("country").getValue(),
                           contact_person_1_mobileNumber: this.getView().byId("contact_person_1_mobileNumber").getValue(),
-                          contact_person_1_telephoneNumber: this.getView().byId("contact_person_1_telephoneNumber").getValue(),
                           contact_person_1_emailId: this.getView().byId("contact_person_1_emailId").getValue(),
                           contact_person_2_mobileNumber: this.getView().byId("contact_person_2_mobileNumber").getValue(),
-                          contact_person_2_telephoneNumber: this.getView().byId("contact_person_2_telephoneNumber").getValue(),
                           contact_person_2_emailId: this.getView().byId("contact_person_2_emailId").getValue(),
                           PS_CUSTOMER_ORG_id: proposalClientId
                         };
                         console.log(oEntrydetails);
                         
-                oModel.update("/ProposalSupplier("+sID+")?$expand=PS_VENDOR_ORG_CONTACT",oEntrydetails,{
+                oModel.update("/ProposalSupplierContact("+idss+")",oEntrydetails,{
                     method: "UPDATE",
                     success: function () {
                         MessageToast.show(" contact Added Successfully");
