@@ -106,7 +106,7 @@ _setInitialSectionTitle: function () {
 
 
 
-      onAddRowTextArea: function () {
+onAddRowTextArea: function () {
         var that = this;
         var wizard = that.getView().byId("wizard");
         var currentStep = wizard.getProgressStep();
@@ -163,9 +163,13 @@ onSubSection: function () {
         // Store the generated ID in the controller property
         this._titleInput = inputId;
 
+        var idFrame = that.getView().byId('idFrame' + currentStepIndex);
+
 
 
         console.log(inputId);
+
+     
 
         var container = new sap.m.VBox();
 
@@ -183,8 +187,8 @@ onSubSection: function () {
         });
 
         // Check if idFrame exists in the view
-        var idFrame = that.getView().byId('idFrame' + currentStepIndex);
-        if (idFrame) {
+        var idFrameSubSection = that.getView().byId('idFrame' + currentStepIndex);
+        if (idFrameSubSection) {
           // Add the Label and Input field to the VBox
           container.addItem(boldLabel);
           container.addItem(inputField);
@@ -201,7 +205,7 @@ onSubSection: function () {
           inputField.setVisible(true);
 
           // Add the input ID to the array for later reference
-          this._mainSections.push(inputId);
+          
         } else {
           console.error("idFrame not found for SubSection");
         }
@@ -211,7 +215,7 @@ onSubSection: function () {
 
         console.log(currentStepIndex);
         // Check if the current step is the one you're interested in
-        if  (currentStepIndex === 1) {
+        if  (currentStepIndex>0) {
 
           // console.log(currentStep.getId());
           // Call your function for initializing section title
@@ -283,6 +287,7 @@ onSubSection: function () {
 
 
         }
+      
 
           
 

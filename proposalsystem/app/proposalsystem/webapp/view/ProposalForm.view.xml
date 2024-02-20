@@ -73,12 +73,15 @@
                                                 press="onAddRowTextArea"
                                                 text="Add Description"
                                                 class="buttonfortool"
+                                                icon="sap-icon://add-coursebook"
+                                                iconDensityAware="true"
                                             />
 
                                             <Button
                                                 text="Add Sub-Section"
                                                 class="buttonfortool"
                                                 press="onSubSection"
+                                                icon="sap-icon://sys-add"
                                             />
                                         </Toolbar>
                                     </headerToolbar>
