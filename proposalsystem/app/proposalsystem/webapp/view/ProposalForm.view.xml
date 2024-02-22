@@ -122,12 +122,14 @@
                                                 press="onAddRowTextArea"
                                                 text="Add Description"
                                                 class="buttonfortool"
+                                                icon="sap-icon://add-coursebook"
                                             />
 
                                             <Button
                                                 text="Add Sub-Section"
                                                 class="buttonfortool"
                                                 press="onSubSection"
+                                                 icon="sap-icon://sys-add"
                                             />
                                         </Toolbar>
                                     </headerToolbar>
@@ -167,12 +169,14 @@
                                                 press="onAddRowTextArea"
                                                 text="Add Description"
                                                 class="buttonfortool"
+                                                icon="sap-icon://add-coursebook"
                                             />
 
                                             <Button
                                                 text="Add Sub-Section"
                                                 class="buttonfortool"
                                                 press="onSubSection"
+                                                 icon="sap-icon://sys-add"
                                             />
                                         </Toolbar>
                                     </headerToolbar>
@@ -212,12 +216,14 @@
                                                 press="onAddRowTextArea"
                                                 text="Add Description"
                                                 class="buttonfortool"
+                                                icon="sap-icon://add-coursebook"
                                             />
 
                                             <Button
                                                 text="Add Sub-Section"
                                                 class="buttonfortool"
                                                 press="onSubSection"
+                                                 icon="sap-icon://sys-add"
                                             />
                                         </Toolbar>
                                     </headerToolbar>
@@ -257,12 +263,15 @@
                                                 press="onAddRowTextArea"
                                                 text="Add Description"
                                                 class="buttonfortool"
+                                                icon="sap-icon://add-coursebook"
                                             />
 
                                             <Button
                                                 text="Add Sub-Section"
                                                 class="buttonfortool"
                                                 press="onSubSection"
+                                                 icon="sap-icon://sys-add"
+
                                             />
                                         </Toolbar>
                                     </headerToolbar>
@@ -302,12 +311,14 @@
                                                 press="onAddRowTextArea"
                                                 text="Add Description"
                                                 class="buttonfortool"
+                                                icon="sap-icon://add-coursebook"
                                             />
 
                                             <Button
                                                 text="Add Sub-Section"
                                                 class="buttonfortool"
                                                 press="onSubSection"
+                                                 icon="sap-icon://sys-add"
                                             />
                                         </Toolbar>
                                     </headerToolbar>
@@ -347,12 +358,14 @@
                                                 press="onAddRowTextArea"
                                                 text="Add Description"
                                                 class="buttonfortool"
+                                                icon="sap-icon://add-coursebook"
                                             />
 
                                             <Button
                                                 text="Add Sub-Section"
                                                 class="buttonfortool"
                                                 press="onSubSection"
+                                                 icon="sap-icon://sys-add"
                                             />
                                         </Toolbar>
                                     </headerToolbar>
@@ -392,12 +405,14 @@
                                                 press="onAddRowTextArea"
                                                 text="Add Description"
                                                 class="buttonfortool"
+                                                icon="sap-icon://add-coursebook"
                                             />
 
                                             <Button
                                                 text="Add Sub-Section"
                                                 class="buttonfortool"
                                                 press="onSubSection"
+                                                 icon="sap-icon://sys-add"
                                             />
                                         </Toolbar>
                                     </headerToolbar>
@@ -415,95 +430,7 @@
                             </VBox>
                         </WizardStep>
 
-                        <WizardStep
-                            title="Step 9"
-                            id="wizard9"
-                            class="proposalform"
-                        >
-                            <VBox>
-                                <Table
-                                    id="idFrame8"
-                                    growing="true"
-                                    growingDirection="Downwards"
-                                    class="table"
-                                >
-                                    <headerToolbar>
-                                        <Toolbar id="_IDGenToolbar9">
-                                            <ToolbarSpacer
-                                                id="_IDGenToolbarSpacer9"
-                                            />
-                                            <Button
-                                                id="_IDGenButton9"
-                                                press="onAddRowTextArea"
-                                                text="Add Description"
-                                                class="buttonfortool"
-                                            />
-
-                                            <Button
-                                                text="Add Sub-Section"
-                                                class="buttonfortool"
-                                                press="onSubSection"
-                                            />
-                                        </Toolbar>
-                                    </headerToolbar>
-                                    <columns>
-                                        <Column id="coloumn9" />
-                                    </columns>
-                                    <items>
-                                        <ColumnListItem
-                                            id="_IDGenColumnListItem9"
-                                        >
-                                            <cells />
-                                        </ColumnListItem>
-                                    </items>
-                                </Table>
-                            </VBox>
-                        </WizardStep>
-
-                        <WizardStep
-                            title="Step 10"
-                            id="wizard10"
-                            class="proposalform"
-                        >
-                            <VBox>
-                                <Table
-                                    id="idFrame9"
-                                    growing="true"
-                                    growingDirection="Downwards"
-                                    class="table"
-                                >
-                                    <headerToolbar>
-                                        <Toolbar id="_IDGenToolbar10">
-                                            <ToolbarSpacer
-                                                id="_IDGenToolbarSpacer10"
-                                            />
-                                            <Button
-                                                id="_IDGenButton10"
-                                                press="onAddRowTextArea"
-                                                text="Add Description"
-                                                class="buttonfortool"
-                                            />
-
-                                            <Button
-                                                text="Add Sub-Section"
-                                                class="buttonfortool"
-                                                press="onSubSection"
-                                            />
-                                        </Toolbar>
-                                    </headerToolbar>
-                                    <columns>
-                                        <Column id="coloumn10" />
-                                    </columns>
-                                    <items>
-                                        <ColumnListItem
-                                            id="_IDGenColumnListItem10"
-                                        >
-                                            <cells />
-                                        </ColumnListItem>
-                                    </items>
-                                </Table>
-                            </VBox>
-                        </WizardStep>
+                      
                     </steps>
                 </Wizard>
 
@@ -522,7 +449,7 @@
                             />
                             <Button
                                 text="Complete"
-                                press="onSave"
+                                press="onComplete"
                                 type="Emphasized"
                             />
 
