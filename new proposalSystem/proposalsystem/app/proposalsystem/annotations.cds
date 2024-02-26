@@ -1,0 +1,1 @@
+using com.ladera.proposalSystemServices.PropsalSystem as service from '../../srv/psservice';
