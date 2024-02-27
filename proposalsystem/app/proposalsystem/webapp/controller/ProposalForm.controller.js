@@ -3,18 +3,21 @@ sap.ui.define(
   function (Controller, Input, MessageToast, RichTextEditor,MessageBox) {
     "use strict";
 
-    return Controller.extend("ns.propose.controller.ProposalForm", {
+return Controller.extend("ns.propose.controller.ProposalForm", {
       _documentContent: "",
       _buttonCounter: 1,
       _richTextEditorCounter: 1,
       _titleInputCounter: 1,
       _mainSectionCounter: 1,
-      _titleInput: null,
+      _titleInput: 1,
+      __titleInputImage:1,
       _mainSections: [], // Array to store Main Section data
       textitem: 1,
       _subsection: 1,
       _subSections: [],
       _titleSubInputCounter1: 2,
+
+      _inputString: "",
 
       _subsectionCounter: 1,
       _sectionCounters: {},
@@ -22,7 +25,7 @@ sap.ui.define(
       
 
 
-      onInit: function () {
+onInit: function () {
         this._documentContent = "";
         this._buttonCounter = 1;
         this._richTextEditorCounter = 1;
@@ -32,6 +35,8 @@ sap.ui.define(
         this.textitem = 1;
         this._subsection1 = 1;
         this._subsection = [1];
+        this._titleInput=1;
+        this.__titleInputImage=1;
 
         this._titleSubInputCounter1 = 2;
 
@@ -46,7 +51,7 @@ sap.ui.define(
 
 
       },
-      _setInitialSectionTitle: function () {
+_setInitialSectionTitle: function () {
         var that = this;
         // Generate a unique ID for the new Input field
         var wizard = this.getView().byId("wizard");
@@ -115,7 +120,7 @@ sap.ui.define(
 
 
 
-      onAddRowTextArea: function () {
+onAddRowTextArea: function () {
         var that = this;
         var wizard = that.getView().byId("wizard");
         var currentStep = wizard.getProgressStep();
@@ -152,7 +157,7 @@ sap.ui.define(
         }
       },
 
-      onSubSection: function () {
+onSubSection: function () {
         var that = this;
         var wizard = that.getView().byId("wizard");
         var currentStep = wizard.getProgressStep();
@@ -219,89 +224,27 @@ sap.ui.define(
       
       },
 
-
-
-
-
-
-
-    //   onSave: function () {
-    //     var that = this;
-    //     var wizard = that.getView().byId("wizard");
-    //     var currentStep = wizard.getProgressStep();
-    //     var allSteps = wizard.getSteps();
-    //     var currentStepIndex = allSteps.indexOf(currentStep);
-
-    //     console.log("Save Button Clicked ");
-    //     console.log("Current Step Index: " + currentStepIndex);
-
-    //     // Check if the current step is the one you're interested in (e.g., step 1 or step 2)
-    //     if (currentStepIndex <=8) {
-    //       // Save logic for both Main Section and Sub Section
-    //       this.saveMainSection();
-    //       this.saveSubSection();
-          
-
-    //       // Display a message or perform any additional actions after saving
-    //       MessageToast.show("Data saved successfully!");
-    //     }
-    //   },
-
-    //   saveMainSection: function () {
-    //     // Implement logic to save Main Section data
-    //     // Iterate through _mainSections array and save the data as needed
-    //     this._mainSections.forEach((mainSectionId) => {
-    //         var mainSectionInput = sap.ui.getCore().byId(mainSectionId);
+onSave: function () {
+        var that = this;
+        var wizard = that.getView().byId("wizard");
     
-    //         console.log(mainSectionInput);
+        // Save Main Sections
+        this.saveMainSection()
+            .then(function (mainSectionIds) {
+                // Save Sub Sections after Main Sections are created
+                that.saveSubSection(mainSectionIds);
     
-    //         if (mainSectionInput) {
+                // Display a message or perform any additional actions after saving
+                MessageToast.show("Data saved successfully!");
+            })
+            .catch(function (error) {
+                console.error("Error saving data:", error);
+            });
+    },
+    
 
-    //           var oModel= this.getView().getModel();
-    //             var mainSectionData = {
-    //                 // Extract data from the main section input control
-    //                 id: "MAIN_0" + this._mainSectionCounter++, // Adjust as needed
-    //                 mainSectiontitle: mainSectionInput.getValue(),
-    //                 // ... other main section properties ...
-    //             };
-    
-    //             oModel.create("/MainSection", mainSectionData, {
-    //                 method: "POST",
-    //                 success: function () {
-    //                     MessageToast.show(" Section Added Successfully");
-    
-    //                     // Now 'this' refers to the correct context
-                       
-    //                 }
-    //             });
-    
-    //             console.log("Saving Main Section:", mainSectionData);
-    //         }
-    //     });
-    // },
-    
-    // saveSubSection: function () {
-    //     // Implement logic to save Sub Section data
-    //     // Iterate through _subSections array and save the data as needed
-    //     this._subSections.forEach((subSectionId) => {
-    //         var subSectionInput = sap.ui.getCore().byId(subSectionId);
-    //         if (subSectionInput) {
-    //             var mainSectionId = this.saveMainSection(id);
-    
-    //             var subSectionData = {
-    //                 // Extract data from the sub section input control
-    //                 id: "SUB_0" + this._subSectionCounter++, // Adjust as needed
-    //                 subSectionTitle: subSectionInput.getValue(),
-    //                 parentSection: mainSectionId,
-    //                 // ... other sub section properties ...
-    //             };
-    
-    //             console.log("Saving Sub Section:", subSectionData);
-    //         }
-    //     });
-    // },
 
-    saveMainSection: function () {
+saveMainSection: function () {
       // Implement logic to save Main Section data
       // Iterate through _mainSections array and save the data as needed
       var oModel = this.getView().getModel();
@@ -316,12 +259,16 @@ sap.ui.define(
          
   
           if (mainSectionInput) {
+
               var mainSectionData = {
                   // Extract data from the main section input control
                   id: "MAIN_0" + this._mainSectionCounter++, // Adjust as needed
                   mainSectiontitle: mainSectionInput.getValue(),
-                  // ... other main section properties ...
+                  imagearea: this._inputString,
+                  
               };
+
+              console.log(mainSectionData);
   
               // Use Promise to handle asynchronous operation
               return new Promise(function (resolve, reject) {
@@ -348,7 +295,7 @@ sap.ui.define(
       });
   },
   
-  saveSubSection: function (mainSectionIds) {
+saveSubSection: function (mainSectionIds) {
       // Implement logic to save Sub Section data
       // Iterate through _subSections array and save the data as needed
       var oModel = this.getView().getModel();
@@ -389,26 +336,9 @@ sap.ui.define(
       
   },
   
-  onSave: function () {
-      var that = this;
-      var wizard = that.getView().byId("wizard");
-  
-      // Save Main Sections
-      this.saveMainSection()
-          .then(function (mainSectionIds) {
-              // Save Sub Sections after Main Sections are created
-              that.saveSubSection(mainSectionIds);
-  
-              // Display a message or perform any additional actions after saving
-              MessageToast.show("Data saved successfully!");
-          })
-          .catch(function (error) {
-              console.error("Error saving data:", error);
-          });
-  },
   
 
-      addSectionLabel: function (stepTitle, wizard) {
+addSectionLabel: function (stepTitle, wizard) {
         // Extract the step number from the title
         var stepNumber = parseInt(stepTitle.replace("Step ", ""));
 
@@ -457,7 +387,7 @@ sap.ui.define(
       },
 
 
-      onStepChanged: function (oEvent) {
+onStepChanged: function (oEvent) {
         var wizard = oEvent.getSource();
         var currentStep = wizard.getProgressStep();
 
@@ -475,19 +405,19 @@ sap.ui.define(
       
 
 
-      onContinue: function () {
+onContinue: function () {
         // Handle "Next" button press logic here
         this.onNext();
     },
 
-    onNext: function () {
+onNext: function () {
         // Handle navigation to the next step logic here
         var wizard = this.getView().byId("wizard");
         wizard.nextStep();
     },
 
 
-    onComplete: function () {
+onComplete: function () {
       var that = this;
   
       MessageBox.show("Do you need to complete the steps?", {
@@ -510,8 +440,127 @@ sap.ui.define(
   },
 
 
+  onUploadComplete: function(oEvent) {
+        
+    var response = oEvent.getParameter("response");
+    MessageBox.success("File upload complete. Response: " + response);
+  },
+
+  onTypeMissmatch: function(oEvent) {
+    
+    MessageBox.error("Selected file type does not match the allowed file types");
+  },
+
+  onFileSizeExceed: function(oEvent) {
+   
+    MessageBox.error("File size exceeds the maximum allowed size");
+  },
+
+  
+  onAddImage:function(){
+    var that = this;
+    var wizard = that.getView().byId("wizard");
+    var currentStep = wizard.getProgressStep();
+    var currentStepIndex = wizard.getSteps().indexOf(currentStep);
+    var idFrame = that.getView().byId('idFrame' + currentStepIndex);
+    var inputId = 'Image';
+    
+    console.log(inputId);
+    var container = new sap.m.VBox();
+  
+    // Create a Label for bold text
+    var boldLabel = new sap.m.Label({
+      text: inputId,
+      design: 'Bold',
+    });
+     // Create a new FileUploader with the generated ID
+     var fileUploader = new sap.ui.unified.FileUploader({
+      id: inputId,
+      placeholder: 'Upload Image',
+      width: '80%',
+      fileType:"png,jpg,jpeg",
+      change:this.onChangeDP.bind(this),
+      uploadComplete: this.onUploadComplete.bind(this),
+      typeMissmatch: this.onTypeMissmatch.bind(this),
+      fileSizeExceed: this.onFileSizeExceed.bind(this)
+     
+    });
+    
+
+    // Check if idFrame exists in the view
+    var idFrame = that.getView().byId('idFrame' + currentStepIndex);
+    if (idFrame) {
+      // Add the Label and Input field to the VBox
+      container.addItem(boldLabel);
+      container.addItem(fileUploader);
+     
+
+      // Create a new ColumnListItem with the VBox
+      var row = new sap.m.ColumnListItem({
+        cells: [container],
+      });
+
+      // Get the table and add the new row
+      idFrame.addItem(row);
+
+      // Make the Input field visible
+      fileUploader.setVisible(true);
+
+      // Add the input ID to the array for later reference
+      this._mainSections.push(inputId);
+    } else {
+      console.error("idFrame not found for SubSection");
+    }
+  },
 
 
+  onChangeDP: function (oEvent) {
+          
+    var that = this;
+    var image = new Image();
+    var file = oEvent.getParameter("files")[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        var data = reader.result;
+       
+        var inputString = data;
+        console.log(inputString);
+
+        // that._inputString = inputString;
+
+        this.input =inputString;
+        var wordsToRemove = ["data:image/png;base64,","data:text/plain;base64,","data:image/jpeg;base64,"
+                              ,"data:audio/mpeg;base64,","data:application/vnd.ms-excel;base64,","data:video/mp4;base64,"];
+        var replacement = "";
+        var regexPattern = new RegExp(wordsToRemove.join('|'), 'gi');    
+          var resultString = inputString.replace(regexPattern, replacement);
+          console.log(resultString);
+
+          that._inputString = resultString;
+
+          var rs=resultString;
+      
+        //console.log(data);
+       
+       
+        var base64Data = inputString;
+        that.byId("imagePreview").setSrc(base64Data);
+        
+        image.onload = function () {
+          
+            if (this.width + this.height === 0) {
+                that.dpImage = "";
+                sap.m.MessageBox.error("Invalid Image!");
+            }
+        };
+    };
+    reader.onerror = function (error) {
+        //Error Handling
+    };
+    
+    this.pDialog.then((oDialog) => oDialog.close());
+},
 
     });
   }

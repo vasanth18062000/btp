@@ -83,6 +83,13 @@
                                                 press="onSubSection"
                                                 icon="sap-icon://sys-add"
                                             />
+
+                                            <Button
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>
