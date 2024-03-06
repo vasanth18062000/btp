@@ -16,10 +16,11 @@ return Controller.extend("ns.propose.controller.ProposalForm", {
       _subsection: 1,
       _subSections: [],
       _titleSubInputCounter1: 2,
+      _imagecount:1,
 
       _inputString: "",
 
-      _subsectionCounter: 1,
+      _subSectionCounter: 1,
       _sectionCounters: {},
 
       
@@ -39,8 +40,9 @@ onInit: function () {
         this.__titleInputImage=1;
 
         this._titleSubInputCounter1 = 2;
+        this._imagecount =1;
 
-        this._subsectionCounter = 1;
+        this._subSectionCounter = 1;
         this._sectionCounters = {};
 
 
@@ -129,6 +131,8 @@ onAddRowTextArea: function () {
 
         console.log(textItemId);
 
+        
+
         // Check if idFrame exists in the view
         var idFrame = that.getView().byId('idFrame' + currentStepIndex);
         if (idFrame) {
@@ -163,6 +167,8 @@ onSubSection: function () {
         var currentStep = wizard.getProgressStep();
         var currentStepIndex = wizard.getSteps().indexOf(currentStep);
         var idFrame = that.getView().byId('idFrame' + currentStepIndex);
+
+        that._addingImageForSubSection = true;
 
         if (currentStepIndex >= 0) {
           console.log("current Step  :" + currentStepIndex);
@@ -236,6 +242,8 @@ onSave: function () {
     
                 // Display a message or perform any additional actions after saving
                 MessageToast.show("Data saved successfully!");
+
+               
             })
             .catch(function (error) {
                 console.error("Error saving data:", error);
@@ -264,7 +272,7 @@ saveMainSection: function () {
                   // Extract data from the main section input control
                   id: "MAIN_0" + this._mainSectionCounter++, // Adjust as needed
                   mainSectiontitle: mainSectionInput.getValue(),
-                  imagearea: this._inputString,
+                  imagearea: this._inputString || null,
                   
               };
 
@@ -275,7 +283,7 @@ saveMainSection: function () {
                   oModel.create("/MainSection", mainSectionData, {
                       method: "POST",
                       success: function () {
-                          MessageToast.show(" Section Added Successfully");
+                          MessageToast.show("Main- Section Added Successfully");
                           createdMainSectionIds.push(mainSectionData.id);
                           resolve();
                           console.log("Section saved to DB");
@@ -295,47 +303,63 @@ saveMainSection: function () {
       });
   },
   
+
 saveSubSection: function (mainSectionIds) {
-      // Implement logic to save Sub Section data
-      // Iterate through _subSections array and save the data as needed
-      var oModel = this.getView().getModel();
-  
-      this._subSections.forEach((subSectionId, index) => {
-          var subSectionInput = sap.ui.getCore().byId(subSectionId);
-          if (subSectionInput) {
-              var mainSectionId = mainSectionIds[index];
-  
-              var subSectionData = {
-                  // Extract data from the sub section input control
-                  id: "SUB_0" + this._subSectionCounter++, // Adjust as needed
-                  subSectiontitle: subSectionInput.getValue(),
-                  parentSection: mainSectionId,
-                  
-              };
+  // Implement logic to save Sub Section data
+  // Iterate through _subSections array and save the data as needed
+  var oModel = this.getView().getModel();
+  var createdSubSectionIds = [];
 
-              console.log(subSectionData);
+  return Promise.all(this._subSections.map((subSectionId, index) => {
+    var subSectionInput = sap.ui.getCore().byId(subSectionId);
 
-              oModel.create("/SubSection", subSectionData, {
+    if (subSectionInput) {
+      var mainSectionId = mainSectionIds[index];
 
-                method: "POST",
-                      success: function () {
-                          MessageToast.show("Sub Section Added Successfully");
+      var subSectionData = {
+        id: "SUB_0" + this._subSectionCounter++, // Adjust as needed
+        subSectiontitle: subSectionInput.getValue() || null,
+        parentSection_id: mainSectionId,
+        imagearea: this._inputString || null
+      };
 
-                          console.log("Sub Section Section has been added");
-                         
-                      },
+      console.log(subSectionData);
 
-                    }),
+      return new Promise(function (resolve, reject) {
+        oModel.create("/SubSection", subSectionData, {
+          method: "POST",
+          success: function (data, response) {
+            // Check the response structure and log it
+            console.log("Success Response:", response);
+            
+            // Extract the created Sub Section ID from the response
+            var createdSubSectionId = response.headers["sap-message"].split(":")[1].trim();
+            createdSubSectionIds.push(createdSubSectionId);
 
-              
-  
-              console.log("Saving Sub Section:", subSectionData);
+            MessageToast.show("Sub Section Added Successfully");
+            resolve();
+            console.log("Sub Section has been added");
+          },
+          error: function (error) {
+            // Check the error response structure and log it
+            console.error("Error Response:", error);
+
+            reject(error);
           }
+        });
       });
+    }
+  }))
+  .then(function () {
+    // Return the array of created Sub Section IDs
+    return createdSubSectionIds;
+  })
+  .catch(function (error) {
+    console.error("Error saving Sub Sections:", error);
+  });
+},
 
-      
-  },
-  
+
   
 
 addSectionLabel: function (stepTitle, wizard) {
@@ -457,61 +481,65 @@ onComplete: function () {
   },
 
   
-  onAddImage:function(){
+  onAddImage: function () {
     var that = this;
     var wizard = that.getView().byId("wizard");
     var currentStep = wizard.getProgressStep();
     var currentStepIndex = wizard.getSteps().indexOf(currentStep);
     var idFrame = that.getView().byId('idFrame' + currentStepIndex);
-    var inputId = 'Image';
+    var inputId = 'Image' + this._imagecount++;
     
     console.log(inputId);
     var container = new sap.m.VBox();
-  
+
     // Create a Label for bold text
     var boldLabel = new sap.m.Label({
-      text: inputId,
-      design: 'Bold',
+        text: inputId,
+        design: 'Bold',
     });
-     // Create a new FileUploader with the generated ID
-     var fileUploader = new sap.ui.unified.FileUploader({
-      id: inputId,
-      placeholder: 'Upload Image',
-      width: '80%',
-      fileType:"png,jpg,jpeg",
-      change:this.onChangeDP.bind(this),
-      uploadComplete: this.onUploadComplete.bind(this),
-      typeMissmatch: this.onTypeMissmatch.bind(this),
-      fileSizeExceed: this.onFileSizeExceed.bind(this)
-     
+    // Create a new FileUploader with the generated ID
+    var fileUploader = new sap.ui.unified.FileUploader({
+        id: inputId,
+        placeholder: 'Upload Image',
+        width: '80%',
+        fileType: "png,jpg,jpeg",
+        change: that.onChangeDP.bind(that),
+        uploadComplete: that.onUploadComplete.bind(that),
+        typeMissmatch: that.onTypeMissmatch.bind(that),
+        fileSizeExceed: that.onFileSizeExceed.bind(that)
     });
-    
 
     // Check if idFrame exists in the view
     var idFrame = that.getView().byId('idFrame' + currentStepIndex);
     if (idFrame) {
-      // Add the Label and Input field to the VBox
-      container.addItem(boldLabel);
-      container.addItem(fileUploader);
-     
+        // Add the Label and Input field to the VBox
+        container.addItem(boldLabel);
+        container.addItem(fileUploader);
 
-      // Create a new ColumnListItem with the VBox
-      var row = new sap.m.ColumnListItem({
-        cells: [container],
-      });
+        // Create a new ColumnListItem with the VBox
+        var row = new sap.m.ColumnListItem({
+            cells: [container],
+        });
 
-      // Get the table and add the new row
-      idFrame.addItem(row);
+        // Get the table and add the new row
+        idFrame.addItem(row);
 
-      // Make the Input field visible
-      fileUploader.setVisible(true);
+        // Make the Input field visible
+        fileUploader.setVisible(true);
 
-      // Add the input ID to the array for later reference
-      this._mainSections.push(inputId);
+        // Determine whether it is a Main Section or SubSection and add the input ID accordingly
+        if (that._addingImageForSubSection) {
+            that._subSections.push(inputId);
+            console.log("Image added successfully to SubSection");
+        } else {
+            that._mainSections.push(inputId);
+            console.log("Image added successfully to Main Section");
+        }
     } else {
-      console.error("idFrame not found for SubSection");
-    }
-  },
+        console.error("idFrame not found for SubSection");
+    } 
+},
+
 
 
   onChangeDP: function (oEvent) {
