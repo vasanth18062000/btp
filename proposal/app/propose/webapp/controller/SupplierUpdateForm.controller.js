@@ -1,7 +1,9 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast"
-], function (Controller,MessageToast) {
+    "sap/m/MessageToast",
+    "sap/ui/core/routing/History"
+
+], function (Controller,MessageToast,History) {
     "use strict";
 
     return Controller.extend("ns.propose.controller.SupplierUpdateForm", {
@@ -102,6 +104,21 @@ sap.ui.define([
             oRouter.navTo("clientView",{
                 clientId: id
             });
+        },
+        goHome:function(){
+            var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("Routepropose");
+        },
+        updateToEdit:function(){
+			const oHistory = History.getInstance();
+			const sPreviousHash = oHistory.getPreviousHash();
+
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				const oRouter = this.getOwnerComponent().getRouter();
+				oRouter.navTo("supplierViewEdit", {}, true);
+			}
         }
      
     });

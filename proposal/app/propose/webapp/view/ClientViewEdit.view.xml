@@ -9,7 +9,7 @@
 >
     <Page
         id="page"
-        title="Client View"
+        title="Client View" showNavButton="true" navButtonPress=".EditToHomeButton"
     >
     
         <content>
@@ -59,7 +59,11 @@
                     id="idResponsiveTable"
                     selectionChange="handleSelectionChange"
                     mode="SingleSelectMaster"
-                    
+                                        growing="true"
+                    growingThreshold="3"
+                    growingDirection="Downwards"
+                    growingTriggerText="Load more"
+
                 />
             </smarttable:SmartTable>
             <!-- <Table id="_IDGenTable1" items="{path: '/ProposalCustomer'}">

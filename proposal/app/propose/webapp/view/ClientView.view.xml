@@ -1,8 +1,9 @@
-<mvc:View xmlns:unified="sap.ui.unified"
-    xmlns:mvc="sap.ui.core.mvc"
+<mvc:View
+    controllerName="ns.propose.controller.ClientView"
     xmlns="sap.m"
-    xmlns:f="sap.ui.layout.form"
-    controllerName="ns.propose.controller.ClientView">
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+>
 <Page id="page">
 <Bar>
         <contentLeft>
@@ -131,7 +132,7 @@
 <footer>
             <Bar >
                 <contentRight>
-                <Button text="Back" press="onBack" icon="sap-icon://nav-back" type="Emphasized"></Button>
+                <Button text="Edit" press="onBack" icon="sap-icon://nav-back" type="Emphasized"></Button>
                 <Button text="Save and Continue" press="onSaveandContinue" type="Success" icon="sap-icon://accept" />
                 </contentRight>
             </Bar>

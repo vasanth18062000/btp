@@ -1,9 +1,10 @@
 <mvc:View xmlns:unified="sap.ui.unified"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
     xmlns="sap.m"
-    xmlns:f="sap.ui.layout.form"
-    controllerName="ns.propose.controller.ClientForm">
-
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified"
+    xmlns:f="sap.ui.layout.form" controllerName="ns.propose.controller.ClientForm">
     <Page id="_IDGenPage1">
         <customHeader>
             <OverflowToolbar id="_IDGenOverflowToolbar1">
@@ -13,7 +14,7 @@
                     </contentLeft>
 
                     <contentMiddle>
-                        <Text id="_IDGenText1" text="Client Creation" />
+                        <Text id="_IDGenText1" text="{i18n>headerTitle1}" />
                     </contentMiddle>
                 </Bar>
             </OverflowToolbar>
@@ -34,6 +35,19 @@
                                 <Input width="18%" id="logo" value="{logo}"/> -->
                                     <Label id="_IDGenLabel4" text="Customer Website" />
                                     <Input width="18%" id="website" value="{website}" />
+                                    <Label id="_IDGenLabel3" text="Logo"/>
+                                     <u:FileUploader
+                                        id="idDP" 
+                                    maximumFilenameLength="30" maximumFileSize="1" multiple="false"
+                                    sameFilenameAllowed="false"  change="onChangeDP"  fileType="png,jpg,jpeg"
+                                    filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="on2MBFileSizeExceed" typeMissmatch="onTypeMissmatch"
+                                    uploadComplete="onUploadDPComplete" visible="true" 
+                                        />
+                                         <TextArea id="idBase64Area"  editable="true" height="300px" width="500px" visible="false" />
+                                         <Text class="sapUiSmallMarginBottom size" text="(size upto 2mb)"></Text>
+                                        
+                                         <Image id="imagePreview" width="10%"/>
+
                                 </VBox>
                             </f:content>
                         </f:SimpleForm>
@@ -112,8 +126,9 @@
                                     <Input width="18%" id="contact_person_2_telephoneNumber" value="{proposalOwnerContact>contact_person_2_telephoneNumber}" /> -->
                                     <Label id="_IDGenLabel18" text="Email ID" />
                                     <Input width="18%" id="contact_person_2_emailId" value="{proposalOwnerContact>contact_person_2_emailId}" />
-                                    <Label id="_IDGenLabel19" text="Proposal Client ID" />
-                                    <Input width="18%" id="proposalOwner" value="{proposalOwnerContact>proposalOwner}" />
+                                    <!-- <Label id="_IDGenLabel19" text="Proposal Client ID" />
+                                    <Input width="18%" id="proposalOwner" value="{proposalOwnerContact>proposalOwner}" /> -->
+
                                 </VBox>
                             </f:content>
                         </f:SimpleForm>
@@ -121,7 +136,7 @@
                             <contentRight>
                                 <Button id="_IDGenButton8" text="Back" press="onbackClient2Details" type="Emphasized" icon="sap-icon://nav-back"/>
                                 <Button id="_IDGenButton1" text="Save" press="onSave" type="Success" icon="sap-icon://accept" />
-                                <Button id="_IDGenButton2" text="Preview"  press="onView" type="Emphasized" icon="sap-icon://biometric-face" />
+                                <Button id="_IDGenButton2" text="Preview" visible="false" press="onView" type="Emphasized" icon="sap-icon://biometric-face" />
                             </contentRight>
                         </Bar>
                     </IconTabFilter>

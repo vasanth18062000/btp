@@ -1,1 +1,1 @@
-using proposal.service.proposal as service from '../../srv/proposal-service';
+// using proposal.service.proposal as service from '../../srv/proposal-service';

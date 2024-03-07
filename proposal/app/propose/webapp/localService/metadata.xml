@@ -7,27 +7,48 @@
         <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
     </edmx:Reference>
     <edmx:DataServices>
-        <Schema Namespace="proposal.service.proposal" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Schema Namespace="com.ladera.proposalSystemServices.PropsalSystem" xmlns="http://docs.oasis-open.org/odata/ns/edm">
             <EntityContainer Name="EntityContainer">
-                <EntitySet Name="LoginCredentials" EntityType="proposal.service.proposal.LoginCredentials"/>
-                <EntitySet Name="ProposalSupplier" EntityType="proposal.service.proposal.ProposalSupplier">
-                    <NavigationPropertyBinding Path="PS_VENDOR_ORG_CONTACT" Target="ProposalSupplierContact"/>
+                <EntitySet Name="UserCredentials" EntityType="com.ladera.proposalSystemServices.PropsalSystem.UserCredentials"/>
+                <EntitySet Name="ProposalOwner" EntityType="com.ladera.proposalSystemServices.PropsalSystem.ProposalOwner">
+                    <NavigationPropertyBinding Path="proposalOwnerContact" Target="ProposalOwnerContact"/>
                 </EntitySet>
-                <EntitySet Name="ProposalSupplierContact" EntityType="proposal.service.proposal.ProposalSupplierContact">
-                    <NavigationPropertyBinding Path="PS_VENDOR_ORG" Target="ProposalSupplier"/>
+                <EntitySet Name="ProposalOwnerContact" EntityType="com.ladera.proposalSystemServices.PropsalSystem.ProposalOwnerContact">
+                    <NavigationPropertyBinding Path="proposalOwner" Target="ProposalOwner"/>
                 </EntitySet>
-                <EntitySet Name="ProposalCustomer" EntityType="proposal.service.proposal.ProposalCustomer">
-                    <NavigationPropertyBinding Path="PS_CUSTOMER_ORG_CONTACT" Target="ProposalCustomerContact"/>
+                <EntitySet Name="ProposalClient" EntityType="com.ladera.proposalSystemServices.PropsalSystem.ProposalClient">
+                    <NavigationPropertyBinding Path="proposalClientContact" Target="ProposalClientContact"/>
                 </EntitySet>
-                <EntitySet Name="ProposalCustomerContact" EntityType="proposal.service.proposal.ProposalCustomerContact">
-                    <NavigationPropertyBinding Path="PS_CUSTOMER_ORG" Target="ProposalCustomer"/>
+                <EntitySet Name="ProposalClientContact" EntityType="com.ladera.proposalSystemServices.PropsalSystem.ProposalClientContact">
+                    <NavigationPropertyBinding Path="proposalClient" Target="ProposalClient"/>
+                </EntitySet>
+                <EntitySet Name="ProposalDetails" EntityType="com.ladera.proposalSystemServices.PropsalSystem.ProposalDetails">
+                    <NavigationPropertyBinding Path="projectType" Target="ProjectType"/>
+                    <NavigationPropertyBinding Path="mainSection" Target="MainSection"/>
+                    <NavigationPropertyBinding Path="proposalOwner" Target="ProposalOwner"/>
+                    <NavigationPropertyBinding Path="proposalClient" Target="ProposalClient"/>
+                </EntitySet>
+                <EntitySet Name="MainSection" EntityType="com.ladera.proposalSystemServices.PropsalSystem.MainSection">
+                    <NavigationPropertyBinding Path="proposalDetails" Target="ProposalDetails"/>
+                    <NavigationPropertyBinding Path="tablearea" Target="MainTableFields"/>
+                    <NavigationPropertyBinding Path="subsection" Target="SubSection"/>
+                </EntitySet>
+                <EntitySet Name="SubSection" EntityType="com.ladera.proposalSystemServices.PropsalSystem.SubSection">
+                    <NavigationPropertyBinding Path="parentSection" Target="MainSection"/>
+                    <NavigationPropertyBinding Path="tablearea" Target="MainTableFields"/>
+                </EntitySet>
+                <EntitySet Name="ProjectType" EntityType="com.ladera.proposalSystemServices.PropsalSystem.ProjectType"/>
+                <EntitySet Name="MainTableFields" EntityType="com.ladera.proposalSystemServices.PropsalSystem.MainTableFields">
+                    <NavigationPropertyBinding Path="mainSection" Target="MainSection"/>
+                    <NavigationPropertyBinding Path="subSection" Target="SubSection"/>
                 </EntitySet>
             </EntityContainer>
-            <EntityType Name="LoginCredentials">
+            <EntityType Name="UserCredentials">
                 <Key>
                     <PropertyRef Name="id"/>
                 </Key>
                 <Property Name="id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="userName" Type="Edm.String" MaxLength="30"/>
                 <Property Name="emailId" Type="Edm.String" MaxLength="50"/>
                 <Property Name="password" Type="Edm.String" MaxLength="50"/>
                 <Property Name="createdBy" Type="Edm.String" MaxLength="50"/>
@@ -35,87 +56,167 @@
                 <Property Name="modifiedBy" Type="Edm.String" MaxLength="50"/>
                 <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
             </EntityType>
-            <EntityType Name="ProposalSupplier">
+            <EntityType Name="ProposalOwner">
                 <Key>
                     <PropertyRef Name="id"/>
                 </Key>
-                <Property Name="id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="id" Type="Edm.String" Nullable="false"/>
                 <Property Name="name" Type="Edm.String" MaxLength="100"/>
                 <Property Name="logo" Type="Edm.Binary"/>
-                <Property Name="website" Type="Edm.String"/>
                 <Property Name="createdBy" Type="Edm.String" MaxLength="50"/>
                 <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
                 <Property Name="modifiedBy" Type="Edm.String" MaxLength="50"/>
                 <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
-                <NavigationProperty Name="PS_VENDOR_ORG_CONTACT" Type="Collection(proposal.service.proposal.ProposalSupplierContact)" Partner="PS_VENDOR_ORG"/>
+                <NavigationProperty Name="proposalOwnerContact" Type="Collection(com.ladera.proposalSystemServices.PropsalSystem.ProposalOwnerContact)" Partner="proposalOwner"/>
             </EntityType>
-            <EntityType Name="ProposalSupplierContact">
+            <EntityType Name="ProposalOwnerContact">
                 <Key>
                     <PropertyRef Name="id"/>
                 </Key>
-                <Property Name="id" Type="Edm.Int32" Nullable="false"/>
-                <Property Name="addressLine1" Type="Edm.String" MaxLength="30"/>
-                <Property Name="addressLine2" Type="Edm.String" MaxLength="50"/>
-                <Property Name="addressLine3" Type="Edm.String" MaxLength="50"/>
+                <Property Name="id" Type="Edm.String" Nullable="false"/>
+                <Property Name="doorNo" Type="Edm.String" MaxLength="10"/>
+                <Property Name="streetName" Type="Edm.String" MaxLength="50"/>
                 <Property Name="city" Type="Edm.String" MaxLength="50"/>
                 <Property Name="pincode" Type="Edm.String" MaxLength="50"/>
                 <Property Name="state" Type="Edm.String" MaxLength="50"/>
-                <Property Name="country" Type="Edm.String" MaxLength="50"/>
-                <Property Name="contact_person_1_mobileNumber" Type="Edm.String" MaxLength="50"/>
-                <Property Name="contact_person_1_telephoneNumber" Type="Edm.String" MaxLength="50"/>
-                <Property Name="contact_person_1_emailId" Type="Edm.String" MaxLength="50"/>
-                <Property Name="contact_person_2_mobileNumber" Type="Edm.String" MaxLength="50"/>
-                <Property Name="contact_person_2_telephoneNumber" Type="Edm.String" MaxLength="50"/>
-                <Property Name="contact_person_2_emailId" Type="Edm.String" MaxLength="50"/>
+                <Property Name="Country" Type="Edm.String" MaxLength="50"/>
+                <Property Name="mobileNumber" Type="Edm.String" MaxLength="50"/>
+                <Property Name="telephoneNumber" Type="Edm.String" MaxLength="50"/>
+                <Property Name="emailId" Type="Edm.String" MaxLength="50"/>
+                <Property Name="password" Type="Edm.String" MaxLength="50"/>
                 <Property Name="createdBy" Type="Edm.String" MaxLength="50"/>
                 <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
-                <Property Name="modifiedBy" Type="Edm.String" MaxLength="50"/>
+                <Property Name="modifiesdBy" Type="Edm.String" MaxLength="50"/>
                 <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
-                <NavigationProperty Name="PS_VENDOR_ORG" Type="proposal.service.proposal.ProposalSupplier" Partner="PS_VENDOR_ORG_CONTACT">
-                    <ReferentialConstraint Property="PS_VENDOR_ORG_id" ReferencedProperty="id"/>
+                <NavigationProperty Name="proposalOwner" Type="com.ladera.proposalSystemServices.PropsalSystem.ProposalOwner" Partner="proposalOwnerContact">
+                    <ReferentialConstraint Property="proposalOwner_id" ReferencedProperty="id"/>
                 </NavigationProperty>
-                <Property Name="PS_VENDOR_ORG_id" Type="Edm.Int32"/>
+                <Property Name="proposalOwner_id" Type="Edm.String"/>
             </EntityType>
-            <EntityType Name="ProposalCustomer">
+            <EntityType Name="ProposalClient">
                 <Key>
                     <PropertyRef Name="id"/>
                 </Key>
-                <Property Name="id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="id" Type="Edm.String" Nullable="false"/>
                 <Property Name="name" Type="Edm.String" MaxLength="100"/>
                 <Property Name="logo" Type="Edm.Binary"/>
-                <Property Name="website" Type="Edm.String"/>
                 <Property Name="createdBy" Type="Edm.String" MaxLength="50"/>
                 <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
                 <Property Name="modifiedBy" Type="Edm.String" MaxLength="50"/>
                 <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
-                <NavigationProperty Name="PS_CUSTOMER_ORG_CONTACT" Type="Collection(proposal.service.proposal.ProposalCustomerContact)" Partner="PS_CUSTOMER_ORG"/>
+                <NavigationProperty Name="proposalClientContact" Type="Collection(com.ladera.proposalSystemServices.PropsalSystem.ProposalClientContact)" Partner="proposalClient"/>
             </EntityType>
-            <EntityType Name="ProposalCustomerContact">
+            <EntityType Name="ProposalClientContact">
                 <Key>
                     <PropertyRef Name="id"/>
                 </Key>
-                <Property Name="id" Type="Edm.Int32" Nullable="false"/>
-                <Property Name="addressLine1" Type="Edm.String" MaxLength="30"/>
-                <Property Name="addressLine2" Type="Edm.String" MaxLength="50"/>
-                <Property Name="addressLine3" Type="Edm.String" MaxLength="50"/>
+                <Property Name="id" Type="Edm.String" Nullable="false"/>
+                <Property Name="doorNo" Type="Edm.String" MaxLength="10"/>
+                <Property Name="streetName" Type="Edm.String" MaxLength="50"/>
                 <Property Name="city" Type="Edm.String" MaxLength="50"/>
                 <Property Name="pincode" Type="Edm.String" MaxLength="50"/>
                 <Property Name="state" Type="Edm.String" MaxLength="50"/>
-                <Property Name="country" Type="Edm.String" MaxLength="50"/>
-                <Property Name="contact_person_1_mobileNumber" Type="Edm.String" MaxLength="50"/>
-                <Property Name="contact_person_1_telephoneNumber" Type="Edm.String" MaxLength="50"/>
-                <Property Name="contact_person_1_emailId" Type="Edm.String" MaxLength="50"/>
-                <Property Name="contact_person_2_mobileNumber" Type="Edm.String" MaxLength="50"/>
-                <Property Name="contact_person_2_telephoneNumber" Type="Edm.String" MaxLength="50"/>
-                <Property Name="contact_person_2_emailId" Type="Edm.String" MaxLength="50"/>
+                <Property Name="Country" Type="Edm.String" MaxLength="50"/>
+                <Property Name="mobileNumber" Type="Edm.String" MaxLength="50"/>
+                <Property Name="telephoneNumber" Type="Edm.String" MaxLength="50"/>
+                <Property Name="emailId" Type="Edm.String" MaxLength="50"/>
+                <Property Name="password" Type="Edm.String" MaxLength="50"/>
                 <Property Name="createdBy" Type="Edm.String" MaxLength="50"/>
                 <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
                 <Property Name="modifiedBy" Type="Edm.String" MaxLength="50"/>
                 <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
-                <NavigationProperty Name="PS_CUSTOMER_ORG" Type="proposal.service.proposal.ProposalCustomer" Partner="PS_CUSTOMER_ORG_CONTACT">
-                    <ReferentialConstraint Property="PS_CUSTOMER_ORG_id" ReferencedProperty="id"/>
+                <NavigationProperty Name="proposalClient" Type="com.ladera.proposalSystemServices.PropsalSystem.ProposalClient" Partner="proposalClientContact">
+                    <ReferentialConstraint Property="proposalClient_id" ReferencedProperty="id"/>
                 </NavigationProperty>
-                <Property Name="PS_CUSTOMER_ORG_id" Type="Edm.Int32"/>
+                <Property Name="proposalClient_id" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="ProposalDetails">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.String" Nullable="false"/>
+                <Property Name="referenceId" Type="Edm.String"/>
+                <Property Name="projectname" Type="Edm.String"/>
+                <NavigationProperty Name="projectType" Type="com.ladera.proposalSystemServices.PropsalSystem.ProjectType">
+                    <ReferentialConstraint Property="projectType_id" ReferencedProperty="id"/>
+                </NavigationProperty>
+                <Property Name="projectType_id" Type="Edm.Int32"/>
+                <Property Name="proposedDate" Type="Edm.Date"/>
+                <Property Name="proposedBy" Type="Edm.String"/>
+                <Property Name="proposerRole" Type="Edm.String"/>
+                <Property Name="proposerDepartment" Type="Edm.String"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="50"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="50"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <NavigationProperty Name="mainSection" Type="Collection(com.ladera.proposalSystemServices.PropsalSystem.MainSection)" Partner="proposalDetails"/>
+                <NavigationProperty Name="proposalOwner" Type="com.ladera.proposalSystemServices.PropsalSystem.ProposalOwner">
+                    <ReferentialConstraint Property="proposalOwner_id" ReferencedProperty="id"/>
+                </NavigationProperty>
+                <Property Name="proposalOwner_id" Type="Edm.String"/>
+                <NavigationProperty Name="proposalClient" Type="com.ladera.proposalSystemServices.PropsalSystem.ProposalClient">
+                    <ReferentialConstraint Property="proposalClient_id" ReferencedProperty="id"/>
+                </NavigationProperty>
+                <Property Name="proposalClient_id" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="MainSection">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.String" Nullable="false"/>
+                <Property Name="mainSectiontitle" Type="Edm.String"/>
+                <Property Name="textarea" Type="Edm.String"/>
+                <Property Name="imagearea" Type="Edm.Binary"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="50"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="50"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <NavigationProperty Name="proposalDetails" Type="com.ladera.proposalSystemServices.PropsalSystem.ProposalDetails" Partner="mainSection">
+                    <ReferentialConstraint Property="proposalDetails_id" ReferencedProperty="id"/>
+                </NavigationProperty>
+                <Property Name="proposalDetails_id" Type="Edm.String"/>
+                <NavigationProperty Name="tablearea" Type="Collection(com.ladera.proposalSystemServices.PropsalSystem.MainTableFields)" Partner="mainSection"/>
+                <NavigationProperty Name="subsection" Type="Collection(com.ladera.proposalSystemServices.PropsalSystem.SubSection)" Partner="parentSection"/>
+            </EntityType>
+            <EntityType Name="SubSection">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.String" Nullable="false"/>
+                <Property Name="subSectiontitle" Type="Edm.String"/>
+                <Property Name="textarea" Type="Edm.String"/>
+                <Property Name="imagearea" Type="Edm.Binary"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="50"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="50"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <NavigationProperty Name="parentSection" Type="com.ladera.proposalSystemServices.PropsalSystem.MainSection" Partner="subsection">
+                    <ReferentialConstraint Property="parentSection_id" ReferencedProperty="id"/>
+                </NavigationProperty>
+                <Property Name="parentSection_id" Type="Edm.String"/>
+                <NavigationProperty Name="tablearea" Type="Collection(com.ladera.proposalSystemServices.PropsalSystem.MainTableFields)" Partner="subSection"/>
+            </EntityType>
+            <EntityType Name="ProjectType">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="projectType" Type="Edm.String" MaxLength="30"/>
+            </EntityType>
+            <EntityType Name="MainTableFields">
+                <Property Name="field1" Type="Edm.String"/>
+                <Property Name="field2" Type="Edm.String"/>
+                <Property Name="field3" Type="Edm.String"/>
+                <Property Name="field4" Type="Edm.String"/>
+                <Property Name="field5" Type="Edm.String"/>
+                <NavigationProperty Name="mainSection" Type="com.ladera.proposalSystemServices.PropsalSystem.MainSection" Partner="tablearea">
+                    <ReferentialConstraint Property="mainSection_id" ReferencedProperty="id"/>
+                </NavigationProperty>
+                <Property Name="mainSection_id" Type="Edm.String"/>
+                <NavigationProperty Name="subSection" Type="com.ladera.proposalSystemServices.PropsalSystem.SubSection" Partner="tablearea">
+                    <ReferentialConstraint Property="subSection_id" ReferencedProperty="id"/>
+                </NavigationProperty>
+                <Property Name="subSection_id" Type="Edm.String"/>
             </EntityType>
         </Schema>
     </edmx:DataServices>

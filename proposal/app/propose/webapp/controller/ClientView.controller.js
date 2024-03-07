@@ -1,7 +1,6 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast"
-    
 ], function (Controller,MessageToast) {
     "use strict";
 
@@ -9,6 +8,16 @@ sap.ui.define([
         onInit: function () {
             var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.getRoute("clientView").attachMatched(this.onObjectMatched, this); //Attach Router Pattern      
+        },
+        onBack:function(){
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navBack("clientView");
+ 
+        },
+        onSaveandContinue:function(){
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("proposalview");
+
         },
         onObjectMatched(oEvent) {
           var oArgs,oView;

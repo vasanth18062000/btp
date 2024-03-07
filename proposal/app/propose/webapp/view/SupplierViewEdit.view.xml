@@ -9,7 +9,7 @@
 >
     <Page
         id="page"
-        title="Supplier View"
+        title="Supplier View" showNavButton="true" navButtonPress=".EditToHomeButton"
     >
     
         <content>
@@ -62,7 +62,7 @@
                     growing="true"
                     growingThreshold="3"
                     growingDirection="Downwards"
-                    growingTriggerText="next"
+                    growingTriggerText="Load more"
                     
                 />
             </smarttable:SmartTable>

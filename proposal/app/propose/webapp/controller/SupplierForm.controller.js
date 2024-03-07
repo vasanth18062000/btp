@@ -1,13 +1,12 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/core/Fragment",
     "sap/m/MessageToast"
-], function (Controller, Fragment,MessageToast) {
+], function (Controller,MessageToast) {
     "use strict";
 
     return Controller.extend("ns.propose.controller.SupplierForm", {
         onInit: function () {
-            // Initialization code if needed
+    
         },
         onNextVendorDetails: function () {
             // Move to the "Contact Detail" tab in the IconTabBar
@@ -43,14 +42,15 @@ sap.ui.define([
                    id: this.getView().byId("id").getValue(),
                    name: this.getView().byId("name").getValue(),
                   // logo: this.getView().byId("logo").getValue()
-                  website:this.getView().byId("website").getValue()
+                  website:this.getView().byId("website").getValue(),
+                  logo: this.getView().byId("idBase64Area").getValue()
                 };
                 console.log(oEntry);
                 oModel.create("/ProposalSupplier",oEntry,{
                     method: "POST",
                     success: function () {
                         MessageToast.show("Added Successfully");
-                        // that.getView().byId("_IDGenButton2").setVisible(true);
+                         that.getView().byId("_IDGenButton2").setVisible(true);
                         var proposalOwnerId = this.getView().byId("id").getValue();
                         console.log(proposalOwnerId);
                         var oEntrydetails = {
@@ -84,20 +84,20 @@ sap.ui.define([
                 });
 
                 //validate Mobile Number
-    //             var mobileNumberRegex = /^[0-9]{10}$/;
+                // var mobileNumberRegex = /^[0-9]{10}$/;
 
-    //             var contactPerson1MobileNumber = this.getView().byId("contact_person_1_mobileNumber").getValue();
-    //             var contactPerson2MobileNumber = this.getView().byId("contact_person_2_mobileNumber").getValue();
+                // var contactPerson1MobileNumber = this.getView().byId("contact_person_1_mobileNumber").getValue();
+                // var contactPerson2MobileNumber = this.getView().byId("contact_person_2_mobileNumber").getValue();
             
-    //             if (!mobileNumberRegex.test(contactPerson1MobileNumber)) {
-    //                 MessageToast.show("Invalid Mobile Number for Contact Person 1. Please enter a 10-digit number.");
-    //                 return;
-    //             }
+                // if (!mobileNumberRegex.test(contactPerson1MobileNumber)) {
+                //     MessageToast.show("Invalid Mobile Number for Contact Person 1. Please enter a 10-digit number.");
+                //     return;
+                // }
             
-    //             if (!mobileNumberRegex.test(contactPerson2MobileNumber)) {
-    //                 MessageToast.show("Invalid Mobile Number for Contact Person 2. Please enter a 10-digit number.");
-    //                 return;
-    //             }
+                // if (!mobileNumberRegex.test(contactPerson2MobileNumber)) {
+                //     MessageToast.show("Invalid Mobile Number for Contact Person 2. Please enter a 10-digit number.");
+                //     return;
+                // }
 
 
     //             // Validate email addresses
@@ -116,13 +116,54 @@ sap.ui.define([
     //     return;
     // }
         },
+        onChangeDP: function (oEvent) {
+          
+            var that = this;
+            var image = new Image();
+            var file = oEvent.getParameter("files")[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                var data = reader.result;
+               
+                var inputString = data;
+                console.log(inputString);
+                var wordsToRemove = ["data:image/png;base64,","data:text/plain;base64,","data:image/jpeg;base64,"
+                                      ,"data:audio/mpeg;base64,","data:application/vnd.ms-excel;base64,","data:video/mp4;base64,"];
+                var replacement = "";
+                var regexPattern = new RegExp(wordsToRemove.join('|'), 'gi');
+  
+                  
+                  var resultString = inputString.replace(regexPattern, replacement);
+                  console.log(resultString);
+                  var rs=resultString;
+              
+                //console.log(data);
+                that.byId("idBase64Area").setValue(resultString);
+                var base64Data = inputString;
+                that.byId("imagePreview").setSrc(base64Data);
+                
+                image.onload = function () {
+                  
+                    if (this.width + this.height === 0) {
+                        that.dpImage = "";
+                        sap.m.MessageBox.error("Invalid Image!");
+                    }
+                };
+            };
+            reader.onerror = function (error) {
+                //Error Handling
+            };
+        },
         onView:function(){
-            const oRouter = this.getOwnerComponent().getRouter();
+            var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
             var id=this.getView().byId("id").getValue();
             console.log(id);
             oRouter.navTo("supplierView",{
                 supplierId: id
             });
 
-        }    });
+        }
+     
+    });
 });

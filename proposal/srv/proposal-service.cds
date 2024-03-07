@@ -1,14 +1,31 @@
-namespace proposal.service;
-using {com.ladera.sap.btp.contract.proposal.systems as db} from '../db/schema';
+using { com.ladera.proposalsystemmodels as psModels } from '../db/schema';
+
+
+namespace com.ladera.proposalSystemServices;
 
 
 
-service proposal {
-    entity LoginCredentials as projection on db.PS_USER ;
-    entity ProposalSupplier as projection on db.PS_VENDOR_ORG;
-    
-    entity ProposalSupplierContact as projection on db.PS_VENDOR_ORG_CONTACT;
-    entity ProposalCustomer as projection on db.PS_CUSTOMER_ORG;
-    entity ProposalCustomerContact as projection on db.PS_CUSTOMER_ORG_CONTACT;
-    
+
+service PropsalSystem {
+
+    entity UserCredentials as projection on psModels.LoginCredentials;
+
+    entity ProposalOwner as projection on psModels.ProposalOwner;
+
+    entity ProposalOwnerContact as projection on psModels.ProposalOwnerContact;
+
+    entity ProposalClient as projection on psModels.ProposalClient;
+
+    entity ProposalClientContact as projection on psModels.ProposalClientContact;
+
+    entity ProposalDetails as projection on psModels.ProposalDetails;
+
+    entity MainSection as projection on psModels.MainSection;
+
+    entity SubSection as projection on psModels.SubSection;
+
+    entity ProjectType as projection on psModels.ProjectType;
+
+    entity MainTableFields as projection on psModels.MainTableFields;
+
 }

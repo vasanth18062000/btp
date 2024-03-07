@@ -1,15 +1,13 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast",
-    "sap/ui/core/routing/History"
-
-], function (Controller,MessageToast,History) {
+    "sap/m/MessageToast"
+], function (Controller,MessageToast) {
     "use strict";
 
-    return Controller.extend("ns.propose.controller.ClientUpdateForm", {
+    return Controller.extend("ns.propose.controller.SupplierPreviewEdit", {
         onInit: function () {
             var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
-            oRouter.getRoute("clientUpdateForm").attachMatched(this.onObjectMatched, this); //Attach Router Pattern      
+            oRouter.getRoute("supplierPreviewEdit").attachMatched(this.onObjectMatched, this); //Attach Router Pattern      
         },
         onObjectMatched(oEvent) {
             var oArgs,oView;
@@ -17,12 +15,12 @@ sap.ui.define([
             oView=this.getView();
             console.log(oArgs.SelectedItem);
             oView.bindElement({
-              path:"/ProposalCustomer("+oArgs.SelectedItem+")"
+              path:"/ProposalSupplier("+oArgs.SelectedItem+")"
           });
   
           },
 
-          onNextClientDetails: function () {
+        onNextVendorDetails: function () {
             // Move to the "Contact Detail" tab in the IconTabBar
             this.getView().byId("iconTabBar").setSelectedKey("contactTab");
         },
@@ -34,14 +32,14 @@ sap.ui.define([
             
             this.getView().byId("iconTabBar").setSelectedKey("contactTab2");
         },
-        onbackClientDetails:function(){
+        onbackVendorDetails:function(){
             this.getView().byId("iconTabBar").setSelectedKey("contactTab3");
         },
-        onbackClient1Details:function(){
+        onbackContact1Details:function(){
             this.getView().byId("iconTabBar").setSelectedKey("contactTab");
 
         },
-        onbackClient2Details:function(){
+        onbackContact2Details:function(){
            this.getView().byId("iconTabBar").setSelectedKey("contactTab1");
 
         },
@@ -49,20 +47,24 @@ sap.ui.define([
         onUpdate : function(){
             var oModel = this.getView().getModel();
             var that = this;
-            var sID=this.getView().byId("id").getValue()
-                console.log(oModel);
+            var sID=this.getView().byId("id").getValue();
+            var idss = this.getView().byId("ID").getValue(); // Assuming "ID" is an input field
+            console.log(sID);
+            console.log(idss);
+            console.log(oModel);
+        
                 var oEntry = {
-                   
                    id: this.getView().byId("id").getValue(),
                    name: this.getView().byId("name").getValue(),
                   // logo: this.getView().byId("logo").getValue()
                   website:this.getView().byId("website").getValue()
                 };
                 console.log(oEntry);
-                oModel.update("/ProposalCustomer("+sID+")",oEntry,{
+                oModel.update("/ProposalSupplier("+sID+")",oEntry,{
                     method: "UPDATE",
                     success: function () {
                         MessageToast.show("Added Successfully");
+                        // that.getView().byId("_IDGenButton2").setVisible(true);
                         var proposalClientId = this.getView().byId("id").getValue();
                         console.log(proposalClientId);
                         var oEntrydetails = {
@@ -75,15 +77,13 @@ sap.ui.define([
                           state: this.getView().byId("state").getValue(),
                           country: this.getView().byId("country").getValue(),
                           contact_person_1_mobileNumber: this.getView().byId("contact_person_1_mobileNumber").getValue(),
-                          contact_person_1_telephoneNumber: this.getView().byId("contact_person_1_telephoneNumber").getValue(),
                           contact_person_1_emailId: this.getView().byId("contact_person_1_emailId").getValue(),
                           contact_person_2_mobileNumber: this.getView().byId("contact_person_2_mobileNumber").getValue(),
-                          contact_person_2_telephoneNumber: this.getView().byId("contact_person_2_telephoneNumber").getValue(),
                           contact_person_2_emailId: this.getView().byId("contact_person_2_emailId").getValue(),
-                          PS_CUSTOMER_ORG_id: proposalClientId
+                          PS_CUSTOMER_ORG_id: this.getView().byId("id").getValue()
                         };
                         console.log(oEntrydetails);
-                oModel.update("/ProposalCustomerContact",oEntrydetails,{
+                oModel.update("/ProposalSupplierContact("+idss+")",oEntrydetails,{
                     method: "UPDATE",
                     success: function () {
                         MessageToast.show(" contact Added Successfully");
@@ -101,21 +101,6 @@ sap.ui.define([
             oRouter.navTo("clientView",{
                 clientId: id
             });
-        },
-        goHome:function(){
-            var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
-            oRouter.navTo("Routepropose");
-        },
-        updateToEdit:function(){
-			const oHistory = History.getInstance();
-			const sPreviousHash = oHistory.getPreviousHash();
-
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				const oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("clientViewEdit", {}, true);
-			}
         }
      
     });

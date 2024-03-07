@@ -10,12 +10,17 @@
             <OverflowToolbar id="_IDGenOverflowToolbar1">
                 <Bar id="_IDGenBar1">
                     <contentLeft>
-                        <Image id="_IDGenImage1" src="{i18n>headerImage1}" width="100%" height="400%" />
+                                        <Button id="_IDGenButton11" press="updateToEdit" icon="sap-icon://nav-back"></Button>
+
+                        <Image id="_IDGenImage1" src="{i18n>headerImage1}" width="80%" height="400%" />
                     </contentLeft>
 
                     <contentMiddle>
                         <Text id="_IDGenText1" text="Client Upadate" />
                     </contentMiddle>
+                     <contentRight>
+                    <Button id="_IDGenButton10" press="goHome" text="Home"></Button>
+                    </contentRight>
                 </Bar>
             </OverflowToolbar>
         </customHeader>
@@ -48,31 +53,97 @@
 
                     <IconTabFilter id="_IDGenIconTabFilter2" text="Customer Contact Detail" class="sapUiSmallMarginBottom sapUiResponsiveContentPadding" iconColor="NonInteractive" key="contactTab">
                         <!-- Contact Details Form -->
-                        <f:SimpleForm id="contactForm" title="Customer Contact Details" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false">
-                            <f:content>
+<List
+                            id="_IDGenList"
+                            items="{path: 'PS_CUSTOMER_ORG_CONTACT'}"
+                        >
+                            <CustomListItem id="_IDGenustomListItem1">
                                 <VBox id="_IDGenVBox2">
-                                    <Label id="_IDGenLabel5" text="Address ID" />
-                                    <Input width="18%" id="ID" value="{proposalOwnerContact>id}" />
-                                    <Label id="_IDGenLabel6" text="Address Line1" />
-                                    <Input width="35%" id="addressLine1" value="{proposalOwnerContact>addressLine1}" />
-                                    <Label id="_IDGenLabel7" text="Address Line2" />
-                                    <Input width="35%" id="addressLine2" value="{proposalOwnerContact>addressLine2}" />
-                                    <Label id="_IDGenLabel8" text="Address Line3" />
-                                    <Input width="35%" id="addressLine3" value="{proposalOwnerContact>addressLine3}" />
-                                    <Label id="_IDGenLabel9" text="City" />
-                                    <Input width="35%" id="city" value="{proposalOwnerContact>city}" />
+                                    <Label
+                                        id="_IDGenLabel5"
+                                        text="Address ID"
+                                    />
+                                    <Input
+                                        width="18%"
+                                        id="ID"
+                                        value="{id}"
+                                    />
+                                    <Label
+                                        id="_IDGenLabel6"
+                                        text="Address Line1"
+                                    />
+                                    <Input
+                                        width="35%"
+                                        id="addressLine1"
+                                        value="{addressLine1}"
+                                    />
+                                    <Label
+                                        id="_IDGenLabel7"
+                                        text="Address Line2"
+                                    />
+                                    <Input
+                                        width="35%"
+                                        id="addressLine2"
+                                        value="{addressLine2}"
+                                    />
+                                    <Label
+                                        id="_IDGenLabel8"
+                                        text="Address Line3"
+                                    />
+                                    <Input
+                                        width="35%"
+                                        id="addressLine3"
+                                        value="{addressLine3}"
+                                    />
+                                    <Label
+                                        id="_IDGenLabel9"
+                                        text="City"
+                                    />
+                                    <Input
+                                        width="35%"
+                                        id="city"
+                                        value="{city}"
+                                    />
                                 </VBox>
+
                                 <VBox id="_IDGenVBox3">
-                                    <Label id="_IDGenLabel10" text="Pincode" />
-                                    <Input width="35%" id="pincode" value="{proposalOwnerContact>pincode}" />
-                                    <Label id="_IDGenLabel11" text="State" />
-                                    <Input width="35%" id="state" value="{proposalOwnerContact>state}" />
-                                    <Label id="_IDGenLabel12" text="Country" />
-                                    <Input width="35%" id="country" value="{proposalOwnerContact>country}" />
+                                    <Label
+                                        id="_IDGenLabel10"
+                                        text="Pincode"
+                                    />
+                                    <Input
+                                        width="35%"
+                                        id="pincode"
+                                        value="{pincode}"
+                                    />
+                                    <Label
+                                        id="_IDGenLabel11"
+                                        text="State"
+                                    />
+                                    <Input
+                                        width="35%"
+                                        id="state"
+                                        value="{state}"
+                                    />
+                                    <Label
+                                        id="_IDGenLabel12"
+                                        text="Country"
+                                    />
+                                    <Input
+                                        width="35%"
+                                        id="country"
+                                        value="{country}"
+                                    />
+                                    <!-- <Select width="35%" id="country" selectedKey="{proposalOwnerContact>country}" xmlns:core="sap.ui.core">
+                                     <core:Item key="1" text="India" />
+                                     <core:Item key="2" text="Berlin" />
+                                     <core:Item key="3" text="UK" />
+                                     <core:Item key="4" text="USA" />
+                                    </Select> -->
                                 </VBox>
-                            </f:content>
-                        </f:SimpleForm>
-                        <Bar id="_IDGenBar2">
+                            </CustomListItem>
+                        </List>                       
+                         <Bar id="_IDGenBar2">
                             <contentRight>
                             <Button id="_IDGenButton6" text="Back" press="onbackClientDetails" type="Emphasized" icon="sap-icon://nav-back"/>
                                 <Button id="_IDGenButton4" text="Next" press="onNextContact1Details" type="Emphasized" icon="sap-icon://arrow-right" />
@@ -82,18 +153,35 @@
 
                     <IconTabFilter id="_IDGenIconTabFilter3" text="Customer Contact Detail (1)" class="sapUiSmallMarginBottom sapUiResponsiveContentPadding" iconColor="NonInteractive" key="contactTab1">
                         <!-- Contact Details Form -->
-                        <f:SimpleForm id="contact1Form" title="Customer Contact Details" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false">
-                            <f:content>
+                        <List
+                            id="_IDGenist1"
+                            items="{path: 'PS_CUSTOMER_ORG_CONTACT'}"
+                        >
+                            <CustomListItem id="_IDGnCustomListItem1">
                                 <VBox id="_IDGenVBox4">
-                                    <Label id="_IDGenLabel13" text="Mobile Number" />
-                                    <Input width="18%" id="contact_person_1_mobileNumber" value="{proposalOwnerContact>contact_person_1_mobileNumber}" />
-                                    <!-- <Label id="_IDGenLabel14" text="Person1 TelePhoneNumber" />
-                                    <Input width="18%" id="contact_person_1_telephoneNumber" value="{proposalOwnerContact>contact_person_1_telephoneNumber}" /> -->
-                                    <Label id="_IDGenLabel15" text="Email ID" />
-                                    <Input width="18%" id="contact_person_1_emailId" value="{proposalOwnerContact>contact_person_1_emailId}" />
+                                    <Label
+                                        id="_IDGenLabel13"
+                                        text="Mobile Number"
+                                    />
+                                    <Input
+                                        width="18%"
+                                        id="contact_person_1_mobileNumber"
+                                        value="{contact_person_1_mobileNumber}"
+                                    />
+                                    <!-- <Label id="_IDGenLabel14" text="TelePhoneNumber" />
+                                    <Input width="18%" id="contact_person_1_telephoneNumber" value="{proposalOwnerContact>contact_person_1_telephoneNumber}"/> -->
+                                    <Label
+                                        id="_IDGenLabel15"
+                                        text="Email ID"
+                                    />
+                                    <Input
+                                        width="18%"
+                                        id="contact_person_1_emailId"
+                                        value="{contact_person_1_emailId}"
+                                    />
                                 </VBox>
-                            </f:content>
-                        </f:SimpleForm>
+                            </CustomListItem>
+                        </List>
                         <Bar id="_IDGenBar4">
                             <contentRight>
                             <Button id="_IDGenButton7" text="Back" press="onbackClient1Details" type="Emphasized" icon="sap-icon://nav-back"/>
@@ -104,24 +192,46 @@
 
                     <IconTabFilter id="_IDGenIconTabFilter4" text="Customer Contact Detail (2)" class="sapUiSmallMarginBottom sapUiResponsiveContentPadding" iconColor="NonInteractive" key="contactTab2">
                         <!-- Contact Details Form -->
-                        <f:SimpleForm id="contact2Form" title="Customer Contact Details" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false">
-                            <f:content>
+ <List
+                            id="_IDGenLst1"
+                            items="{path: 'PS_CUSTOMER_ORG_CONTACT'}"
+                        >
+                            <CustomListItem id="_IDGeCustomListItem1">
                                 <VBox id="_IDGenVBox5">
-                                    <Label id="_IDGenLabel16" text="Mobile Number" />
-                                    <Input width="18%" id="contact_person_2_mobileNumber" value="{proposalOwnerContact>contact_person_2_mobileNumber}" />
-                                    <!-- <Label id="_IDGenLabel17" text="Person2 TelePhoneNumber" />
-                                    <Input width="18%" id="contact_person_2_telephoneNumber" value="{proposalOwnerContact>contact_person_2_telephoneNumber}" /> -->
-                                    <Label id="_IDGenLabel18" text="Email ID" />
-                                    <Input width="18%" id="contact_person_2_emailId" value="{proposalOwnerContact>contact_person_2_emailId}" />
-                                    <Label id="_IDGenLabel19" text="Proposal Client ID" />
-                                    <Input width="18%" id="proposalOwner" value="{proposalOwnerContact>proposalOwner}" />
+                                    <Label
+                                        id="_IDGenLabel16"
+                                        text="Mobile Number"
+                                    />
+                                    <Input
+                                        width="18%"
+                                        id="contact_person_2_mobileNumber"
+                                        value="{contact_person_2_mobileNumber}"
+                                    />
+                                    <!-- <Label id="_IDGenLabel17" text="TelePhoneNumber" />
+                                    <Input width="18%" id="contact_person_2_telephoneNumber" value="{proposalOwnerContact>contact_person_2_telephoneNumber}"/> -->
+                                    <Label
+                                        id="_IDGenLabel18"
+                                        text="Email ID"
+                                    />
+                                    <Input
+                                        width="18%"
+                                        id="contact_person_2_emailId"
+                                        value="{contact_person_2_emailId}"
+                                    />
+                                    <Label
+                                        id="_IDGenLabel19"
+                                        text="Proposal Owner ID"
+                                    />
+                                    <Input
+                                        width="18%"
+                                        id="proposalOwner"
+                                        value="{proposalOwner}"
+                                    />
                                 </VBox>
-                            </f:content>
-                        </f:SimpleForm>
-                        <Bar id="_IDGenBar5">
+                            </CustomListItem>
+                        </List>                        <Bar id="_IDGenBar5">
                             <contentRight>
                                 <Button id="_IDGenButton8" text="Back" press="onbackClient2Details" type="Emphasized" icon="sap-icon://nav-back"/>
-                                <Button id="_IDGenButton1" text="Save" press="onSave" type="Success" icon="sap-icon://accept" />
                                 <!-- <Button id="_IDGenButton2" text="Preview" visible="false" press="onView" type="Emphasized" icon="sap-icon://biometric-face" /> -->
                             </contentRight>
                         </Bar>
@@ -129,5 +239,12 @@
                 </items>
             </IconTabBar>
         </content>
+        <footer>
+            <Bar id="_IDGenBar6">
+                <contentRight>
+                    <Button id="_IDGenButton9" text="Update" press="onUpdate" type="Success" icon="sap-icon://accept" />
+                </contentRight>
+            </Bar>
+        </footer>
             </Page>
 </mvc:View>

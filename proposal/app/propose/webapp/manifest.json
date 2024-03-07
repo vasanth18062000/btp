@@ -106,7 +106,6 @@
             "Targetpropose"
           ]
         },
-        
         {
           "name": "supplierForm",
           "pattern": "supplierForm",
@@ -169,6 +168,13 @@
           "target": [
             "templateCreation"
           ]
+        },
+        {
+          "name": "supplierPreviewEdit",
+          "pattern": "supplierPreviewEdit",
+          "target": [
+            "supplierPreviewEdit"
+          ]
         }
       ],
       "targets": {
@@ -214,8 +220,11 @@
         "templateCreation": {
           "viewId": "TemplateCreation",
           "viewName": "TemplateCreation"
+        },
+        "supplierPreviewEdit": {
+          "viewId": "SupplierPreviewEdit",
+          "viewName": "SupplierPreviewEdit"
         }
-
       }
     },
     "rootView": {
