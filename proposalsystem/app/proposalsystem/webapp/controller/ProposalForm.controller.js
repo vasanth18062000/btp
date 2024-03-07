@@ -12,6 +12,7 @@ return Controller.extend("ns.propose.controller.ProposalForm", {
       _titleInput: 1,
       __titleInputImage:1,
       _mainSections: [], // Array to store Main Section data
+      _textArea: [],
       textitem: 1,
       _subsection: 1,
       _subSections: [],
@@ -33,6 +34,7 @@ onInit: function () {
         this._titleInputCounter = 1;
         this._mainSectionCounter = 1;
         this._mainSections = [1];
+        this._textArea = [1];
         this.textitem = 1;
         this._subsection1 = 1;
         this._subsection = [1];
@@ -54,6 +56,7 @@ onInit: function () {
 
       },
 _setInitialSectionTitle: function () {
+
         var that = this;
         // Generate a unique ID for the new Input field
         var wizard = this.getView().byId("wizard");
@@ -122,46 +125,183 @@ _setInitialSectionTitle: function () {
 
 
 
-onAddRowTextArea: function () {
-        var that = this;
-        var wizard = that.getView().byId("wizard");
-        var currentStep = wizard.getProgressStep();
-        var currentStepIndex = wizard.getSteps().indexOf(currentStep);
-        var textItemId = "Text-" + this.textitem++;
+// onAddRowTextArea: function () {
 
-        console.log(textItemId);
+//         var that = this;
+//         var wizard = that.getView().byId("wizard");
+//         var currentStep = wizard.getProgressStep();
+//         var currentStepIndex = wizard.getSteps().indexOf(currentStep);
+//         var textItemId = "Text-" + this.textitem++;
+
+      
+//         console.log(textItemId);
 
         
 
-        // Check if idFrame exists in the view
-        var idFrame = that.getView().byId('idFrame' + currentStepIndex);
-        if (idFrame) {
-          var row = new sap.m.ColumnListItem({
-            cells: [
-              new sap.ui.richtexteditor.RichTextEditor({
-                id: textItemId,
-                width: "100%",
-                editorType: sap.ui.richtexteditor.EditorType.TinyMCE4,
-                customToolbar: true,
-                showGroupFont: true,
-                showGroupLink: true,
-                showGroupInsert: true,
-                showGroupClipboard: true,
-                showGroupUndo: true,
-                showGroupStructure: true,
-                showGroupTextAlign: true,
-                showGroupFontStyle: true,
-              }).addStyleClass("myRichTextEditor"),
-            ],
-          });
+//         // Check if idFrame exists in the view
+//         var idFrame = that.getView().byId('idFrame' + currentStepIndex);
+//         if (idFrame) {
+//           var row = new sap.m.ColumnListItem({
+//             cells: [
+//               new sap.ui.richtexteditor.RichTextEditor({
+//                 id: textItemId,
+//                 width: "100%",
+//                 editorType: sap.ui.richtexteditor.EditorType.TinyMCE4,
+//                 customToolbar: true,
+//                 showGroupFont: true,
+//                 showGroupLink: true,
+//                 showGroupInsert: true,
+//                 showGroupClipboard: true,
+//                 showGroupUndo: true,
+//                 showGroupStructure: true,
+//                 showGroupTextAlign: true,
+//                 showGroupFontStyle: true,
+//               }).addStyleClass("myRichTextEditor"),
+//             ],
+//           });
 
-          idFrame.addItem(row);
-        } else {
-          console.error("idFrame not found for step " + currentStepIndex);
-        }
-      },
+//           idFrame.addItem(row);
+//         } 
+        
+        
+        
+//         else {
+//           console.error("idFrame not found for step " + currentStepIndex);
+//         }
+
+//         if (that._addingTextArea) {
+//           that._subSections.push(textItemId);
+//           console.log("Text Area added successfully to SubSection");
+//       } else {
+//           that._mainSections.push(textItemId);
+//           console.log("Text Area added successfully to Main Section");
+//       }
+//       },
+
+// onAddRowTextArea: function () {
+//   var that = this;
+//   var wizard = that.getView().byId("wizard");
+//   var currentStep = wizard.getProgressStep();
+//   var currentStepIndex = wizard.getSteps().indexOf(currentStep);
+//   var textItemId = "Text-" + this.textitem++;
+
+//   // Check if idFrame exists in the view
+//   var idFrame = that.getView().byId('idFrame' + currentStepIndex);
+//   if (idFrame) {
+//       var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
+//           id: textItemId,
+//           width: "100%",
+//           editorType: sap.ui.richtexteditor.EditorType.TinyMCE4,
+//           customToolbar: true,
+//           showGroupFont: true,
+//           showGroupLink: true,
+//           showGroupInsert: true,
+//           showGroupClipboard: true,
+//           showGroupUndo: true,
+//           showGroupStructure: true,
+//           showGroupTextAlign: true,
+//           showGroupFontStyle: true,
+//       }).addStyleClass("myRichTextEditor");
+
+//       var row = new sap.m.ColumnListItem({
+//           cells: [richTextEditor],
+//       });
+
+//       idFrame.addItem(row);
+
+//       if (that._addingTextArea) {
+//           that._subSections.push({
+//               id: textItemId,
+//               richTextEditor: richTextEditor
+//           });
+//           console.log("Rich Text Area added successfully to SubSection");
+//       } else {
+//           that._mainSections.push({
+//               id: textItemId,
+//               richTextEditor: richTextEditor
+//           });
+//           console.log("Rich Text Area added successfully to Main Section");
+//       }
+//   } else {
+//       console.error("idFrame not found for step " + currentStepIndex);
+//   }
+// },
+
+onAddRowTextArea: function () {
+  var that = this;
+  var wizard = that.getView().byId("wizard");
+  var currentStep = wizard.getProgressStep();
+  var currentStepIndex = wizard.getSteps().indexOf(currentStep);
+  var textItemId = "Text-" + that.textitem++;
+
+  // Check if idFrame exists in the view
+  var idFrame = that.getView().byId('idFrame' + currentStepIndex);
+  if (idFrame) {
+    var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
+      id: textItemId,
+      width: "100%",
+      editorType: sap.ui.richtexteditor.EditorType.TinyMCE4,
+      customToolbar: true,
+      showGroupFont: true,
+      showGroupLink: true,
+      showGroupInsert: true,
+      showGroupClipboard: true,
+      showGroupUndo: true,
+      showGroupStructure: true,
+      showGroupTextAlign: true,
+      showGroupFontStyle: true,
+    }).addStyleClass("myRichTextEditor");
+
+    var row = new sap.m.ColumnListItem({
+      cells: [richTextEditor],
+    });
+
+    idFrame.addItem(row);
+
+    var isMainSection = that._mainSections.some(function (section) {
+      return section.richTextEditor === richTextEditor;
+    });
+
+    if (that._addingTextArea) {
+      that._subSections.push({
+        id: textItemId,
+        richTextEditor: richTextEditor,
+      });
+
+      // Attach the event listener for saving base64 content on change
+      richTextEditor.attachChange(function (oEvent) {
+        var editorContent = richTextEditor.getValue();
+        var base64Content = btoa(editorContent);
+        that._subsectiontext = base64Content;
+        console.log(that._subsectiontext);
+      });
+
+      console.log("Rich Text Area added successfully to SubSection");
+    } else {
+      that._mainSections.push({
+        id: textItemId,
+        richTextEditor: richTextEditor,
+      });
+
+      // Attach the event listener for saving base64 content on change
+      richTextEditor.attachChange(function (oEvent) {
+        var editorContent = richTextEditor.getValue();
+        var base64Content = btoa(editorContent);
+        that._mainsectiontext = base64Content;
+        console.log(that._mainsectiontext);
+      });
+
+      console.log("Rich Text Area added successfully to Main Section");
+    }
+  } else {
+    console.error("idFrame not found for step " + currentStepIndex);
+  }
+},
+
+
 
 onSubSection: function () {
+
         var that = this;
         var wizard = that.getView().byId("wizard");
         var currentStep = wizard.getProgressStep();
@@ -169,6 +309,7 @@ onSubSection: function () {
         var idFrame = that.getView().byId('idFrame' + currentStepIndex);
 
         that._addingImageForSubSection = true;
+        that._addingTextArea = true;
 
         if (currentStepIndex >= 0) {
           console.log("current Step  :" + currentStepIndex);
@@ -273,6 +414,7 @@ saveMainSection: function () {
                   id: "MAIN_0" + this._mainSectionCounter++, // Adjust as needed
                   mainSectiontitle: mainSectionInput.getValue(),
                   imagearea: this._inputString || null,
+                  textarea : this._mainsectiontext || null,
                   
               };
 
@@ -320,7 +462,8 @@ saveSubSection: function (mainSectionIds) {
         id: "SUB_0" + this._subSectionCounter++, // Adjust as needed
         subSectiontitle: subSectionInput.getValue() || null,
         parentSection_id: mainSectionId,
-        imagearea: this._inputString || null
+        imagearea: this._inputString || null,
+        textarea : this._subsectiontext || null,
       };
 
       console.log(subSectionData);
