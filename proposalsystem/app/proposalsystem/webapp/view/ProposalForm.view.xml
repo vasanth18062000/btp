@@ -90,6 +90,13 @@
                                                     press="onAddImage"
                                                     class="buttonfortool"
                                                     icon="sap-icon://picture"/>
+
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>

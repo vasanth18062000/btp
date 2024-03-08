@@ -14,6 +14,7 @@ return Controller.extend("ns.propose.controller.ProposalForm", {
       _mainSections: [], // Array to store Main Section data
       _textArea: [],
       textitem: 1,
+      _table:1,
       _subsection: 1,
       _subSections: [],
       _titleSubInputCounter1: 2,
@@ -35,6 +36,7 @@ onInit: function () {
         this._mainSectionCounter = 1;
         this._mainSections = [1];
         this._textArea = [1];
+        this._table =1;
         this.textitem = 1;
         this._subsection1 = 1;
         this._subsection = [1];
@@ -250,6 +252,73 @@ onAddRowTextArea: function () {
       showGroupStructure: true,
       showGroupTextAlign: true,
       showGroupFontStyle: true,
+    }).addStyleClass("myRichTextEditor");
+
+    var row = new sap.m.ColumnListItem({
+      cells: [richTextEditor],
+    });
+
+    idFrame.addItem(row);
+
+    var isMainSection = that._mainSections.some(function (section) {
+      return section.richTextEditor === richTextEditor;
+    });
+
+    if (that._addingTextArea) {
+      that._subSections.push({
+        id: textItemId,
+        richTextEditor: richTextEditor,
+      });
+
+      // Attach the event listener for saving base64 content on change
+      richTextEditor.attachChange(function (oEvent) {
+        var editorContent = richTextEditor.getValue();
+        var base64Content = btoa(editorContent);
+        that._subsectiontext = base64Content;
+        console.log(that._subsectiontext);
+      });
+
+      console.log("Rich Text Area added successfully to SubSection");
+    } else {
+      that._mainSections.push({
+        id: textItemId,
+        richTextEditor: richTextEditor,
+      });
+
+      // Attach the event listener for saving base64 content on change
+      richTextEditor.attachChange(function (oEvent) {
+        var editorContent = richTextEditor.getValue();
+        var base64Content = btoa(editorContent);
+        that._mainsectiontext = base64Content;
+        console.log(that._mainsectiontext);
+      });
+
+      console.log("Rich Text Area added successfully to Main Section");
+    }
+  } else {
+    console.error("idFrame not found for step " + currentStepIndex);
+  }
+},
+
+
+onAddTable: function (bIsTinyMCE5) {
+  var that = this;
+  var wizard = that.getView().byId("wizard");
+  var currentStep = wizard.getProgressStep();
+  var currentStepIndex = wizard.getSteps().indexOf(currentStep);
+  var textItemId = "Table-" + that._table++;
+
+  // Check if idFrame exists in the view
+  var idFrame = that.getView().byId('idFrame' + currentStepIndex);
+  if (idFrame) {
+    var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
+      id: textItemId,
+      width: "100%",
+      editorType: sap.ui.richtexteditor.EditorType.TinyMCE4,
+      showGroupInsert: true,
+      showGroupUndo: true,
+      showGroupTextAlign: true, // hide text-align-related groups
+
     }).addStyleClass("myRichTextEditor");
 
     var row = new sap.m.ColumnListItem({
