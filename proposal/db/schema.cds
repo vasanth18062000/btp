@@ -83,3 +83,56 @@ entity PS_CUSTOMER_ORG_CONTACT{
     
 }
 
+
+entity ProposalDetails{
+    key id        :   String;
+    referenceId   :   String;
+    projectname   :   String;
+    projectType   :   Association to  one ProjectType;
+    proposedDate  :   Date;
+    proposedBy    :   String;
+    proposerRole  :   String;
+    proposerDepartment: String;
+    createdBy     :   String(50);
+    createdAt     :   Timestamp;
+    modifiedBy    :   String(50);
+    modifiedAt    :   Timestamp;
+    mainSection:      Association to many MainSection on mainSection.proposalDetails=$self;
+
+}
+
+
+
+entity MainSection{
+    key id        :   String;
+    mainSectiontitle: String;
+    textarea      :   LargeBinary;
+    imagearea     :   LargeBinary;
+    createdBy     :   String(50);
+    createdAt     :   Timestamp;
+    modifiedBy    :   String(50);
+    modifiedAt    :   Timestamp;
+    proposalDetails: Association to ProposalDetails;
+    subsection    :   Association to many SubSection on subsection.parentSection=$self;
+
+}
+entity SubSection{
+    key id        :   String;
+    subSectiontitle:  String;
+    textarea      :   LargeBinary;
+    imagearea     :   LargeBinary;
+    createdBy     :   String(50);
+    createdAt     :   Timestamp;
+    modifiedBy    :   String(50);
+    modifiedAt    :   Timestamp;
+    parentSection :   Association to MainSection;
+
+}
+
+entity ProjectType{
+    key id        :   Integer;
+    projectType   :   String(30);
+
+}
+
+
