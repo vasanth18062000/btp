@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="proposal.service.proposal" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="LoginCredentials" EntityType="proposal.service.proposal.LoginCredentials"/>
+                <EntitySet Name="Vendor" EntityType="proposal.service.proposal.Vendor">
+                    <NavigationPropertyBinding Path="proposalOwnerContact" Target="VendorContact"/>
+                </EntitySet>
+                <EntitySet Name="VendorContact" EntityType="proposal.service.proposal.VendorContact">
+                    <NavigationPropertyBinding Path="proposalOwner" Target="Vendor"/>
+                </EntitySet>
+                <EntitySet Name="Client" EntityType="proposal.service.proposal.Client">
+                    <NavigationPropertyBinding Path="proposalClientContact" Target="ClientContact"/>
+                </EntitySet>
+                <EntitySet Name="ClientContact" EntityType="proposal.service.proposal.ClientContact">
+                    <NavigationPropertyBinding Path="proposalClient" Target="Client"/>
+                </EntitySet>
+            </EntityContainer>
+            <EntityType Name="LoginCredentials">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="organizationName" Type="Edm.String" MaxLength="30"/>
+                <Property Name="emailId" Type="Edm.String" MaxLength="50"/>
+                <Property Name="password" Type="Edm.String" MaxLength="50"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="50"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="50"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+            </EntityType>
+            <EntityType Name="Vendor">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="100"/>
+                <Property Name="logo" Type="Edm.Binary"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="50"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="50"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <NavigationProperty Name="proposalOwnerContact" Type="Collection(proposal.service.proposal.VendorContact)" Partner="proposalOwner"/>
+            </EntityType>
+            <EntityType Name="VendorContact">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="doorNo" Type="Edm.String" MaxLength="10"/>
+                <Property Name="streetName" Type="Edm.String" MaxLength="50"/>
+                <Property Name="city" Type="Edm.String" MaxLength="50"/>
+                <Property Name="pincode" Type="Edm.String" MaxLength="50"/>
+                <Property Name="state" Type="Edm.String" MaxLength="50"/>
+                <Property Name="Country" Type="Edm.String" MaxLength="50"/>
+                <Property Name="mobileNumber" Type="Edm.String" MaxLength="50"/>
+                <Property Name="telephoneNumber" Type="Edm.String" MaxLength="50"/>
+                <Property Name="emailId" Type="Edm.String" MaxLength="50"/>
+                <Property Name="password" Type="Edm.String" MaxLength="50"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="50"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="50"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <NavigationProperty Name="proposalOwner" Type="proposal.service.proposal.Vendor" Partner="proposalOwnerContact">
+                    <ReferentialConstraint Property="proposalOwner_id" ReferencedProperty="id"/>
+                </NavigationProperty>
+                <Property Name="proposalOwner_id" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="Client">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="100"/>
+                <Property Name="logo" Type="Edm.Binary"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="50"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="50"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <NavigationProperty Name="proposalClientContact" Type="Collection(proposal.service.proposal.ClientContact)" Partner="proposalClient"/>
+            </EntityType>
+            <EntityType Name="ClientContact">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="doorNo" Type="Edm.String" MaxLength="10"/>
+                <Property Name="streetName" Type="Edm.String" MaxLength="50"/>
+                <Property Name="city" Type="Edm.String" MaxLength="50"/>
+                <Property Name="pincode" Type="Edm.String" MaxLength="50"/>
+                <Property Name="state" Type="Edm.String" MaxLength="50"/>
+                <Property Name="Country" Type="Edm.String" MaxLength="50"/>
+                <Property Name="mobileNumber" Type="Edm.String" MaxLength="50"/>
+                <Property Name="telephoneNumber" Type="Edm.String" MaxLength="50"/>
+                <Property Name="emailId" Type="Edm.String" MaxLength="50"/>
+                <Property Name="password" Type="Edm.String" MaxLength="50"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="50"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="50"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <NavigationProperty Name="proposalClient" Type="proposal.service.proposal.Client" Partner="proposalClientContact">
+                    <ReferentialConstraint Property="proposalClient_id" ReferencedProperty="id"/>
+                </NavigationProperty>
+                <Property Name="proposalClient_id" Type="Edm.Int32"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
