@@ -1,50 +1,42 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/m/Input", "sap/m/MessageToast", "sap/ui/richtexteditor/RichTextEditor", "sap/m/MessageBox"],
-  function (Controller, Input, MessageToast, RichTextEditor,MessageBox) {
+  ["sap/ui/core/mvc/Controller", "sap/m/Input", "sap/m/MessageToast", 
+  "sap/ui/richtexteditor/RichTextEditor", "sap/m/MessageBox",
+  "sap/ui/richtexteditor/library","sap/ui/model/json/JSONModel",],
+  function (Controller, Input, MessageToast, RichTextEditor, MessageBox,JSONModel,library) {
     "use strict";
 
-return Controller.extend("ns.propose.controller.ProposalForm", {
-      _documentContent: "",
-      _buttonCounter: 1,
-      _richTextEditorCounter: 1,
-      _titleInputCounter: 1,
-      _mainSectionCounter: 1,
-      _titleInput: 1,
-      __titleInputImage:1,
+    return Controller.extend("ns.propose.controller.ProposalForm", {
+   
+      _sectionTitle: 1,
+      _mainSectionId: 1,
+      _SubSectionId: 1,
       _mainSections: [], // Array to store Main Section data
-      _textArea: [],
-      textitem: 1,
-      _table:1,
       _subsection: 1,
       _subSections: [],
-      _titleSubInputCounter1: 2,
-      _imagecount:1,
-
+      _imagecount: 1,
       _inputString: "",
-
       _subSectionCounter: 1,
       _sectionCounters: {},
 
-      
+      _table : 1,
+      _tableitem: 1,
+      textitem:1,
 
 
-onInit: function () {
-        this._documentContent = "";
-        this._buttonCounter = 1;
-        this._richTextEditorCounter = 1;
-        this._titleInputCounter = 1;
-        this._mainSectionCounter = 1;
+
+
+      onInit: function () {
+
+        this._tableitem=1;
+       
+       
+        this._sectionTitle = 1;
+        this._mainSectionId = 1;
         this._mainSections = [1];
-        this._textArea = [1];
-        this._table =1;
-        this.textitem = 1;
         this._subsection1 = 1;
         this._subsection = [1];
-        this._titleInput=1;
-        this.__titleInputImage=1;
-
-        this._titleSubInputCounter1 = 2;
-        this._imagecount =1;
+        this._SubSectionId = 1;
+        this._imagecount = 1;
 
         this._subSectionCounter = 1;
         this._sectionCounters = {};
@@ -53,11 +45,14 @@ onInit: function () {
 
         this._setInitialSectionTitle();
 
+        this._table=1;
+        this.textitem=1;
+
 
 
 
       },
-_setInitialSectionTitle: function () {
+      _setInitialSectionTitle: function () {
 
         var that = this;
         // Generate a unique ID for the new Input field
@@ -65,7 +60,7 @@ _setInitialSectionTitle: function () {
         var currentStep = wizard.getProgressStep();
         var allSteps = wizard.getSteps();
         var currentStepIndex = allSteps.indexOf(currentStep); // Adding 1 since steps are usually 1-indexed
-        var inputId = 'Section-' + this._titleInputCounter++;
+        var inputId = 'Section-' + this._sectionTitle++;
         this._titleSubInputCounter = 0;
         this._titleSubInputCounter++;
 
@@ -74,7 +69,7 @@ _setInitialSectionTitle: function () {
         }
 
         // Store the generated ID in the controller property
-        this._titleInput = inputId;
+        this._SubSectionId = inputId;
 
         console.log("Current Step Index: " + currentStepIndex);
         console.log("Generated Input ID: " + inputId);
@@ -124,252 +119,151 @@ _setInitialSectionTitle: function () {
       },
 
 
+      // onAddRowTextArea: function () {
+      //   var that = this;
+      //   var wizard = that.getView().byId("wizard");
+      //   var currentStep = wizard.getProgressStep();
+      //   var currentStepIndex = wizard.getSteps().indexOf(currentStep);
+      //   var textItemId = "Text-" + that.textitem++;
+
+      //   console.log(textItemId);
+
+       
+      //   // Check if idFrame exists in the view
+      //   var idFrame = that.getView().byId('idFrame' + currentStepIndex);
+      //   if (idFrame) {
+      //     var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
+      //       id: textItemId,
+      //       width: "100%",
+      //       editorType: sap.ui.richtexteditor.EditorType.TinyMCE4,
+      //       customToolbar: true,
+      //       showGroupFont: true,
+      //       showGroupLink: true,
+      //       showGroupInsert: true,
+      //       showGroupClipboard: true,
+      //       showGroupUndo: true,
+      //       showGroupStructure: true,
+      //       showGroupTextAlign: true,
+      //       showGroupFontStyle: true,
+      //     }).addStyleClass("myRichTextEditor");
+
+      //     var row = new sap.m.ColumnListItem({
+      //       cells: [richTextEditor],
+      //     });
+
+      //     idFrame.addItem(row);
 
 
+      //     if (that._addingTextArea) {
+      //       that._subSections.push({
+      //         id: textItemId,
+      //         richTextEditor: richTextEditor,
+      //       });
 
-// onAddRowTextArea: function () {
+      //       console.error(id);
+      //       // Attach the event listener for saving base64 content on change
+      //       richTextEditor.attachChange(function (oEvent) {
+      //         var editorContent = richTextEditor.getValue();
+      //         var base64Content = btoa(editorContent);
+      //         that._subsectiontext = base64Content;
+      //         console.log(that._subsectiontext);
+      //       });
 
-//         var that = this;
-//         var wizard = that.getView().byId("wizard");
-//         var currentStep = wizard.getProgressStep();
-//         var currentStepIndex = wizard.getSteps().indexOf(currentStep);
-//         var textItemId = "Text-" + this.textitem++;
+      //       console.log("Rich Text Area added successfully to SubSection");
+      //     } else {
+      //       that._mainSections.push({
+      //         id: textItemId,
+      //         richTextEditor: richTextEditor,
+      //       });
 
-      
-//         console.log(textItemId);
+      //       // Attach the event listener for saving base64 content on change
+      //       richTextEditor.attachChange(function (oEvent) {
+      //         var editorContent = richTextEditor.getValue();
+      //         var base64Content = btoa(editorContent);
+      //         that._mainsectiontext = base64Content;
+      //         console.log(that._mainsectiontext);
+      //       });
 
+      //       console.log("Rich Text Area added successfully to Main Section");
+      //     }
+      //   } else {
+      //     console.error("idFrame not found for step " + currentStepIndex);
+      //   }
+
+      //   if (textItemId="Text-1"){
+          
+
+      //     var mainsectionData =  that._mainsectiontext;
+
+      //     this._mainSectionData = mainsectionData;          
+
+      //   }
+      // },
+
+      onAddRowTextArea: function () {
+        var that = this;
+        var wizard = that.getView().byId("wizard");
+        var currentStep = wizard.getProgressStep();
+        var currentStepIndex = wizard.getSteps().indexOf(currentStep);
+        var textItemId = "Text-" + that.textitem++;
+    
+        console.log(textItemId);
+    
+        // Check if idFrame exists in the view
+        var idFrame = that.getView().byId('idFrame' + currentStepIndex);
+        if (idFrame) {
+            var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
+                id: textItemId,
+                width: "100%",
+                editorType: sap.ui.richtexteditor.EditorType.TinyMCE4,
+                customToolbar: true,
+                showGroupFont: true,
+                showGroupLink: true,
+                showGroupInsert: true,
+                showGroupClipboard: true,
+                showGroupUndo: true,
+                showGroupStructure: true,
+                showGroupTextAlign: true,
+                showGroupFontStyle: true,
+            }).addStyleClass("myRichTextEditor");
+    
+            var row = new sap.m.ColumnListItem({
+                cells: [richTextEditor],
+            });
+    
+            idFrame.addItem(row);
+    
+            // Attach the event listener for saving base64 content on change
+            richTextEditor.attachChange(function (oEvent) {
+
+
+                var editorContent = richTextEditor.getValue();
+                var base64Content = btoa(editorContent);
+
+
+                if (that._addingTextArea) {
         
+                  that._mainsectiontext1 = base64Content;
+                    console.log(that._mainsectiontext);
 
-//         // Check if idFrame exists in the view
-//         var idFrame = that.getView().byId('idFrame' + currentStepIndex);
-//         if (idFrame) {
-//           var row = new sap.m.ColumnListItem({
-//             cells: [
-//               new sap.ui.richtexteditor.RichTextEditor({
-//                 id: textItemId,
-//                 width: "100%",
-//                 editorType: sap.ui.richtexteditor.EditorType.TinyMCE4,
-//                 customToolbar: true,
-//                 showGroupFont: true,
-//                 showGroupLink: true,
-//                 showGroupInsert: true,
-//                 showGroupClipboard: true,
-//                 showGroupUndo: true,
-//                 showGroupStructure: true,
-//                 showGroupTextAlign: true,
-//                 showGroupFontStyle: true,
-//               }).addStyleClass("myRichTextEditor"),
-//             ],
-//           });
+                } else if(!that._addingTextArea){
 
-//           idFrame.addItem(row);
-//         } 
-        
-        
-        
-//         else {
-//           console.error("idFrame not found for step " + currentStepIndex);
-//         }
+                  that._subsectiontext = base64Content;
+                  console.log(that._subsectiontext);
 
-//         if (that._addingTextArea) {
-//           that._subSections.push(textItemId);
-//           console.log("Text Area added successfully to SubSection");
-//       } else {
-//           that._mainSections.push(textItemId);
-//           console.log("Text Area added successfully to Main Section");
-//       }
-//       },
+                   
+                    
 
-// onAddRowTextArea: function () {
-//   var that = this;
-//   var wizard = that.getView().byId("wizard");
-//   var currentStep = wizard.getProgressStep();
-//   var currentStepIndex = wizard.getSteps().indexOf(currentStep);
-//   var textItemId = "Text-" + this.textitem++;
+                }
+            });
+    
+            console.log("Rich Text Area added successfully");
+        } else {
+            console.error("idFrame not found for step " + currentStepIndex);
+        }
+    },
 
-//   // Check if idFrame exists in the view
-//   var idFrame = that.getView().byId('idFrame' + currentStepIndex);
-//   if (idFrame) {
-//       var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
-//           id: textItemId,
-//           width: "100%",
-//           editorType: sap.ui.richtexteditor.EditorType.TinyMCE4,
-//           customToolbar: true,
-//           showGroupFont: true,
-//           showGroupLink: true,
-//           showGroupInsert: true,
-//           showGroupClipboard: true,
-//           showGroupUndo: true,
-//           showGroupStructure: true,
-//           showGroupTextAlign: true,
-//           showGroupFontStyle: true,
-//       }).addStyleClass("myRichTextEditor");
-
-//       var row = new sap.m.ColumnListItem({
-//           cells: [richTextEditor],
-//       });
-
-//       idFrame.addItem(row);
-
-//       if (that._addingTextArea) {
-//           that._subSections.push({
-//               id: textItemId,
-//               richTextEditor: richTextEditor
-//           });
-//           console.log("Rich Text Area added successfully to SubSection");
-//       } else {
-//           that._mainSections.push({
-//               id: textItemId,
-//               richTextEditor: richTextEditor
-//           });
-//           console.log("Rich Text Area added successfully to Main Section");
-//       }
-//   } else {
-//       console.error("idFrame not found for step " + currentStepIndex);
-//   }
-// },
-
-onAddRowTextArea: function () {
-  var that = this;
-  var wizard = that.getView().byId("wizard");
-  var currentStep = wizard.getProgressStep();
-  var currentStepIndex = wizard.getSteps().indexOf(currentStep);
-  var textItemId = "Text-" + that.textitem++;
-
-  // Check if idFrame exists in the view
-  var idFrame = that.getView().byId('idFrame' + currentStepIndex);
-  if (idFrame) {
-    var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
-      id: textItemId,
-      width: "100%",
-      editorType: sap.ui.richtexteditor.EditorType.TinyMCE4,
-      customToolbar: true,
-      showGroupFont: true,
-      showGroupLink: true,
-      showGroupInsert: true,
-      showGroupClipboard: true,
-      showGroupUndo: true,
-      showGroupStructure: true,
-      showGroupTextAlign: true,
-      showGroupFontStyle: true,
-    }).addStyleClass("myRichTextEditor");
-
-    var row = new sap.m.ColumnListItem({
-      cells: [richTextEditor],
-    });
-
-    idFrame.addItem(row);
-
-    var isMainSection = that._mainSections.some(function (section) {
-      return section.richTextEditor === richTextEditor;
-    });
-
-    if (that._addingTextArea) {
-      that._subSections.push({
-        id: textItemId,
-        richTextEditor: richTextEditor,
-      });
-
-      // Attach the event listener for saving base64 content on change
-      richTextEditor.attachChange(function (oEvent) {
-        var editorContent = richTextEditor.getValue();
-        var base64Content = btoa(editorContent);
-        that._subsectiontext = base64Content;
-        console.log(that._subsectiontext);
-      });
-
-      console.log("Rich Text Area added successfully to SubSection");
-    } else {
-      that._mainSections.push({
-        id: textItemId,
-        richTextEditor: richTextEditor,
-      });
-
-      // Attach the event listener for saving base64 content on change
-      richTextEditor.attachChange(function (oEvent) {
-        var editorContent = richTextEditor.getValue();
-        var base64Content = btoa(editorContent);
-        that._mainsectiontext = base64Content;
-        console.log(that._mainsectiontext);
-      });
-
-      console.log("Rich Text Area added successfully to Main Section");
-    }
-  } else {
-    console.error("idFrame not found for step " + currentStepIndex);
-  }
-},
-
-
-onAddTable: function (bIsTinyMCE5) {
-  var that = this;
-  var wizard = that.getView().byId("wizard");
-  var currentStep = wizard.getProgressStep();
-  var currentStepIndex = wizard.getSteps().indexOf(currentStep);
-  var textItemId = "Table-" + that._table++;
-
-  // Check if idFrame exists in the view
-  var idFrame = that.getView().byId('idFrame' + currentStepIndex);
-  if (idFrame) {
-    var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
-      id: textItemId,
-      width: "100%",
-      editorType: sap.ui.richtexteditor.EditorType.TinyMCE4,
-      showGroupInsert: true,
-      showGroupUndo: true,
-      showGroupTextAlign: true, // hide text-align-related groups
-
-    }).addStyleClass("myRichTextEditor");
-
-    var row = new sap.m.ColumnListItem({
-      cells: [richTextEditor],
-    });
-
-    idFrame.addItem(row);
-
-    var isMainSection = that._mainSections.some(function (section) {
-      return section.richTextEditor === richTextEditor;
-    });
-
-    if (that._addingTextArea) {
-      that._subSections.push({
-        id: textItemId,
-        richTextEditor: richTextEditor,
-      });
-
-      // Attach the event listener for saving base64 content on change
-      richTextEditor.attachChange(function (oEvent) {
-        var editorContent = richTextEditor.getValue();
-        var base64Content = btoa(editorContent);
-        that._subsectiontext = base64Content;
-        console.log(that._subsectiontext);
-      });
-
-      console.log("Rich Text Area added successfully to SubSection");
-    } else {
-      that._mainSections.push({
-        id: textItemId,
-        richTextEditor: richTextEditor,
-      });
-
-      // Attach the event listener for saving base64 content on change
-      richTextEditor.attachChange(function (oEvent) {
-        var editorContent = richTextEditor.getValue();
-        var base64Content = btoa(editorContent);
-        that._mainsectiontext = base64Content;
-        console.log(that._mainsectiontext);
-      });
-
-      console.log("Rich Text Area added successfully to Main Section");
-    }
-  } else {
-    console.error("idFrame not found for step " + currentStepIndex);
-  }
-},
-
-
-
-onSubSection: function () {
+      onSubSection: function () {
 
         var that = this;
         var wizard = that.getView().byId("wizard");
@@ -437,144 +331,144 @@ onSubSection: function () {
         console.log("moving to the next step");
 
         var subsectionId = inputId; // Replace with the actual ID of your subsection
-      
+
       },
 
-onSave: function () {
+      onSave: function () {
         var that = this;
         var wizard = that.getView().byId("wizard");
-    
+
         // Save Main Sections
         this.saveMainSection()
-            .then(function (mainSectionIds) {
-                // Save Sub Sections after Main Sections are created
-                that.saveSubSection(mainSectionIds);
-    
-                // Display a message or perform any additional actions after saving
-                MessageToast.show("Data saved successfully!");
+          .then(function (mainSectionIds) {
+            // Save Sub Sections after Main Sections are created
+            that.saveSubSection(mainSectionIds);
 
-               
-            })
-            .catch(function (error) {
-                console.error("Error saving data:", error);
-            });
-    },
-    
+            // Display a message or perform any additional actions after saving
+            MessageToast.show("Data saved successfully!");
 
 
-saveMainSection: function () {
-      // Implement logic to save Main Section data
-      // Iterate through _mainSections array and save the data as needed
-      var oModel = this.getView().getModel();
-  
-      // Array to store created main section IDs
-      var createdMainSectionIds = [];
-  
-      // Use Promise to handle asynchronous operation
-      return Promise.all(this._mainSections.map((mainSectionId) => {
+          })
+          .catch(function (error) {
+            console.error("Error saving data:", error);
+          });
+      },
+
+
+
+      saveMainSection: function () {
+        // Implement logic to save Main Section data
+        // Iterate through _mainSections array and save the data as needed
+        var oModel = this.getView().getModel();
+
+        // Array to store created main section IDs
+        var createdMainSectionIds = [];
+
+        // Use Promise to handle asynchronous operation
+        return Promise.all(this._mainSections.map((mainSectionId) => {
           var mainSectionInput = sap.ui.getCore().byId(mainSectionId);
-  
-         
-  
+
+
+
           if (mainSectionInput) {
 
-              var mainSectionData = {
-                  // Extract data from the main section input control
-                  id: "MAIN_0" + this._mainSectionCounter++, // Adjust as needed
-                  mainSectiontitle: mainSectionInput.getValue(),
-                  imagearea: this._inputString || null,
-                  textarea : this._mainsectiontext || null,
-                  
-              };
+            var mainSectionData = {
+              // Extract data from the main section input control
+              id: "MAIN_0" + this._mainSectionId++, // Adjust as needed
+              mainSectiontitle: mainSectionInput.getValue(),
+              imagearea: this._inputString || null,
+              textarea: this._mainsectiontext1 || null,
 
-              console.log(mainSectionData);
-  
-              // Use Promise to handle asynchronous operation
-              return new Promise(function (resolve, reject) {
-                  oModel.create("/MainSection", mainSectionData, {
-                      method: "POST",
-                      success: function () {
-                          MessageToast.show("Main- Section Added Successfully");
-                          createdMainSectionIds.push(mainSectionData.id);
-                          resolve();
-                          console.log("Section saved to DB");
-                      },
+            };
 
-                    
-                      error: function (error) {
-                          reject(error);
-                      }
-                  });
+            console.log(mainSectionData);
+
+            // Use Promise to handle asynchronous operation
+            return new Promise(function (resolve, reject) {
+              oModel.create("/MainSection", mainSectionData, {
+                method: "POST",
+                success: function () {
+                  MessageToast.show("Main- Section Added Successfully");
+                  createdMainSectionIds.push(mainSectionData.id);
+                  resolve();
+                  console.log("Section saved to DB");
+                },
+
+
+                error: function (error) {
+                  reject(error);
+                }
               });
+            });
           }
-      }))
-      .then(function () {
-          // Return the array of created Main Section IDs
-          return createdMainSectionIds;
-      });
-  },
-  
+        }))
+          .then(function () {
+            // Return the array of created Main Section IDs
+            return createdMainSectionIds;
+          });
+      },
 
-saveSubSection: function (mainSectionIds) {
-  // Implement logic to save Sub Section data
-  // Iterate through _subSections array and save the data as needed
-  var oModel = this.getView().getModel();
-  var createdSubSectionIds = [];
 
-  return Promise.all(this._subSections.map((subSectionId, index) => {
-    var subSectionInput = sap.ui.getCore().byId(subSectionId);
+      saveSubSection: function (mainSectionIds) {
+        // Implement logic to save Sub Section data
+        // Iterate through _subSections array and save the data as needed
+        var oModel = this.getView().getModel();
+        var createdSubSectionIds = [];
 
-    if (subSectionInput) {
-      var mainSectionId = mainSectionIds[index];
+        return Promise.all(this._subSections.map((subSectionId, index) => {
+          var subSectionInput = sap.ui.getCore().byId(subSectionId);
 
-      var subSectionData = {
-        id: "SUB_0" + this._subSectionCounter++, // Adjust as needed
-        subSectiontitle: subSectionInput.getValue() || null,
-        parentSection_id: mainSectionId,
-        imagearea: this._inputString || null,
-        textarea : this._subsectiontext || null,
-      };
+          if (subSectionInput) {
+            var mainSectionId = mainSectionIds[index];
 
-      console.log(subSectionData);
+            var subSectionData = {
+              id: "SUB_0" + this._subSectionCounter++, // Adjust as needed
+              subSectiontitle: subSectionInput.getValue() || null,
+              parentSection_id: mainSectionId,
+              imagearea: this._inputString || null,
+              textarea: this._subsectiontext || null,
+            };
 
-      return new Promise(function (resolve, reject) {
-        oModel.create("/SubSection", subSectionData, {
-          method: "POST",
-          success: function (data, response) {
-            // Check the response structure and log it
-            console.log("Success Response:", response);
-            
-            // Extract the created Sub Section ID from the response
-            var createdSubSectionId = response.headers["sap-message"].split(":")[1].trim();
-            createdSubSectionIds.push(createdSubSectionId);
+            console.log(subSectionData);
 
-            MessageToast.show("Sub Section Added Successfully");
-            resolve();
-            console.log("Sub Section has been added");
-          },
-          error: function (error) {
-            // Check the error response structure and log it
-            console.error("Error Response:", error);
+            return new Promise(function (resolve, reject) {
+              oModel.create("/SubSection", subSectionData, {
+                method: "POST",
+                success: function (data, response) {
+                  // Check the response structure and log it
+                  console.log("Success Response:", response);
 
-            reject(error);
+                  // Extract the created Sub Section ID from the response
+                  var createdSubSectionId = response.headers["sap-message"].split(":")[1].trim();
+                  createdSubSectionIds.push(createdSubSectionId);
+
+                  MessageToast.show("Sub Section Added Successfully");
+                  resolve();
+                  console.log("Sub Section has been added");
+                },
+                error: function (error) {
+                  // Check the error response structure and log it
+                  console.error("Error Response:", error);
+
+                  reject(error);
+                }
+              });
+            });
           }
-        });
-      });
-    }
-  }))
-  .then(function () {
-    // Return the array of created Sub Section IDs
-    return createdSubSectionIds;
-  })
-  .catch(function (error) {
-    console.error("Error saving Sub Sections:", error);
-  });
-},
+        }))
+          .then(function () {
+            // Return the array of created Sub Section IDs
+            return createdSubSectionIds;
+          })
+          .catch(function (error) {
+            console.error("Error saving Sub Sections:", error);
+          });
+      },
 
 
-  
 
-addSectionLabel: function (stepTitle, wizard) {
+
+      addSectionLabel: function (stepTitle, wizard) {
         // Extract the step number from the title
         var stepNumber = parseInt(stepTitle.replace("Step ", ""));
 
@@ -623,7 +517,7 @@ addSectionLabel: function (stepTitle, wizard) {
       },
 
 
-onStepChanged: function (oEvent) {
+      onStepChanged: function (oEvent) {
         var wizard = oEvent.getSource();
         var currentStep = wizard.getProgressStep();
 
@@ -638,169 +532,246 @@ onStepChanged: function (oEvent) {
         }
       },
 
-      
 
 
-onContinue: function () {
+
+      onContinue: function () {
         // Handle "Next" button press logic here
         this.onNext();
-    },
+      },
 
-onNext: function () {
+      onNext: function () {
         // Handle navigation to the next step logic here
         var wizard = this.getView().byId("wizard");
         wizard.nextStep();
-    },
+      },
 
 
-onComplete: function () {
-      var that = this;
-  
-      MessageBox.show("Do you need to complete the steps?", {
+      onComplete: function () {
+        var that = this;
+
+        MessageBox.show("Do you need to complete the steps?", {
           icon: MessageBox.Icon.QUESTION,
           title: "Complete Steps",
           actions: [MessageBox.Action.YES, MessageBox.Action.NO],
           onClose: function (oAction) {
-              if (oAction === MessageBox.Action.YES) {
+            if (oAction === MessageBox.Action.YES) {
 
-                console.log("clicked yes");
-                  // User clicked "Yes", perform completion logic
-                  
-              } else {
+              console.log("clicked yes");
+              // User clicked "Yes", perform completion logic
 
-                console.log("clicked no");
-                  // User clicked "No", do nothing or handle as needed
-              }
+            } else {
+
+              console.log("clicked no");
+              // User clicked "No", do nothing or handle as needed
+            }
           }
-      });
-  },
+        });
+      },
 
 
-  onUploadComplete: function(oEvent) {
-        
-    var response = oEvent.getParameter("response");
-    MessageBox.success("File upload complete. Response: " + response);
-  },
+      onUploadComplete: function (oEvent) {
 
-  onTypeMissmatch: function(oEvent) {
-    
-    MessageBox.error("Selected file type does not match the allowed file types");
-  },
+        var response = oEvent.getParameter("response");
+        MessageBox.success("File upload complete. Response: " + response);
+      },
 
-  onFileSizeExceed: function(oEvent) {
-   
-    MessageBox.error("File size exceeds the maximum allowed size");
-  },
+      onTypeMissmatch: function (oEvent) {
 
-  
-  onAddImage: function () {
-    var that = this;
-    var wizard = that.getView().byId("wizard");
-    var currentStep = wizard.getProgressStep();
-    var currentStepIndex = wizard.getSteps().indexOf(currentStep);
-    var idFrame = that.getView().byId('idFrame' + currentStepIndex);
-    var inputId = 'Image' + this._imagecount++;
-    
-    console.log(inputId);
-    var container = new sap.m.VBox();
+        MessageBox.error("Selected file type does not match the allowed file types");
+      },
 
-    // Create a Label for bold text
-    var boldLabel = new sap.m.Label({
-        text: inputId,
-        design: 'Bold',
-    });
-    // Create a new FileUploader with the generated ID
-    var fileUploader = new sap.ui.unified.FileUploader({
-        id: inputId,
-        placeholder: 'Upload Image',
-        width: '80%',
-        fileType: "png,jpg,jpeg",
-        change: that.onChangeDP.bind(that),
-        uploadComplete: that.onUploadComplete.bind(that),
-        typeMissmatch: that.onTypeMissmatch.bind(that),
-        fileSizeExceed: that.onFileSizeExceed.bind(that)
-    });
+      onFileSizeExceed: function (oEvent) {
 
-    // Check if idFrame exists in the view
-    var idFrame = that.getView().byId('idFrame' + currentStepIndex);
-    if (idFrame) {
-        // Add the Label and Input field to the VBox
-        container.addItem(boldLabel);
-        container.addItem(fileUploader);
+        MessageBox.error("File size exceeds the maximum allowed size");
+      },
 
-        // Create a new ColumnListItem with the VBox
-        var row = new sap.m.ColumnListItem({
-            cells: [container],
+
+      onAddImage: function () {
+        var that = this;
+        var wizard = that.getView().byId("wizard");
+        var currentStep = wizard.getProgressStep();
+        var currentStepIndex = wizard.getSteps().indexOf(currentStep);
+        var idFrame = that.getView().byId('idFrame' + currentStepIndex);
+        var inputId = 'Image' + this._imagecount++;
+
+        console.log(inputId);
+        var container = new sap.m.VBox();
+
+        // Create a Label for bold text
+        var boldLabel = new sap.m.Label({
+          text: inputId,
+          design: 'Bold',
+        });
+        // Create a new FileUploader with the generated ID
+        var fileUploader = new sap.ui.unified.FileUploader({
+          id: inputId,
+          placeholder: 'Upload Image',
+          width: '80%',
+          fileType: "png,jpg,jpeg",
+          change: that.onChangeDP.bind(that),
+          uploadComplete: that.onUploadComplete.bind(that),
+          typeMissmatch: that.onTypeMissmatch.bind(that),
+          fileSizeExceed: that.onFileSizeExceed.bind(that)
         });
 
-        // Get the table and add the new row
-        idFrame.addItem(row);
+        // Check if idFrame exists in the view
+        var idFrame = that.getView().byId('idFrame' + currentStepIndex);
+        if (idFrame) {
+          // Add the Label and Input field to the VBox
+          container.addItem(boldLabel);
+          container.addItem(fileUploader);
 
-        // Make the Input field visible
-        fileUploader.setVisible(true);
+          // Create a new ColumnListItem with the VBox
+          var row = new sap.m.ColumnListItem({
+            cells: [container],
+          });
 
-        // Determine whether it is a Main Section or SubSection and add the input ID accordingly
-        if (that._addingImageForSubSection) {
+          // Get the table and add the new row
+          idFrame.addItem(row);
+
+          // Make the Input field visible
+          fileUploader.setVisible(true);
+
+          // Determine whether it is a Main Section or SubSection and add the input ID accordingly
+          if (that._addingImageForSubSection) {
             that._subSections.push(inputId);
             console.log("Image added successfully to SubSection");
-        } else {
+          } else {
             that._mainSections.push(inputId);
             console.log("Image added successfully to Main Section");
+          }
+        } else {
+          console.error("idFrame not found for SubSection");
         }
-    } else {
-        console.error("idFrame not found for SubSection");
-    } 
-},
+      },
 
 
 
-  onChangeDP: function (oEvent) {
-          
-    var that = this;
-    var image = new Image();
-    var file = oEvent.getParameter("files")[0];
-    var reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-        var data = reader.result;
-       
-        var inputString = data;
-        console.log(inputString);
+      onChangeDP: function (oEvent) {
 
-        // that._inputString = inputString;
+        var that = this;
+        var image = new Image();
+        var file = oEvent.getParameter("files")[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+          var data = reader.result;
 
-        this.input =inputString;
-        var wordsToRemove = ["data:image/png;base64,","data:text/plain;base64,","data:image/jpeg;base64,"
-                              ,"data:audio/mpeg;base64,","data:application/vnd.ms-excel;base64,","data:video/mp4;base64,"];
-        var replacement = "";
-        var regexPattern = new RegExp(wordsToRemove.join('|'), 'gi');    
+          var inputString = data;
+          console.log(inputString);
+
+          // that._inputString = inputString;
+
+          this.input = inputString;
+          var wordsToRemove = ["data:image/png;base64,", "data:text/plain;base64,", "data:image/jpeg;base64,"
+            , "data:audio/mpeg;base64,", "data:application/vnd.ms-excel;base64,", "data:video/mp4;base64,"];
+          var replacement = "";
+          var regexPattern = new RegExp(wordsToRemove.join('|'), 'gi');
           var resultString = inputString.replace(regexPattern, replacement);
           console.log(resultString);
 
           that._inputString = resultString;
 
-          var rs=resultString;
-      
-        //console.log(data);
-       
-       
-        var base64Data = inputString;
-        that.byId("imagePreview").setSrc(base64Data);
-        
-        image.onload = function () {
-          
+          var rs = resultString;
+
+          //console.log(data);
+
+
+          var base64Data = inputString;
+          that.byId("imagePreview").setSrc(base64Data);
+
+          image.onload = function () {
+
             if (this.width + this.height === 0) {
-                that.dpImage = "";
-                sap.m.MessageBox.error("Invalid Image!");
+              that.dpImage = "";
+              sap.m.MessageBox.error("Invalid Image!");
             }
+          };
         };
-    };
-    reader.onerror = function (error) {
-        //Error Handling
-    };
-    
-    this.pDialog.then((oDialog) => oDialog.close());
-},
+        reader.onerror = function (error) {
+          //Error Handling
+        };
+
+        this.pDialog.then((oDialog) => oDialog.close());
+      },
+
+      onAddTable: function (bIsTinyMCE5) {
+        var that = this;
+        var wizard = that.getView().byId("wizard");
+        var currentStep = wizard.getProgressStep();
+        var currentStepIndex = wizard.getSteps().indexOf(currentStep);
+        var textItemId = "Table-" + that.tableitem++;
+
+        // Check if idFrame exists in the view
+        var idFrame = that.getView().byId('idFrame' + currentStepIndex);
+        if (idFrame) {
+          var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
+            id: textItemId,
+            width: "100%",
+            editorType: sap.ui.richtexteditor.EditorType.bIsTinyMCE5,
+            customToolbar: false,
+            showGroupFont: true,
+            showGroupLink: true,
+            showGroupInsert: true,
+            showGroupClipboard: true,
+            showGroupUndo: true,
+            showGroupStructure: true,
+            showGroupTextAlign: true,
+            showGroupFontStyle: true,
+            
+            ready: function () {
+              bIsTinyMCE5
+                ? this.addButtonGroup("table") // show only the table group
+                : this.addButtonGroup("table");
+            },
+          }).addStyleClass("myRichTextEditor");
+
+          var row = new sap.m.ColumnListItem({
+            cells: [richTextEditor],
+          });
+
+          idFrame.addItem(row);
+
+          var isMainSection = that._mainSections.some(function (section) {
+            return section.richTextEditor === richTextEditor;
+          });
+
+          if (that._addingTextArea) {
+            that._subSections.push({
+              id: textItemId,
+              richTextEditor: richTextEditor,
+            });
+
+            // Attach the event listener for saving base64 content on change
+            richTextEditor.attachChange(function (oEvent) {
+              var editorContent = richTextEditor.getValue();
+              var base64Content = btoa(editorContent);
+              that._subsectiontext = base64Content;
+              console.log(that._subsectiontext);
+            });
+
+            console.log("Rich Text Area added successfully to SubSection");
+          } else {
+            that._mainSections.push({
+              id: textItemId,
+              richTextEditor: richTextEditor,
+            });
+
+            // Attach the event listener for saving base64 content on change
+            richTextEditor.attachChange(function (oEvent) {
+              var editorContent = richTextEditor.getValue();
+              var base64Content = btoa(editorContent);
+              that._mainsectiontext = base64Content;
+              console.log(that._mainsectiontext);
+            });
+
+            console.log("Rich Text Area added successfully to Main Section");
+          }
+        } else {
+          console.error("idFrame not found for step " + currentStepIndex);
+        }
+      },
 
     });
   }
