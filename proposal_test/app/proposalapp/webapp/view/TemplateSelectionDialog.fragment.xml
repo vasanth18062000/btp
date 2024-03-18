@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+<Dialog id="templateSelectionDialog" title="Template ">
+
+    <content>
+        <Text text="Do you want to switch Template?" />
+    </content>
+    <!-- <Text>Do you want to switch Template</Text> -->
+    <beginButton>
+        <Button text="No" press="offSwitchDialog"/>
+    </beginButton>
+    <endButton>
+        <Button text="Yes" press="onSwitchDialog" />
+    </endButton>
+
+    </Dialog>
+    </core:FragmentDefinition>

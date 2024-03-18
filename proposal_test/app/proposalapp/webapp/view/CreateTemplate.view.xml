@@ -1,0 +1,190 @@
+<mvc:View controllerName="proposalapp.controller.CreateTemplate"
+
+        height="100%"
+        xmlns:form="sap.ui.layout.form"
+        xmlns:core="sap.ui.core"
+        xmlns:u="sap.ui.unified"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns:wizard="sap.m.Wizard"
+        displayBlock="true"
+        xmlns="sap.m">
+        <NavContainer>
+        <pages>
+            <Page
+                id="_IDGenPage1"
+                title="Proposal Client Form"
+                class="proposalform" 
+                showNavButton="true" navButtonPress=".onNavBack"
+            >
+                <!-- Header content -->
+                <headerContent>
+                    <!-- Title section -->
+                    <VBox
+                        id="titleSection"
+                        width="100%"
+                    />
+                </headerContent>
+
+                <Bar>
+                    <contentLeft>
+                        <Image
+                            src="{i18n>headerimage}"
+                            width="50%"
+                        />
+                    </contentLeft>
+
+                    <contentRight>
+                        <Image
+                            src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png"
+                            width="8%"
+                        />
+                    </contentRight>
+                </Bar>
+
+               
+                    <Wizard
+                        id="wizard"
+                        stepActivate="onStepChanged"
+                        
+                        showNextButton="true"
+                    >
+                        <steps>
+                            <WizardStep
+                                id="wizard1"
+                                title="Step 1"
+                                nextStep="nextstep1"
+                                complete="true" >
+                                <MessageStrip
+                                    class="sapUiSmallMarginBottom"
+                                    text="To create a proposal template."
+                                    showIcon="true"/>
+                                <VBox>
+                                    <Table
+                                        id="idFrame"
+                                        growing="true"
+                                        growingDirection="Downwards"
+                                    >
+                                        <headerToolbar>
+                                            <Toolbar id="_IDGenToolbar1">
+                                                <ToolbarSpacer
+                                                    id="_IDGenToolbarSpacer1"
+                                                />
+                                                <Button
+                                                    id="_IDGenButton1"
+                                                    icon="sap-icon://add"
+                                                    press="onAddRowTextArea"
+                                                    text="Add Description"
+                                                    class="buttonfortool"
+                                                />
+                                                <Button
+                                                    icon="sap-icon://add"
+                                                    text="Add Section"
+                                                    class="buttonfortool"
+                                                    press="onShowTitlePress"
+                                                />
+                                                <Button
+                                                    icon="sap-icon://add"
+                                                    text="Add SubSection"
+                                                    class="buttonfortool"
+                                                    press="onSubSection"
+                                                />
+                                            </Toolbar>
+                                        </headerToolbar>
+                                        <columns>
+                                            <Column id="_IDGenColumn1" />
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem
+                                                id="_IDGenColumnListItem1"
+                                            >
+                                                <cells />
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+
+                                </VBox>
+                            </WizardStep>
+
+                            <WizardStep
+                                title="Step 2"
+                                id="wizard2"
+                            >
+                                <VBox>
+                                    <Table
+                                        id="idFrame1"
+                                        growing="true"
+                                        growingDirection="Downwards"
+                                    >
+                                       
+                                        <columns>
+                                            <Column id="_IDGenColumn2" />
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem
+                                                id="_IDGenColumnListItem2"
+                                            >
+                                                <cells />
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </VBox>
+                            </WizardStep>
+
+
+                             <WizardStep
+                                title="Step 3"
+                                id="wizard3"
+                            >
+                                <VBox>
+                                    <Table
+                                        id="idFrame2"
+                                        growing="true"
+                                        growingDirection="Downwards"
+                                    >
+                                       
+                                        <columns>
+                                            <Column id="_IDGenColumn3" />
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem
+                                                id="_IDGenColumnListItem3"
+                                            >
+                                                <cells />
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </VBox>
+                            </WizardStep>
+
+
+                        </steps>
+
+                    </Wizard>
+
+                <footer>
+                     <Bar>
+                        <contentRight>
+                            
+                            
+                            <Button
+                                text="Save"
+                                press="onSave"
+                                type="Emphasized"
+                            />
+                            <Button
+                                text="Completed"
+                                press="onSave"
+                                type="Emphasized"
+                            />
+                            <Button
+                                text="Cancel"
+                                press="onCancel"
+                                type="Emphasized"
+                            />
+                        </contentRight>
+                    </Bar>
+                </footer>
+            </Page>
+        </pages>
+    </NavContainer>
+</mvc:View>
