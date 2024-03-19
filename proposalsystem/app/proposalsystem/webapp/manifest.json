@@ -115,6 +115,12 @@
           "name": "proposalform",
           "pattern": "proposalform",
           "target": ["proposalform"]
+        },
+
+        {
+          "name": "PreviewForm",
+          "pattern": "PreviewForm",
+          "target": ["PreviewForm"]
         }
       ],
       "targets": {
@@ -131,6 +137,10 @@
 
         "proposalform":{
           "viewName": "ProposalForm"
+        },
+
+        "PreviewForm":{
+          "viewName": "PreviewForm"
         }
         
       }

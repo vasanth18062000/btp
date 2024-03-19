@@ -50,14 +50,11 @@
                             nextStep="nextstep1"
                             complete="true"
                             class="proposalform"
-                            
                         >
                             <MessageStrip
                                 class="sapUiSmallMarginBottom"
                                 text="Enter the required details"
                                 showIcon="true"
-                                type="Warning"
-                                showCloseButton="true"
                             />
                             <VBox>
                                 <Table
@@ -560,31 +557,25 @@
                     <Bar>
                         <contentRight>
                             <Button
-                                text="Next Step"
+                                text="Next"
                                 press="onContinue"
                                 type="Emphasized"
                             />
                             <Button
                                 text="Save"
                                 press="onSave"
-                                type="Success"
+                                type="Emphasized"
                             />
                             <Button
                                 text="Complete"
                                 press="onComplete"
-                                type="Attention"
-                            />
-
-                              <Button
-                                text="Preview"
-                                press="onPreview"
-                                type="Accept"
+                                type="Emphasized"
                             />
 
                             <Button
                                 text="Cancel"
                                 press="onCancel"
-                                type="Negative"
+                                type="Emphasized"
                             />
                         </contentRight>
                     </Bar>

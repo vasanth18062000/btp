@@ -119,7 +119,86 @@ sap.ui.define(
       },
 
 
-      
+      // onAddRowTextArea: function () {
+      //   var that = this;
+      //   var wizard = that.getView().byId("wizard");
+      //   var currentStep = wizard.getProgressStep();
+      //   var currentStepIndex = wizard.getSteps().indexOf(currentStep);
+      //   var textItemId = "Text-" + that.textitem++;
+
+      //   console.log(textItemId);
+
+       
+      //   // Check if idFrame exists in the view
+      //   var idFrame = that.getView().byId('idFrame' + currentStepIndex);
+      //   if (idFrame) {
+      //     var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
+      //       id: textItemId,
+      //       width: "100%",
+      //       editorType: sap.ui.richtexteditor.EditorType.TinyMCE4,
+      //       customToolbar: true,
+      //       showGroupFont: true,
+      //       showGroupLink: true,
+      //       showGroupInsert: true,
+      //       showGroupClipboard: true,
+      //       showGroupUndo: true,
+      //       showGroupStructure: true,
+      //       showGroupTextAlign: true,
+      //       showGroupFontStyle: true,
+      //     }).addStyleClass("myRichTextEditor");
+
+      //     var row = new sap.m.ColumnListItem({
+      //       cells: [richTextEditor],
+      //     });
+
+      //     idFrame.addItem(row);
+
+
+      //     if (that._addingTextArea) {
+      //       that._subSections.push({
+      //         id: textItemId,
+      //         richTextEditor: richTextEditor,
+      //       });
+
+      //       console.error(id);
+      //       // Attach the event listener for saving base64 content on change
+      //       richTextEditor.attachChange(function (oEvent) {
+      //         var editorContent = richTextEditor.getValue();
+      //         var base64Content = btoa(editorContent);
+      //         that._subsectiontext = base64Content;
+      //         console.log(that._subsectiontext);
+      //       });
+
+      //       console.log("Rich Text Area added successfully to SubSection");
+      //     } else {
+      //       that._mainSections.push({
+      //         id: textItemId,
+      //         richTextEditor: richTextEditor,
+      //       });
+
+      //       // Attach the event listener for saving base64 content on change
+      //       richTextEditor.attachChange(function (oEvent) {
+      //         var editorContent = richTextEditor.getValue();
+      //         var base64Content = btoa(editorContent);
+      //         that._mainsectiontext = base64Content;
+      //         console.log(that._mainsectiontext);
+      //       });
+
+      //       console.log("Rich Text Area added successfully to Main Section");
+      //     }
+      //   } else {
+      //     console.error("idFrame not found for step " + currentStepIndex);
+      //   }
+
+      //   if (textItemId="Text-1"){
+          
+
+      //     var mainsectionData =  that._mainsectiontext;
+
+      //     this._mainSectionData = mainsectionData;          
+
+      //   }
+      // },
 
       onAddRowTextArea: function () {
         var that = this;
@@ -136,16 +215,16 @@ sap.ui.define(
             var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
                 id: textItemId,
                 width: "100%",
-                editorType: sap.ui.richtexteditor.EditorType.bIsTinyMCE5,
-                
+                editorType: sap.ui.richtexteditor.EditorType.TinyMCE4,
+                customToolbar: true,
                 showGroupFont: true,
                 showGroupLink: true,
                 showGroupInsert: true,
                 showGroupClipboard: true,
                 showGroupUndo: true,
+                showGroupStructure: true,
                 showGroupTextAlign: true,
                 showGroupFontStyle: true,
-                
             }).addStyleClass("myRichTextEditor");
     
             var row = new sap.m.ColumnListItem({
@@ -258,36 +337,24 @@ sap.ui.define(
       onSave: function () {
         var that = this;
         var wizard = that.getView().byId("wizard");
-    
-        MessageBox.show("Do you need to save all the provided details?", {
-            icon: MessageBox.Icon.QUESTION,
-            title: "Complete Steps",
-            actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-            onClose: function (oAction) {
-                if (oAction === MessageBox.Action.YES) {
-                    console.log("clicked yes");
-                    that.saveMainSection()
-                        .then(function (mainSectionIds) {
-                            // Save Sub Sections after Main Sections are created
-                            that.saveSubSection(mainSectionIds);
-    
-                            // Display a message or perform any additional actions after saving
-                        })
-                        .catch(function (error) {
-                            console.error("Error saving data:", error);
-                        });
-    
-                    // User clicked "Yes", perform completion logic
-    
-                } else {
-                    console.log("clicked no");
-                    // User clicked "No", do nothing or handle as needed
-                }
-            }
-        });
-    
+
         // Save Main Sections
-    },
+        this.saveMainSection()
+          .then(function (mainSectionIds) {
+            // Save Sub Sections after Main Sections are created
+            that.saveSubSection(mainSectionIds);
+
+            // Display a message or perform any additional actions after saving
+            
+
+
+          })
+          .catch(function (error) {
+            console.error("Error saving data:", error);
+          });
+      },
+
+
 
       saveMainSection: function () {
         // Implement logic to save Main Section data
@@ -481,7 +548,7 @@ sap.ui.define(
 
 
       onComplete: function () {
-       
+        var that = this;
 
         MessageBox.show("Do you need to complete the steps?", {
           icon: MessageBox.Icon.QUESTION,
@@ -643,13 +710,13 @@ sap.ui.define(
             id: textItemId,
             width: "100%",
             editorType: sap.ui.richtexteditor.EditorType.bIsTinyMCE5,
-            
+            customToolbar: false,
             showGroupFont: true,
             showGroupLink: true,
-            showGroupInsert: false,
-            showGroupClipboard: false,
+            showGroupInsert: true,
+            showGroupClipboard: true,
             showGroupUndo: true,
-            showGroupStructure: false,
+            showGroupStructure: true,
             showGroupTextAlign: true,
             showGroupFontStyle: true,
             
@@ -704,14 +771,7 @@ sap.ui.define(
         } else {
           console.error("idFrame not found for step " + currentStepIndex);
         }
-      },  
-
-      onPreview: function(){
-
-        this.getOwnerComponent().getRouter().navTo("PreviewForm");
-
-        console.log("Navigating to Next Page...")
-      }
+      },
 
     });
   }

@@ -95,8 +95,8 @@ entity ProposalDetails{
 entity MainSection{
     key id        :   String;
     mainSectiontitle: String;
-    textarea      :   Binary(5000);
-    imagearea     :   Binary(5000);
+    textarea      :   LargeBinary;
+    imagearea     :   LargeBinary;
     createdBy     :   String(50);
     createdAt     :   Timestamp;
     modifiedBy    :   String(50);
@@ -109,8 +109,8 @@ entity MainSection{
 entity SubSection{
     key id        :   String;
     subSectiontitle:  String;
-    textarea      :   Binary(5000);
-    imagearea     :   Binary(5000);
+    textarea      :   LargeBinary;
+    imagearea     :   LargeBinary;
     createdBy     :   String(50);
     createdAt     :   Timestamp;
     modifiedBy    :   String(50);
