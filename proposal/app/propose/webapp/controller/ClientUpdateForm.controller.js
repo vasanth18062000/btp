@@ -5,6 +5,7 @@ sap.ui.define([
 
 ], function (Controller,MessageToast,History) {
     "use strict";
+    var selectedItem;
 
     return Controller.extend("ns.propose.controller.ClientUpdateForm", {
         onInit: function () {
@@ -16,10 +17,33 @@ sap.ui.define([
             oArgs=oEvent.getParameter("arguments");
             oView=this.getView();
             console.log(oArgs.SelectedItem);
+            selectedItem=oArgs.SelectedItem;
             oView.bindElement({
               path:"/ProposalCustomer("+oArgs.SelectedItem+")"
           });
-  
+          this.associated();
+          },
+          associated:function(){
+            var oModel=this.getOwnerComponent().getModel();
+            var oJSON=new sap.ui.model.json.JSONModel();
+            oModel.read("/ProposalCustomer("+selectedItem+")",{
+                urlParameters: {
+					"$expand": "PS_CUSTOMER_ORG_CONTACT"
+				},
+				method: "GET",
+                success:function(response){
+                    // debugger;
+                    console.log(response.PS_CUSTOMER_ORG_CONTACT.results[0].addressLine2)
+                    oJSON.setData(response.PS_CUSTOMER_ORG_CONTACT.results[0]);
+                    this.getView().setModel(oJSON,"ven")
+                                }.bind(this),
+                                error:function(error){
+                                    // debugger;
+
+                                }
+
+                                
+            }) 
           },
 
           onNextClientDetails: function () {
@@ -65,6 +89,7 @@ sap.ui.define([
                         MessageToast.show("Added Successfully");
                         var proposalClientId = this.getView().byId("id").getValue();
                         console.log(proposalClientId);
+                        var cId=this.getView().byId("ID").getValue();
                         var oEntrydetails = {
                           id: this.getView().byId("ID").getValue(),
                           addressLine1: this.getView().byId("addressLine1").getValue(),
@@ -75,15 +100,12 @@ sap.ui.define([
                           state: this.getView().byId("state").getValue(),
                           country: this.getView().byId("country").getValue(),
                           contact_person_1_mobileNumber: this.getView().byId("contact_person_1_mobileNumber").getValue(),
-                          contact_person_1_telephoneNumber: this.getView().byId("contact_person_1_telephoneNumber").getValue(),
                           contact_person_1_emailId: this.getView().byId("contact_person_1_emailId").getValue(),
                           contact_person_2_mobileNumber: this.getView().byId("contact_person_2_mobileNumber").getValue(),
-                          contact_person_2_telephoneNumber: this.getView().byId("contact_person_2_telephoneNumber").getValue(),
                           contact_person_2_emailId: this.getView().byId("contact_person_2_emailId").getValue(),
-                          PS_CUSTOMER_ORG_id: proposalClientId
                         };
                         console.log(oEntrydetails);
-                oModel.update("/ProposalCustomerContact",oEntrydetails,{
+                oModel.update("/ProposalCustomerContact("+cId+")",oEntrydetails,{
                     method: "UPDATE",
                     success: function () {
                         MessageToast.show(" contact Added Successfully");

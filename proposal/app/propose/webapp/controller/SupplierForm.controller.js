@@ -34,6 +34,46 @@ sap.ui.define([
         
 
         onSave : function(){
+            //mobile number submission validation
+            var mobileNumberRegex = /^[0-9]{10}$/;
+ 
+            var contactPerson1MobileNumber = this.getView().byId("contact_person_1_mobileNumber").getValue();
+            var contactPerson2MobileNumber = this.getView().byId("contact_person_2_mobileNumber").getValue();
+ 
+            if (!mobileNumberRegex.test(contactPerson1MobileNumber)) {
+                MessageToast.show("Invalid Mobile Number for Contact Person 1. Please enter a 10-digit number.");
+                return;
+            }
+ 
+            if (!mobileNumberRegex.test(contactPerson2MobileNumber)) {
+                MessageToast.show("Invalid Mobile Number for Contact Person 2. Please enter a 10-digit number.");
+                return;
+            }
+ 
+            //email submission validation
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+ 
+    var contactPerson1Email = this.getView().byId("contact_person_1_emailId").getValue();
+    var contactPerson2Email = this.getView().byId("contact_person_2_emailId").getValue();
+ 
+    if (!emailRegex.test(contactPerson1Email)) {
+        MessageToast.show("Invalid Email Address for Contact Person 1. Please enter a valid email address.");
+        return;
+    }
+ 
+    if (!emailRegex.test(contactPerson2Email)) {
+        MessageToast.show("Invalid Email Address for Contact Person 2. Please enter a valid email address.");
+        return;
+    }
+ 
+    //pincode submission validation
+    var pincodeRegex = /^[1-9][0-9]{5}$/;
+    var pinCode = this.getView().byId("pincode").getValue();
+ 
+    if (!pincodeRegex.test(pinCode)) {
+        MessageToast.show("Invalid Pincode. Please enter a valid Pincode.");
+        return;
+    }
             var oModel = this.getView().getModel();
             var that = this;
                 console.log(oModel);
@@ -50,7 +90,7 @@ sap.ui.define([
                     method: "POST",
                     success: function () {
                        // MessageToast.show("Added Successfully");
-                         that.getView().byId("_IDGenButton2").setVisible(true);
+                        //  that.getView().byId("_IDGenButton2").setVisible(true);
                         var proposalOwnerId = this.getView().byId("id").getValue();
                         console.log(proposalOwnerId);
                         var oEntrydetails = {
@@ -83,38 +123,53 @@ sap.ui.define([
                 }.bind(this)
                 });
 
-                //validate Mobile Number
-                // var mobileNumberRegex = /^[0-9]{10}$/;
 
-                // var contactPerson1MobileNumber = this.getView().byId("contact_person_1_mobileNumber").getValue();
-                // var contactPerson2MobileNumber = this.getView().byId("contact_person_2_mobileNumber").getValue();
-            
-                // if (!mobileNumberRegex.test(contactPerson1MobileNumber)) {
-                //     MessageToast.show("Invalid Mobile Number for Contact Person 1. Please enter a 10-digit number.");
-                //     return;
-                // }
-            
-                // if (!mobileNumberRegex.test(contactPerson2MobileNumber)) {
-                //     MessageToast.show("Invalid Mobile Number for Contact Person 2. Please enter a 10-digit number.");
-                //     return;
-                // }
-
-
-    //             // Validate email addresses
-    // var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    // var contactPerson1Email = this.getView().byId("contact_person_1_emailId").getValue();
-    // var contactPerson2Email = this.getView().byId("contact_person_2_emailId").getValue();
-
-    // if (!emailRegex.test(contactPerson1Email)) {
-    //     MessageToast.show("Invalid Email Address for Contact Person 1. Please enter a valid email address.");
-    //     return;
-    // }
-
-    // if (!emailRegex.test(contactPerson2Email)) {
-    //     MessageToast.show("Invalid Email Address for Contact Person 2. Please enter a valid email address.");
-    //     return;
-    // }
+        },
+        //mobile number input validation
+        onMobileNumberChange: function (oEvent) {
+            var mobileNumberRegex = /^[0-9]{10}$/;
+            var input = oEvent.getSource();
+            var inputValue = input.getValue();
+ 
+            if (!mobileNumberRegex.test(inputValue)) {
+                input.setValueState("Error");
+                input.setValueStateText("Invalid Mobile Number. Please enter a 10-digit number.");
+            } else {
+                input.setValueState("None");
+                input.setValueStateText("");
+            }
+        },
+ 
+       
+        //email input validation
+        onEmailChange: function (oEvent) {
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var input = oEvent.getSource();
+            var inputValue = input.getValue();
+ 
+            if (!emailRegex.test(inputValue)) {
+                input.setValueState("Error");
+                input.setValueStateText("Invalid Email Address. Please enter a valid email address.");
+            } else {
+                input.setValueState("None");
+                input.setValueStateText("");
+            }
+        },
+ 
+ 
+        //pincode input validation
+        onPincodeChange: function (oEvent) {
+            var pincodeRegex = /^[1-9][0-9]{5}$/; // Regular expression for Indian pincode format (6 digits, excluding leading zeros)
+            var input = oEvent.getSource();
+            var inputValue = input.getValue();
+ 
+            if (!pincodeRegex.test(inputValue)) {
+                input.setValueState("Error");
+                input.setValueStateText("Invalid Pincode. Please enter a valid 6-digit pincode.");
+            } else {
+                input.setValueState("None");
+                input.setValueStateText("");
+            }
         },
         onChangeDP: function (oEvent) {
           

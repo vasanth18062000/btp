@@ -5,30 +5,79 @@ sap.ui.define([
 
 ], function (Controller,MessageToast,History) {
     "use strict";
+    var selectedItem;
 
     return Controller.extend("ns.propose.controller.SupplierUpdateForm", {
         onInit: function () {
             var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
-            oRouter.getRoute("supplierUpdateForm").attachMatched(this.onObjectMatched, this); //Attach Router Pattern      
+            oRouter.getRoute("supplierUpdateForm").attachMatched(this.onObjectMatched, this); //Attach Router Pattern 
+            
+            // var oModel = new sap.ui.model.json.JSONModel();
+            // Assume employee data is fetched and set to the model
+            // var oEmployeeData = {
+            //     id: "001",
+            //     name: "John Doe",
+            //     age: 30
+            // };
+            // oModel.setData(oEmployeeData);
+            // this.getView().setModel(oModel, "employee");
+            
+     
         },
         onObjectMatched(oEvent) {
             var oArgs,oView;
             oArgs=oEvent.getParameter("arguments");
             oView=this.getView();
             console.log(oArgs.SelectedItem);
+            selectedItem=oArgs.SelectedItem;
             oView.bindElement({
               path:"/ProposalSupplier("+oArgs.SelectedItem+")"
+            //   ,
+            //   parameters:{
+            //     expand:"PS_VENDOR_ORG_CONTACT"
+            //   }
+            //   ,
+            // event:{
+            //   dataRequster:function(){oView.setBusy(true)},
+            //   dataReceived:function(){oView.setBusy(false)},
+            // }
           });
-  
+          this.associated();
+          },
+          associated:function(){
+            var oModel=this.getOwnerComponent().getModel();
+            var oJSON=new sap.ui.model.json.JSONModel();
+            oModel.read("/ProposalSupplier("+selectedItem+")",{
+                urlParameters: {
+					"$expand": "PS_VENDOR_ORG_CONTACT"
+				},
+				method: "GET",
+                success:function(response){
+                    // debugger;
+                    console.log(response.PS_VENDOR_ORG_CONTACT.results[0].addressLine2)
+                    oJSON.setData(response.PS_VENDOR_ORG_CONTACT.results[0]);
+                    this.getView().setModel(oJSON,"ven")
+                                }.bind(this),
+                                error:function(error){
+                                    // debugger;
+
+                                }
+
+                                
+            }) 
           },
 
           onNextVendorDetails: function () {
             // Move to the "Contact Detail" tab in the IconTabBar
             this.getView().byId("iconTabBar").setSelectedKey("contactTab");
+            var d=this.getView().byId("name").getValue();
+            console.log(d);
+            console.log(selectedItem);
         },
         onNextContact1Details: function () {
             
             this.getView().byId("iconTabBar").setSelectedKey("contactTab1");
+         
         },
         onNextContact2Details: function () {
             
@@ -82,7 +131,6 @@ sap.ui.define([
                           contact_person_1_emailId: this.getView().byId("contact_person_1_emailId").getValue(),
                           contact_person_2_mobileNumber: this.getView().byId("contact_person_2_mobileNumber").getValue(),
                           contact_person_2_emailId: this.getView().byId("contact_person_2_emailId").getValue(),
-                          PS_CUSTOMER_ORG_id: proposalClientId
                         };
                         console.log(oEntrydetails);
                         
