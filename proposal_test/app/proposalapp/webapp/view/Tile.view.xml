@@ -1,0 +1,14 @@
+<mvc:View controllerName="proposalapp.controller.Tile"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <GenericTile id="_IDGenGenericTile1" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+            header="Proposal Creation"
+            subheader="click to create" press="createProposal1"> 
+            </GenericTile>
+
+           
+            </content>
+    </Page>
+</mvc:View>

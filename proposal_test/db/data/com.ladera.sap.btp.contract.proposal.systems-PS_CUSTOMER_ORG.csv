@@ -1,0 +1,4 @@
+id,createdAt,createdBy,modifiedAt,modifiedBy,name,logo,website
+1,2024-03-15T10:00:00Z,John Doe,2024-03-15T10:00:00Z,John Doe,Organization A,logo1.png,www.organization-a.com
+2,2024-03-16T11:00:00Z,Jane Smith,2024-03-16T11:00:00Z,Jane Smith,Organization B,logo2.png,www.organization-b.com
+3,2024-03-17T12:00:00Z,Mike Johnson,2024-03-17T12:00:00Z,Mike Johnson,Organization C,logo3.png,www.organization-c.com
