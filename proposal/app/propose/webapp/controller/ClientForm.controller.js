@@ -1,7 +1,8 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast"
-], function (Controller,MessageToast) {
+    "sap/m/MessageToast",
+    "sap/m/BusyDialog"
+], function (Controller,MessageToast,BusyDialog) {
     "use strict";
     var newClientId;
     return Controller.extend("ns.propose.controller.ClientForm", {
@@ -103,8 +104,11 @@ sap.ui.define([
                 console.log(oModel);
                 newClientId = this.generateUniqueShuffledNumber(this.usedNumbers);
                 this.usedNumbers.push(newClientId);
+                var onBusyDialog= new BusyDialog({
+                    text:"Please wait......."
+                })
+                onBusyDialog.open();
                 var oEntry = {
-                   
                    id: newClientId,
                    name: this.getView().byId("name").getValue(),
                   // logo: this.getView().byId("logo").getValue()
@@ -140,6 +144,7 @@ sap.ui.define([
                 oModel.create("/ProposalCustomerContact",oEntrydetails,{
                     method: "POST",
                     success: function () {
+                        onBusyDialog.close();
                         MessageToast.show("Customer added succesfully");
                     }
                     });

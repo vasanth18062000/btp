@@ -1,9 +1,10 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
-    "sap/ui/core/routing/History"
+    "sap/ui/core/routing/History",
+    "sap/m/BusyDialog"
 
-], function (Controller,MessageToast,History) {
+], function (Controller,MessageToast,History,BusyDialog) {
     "use strict";
     var selectedItem;
 
@@ -103,22 +104,32 @@ sap.ui.define([
 
             var sID=this.getView().byId("id").getValue();
                         console.log(oModel);
-        
+                        var onBusyDialog= new BusyDialog({
+                            text:"Please wait......."
+                        })
+                        onBusyDialog.open();
                 var oEntry = {
-                   id: this.getView().byId("id").getValue(),
+                   id: parseInt(this.getView().byId("id").getValue()),
                    name: this.getView().byId("name").getValue(),
                   // logo: this.getView().byId("logo").getValue()
                   website:this.getView().byId("website").getValue()
                 };
                 console.log(oEntry);
-                oModel.update("/ProposalSupplier("+sID+")",oEntry,{
-                    method: "UPDATE",
+                  // Assuming the base URL for your OData service
+            var sServiceUrl = "http://localhost:4004/odata/v4/proposal/";
+       
+            // Update ProposalSupplier
+            jQuery.ajax({
+                url: sServiceUrl + "ProposalSupplier(" + encodeURIComponent(sID) + ")",
+                method: "PATCH",
+                contentType: "application/json",
+                data: JSON.stringify(oEntry),
                     success: function () {
                         // MessageToast.show("Added Successfully");
-                        var proposalClientId = this.getView().byId("id").getValue();
-                        console.log(proposalClientId);
+                        // var proposalClientId = this.getView().byId("id").getValue();
+                        // console.log(proposalClientId);
                         var oEntrydetails = {
-                          id: this.getView().byId("ID").getValue(),
+                          id: parseInt(this.getView().byId("ID").getValue()),
                           addressLine1: this.getView().byId("addressLine1").getValue(),
                           addressLine2: this.getView().byId("addressLine2").getValue(),
                           addressLine3: this.getView().byId("addressLine3").getValue(),
@@ -133,9 +144,13 @@ sap.ui.define([
                         };
                         console.log(oEntrydetails);
                         
-                oModel.update("/ProposalSupplierContact("+idss+")",oEntrydetails,{
-                    method: "UPDATE",
+                        jQuery.ajax({
+                            url: sServiceUrl + "ProposalSupplierContact(" + encodeURIComponent(idss) + ")",
+                            method: "PATCH",
+                            contentType: "application/json",
+                            data: JSON.stringify(oEntrydetails),
                     success: function () {
+                        onBusyDialog.close();
                         MessageToast.show(" Supplier updated Successfully");
                     }
                     });

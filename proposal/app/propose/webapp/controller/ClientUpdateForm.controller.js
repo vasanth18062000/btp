@@ -1,9 +1,11 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
-    "sap/ui/core/routing/History"
+    "sap/ui/core/routing/History",
+    "sap/m/BusyDialog"
 
-], function (Controller,MessageToast,History) {
+
+], function (Controller,MessageToast,History,BusyDialog) {
     "use strict";
     var selectedItem;
     return Controller.extend("ns.propose.controller.ClientUpdateForm", {
@@ -74,23 +76,32 @@ sap.ui.define([
             var that = this;
             var sID=this.getView().byId("id").getValue()
                 console.log(oModel);
+                var onBusyDialog= new BusyDialog({
+                    text:"Please wait......."
+                })
+                onBusyDialog.open();
                 var oEntry = {
                    
-                   id: this.getView().byId("id").getValue(),
+                   id: parseInt(this.getView().byId("id").getValue()),
                    name: this.getView().byId("name").getValue(),
                   // logo: this.getView().byId("logo").getValue()
                   website:this.getView().byId("website").getValue()
                 };
                 console.log(oEntry);
-                oModel.update("/ProposalCustomer("+sID+")",oEntry,{
-                    method: "UPDATE",
+                  // Assuming the base URL for your OData service
+                  var sServiceUrl = "http://localhost:4004/odata/v4/proposal/";
+       
+                  // Update ProposalSupplier
+                  jQuery.ajax({
+                      url: sServiceUrl + "ProposalCustomer(" + encodeURIComponent(sID) + ")",
+                      method: "PATCH",
+                      contentType: "application/json",
+                      data: JSON.stringify(oEntry),      
                     success: function () {
                         // MessageToast.show("Added Successfully");
-                        var proposalClientId = this.getView().byId("id").getValue();
-                        console.log(proposalClientId);
-                        var cId=this.getView().byId("ID").getValue();
+                        var idss=this.getView().byId("ID").getValue();
                         var oEntrydetails = {
-                          id: this.getView().byId("ID").getValue(),
+                          id: parseInt(this.getView().byId("ID").getValue()),
                           addressLine1: this.getView().byId("addressLine1").getValue(),
                           addressLine2: this.getView().byId("addressLine2").getValue(),
                           addressLine3: this.getView().byId("addressLine3").getValue(),
@@ -104,9 +115,14 @@ sap.ui.define([
                           contact_person_2_emailId: this.getView().byId("contact_person_2_emailId").getValue(),
                         };
                         console.log(oEntrydetails);
-                oModel.update("/ProposalCustomerContact("+cId+")",oEntrydetails,{
-                    method: "UPDATE",
+                        jQuery.ajax({
+                            url: sServiceUrl + "ProposalCustomerContact(" + encodeURIComponent(idss) + ")",
+                            method: "PATCH",
+                            contentType: "application/json",
+                            data: JSON.stringify(oEntrydetails),
                     success: function () {
+                        onBusyDialog.close();
+
                         // that.getView().byId("_IDGenButton2").setVisible(true);
                         MessageToast.show(" Customer updated Successfully");
                     }

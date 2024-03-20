@@ -8,7 +8,6 @@ sap.ui.define([
 
     return Controller.extend("ns.propose.controller.SupplierViewEdit", {
         onInit: function () {
-            
         },
         onFilter(oEvent) {
             // build filter array

@@ -1,7 +1,8 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast"
-], function (Controller,MessageToast) {
+    "sap/m/MessageToast",
+    "sap/m/BusyDialog"
+], function (Controller,MessageToast,BusyDialog) {
     "use strict";
     var newSupplierId;
     return Controller.extend("ns.propose.controller.SupplierForm", {
@@ -104,6 +105,11 @@ sap.ui.define([
             var oModel = this.getView().getModel();
             var that = this;
                 console.log(oModel);
+                var onBusyDialog= new BusyDialog({
+                    text:"Please wait......."
+                })
+                onBusyDialog.open();
+
                 var oEntry = {
                    
                    id: newSupplierId,
@@ -146,6 +152,7 @@ sap.ui.define([
                 oModel.create("/ProposalSupplierContact",oEntrydetails,{
                     method: "POST",
                     success: function () {
+                        onBusyDialog.close();
                         MessageToast.show(" Supplier Added Successfully");
                     }
                     });
