@@ -114,8 +114,7 @@ sap.ui.define([
                 oModel.update("/ProposalSupplier("+sID+")",oEntry,{
                     method: "UPDATE",
                     success: function () {
-                        MessageToast.show("Added Successfully");
-                        // that.getView().byId("_IDGenButton2").setVisible(true);
+                        // MessageToast.show("Added Successfully");
                         var proposalClientId = this.getView().byId("id").getValue();
                         console.log(proposalClientId);
                         var oEntrydetails = {
@@ -137,7 +136,7 @@ sap.ui.define([
                 oModel.update("/ProposalSupplierContact("+idss+")",oEntrydetails,{
                     method: "UPDATE",
                     success: function () {
-                        MessageToast.show(" contact Added Successfully");
+                        MessageToast.show(" Supplier updated Successfully");
                     }
                     });
                 }.bind(this)
@@ -167,6 +166,14 @@ sap.ui.define([
 				const oRouter = this.getOwnerComponent().getRouter();
 				oRouter.navTo("supplierViewEdit", {}, true);
 			}
+        },
+        onView:function(){
+            var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
+            var sID=this.getView().byId("id").getValue();
+            oRouter.navTo("supplierView",{
+                supplierId: sID
+            });
+
         }
      
     });

@@ -3,9 +3,10 @@ sap.ui.define([
     "sap/m/MessageToast"
 ], function (Controller,MessageToast) {
     "use strict";
-
+    var newClientId;
     return Controller.extend("ns.propose.controller.ClientForm", {
         onInit: function () {
+            this.usedNumbers = [];
         },
         onNextClientDetails: function () {
             // Move to the "Contact Detail" tab in the IconTabBar
@@ -30,7 +31,31 @@ sap.ui.define([
            this.getView().byId("iconTabBar").setSelectedKey("contactTab1");
 
         },
-
+        // Function to generate a random 5-digit number
+        generateRandomNumber: function () {
+            return Math.floor(10000 + Math.random() * 90000);
+        },
+ 
+        // Function to check if the number is unique
+        isUniqueNumber: function (number, usedNumbers) {
+            return !usedNumbers.includes(number);
+        },
+ 
+        // Function to shuffle the digits of a number
+        shuffleDigits: function (number) {
+            var digits = number.toString().split('');
+            var shuffledDigits = digits.sort(() => Math.random() - 0.5);
+            return parseInt(shuffledDigits.join(''));
+        },
+ 
+        // Function to generate a unique and shuffled 5-digit number
+        generateUniqueShuffledNumber: function (usedNumbers) {
+            var randomNumber;
+            do {
+                randomNumber = this.generateRandomNumber();
+            } while (!this.isUniqueNumber(randomNumber, usedNumbers));
+            return this.shuffleDigits(randomNumber);
+        },
         onSave : function(){
              //mobile number submission validation
              var mobileNumberRegex = /^[0-9]{10}$/;
@@ -76,24 +101,26 @@ sap.ui.define([
             var that = this;
 
                 console.log(oModel);
+                newClientId = this.generateUniqueShuffledNumber(this.usedNumbers);
+                this.usedNumbers.push(newClientId);
                 var oEntry = {
                    
-                   id: this.getView().byId("id").getValue(),
+                   id: newClientId,
                    name: this.getView().byId("name").getValue(),
                   // logo: this.getView().byId("logo").getValue()
                   website:this.getView().byId("website").getValue(),
                   logo: this.getView().byId("idBase64Area").getValue()
                 };
                 console.log(oEntry);
+                var newClientcontactId = this.generateUniqueShuffledNumber(this.usedNumbers);
+                this.usedNumbers.push(newClientcontactId);
                 oModel.create("/ProposalCustomer",oEntry,{
                     method: "POST",
                     success: function () {
                         //MessageToast.show("Added Successfully");
-                        // that.getView().byId("_IDGenButton2").setVisible(true);
-                        var proposalClientId = this.getView().byId("id").getValue();
-                        console.log(proposalClientId);
+                        that.getView().byId("_IDGenButton2").setVisible(true);
                         var oEntrydetails = {
-                          id: this.getView().byId("ID").getValue(),
+                          id: newClientcontactId,
                           addressLine1: this.getView().byId("addressLine1").getValue(),
                           addressLine2: this.getView().byId("addressLine2").getValue(),
                           addressLine3: this.getView().byId("addressLine3").getValue(),
@@ -107,13 +134,13 @@ sap.ui.define([
                           contact_person_2_mobileNumber: this.getView().byId("contact_person_2_mobileNumber").getValue(),
                           //contact_person_2_telephoneNumber: this.getView().byId("contact_person_2_telephoneNumber").getValue(),
                           contact_person_2_emailId: this.getView().byId("contact_person_2_emailId").getValue(),
-                          PS_CUSTOMER_ORG_id: proposalClientId
+                          PS_CUSTOMER_ORG_id: newClientId
                         };
                         console.log(oEntrydetails);
                 oModel.create("/ProposalCustomerContact",oEntrydetails,{
                     method: "POST",
                     success: function () {
-                        MessageToast.show("Customer Added Successfully");
+                        MessageToast.show("Customer added succesfully");
                     }
                     });
                 }.bind(this)
@@ -211,10 +238,8 @@ sap.ui.define([
         },
         onView:function(){
             var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
-            var id=this.getView().byId("id").getValue();
-            console.log(id);
             oRouter.navTo("clientView",{
-                clientId: id
+                clientId: newClientId
             });
         }
      

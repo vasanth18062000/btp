@@ -3,10 +3,35 @@ sap.ui.define([
     "sap/m/MessageToast"
 ], function (Controller,MessageToast) {
     "use strict";
-
+    var newSupplierId;
     return Controller.extend("ns.propose.controller.SupplierForm", {
+        // Function to generate a random 5-digit number
+        generateRandomNumber: function () {
+            return Math.floor(10000 + Math.random() * 90000);
+        },
+ 
+        // Function to check if the number is unique
+        isUniqueNumber: function (number, usedNumbers) {
+            return !usedNumbers.includes(number);
+        },
+ 
+        // Function to shuffle the digits of a number
+        shuffleDigits: function (number) {
+            var digits = number.toString().split('');
+            var shuffledDigits = digits.sort(() => Math.random() - 0.5);
+            return parseInt(shuffledDigits.join(''));
+        },
+ 
+        // Function to generate a unique and shuffled 5-digit number
+        generateUniqueShuffledNumber: function (usedNumbers) {
+            var randomNumber;
+            do {
+                randomNumber = this.generateRandomNumber();
+            } while (!this.isUniqueNumber(randomNumber, usedNumbers));
+            return this.shuffleDigits(randomNumber);
+        },
         onInit: function () {
-    
+            this.usedNumbers = [];
         },
         onNextVendorDetails: function () {
             // Move to the "Contact Detail" tab in the IconTabBar
@@ -74,12 +99,14 @@ sap.ui.define([
         MessageToast.show("Invalid Pincode. Please enter a valid Pincode.");
         return;
     }
+    newSupplierId = this.generateUniqueShuffledNumber(this.usedNumbers);
+            this.usedNumbers.push(newSupplierId);
             var oModel = this.getView().getModel();
             var that = this;
                 console.log(oModel);
                 var oEntry = {
                    
-                   id: this.getView().byId("id").getValue(),
+                   id: newSupplierId,
                    name: this.getView().byId("name").getValue(),
                   // logo: this.getView().byId("logo").getValue()
                   website:this.getView().byId("website").getValue(),
@@ -90,11 +117,13 @@ sap.ui.define([
                     method: "POST",
                     success: function () {
                        // MessageToast.show("Added Successfully");
-                        //  that.getView().byId("_IDGenButton2").setVisible(true);
-                        var proposalOwnerId = this.getView().byId("id").getValue();
-                        console.log(proposalOwnerId);
+                         that.getView().byId("_IDGenButton2").setVisible(true);
+                        // var proposalOwnerId = this.getView().byId("id").getValue();
+                        // console.log(proposalOwnerId);
+                        var newSupplierContaactId = this.generateUniqueShuffledNumber(this.usedNumbers);
+                        this.usedNumbers.push(newSupplierContaactId);
                         var oEntrydetails = {
-                          id: this.getView().byId("ID").getValue(),
+                          id: newSupplierContaactId,
                           addressLine1: this.getView().byId("addressLine1").getValue(),
                           addressLine2: this.getView().byId("addressLine2").getValue(),
                           addressLine3: this.getView().byId("addressLine3").getValue(),
@@ -108,7 +137,7 @@ sap.ui.define([
                           contact_person_2_mobileNumber: this.getView().byId("contact_person_2_mobileNumber").getValue(),
                           //contact_person_2_telephoneNumber: this.getView().byId("contact_person_2_telephoneNumber").getValue(),
                           contact_person_2_emailId: this.getView().byId("contact_person_2_emailId").getValue(),
-                          PS_VENDOR_ORG_id: proposalOwnerId
+                          PS_VENDOR_ORG_id: newSupplierId
                           
                         };
                         
@@ -212,10 +241,8 @@ sap.ui.define([
         },
         onView:function(){
             var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
-            var id=this.getView().byId("id").getValue();
-            console.log(id);
             oRouter.navTo("supplierView",{
-                supplierId: id
+                supplierId: newSupplierId
             });
 
         }

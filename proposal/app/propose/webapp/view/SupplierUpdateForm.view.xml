@@ -282,6 +282,7 @@
                         type="Success"
                         icon="sap-icon://accept"
                     />
+                           <Button id="_IDGenButton2" text="Preview" press="onView" type="Emphasized" icon="sap-icon://biometric-face"/>
                 </contentRight>
             </Bar>
         </footer>

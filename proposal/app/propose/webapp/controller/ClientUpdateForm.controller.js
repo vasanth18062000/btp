@@ -6,7 +6,6 @@ sap.ui.define([
 ], function (Controller,MessageToast,History) {
     "use strict";
     var selectedItem;
-
     return Controller.extend("ns.propose.controller.ClientUpdateForm", {
         onInit: function () {
             var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
@@ -86,7 +85,7 @@ sap.ui.define([
                 oModel.update("/ProposalCustomer("+sID+")",oEntry,{
                     method: "UPDATE",
                     success: function () {
-                        MessageToast.show("Added Successfully");
+                        // MessageToast.show("Added Successfully");
                         var proposalClientId = this.getView().byId("id").getValue();
                         console.log(proposalClientId);
                         var cId=this.getView().byId("ID").getValue();
@@ -108,7 +107,8 @@ sap.ui.define([
                 oModel.update("/ProposalCustomerContact("+cId+")",oEntrydetails,{
                     method: "UPDATE",
                     success: function () {
-                        MessageToast.show(" contact Added Successfully");
+                        // that.getView().byId("_IDGenButton2").setVisible(true);
+                        MessageToast.show(" Customer updated Successfully");
                     }
                     });
                 }.bind(this)
@@ -138,6 +138,13 @@ sap.ui.define([
 				const oRouter = this.getOwnerComponent().getRouter();
 				oRouter.navTo("clientViewEdit", {}, true);
 			}
+        },
+        onView:function(){
+            var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
+            var sID=this.getView().byId("id").getValue();
+            oRouter.navTo("clientView",{
+                clientId: sID
+            });
         }
      
     });
