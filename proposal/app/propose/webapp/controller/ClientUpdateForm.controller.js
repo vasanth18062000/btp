@@ -9,12 +9,17 @@ sap.ui.define([
     "use strict";
     var selectedItem;
     var updateCustomerName;
+    var onBusyDataDialog= new BusyDialog({
+        title:"DATA LOADING",
+        text:"Please wait......."
+    })
     return Controller.extend("ns.propose.controller.ClientUpdateForm", {
         onInit: function () {
             var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.getRoute("clientUpdateForm").attachMatched(this.onObjectMatched, this); //Attach Router Pattern      
         },
         onObjectMatched(oEvent) {
+            onBusyDataDialog.open();
             var oArgs,oView;
             oArgs=oEvent.getParameter("arguments");
             oView=this.getView();
@@ -38,6 +43,7 @@ sap.ui.define([
                     console.log(response.PS_CUSTOMER_ORG_CONTACT.results[0].addressLine2)
                     oJSON.setData(response.PS_CUSTOMER_ORG_CONTACT.results[0]);
                     this.getView().setModel(oJSON,"ven")
+                    onBusyDataDialog.close();
                                 }.bind(this),
                                 error:function(error){
                                     // debugger;

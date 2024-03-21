@@ -61,67 +61,67 @@
                 <ObjectAttribute id="_IDGenObjectAttribute5"
                     class="bigFont"
                     title="Address Line1"
-                    text="{addressLine1}"
+                    text="{path: 'ven>/addressLine1'}" 
                 />
 
                 <ObjectAttribute id="_IDGenObjectAttribute6"
                     class="bigFont"
                     title="Address Line2"
-                    text="{addressLine2}"
+                    text="{path: 'ven>/addressLine2'}"
                 />
 
                 <ObjectAttribute id="_IDGenObjectAttribute7"
                     class="bigFont"
                     title="Address Line3"
-                    text="{addressLine3}"
+                    text="{path: 'ven>/addressLine3'}"
                 />
 
                 <ObjectAttribute id="_IDGenObjectAttribute8"
                     class="bigFont"
                     title="City"
-                    text="{city}"
+                    text="{path: 'ven>/city'}"
                 />
 
                 <ObjectAttribute id="_IDGenObjectAttribute9"
                     class="bigFont"
                     title="Pincode"
-                    text="{pincode}"
+                    text="{path: 'ven>/pincode'}"
                 />
 
                 <ObjectAttribute id="_IDGenObjectAttribute10"
                     class="bigFont"
                     title="State"
-                    text="{state}"
+                    text="{path: 'ven>/state'}"
                 />
 
                 <ObjectAttribute id="_IDGenObjectAttribute11"
                     class="bigFont"
                     title="Country"
-                    text="{country}"
+                    text="{path: 'ven>/country'}"
                 />
 
                 <ObjectAttribute id="_IDGenObjectAttribute12"
                     class="bigFont"
                     title="Person1 Mobile Number"
-                    text="{contact_person_1_mobileNumber}"
+                    text="{path: 'ven>/contact_person_1_mobileNumber'}"
                 />
 
                 <ObjectAttribute id="_IDGenObjectAttribute13"
                     class="bigFont"
                     title="Person1 Email Id"
-                    text="{contact_person_1_emailId}"
+                    text="{path: 'ven>/contact_person_1_emailId'}"
                 />
 
                 <ObjectAttribute id="_IDGenObjectAttribute14"
                     class="bigFont"
                     title="Person2 Mobile Number"
-                    text="{contact_person_2_mobileNumber}"
+                    text="{path: 'ven>/contact_person_2_mobileNumber'}"
                 />
 
                 <ObjectAttribute id="_IDGenObjectAttribute15"
                     class="bigFont"
                     title="Person2 Email Id"
-                    text="{contact_person_2_emailId}"
+                    text="{path: 'ven>/contact_person_2_emailId'}"
                 />
 
             </attributes>
