@@ -109,12 +109,17 @@ sap.ui.define([
                     text:"Please wait......."
                 })
                 onBusyDialog.open();
+                var currentDate = new Date();
                 var oEntry = {
                    id: newClientId,
                    name: this.getView().byId("name").getValue(),
                   // logo: this.getView().byId("logo").getValue()
                   website:this.getView().byId("website").getValue(),
-                  logo: this.getView().byId("idBase64Area").getValue()
+                  logo: this.getView().byId("idBase64Area").getValue(),
+                  createdAt: currentDate,
+                  createdBy: this.getView().byId("name").getValue(),
+                  modifiedAt: currentDate,
+                  modifiedBy: this.getView().byId("name").getValue(),              
                 };
                 console.log(oEntry);
                 var newClientcontactId = this.generateUniqueShuffledNumber(this.usedNumbers);
@@ -139,7 +144,11 @@ sap.ui.define([
                           contact_person_2_mobileNumber: this.getView().byId("contact_person_2_mobileNumber").getValue(),
                           //contact_person_2_telephoneNumber: this.getView().byId("contact_person_2_telephoneNumber").getValue(),
                           contact_person_2_emailId: this.getView().byId("contact_person_2_emailId").getValue(),
-                          PS_CUSTOMER_ORG_id: newClientId
+                          createdAt: currentDate,
+                          createdBy: this.getView().byId("name").getValue(),
+                          modifiedAt: currentDate,
+                          modifiedBy: this.getView().byId("name").getValue(),
+                         PS_CUSTOMER_ORG_id: newClientId
                         };
                         console.log(oEntrydetails);
                 oModel.create("/ProposalCustomerContact",oEntrydetails,{

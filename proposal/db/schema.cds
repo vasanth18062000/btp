@@ -1,4 +1,5 @@
 namespace com.ladera.sap.btp.contract.proposal.systems;
+using{cuid,managed} from '@sap/cds/common';
 
 entity PS_USER{
     key id                                :   Integer;
@@ -15,10 +16,11 @@ entity PS_VENDOR_ORG{
     name                                  :   String(100);
     logo                                  :   LargeBinary;
     website                                 :   String;
-    createdBy                             :   String(50);
+        createdBy                             :   String(50);
     createdAt                             :   Timestamp;
     modifiedBy                            :   String(50);
     modifiedAt                            :   Timestamp;
+
     PS_VENDOR_ORG_CONTACT                 :   Association to many PS_VENDOR_ORG_CONTACT on PS_VENDOR_ORG_CONTACT.PS_VENDOR_ORG=$self;
     // PS_DETAILS                            :   Association to PS_DETAILS;
     
@@ -38,7 +40,7 @@ entity PS_VENDOR_ORG_CONTACT{
     contact_person_2_mobileNumber         :   String(50);
     contact_person_2_telephoneNumber      :   String(50);
     contact_person_2_emailId              :   String(50);
-    createdBy                             :   String(50);
+        createdBy                             :   String(50);
     createdAt                             :   Timestamp;
     modifiedBy                            :   String(50);
     modifiedAt                            :   Timestamp;
@@ -51,10 +53,11 @@ entity PS_CUSTOMER_ORG{
     name                                   :   String(100);
     logo                                   :   LargeBinary;
     website                                 :   String;
-    createdBy                              :   String(50);
-    createdAt                              :   Timestamp;
-    modifiedBy                             :   String(50);
-    modifiedAt                             :   Timestamp;
+            createdBy                             :   String(50);
+    createdAt                             :   Timestamp;
+    modifiedBy                            :   String(50);
+    modifiedAt                            :   Timestamp;
+
     PS_CUSTOMER_ORG_CONTACT                :   Association to many PS_CUSTOMER_ORG_CONTACT on PS_CUSTOMER_ORG_CONTACT.PS_CUSTOMER_ORG=$self;
     // PS_DETAILS                             :   Association to PS_DETAILS;
 }
@@ -75,11 +78,86 @@ entity PS_CUSTOMER_ORG_CONTACT{
     contact_person_2_mobileNumber          :   String(50);
     contact_person_2_telephoneNumber       :   String(50);
     contact_person_2_emailId               :   String(50);
+            createdBy                             :   String(50);
+    createdAt                             :   Timestamp;
+    modifiedBy                            :   String(50);
+    modifiedAt                            :   Timestamp;
+    PS_CUSTOMER_ORG                         :   Association to PS_CUSTOMER_ORG;  
+}
+
+entity PS_DETAILS{
+    key id                                 :   Integer;
+    referenceId                            :   String;
+    projectName                            :   String;
+    PS_PROJECT_TYPE                        :   Association to  one PS_PROJECT_TYPE;
+    proposedDate                           :   Date;
+    validTillDate                          :   Date;
+    proposedBy                             :   String;
+    proposerRole                           :   String;
+    proposerDepartment                     :   String;
     createdBy                              :   String(50);
     createdAt                              :   Timestamp;
     modifiedBy                             :   String(50);
     modifiedAt                             :   Timestamp;
-    PS_CUSTOMER_ORG                         :   Association to PS_CUSTOMER_ORG;
-    
+    PS_MAIN_SECTION                        :   Association to many PS_MAIN_SECTION on PS_MAIN_SECTION.PS_DETAILS =$self;
+    // PS_VENDOR_ORG                           :   Association to PS_VENDOR_ORG ;
+    // PS_CUSTOMER_ORG                         :   Association to PS_CUSTOMER_ORG;
+    PS_TEMPLATE                            :   Association to many PS_TEMPLATE on PS_TEMPLATE.PS_DETAILS=$self;
+
+}
+//sap_btp_rfpn
+//sap_btp_rfpui
+//sap_btp_rfpj
+//sap_btp_rfpj_temp
+
+entity PS_MAIN_SECTION{
+    key id                                 :   Integer;
+    title                                  :   String;
+    description                            :   String; //text area
+    section_image                          :   Binary;
+    table_data                              :Binary;
+    tableArea                               :Binary;
+    createdBy                              :   String(50);
+    createdAt                              :   Timestamp;
+    modifiedBy                             :   String(50);
+    modifiedAt                             :   Timestamp;
+    PS_DETAILS                             :   Association to PS_DETAILS;
+    section_table                          :   Binary ;
+    PS_SUB_SECTION                             :   Association to many PS_SUB_SECTION on PS_SUB_SECTION.PS_MAIN_SECTION=$self;
+
 }
 
+entity PS_SUB_SECTION{
+   key id                                  :   Integer;
+    sub_title                              :   String;
+    sub_description                        :   String; //text area
+    sub_section_image                      :   Binary;
+    sub_table_data                          : Binary;
+    createdBy                              :   String(50);
+    createdAt                              :   Timestamp;
+    modifiedBy                             :   String(50);
+    modifiedAt                             :   Timestamp;
+    // PS_DETAILS                             :   Association to PS_DETAILS;
+    sub_section_table                      :   Binary ;
+    PS_MAIN_SECTION                         :   Association to one PS_MAIN_SECTION;
+
+}
+
+entity PS_PROJECT_TYPE{
+    key id                                 :   Integer;
+    projectType                            :   String;
+
+}
+
+entity PS_TEMPLATE{
+    Key id                                 :   Integer;
+    name                                   :   String;
+    description                            :   String;
+    createdBy                              :   String(50);
+    createdAt                              :   Timestamp;
+    modifiedBy                             :   String(50);
+    modifiedAt                             :   Timestamp;
+    PS_DETAILS                             :   Association to one PS_DETAILS;
+
+    
+}

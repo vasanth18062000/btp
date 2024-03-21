@@ -111,10 +111,13 @@ sap.ui.define([
                     text:"Please wait......."
                 })
                 onBusyDialog.open();
-
+                var currentDate = new Date();
                 var oEntry = {
-                   
-                   id: newSupplierId,
+                    createdAt: currentDate,
+                    createdBy: this.getView().byId("name").getValue(),
+                    modifiedAt: currentDate,
+                    modifiedBy: this.getView().byId("name").getValue(),              
+                     id: newSupplierId,
                    name: this.getView().byId("name").getValue(),
                   // logo: this.getView().byId("logo").getValue()
                   website:this.getView().byId("website").getValue(),
@@ -130,8 +133,13 @@ sap.ui.define([
                         // console.log(proposalOwnerId);
                         var newSupplierContaactId = this.generateUniqueShuffledNumber(this.usedNumbers);
                         this.usedNumbers.push(newSupplierContaactId);
+                        var currentDate = new Date();
                         var oEntrydetails = {
-                          id: newSupplierContaactId,
+                            createdAt: currentDate,
+                            createdBy: this.getView().byId("name").getValue(),
+                            modifiedAt: currentDate,
+                            modifiedBy: this.getView().byId("name").getValue(),              
+                                    id: newSupplierContaactId,
                           addressLine1: this.getView().byId("addressLine1").getValue(),
                           addressLine2: this.getView().byId("addressLine2").getValue(),
                           addressLine3: this.getView().byId("addressLine3").getValue(),
@@ -146,8 +154,8 @@ sap.ui.define([
                           //contact_person_2_telephoneNumber: this.getView().byId("contact_person_2_telephoneNumber").getValue(),
                           contact_person_2_emailId: this.getView().byId("contact_person_2_emailId").getValue(),
                           PS_VENDOR_ORG_id: newSupplierId
-                          
                         };
+
                         
                         
                         console.log(oEntrydetails);

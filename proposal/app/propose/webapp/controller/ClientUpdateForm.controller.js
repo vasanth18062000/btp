@@ -82,12 +82,17 @@ sap.ui.define([
                     text:"Please wait......."
                 })
                 onBusyDialog.open();
+                var currentDate = new Date();
                 var oEntry = {
                    
                    id: parseInt(this.getView().byId("id").getValue()),
                    name: this.getView().byId("name").getValue(),
                   // logo: this.getView().byId("logo").getValue()
-                  website:this.getView().byId("website").getValue()
+                  website:this.getView().byId("website").getValue(),
+                  createdAt: currentDate,
+                  createdBy: this.getView().byId("name").getValue(),
+                  modifiedAt: currentDate,
+                  modifiedBy: this.getView().byId("name").getValue(),              
                 };
                 console.log(oEntry);
                   // Assuming the base URL for your OData service
@@ -115,7 +120,11 @@ sap.ui.define([
                           contact_person_1_emailId: this.getView().byId("contact_person_1_emailId").getValue(),
                           contact_person_2_mobileNumber: this.getView().byId("contact_person_2_mobileNumber").getValue(),
                           contact_person_2_emailId: this.getView().byId("contact_person_2_emailId").getValue(),
-                        };
+                          createdAt: currentDate,
+                          createdBy: this.getView().byId("name").getValue(),
+                          modifiedAt: currentDate,
+                          modifiedBy: this.getView().byId("name").getValue(),              
+                                };
                         console.log(oEntrydetails);
                         jQuery.ajax({
                             url: sServiceUrl + "ProposalCustomerContact(" + encodeURIComponent(idss) + ")",
