@@ -4,17 +4,17 @@
     <Page id="page">
         <Bar>
             <contentLeft>
-                <Title text="Vendor Details" level="H1" titleStyle="H3" />
+                <Title text="Supplier Details" level="H1" titleStyle="H3" />
             </contentLeft>
         </Bar>
         <List >
             <ObjectListItem>
                 <attributes>
-                    <ObjectAttribute class="bigFont" title="Vendor ID" id="ID" text="{id}" />
+                    <ObjectAttribute class="bigFont" title="Supplier ID" id="ID" text="{id}" />
 
-                    <ObjectAttribute class="bigFont" title="Name of the Vendor" text="{name}" />
+                    <ObjectAttribute class="bigFont" title="Name of the Supplier" text="{name}" />
 
-                    <ObjectAttribute class="bigFont" title="Vendor Website" text="{website}" />
+                    <ObjectAttribute class="bigFont" title="Supplier Website" text="{website}" />
 
                 </attributes>
             </ObjectListItem>
@@ -23,13 +23,13 @@
 
         <Bar class="space1">
             <contentLeft>
-                <Title text="Vendor Contact Details" level="H1" titleStyle="H3" />
+                <Title text="Supplier Contact Details" level="H1" titleStyle="H3" />
             </contentLeft>
         </Bar>
         <List items="{path: 'PS_VENDOR_ORG_CONTACT'}">
             <ObjectListItem>
                 <attributes>
-                    <ObjectAttribute class="bigFont" title="Address ID" text="{id}" />
+                    <!-- <ObjectAttribute class="bigFont" title="Address ID" text="{id}" /> -->
 
                     <ObjectAttribute class="bigFont" title="Address Line1" text="{addressLine1}" />
 
@@ -62,7 +62,7 @@
             <Bar >
                 <contentRight>
                     <Button text="Edit" press="onBack" icon="sap-icon://nav-back" type="Emphasized"></Button>
-                    <Button text="Save and Continue" press="onSaveandContinue" type="Success" icon="sap-icon://accept" />
+                    <Button text="Go to home" press="onSaveandContinue" type="Success" icon="sap-icon://accept" />
                 </contentRight>
             </Bar>
         </footer>

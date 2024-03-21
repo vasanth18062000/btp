@@ -5,6 +5,7 @@ sap.ui.define([
 ], function (Controller,MessageToast,BusyDialog) {
     "use strict";
     var newClientId;
+    var cliName;
     return Controller.extend("ns.propose.controller.ClientForm", {
         onInit: function () {
             this.usedNumbers = [];
@@ -100,7 +101,7 @@ sap.ui.define([
      }
             var oModel = this.getView().getModel();
             var that = this;
-
+            cliName = this.getView().byId("name").getValue();
                 console.log(oModel);
                 newClientId = this.generateUniqueShuffledNumber(this.usedNumbers);
                 this.usedNumbers.push(newClientId);
@@ -145,7 +146,7 @@ sap.ui.define([
                     method: "POST",
                     success: function () {
                         onBusyDialog.close();
-                        MessageToast.show("Customer added succesfully");
+                        MessageToast.show(`Customer "${cliName}" Created Successfully`);
                     }
                     });
                 }.bind(this)

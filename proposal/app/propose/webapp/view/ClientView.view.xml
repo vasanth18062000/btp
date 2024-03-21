@@ -5,31 +5,31 @@
     displayBlock="true"
 >
 <Page id="page">
-<Bar>
+<Bar id="_IDGenBar1">
         <contentLeft>
-            <Title
+            <Title id="_IDGenTitle1"
                 text="Customer Details"
                 level="H1"
                 titleStyle="H3"
             />
         </contentLeft>
     </Bar>
-    <List >
-        <ObjectListItem>
+    <List id="_IDGenList1" >
+        <ObjectListItem id="_IDGenObjectListItem1">
             <attributes>
-                <ObjectAttribute
+                <ObjectAttribute id="_IDGenObjectAttribute1"
                     class="bigFont"
                     title="Customer ID"
                     text="{id}"
                 />
 
-                <ObjectAttribute
+                <ObjectAttribute id="_IDGenObjectAttribute2"
                     class="bigFont"
                     title="Name of the Customer"
                     text="{name}"
                 />
 
-                <ObjectAttribute
+                <ObjectAttribute id="_IDGenObjectAttribute3"
                     class="bigFont"
                     title="Customer Website"
                     text="{website}"
@@ -40,85 +40,85 @@
     </List>
     
 
-<Bar class="space1">
+<Bar id="_IDGenBar2" class="space1">
         <contentLeft>
-            <Title
+            <Title id="_IDGenTitle2"
                 text="Customer Contact Details"
                 level="H1"
                 titleStyle="H3"
             />
         </contentLeft>
     </Bar>
-    <List items="{path: 'PS_CUSTOMER_ORG_CONTACT'}">
-        <ObjectListItem>
+    <List id="_IDGenList2" items="{path: 'PS_CUSTOMER_ORG_CONTACT'}">
+        <ObjectListItem id="_IDGenObjectListItem2">
             <attributes>
-                <ObjectAttribute
+                <!-- <ObjectAttribute id="_IDGenObjectAttribute4"
                     class="bigFont"
                     title="Address ID"
                     text="{id}"
-                />
+                /> -->
 
-                <ObjectAttribute
+                <ObjectAttribute id="_IDGenObjectAttribute5"
                     class="bigFont"
                     title="Address Line1"
                     text="{addressLine1}"
                 />
 
-                <ObjectAttribute
+                <ObjectAttribute id="_IDGenObjectAttribute6"
                     class="bigFont"
                     title="Address Line2"
                     text="{addressLine2}"
                 />
 
-                <ObjectAttribute
+                <ObjectAttribute id="_IDGenObjectAttribute7"
                     class="bigFont"
                     title="Address Line3"
                     text="{addressLine3}"
                 />
 
-                <ObjectAttribute
+                <ObjectAttribute id="_IDGenObjectAttribute8"
                     class="bigFont"
                     title="City"
                     text="{city}"
                 />
 
-                <ObjectAttribute
+                <ObjectAttribute id="_IDGenObjectAttribute9"
                     class="bigFont"
                     title="Pincode"
                     text="{pincode}"
                 />
 
-                <ObjectAttribute
+                <ObjectAttribute id="_IDGenObjectAttribute10"
                     class="bigFont"
                     title="State"
                     text="{state}"
                 />
 
-                <ObjectAttribute
+                <ObjectAttribute id="_IDGenObjectAttribute11"
                     class="bigFont"
                     title="Country"
                     text="{country}"
                 />
 
-                <ObjectAttribute
+                <ObjectAttribute id="_IDGenObjectAttribute12"
                     class="bigFont"
                     title="Person1 Mobile Number"
                     text="{contact_person_1_mobileNumber}"
                 />
 
-                <ObjectAttribute
+                <ObjectAttribute id="_IDGenObjectAttribute13"
                     class="bigFont"
                     title="Person1 Email Id"
                     text="{contact_person_1_emailId}"
                 />
 
-                <ObjectAttribute
+                <ObjectAttribute id="_IDGenObjectAttribute14"
                     class="bigFont"
                     title="Person2 Mobile Number"
                     text="{contact_person_2_mobileNumber}"
                 />
 
-                <ObjectAttribute
+                <ObjectAttribute id="_IDGenObjectAttribute15"
                     class="bigFont"
                     title="Person2 Email Id"
                     text="{contact_person_2_emailId}"
@@ -128,12 +128,11 @@
         </ObjectListItem>
     </List>
     
-
 <footer>
-            <Bar >
+            <Bar id="_IDGenBar3" >
                 <contentRight>
-                <Button text="Edit" press="onBack" icon="sap-icon://nav-back" type="Emphasized"></Button>
-                <Button text="Save and Continue" press="onSaveandContinue" type="Success" icon="sap-icon://accept" />
+                <Button id="_IDGenButton1" text="Edit" press="onBack" icon="sap-icon://nav-back" type="Emphasized"></Button>
+                <Button id="_IDGenButton2" text="Go to home" press="onSaveandContinue" type="Success" icon="sap-icon://accept" />
                 </contentRight>
             </Bar>
          </footer> 

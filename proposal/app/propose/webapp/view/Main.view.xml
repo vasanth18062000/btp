@@ -16,7 +16,7 @@
                         <Image id="_IDGenImage1" src="{i18n>headerImage1}" width="100%" height="400%" />
                     </contentLeft>
                         <contentMiddle>
-                            <Text id="_IDGenText1" text="{i18n>headerTitle}" />
+                            <Text id="_IDGenText1" text="{i18n>applicationTitle}" />
                         </contentMiddle>
                     </Bar>
                 </OverflowToolbar>
@@ -52,7 +52,7 @@
 
                      <GenericTile id="_IDGenGenericTile4"
                     class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout "
-                        header="Supllier view"
+                        header="Supplier View"
                         width="15%"
                         press=".onNavSupplierViewEdit"
                     
@@ -65,7 +65,7 @@
                     </GenericTile>
                    <GenericTile id="_IDGenGenericTile5"
                     class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout "
-                        header="Client view"
+                        header="Customer View"
                         width="15%"
                         press=".onNavClientViewEdit"
                     

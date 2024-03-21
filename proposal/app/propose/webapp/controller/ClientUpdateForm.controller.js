@@ -8,6 +8,7 @@ sap.ui.define([
 ], function (Controller,MessageToast,History,BusyDialog) {
     "use strict";
     var selectedItem;
+    var updateCustomerName;
     return Controller.extend("ns.propose.controller.ClientUpdateForm", {
         onInit: function () {
             var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
@@ -74,6 +75,7 @@ sap.ui.define([
         onUpdate : function(){
             var oModel = this.getView().getModel();
             var that = this;
+            updateCustomerName= this.getView().byId("name").getValue();
             var sID=this.getView().byId("id").getValue()
                 console.log(oModel);
                 var onBusyDialog= new BusyDialog({
@@ -124,12 +126,11 @@ sap.ui.define([
                         onBusyDialog.close();
 
                         // that.getView().byId("_IDGenButton2").setVisible(true);
-                        MessageToast.show(" Customer updated Successfully");
+                        MessageToast.show(`Customer "${updateCustomerName}" Updated Successfully`);
                     }
                     });
                 }.bind(this)
                 });
-
 
         },
         onView:function(){

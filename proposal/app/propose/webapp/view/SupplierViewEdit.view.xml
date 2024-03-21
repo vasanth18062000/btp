@@ -21,16 +21,16 @@
        
                  
                 <smartFilterBar:controlConfiguration>
-                    <smartFilterBar:ControlConfiguration
+                    <!-- <smartFilterBar:ControlConfiguration
                         id="IDGenColumn1"
                         visibleInAdvancedArea="true"
                         label="Customer ID"
                         key="id"
-                    />
+                    /> -->
                     <smartFilterBar:ControlConfiguration
                         id="name"
                         visibleInAdvancedArea="true"
-                        label="Name"
+                        label="Name of the Supplier"
                         key="name"
                     />
                     
@@ -62,7 +62,7 @@
                     growing="true"
                     growingThreshold="3"
                     growingDirection="Downwards"
-                    growingTriggerText="Load more"
+                    growingTriggerText="Load more..."
                     
                 />
             </smarttable:SmartTable>

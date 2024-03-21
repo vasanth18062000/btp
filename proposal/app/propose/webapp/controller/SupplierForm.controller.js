@@ -5,6 +5,7 @@ sap.ui.define([
 ], function (Controller,MessageToast,BusyDialog) {
     "use strict";
     var newSupplierId;
+    var supName;
     return Controller.extend("ns.propose.controller.SupplierForm", {
         // Function to generate a random 5-digit number
         generateRandomNumber: function () {
@@ -103,6 +104,7 @@ sap.ui.define([
     newSupplierId = this.generateUniqueShuffledNumber(this.usedNumbers);
             this.usedNumbers.push(newSupplierId);
             var oModel = this.getView().getModel();
+            supName= this.getView().byId("name").getValue();
             var that = this;
                 console.log(oModel);
                 var onBusyDialog= new BusyDialog({
@@ -153,12 +155,11 @@ sap.ui.define([
                     method: "POST",
                     success: function () {
                         onBusyDialog.close();
-                        MessageToast.show(" Supplier Added Successfully");
+                        MessageToast.show(`Supplier "${supName}" Created Successfully`);
                     }
                     });
                 }.bind(this)
                 });
-
 
         },
         //mobile number input validation

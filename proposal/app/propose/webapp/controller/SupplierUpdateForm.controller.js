@@ -7,6 +7,7 @@ sap.ui.define([
 ], function (Controller,MessageToast,History,BusyDialog) {
     "use strict";
     var selectedItem;
+    var updateSupplierName;
 
     return Controller.extend("ns.propose.controller.SupplierUpdateForm", {
         onInit: function () {
@@ -54,7 +55,7 @@ sap.ui.define([
 				},
 				method: "GET",
                 success:function(response){
-                    // debugger;
+                   // debugger;
                     console.log(response.PS_VENDOR_ORG_CONTACT.results[0].addressLine2)
                     oJSON.setData(response.PS_VENDOR_ORG_CONTACT.results[0]);
                     this.getView().setModel(oJSON,"ven")
@@ -98,6 +99,7 @@ sap.ui.define([
 
         onUpdate : function(){
             var oModel = this.getView().getModel();
+            updateSupplierName= this.getView().byId("name").getValue();
             var that = this;
             var idss = this.getView().byId("ID").getValue(); // Assuming "ID" is an input field
             console.log(idss);
@@ -151,7 +153,7 @@ sap.ui.define([
                             data: JSON.stringify(oEntrydetails),
                     success: function () {
                         onBusyDialog.close();
-                        MessageToast.show(" Supplier updated Successfully");
+                        MessageToast.show(`Supplier "${updateSupplierName}" Updated Successfully`);
                     }
                     });
                 }.bind(this)

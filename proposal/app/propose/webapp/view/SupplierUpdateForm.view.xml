@@ -118,7 +118,7 @@
                         <f:SimpleForm id="contactForm" title="Supplier Contact Details" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false">
                             <f:content>
                                 <VBox id="_IDGenVBox2">
-                                    <Label id="_IDGenLabl5" text="ID" />
+                                    <Label id="_IDGenLabl5" text="Address ID" />
                                     <Input width="18%" id="ID" editable="false" value="{path: 'ven>/id'}"/>
                                     <Label id="_IDGenLael6" text="Address Line1" />
                                     <Input width="35%" id="addressLine1" value="{path: 'ven>/addressLine1'}"/>
@@ -167,14 +167,14 @@
                             id="simpleor"
                             editable="true"
                             layout="ResponsiveGridLayout"
-                            title="Vendor Details"
+                            title="Supplier Contact Details"
                             class="editableForm"
                         >
                             <f:content>
                                 <VBox id="_IDGenVBo7">
                                     <Label
                                         id="_IDGenLael13"
-                                        text="Contact Person 1 Mobile Number"
+                                        text="Mobile Number"
                                     />
                                     <Input
                                         width="18%"
@@ -184,7 +184,7 @@
 
                                     <Label
                                         id="_IDGenabel15"
-                                        text="Contact Person 1 Email ID"
+                                        text="Email ID"
                                     />
                                     <Input
                                         width="18%"
@@ -227,14 +227,14 @@
                             id="simpleom"
                             editable="true"
                             layout="ResponsiveGridLayout"
-                            title="Vendor Details"
+                            title="Supplier Contact Details"
                             class="editableForm"
                         >
                             <f:content>
                                 <VBox id="_IDGenVBox">
                                     <Label
                                         id="_IDGeLabel16"
-                                        text="Contact Person 2 Mobile Number"
+                                        text="Mobile Number"
                                     />
                                     <Input
                                         width="18%"
@@ -244,7 +244,7 @@
 
                                     <Label
                                         id="_IDGnLabel18"
-                                        text="Contact Person 2 Email ID"
+                                        text="Email ID"
                                     />
                                     <Input
                                         width="18%"
