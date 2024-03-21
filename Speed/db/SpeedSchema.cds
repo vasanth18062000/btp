@@ -1,6 +1,8 @@
 using{cuid,managed,temporal,Currency,Country} from '@sap/cds/common';
 namespace com.ladera.utcl.speed;
 
+context SpeedSchema {
+
 entity Customer: managed{
     key id:Integer;
     userId:String(50);
@@ -59,7 +61,7 @@ entity Product:  managed{
     key id:Integer;
     code:String(50);
     name:localized String(50);
-    productImage:String(50);
+    productImage:String(1000);
     description:localized String(50);
     price:Composition of many PriceRow on price.productId=$self;
     rating:Double;
@@ -77,7 +79,7 @@ entity PriceRow:   managed{
 entity Cart:   managed{
     key id:Integer64;
     cartCode:String(50);
-    cartEntries:Composition of many CartEntry;
+    cartEntries:Association to many CartEntry;
     customer:Association to Customer;
     totalPrice:Double;
     deliveryAddress:Association to Address;
@@ -90,6 +92,7 @@ entity CartEntry:   managed{
     key id:Integer;
     entryNumber:String(50);
     product:Association to Product;
+    cart:Association to Cart;
     quantity:Integer;
     subTotal:Decimal(10,2);
     totalQuantity:Decimal(10,2);
@@ -150,4 +153,6 @@ entity Warehouse:   managed{
     contactPerson:String(50);
     contactDetails:Association to many ContactDetails;
     stocks:Association  to many StockLevel.warehouse on  stocks.warehouseId=$self;
+}
+
 }

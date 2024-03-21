@@ -1,28 +1,44 @@
 {
-  "name": "Speed",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap/cds": "^7",
-    "express": "^4"
-  },
-  "devDependencies": {
-    "@cap-js/sqlite": "^1",
-    "@sap/ux-specification": "^1.108.18"
-  },
-  "scripts": {
-    "start": "cds-serve",
-    "watch-customer": "cds watch --open customer/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-order": "cds watch --open order/webapp/index.html?sap-ui-xx-viewCache=false"
-  },
-  "sapux": [
-    "app/customer",
-    "app/order",
-    "app/customer",
-    "app/customer",
-    "app/order"
-  ]
+    "name": "Speed",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^7",
+        "@sap/cds-hana": "^2",
+        "express": "^4"
+    },
+    "devDependencies": {
+        "@cap-js/sqlite": "^1",
+        "@sap/cds-dk": "^7",
+        "@sap/ux-specification": "^1.120.1",
+        "rimraf": "^3.0.2"
+    },
+    "scripts": {
+        "start": "cds-serve",
+        "watch-customer": "cds watch --open customer/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-order": "cds watch --open order/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-product": "cds watch --open product/webapp/index.html?sap-ui-xx-viewCache=false",
+        "undeploy": "cf undeploy Speed --delete-services --delete-service-keys --delete-service-brokers",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+    },
+    "sapux": [
+        "app/customer",
+        "app/order",
+        "app/customer",
+        "app/customer",
+        "app/order",
+        "app/product",
+        "app/product",
+        "app/product",
+        "app/product"
+    ],
+    "cds": {
+        "requires": {
+            "db": "hana"
+        }
+    }
 }
