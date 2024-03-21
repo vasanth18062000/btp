@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (opaTest) {
     "use strict";
 
-    var Journey = {
+    const Journey = {
         run: function() {
             QUnit.module("First journey");
 
@@ -25,7 +25,7 @@ sap.ui.define([
 
             });
 
-            opaTest("Teardown", function (Given, When, Then) { 
+            opaTest("Teardown", function (Given, When, Then) {
                 // Cleanup
                 Given.iTearDownMyApp();
             });

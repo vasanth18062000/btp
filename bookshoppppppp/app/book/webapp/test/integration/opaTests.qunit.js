@@ -10,13 +10,13 @@ sap.ui.require(
         'use strict';
         var JourneyRunner = new JourneyRunner({
             // start index.html in web folder
-            launchUrl: sap.ui.require.toUrl('bookreview/book') + '/index.html'
+            launchUrl: `${sap.ui.require.toUrl('bookreview/book')}/index.html`
         });
 
-       
+
         JourneyRunner.run(
             {
-                pages: { 
+                pages: {
 					onTheBooksList: BooksList,
 					onTheBooksObjectPage: BooksObjectPage,
 					onTheReviewsObjectPage: ReviewsObjectPage

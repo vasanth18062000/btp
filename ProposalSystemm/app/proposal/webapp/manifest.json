@@ -1,0 +1,176 @@
+{
+  "_version": "1.58.0",
+  "sap.app": {
+    "id": "ns.proposal",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.11.4",
+      "toolsId": "5744808d-5a11-479c-840b-f7168d81f3b7"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/v2/odata/v4/my/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.120.6",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "ns.proposal.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "ns.proposal.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "password",
+          "pattern": "",
+          "target": [
+            "password"
+          ]
+        },
+        {
+          "name": "proposalview",
+          "pattern": "proposalview",
+          "target": [
+            "Targetproposalview"
+          ]
+        },
+        {
+          "name": "Vendor",
+          "pattern": "Vendor",
+          "target": "Vendor"
+        },
+        {
+          "name": "Client",
+          "pattern": "Client",
+          "target": "Client"
+        },
+        {
+          "name": "clientView",
+          "pattern": "clientView/{clientId}",
+          "target": "clientView"
+        }
+      ],
+      "targets": {
+        "password": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Password",
+          "viewName": "Password"
+        },
+        "Targetproposalview": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "proposalview",
+          "viewName": "proposalview"
+        },
+        "Vendor":{
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Vendor",
+          "viewName":"Vendor"
+        },
+        "Client":{
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Client",
+          "viewName":"Client"
+        },
+        "clientView":{
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ClientView",
+          "viewName":"ClientView"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "ns.proposal.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  }
+}
