@@ -33,7 +33,7 @@ sap.ui.define(
         this._sectionTitle = 1;
         this._mainSectionId = 1;
         this._mainSections = [1];
-        this._subSections=[1];
+        this._subSections = [1];
         this._subsection1 = 1;
         this._subsection = [1];
         this._SubSectionId = 1;
@@ -291,416 +291,203 @@ sap.ui.define(
 
       },
 
-           
 
-saveMainSection: function () {
-  var that = this;
-  var oModel = this.getView().getModel();
-  // Array to store created main section IDs
-  var createdMainSectionIds = [];
-  var valueofi = 1; // Start valueofi from 1
-  var i = 0; // Initialize i here
 
-  return Promise.all(this._mainSections.map((mainSectionId, index) => {
-      var mainSectionInput = sap.ui.getCore().byId(mainSectionId);
+      saveMainSection: function () {
+        var that = this;
+        var oModel = this.getView().getModel();
+        // Array to store created main section IDs
+        var createdMainSectionIds = [];
+        var valueofi = 1; // Start valueofi from 1
+        var i = 0; // Initialize i here
 
-      console.log(mainSectionId);
+        return Promise.all(this._mainSections.map((mainSectionId, index) => {
+          var mainSectionInput = sap.ui.getCore().byId(mainSectionId);
 
-      debugger;
+          console.log(mainSectionId);
 
-      if (mainSectionInput) {
-          var testdata = [];
-          var mainSectionText = this._mainSectionTextArray.filter(function (element, i) {
+          debugger;
+
+          if (mainSectionInput) {
+            var testdata = [];
+            var mainSectionText = this._mainSectionTextArray.filter(function (element, i) {
               if (i % 2 === 0) {
-                  testdata.push(element);
-                  return true;
+                testdata.push(element);
+                return true;
               } else {
-                  return false;
+                return false;
               }
-          });
+            });
 
-          var promises = [];
-          valueofi++;
+            var promises = [];
+            valueofi++;
 
-          for (i; i < testdata.length; i++) {
+            for (i; i < testdata.length; i++) {
               var mainSectionData = {
-                  id: "MAIN_0" + this._mainSectionId++,
-                  mainSectiontitle: mainSectionInput.getValue(),
-                  imagearea: this._inputString || null,
-                  textarea: testdata[i] || null,
+                id: "MAIN_0" + this._mainSectionId++,
+                mainSectiontitle: mainSectionInput.getValue(),
+                imagearea: this._inputString || null,
+                textarea: testdata[i] || null,
               };
 
               var promise = new Promise(function (resolve, reject) {
-                  oModel.create("/MainSection", mainSectionData, {
-                      method: "POST",
-                      success: function (data, response) {
-                          MessageToast.show("Main- Section Added Successfully");
-                          createdMainSectionIds.push(mainSectionData.id);
-                          console.log("Section saved to DB");
-                          resolve();
+                oModel.create("/MainSection", mainSectionData, {
+                  method: "POST",
+                  success: function (data, response) {
+                    MessageToast.show("Main- Section Added Successfully");
+                    createdMainSectionIds.push(mainSectionData.id);
+                    console.log("Section saved to DB");
+                    resolve();
 
-                          // Call saveSubSection with mainSectionId
-                          that.saveSubSection(mainSectionData.id);
-                      },
-                      error: function (error) {
-                          reject(error);
-                      }
-                  });
+                    // Call saveSubSection with mainSectionId
+
+                  },
+                  error: function (error) {
+                    reject(error);
+                  }
+                });
               });
 
               promises.push(promise);
               break;
-          }
+            }
 
-          i++;
-          return Promise.all(promises);
-      }
-  })).then(function () {
-      return createdMainSectionIds;
-  });
-},
+            i++;
+            return Promise.all(promises);
+          }
+        })).then(function () {
+          return createdMainSectionIds;
+
+        });
+      },
+
+
+      // saveSubSection: function (mainSectionId) {
+      //   var oModel = this.getView().getModel();
+      //   var createdSubSectionIds = [];
+      //   var valueofj = 1;
+      //   var subsec = 0;
+
+      //   return Promise.all(this._subSections.map((subSectionId, subIndex) => {
+      //     var subSectionInput = sap.ui.getCore().byId(subSectionId);
+
+      //     console.log(subSectionInput);
+
+      //     debugger;
+
+      //     if (subSectionInput) {
+      //       var testdatasubsection = [];
+      //       var subSectionText = this._mainSectionTextArray.filter(function (element, j) {
+      //         if (j % 2 === 1) {
+      //           testdatasubsection.push(element);
+      //           return true;
+      //         } else {
+      //           return false;
+      //         }
+      //       });
+
+      //       var promises = [];
+
+      //       valueofj++;
+
+      //       for (subsec; subsec < testdatasubsection.length; subsec++) {
+      //         var subSectionData = {
+      //           id: "SUB_0" + this._subSectionCounter++,
+      //           subSectiontitle: subSectionInput.getValue() || null,
+      //           parentSection_id: mainSectionId,
+      //           imagearea: this._inputString || null,
+      //           textarea: testdatasubsection[j] || null,
+      //         };
+
+      //         console.log(subSectionData);
+      //         debugger;
+
+      //         var promise = new Promise(function (resolve, reject) {
+      //           oModel.create("/SubSection", subSectionData, {
+      //             method: "POST",
+      //             success: function (data, response) {
+      //               console.log("Success Response:", response);
+      //               var createdSubSectionId = response.headers["sap-message"].split(":")[1].trim();
+      //               createdSubSectionIds.push(createdSubSectionId);
+      //               MessageToast.show("Sub Section Added Successfully");
+      //               resolve();
+      //               console.log("Sub Section has been added");
+      //             },
+      //             error: function (error) {
+      //               reject(error);
+      //             }
+      //           });
+      //         });
+
+      //         promises.push(promise);
+      //         break;
+      //       }
+      //       subsec++;
+      //       return Promise.all(promises);
+      //       debugger;
+      //     }
+      //   })).then(function () {
+
+      //     return createdSubSectionIds;
+
+      //   });
+      // },
+
+      saveSubSection: function (mainSectionId) {
+        var that = this;
+        var oModel = this.getView().getModel();
+        var createdSubSectionIds = [];
+    
+        return Promise.all(this._subSections.map(function (subSectionId, subIndex) {
+            var subSectionInput = sap.ui.getCore().byId(subSectionId);
+    
+            if (subSectionInput) {
+                var testdatasubsection = that._mainSectionTextArray.filter(function (element, j) {
+                    return j % 2 === 1;
+                });
+    
+                var promises = [];
+    
+                for (var j = 0; j < testdatasubsection.length; j++) {
+                    var subSectionData = {
+                        id: "SUB_0" + that._subSectionCounter++,
+                        subSectiontitle: subSectionInput.getValue() || null,
+                        parentSection_id: mainSectionId,
+                        imagearea: that._inputString || null,
+                        textarea: testdatasubsection[j] || null,
+                    };
+    
+                    var promise = new Promise(function (resolve, reject) {
+                        oModel.create("/SubSection", subSectionData, {
+                            method: "POST",
+                            success: function (data, response) {
+                                console.log("Success Response:", response);
+                                var createdSubSectionId = response.headers["sap-message"].split(":")[1].trim();
+                                createdSubSectionIds.push(createdSubSectionId);
+                                MessageToast.show("Sub Section Added Successfully");
+                                resolve();
+                                console.log("Sub Section has been added");
+                            },
+                            error: function (error) {
+                                reject(error);
+                            }
+                        });
+                    });
+    
+                    promises.push(promise);
+                }
+    
+                return Promise.all(promises);
+            }
+        })).then(function () {
+            return createdSubSectionIds;
+        }).catch(function (error) {
+            console.error("Error saving Sub Sections:", error);
+        });
+    },
 
     
-saveSubSection: function (mainSectionId) {
-  var oModel = this.getView().getModel();
-  var createdSubSectionIds = [];
-
-  return Promise.all(this._subSections.map((subSectionId, subIndex) => {
-      var subSectionInput = sap.ui.getCore().byId(subSectionId);
-
-      if (subSectionInput) {
-          var testdatasubsection = [];
-          var subSectionText = this._mainSectionTextArray.filter(function (element, j) {
-              if (j % 2 === 1) {
-                  testdatasubsection.push(element);
-                  return true;
-              } else {
-                  return false;
-              }
-          });
-
-          var promises = [];
-
-          for (var j = 0; j < testdatasubsection.length; j++) {
-              var subSectionData = {
-                  id: "SUB_0" + this._subSectionCounter++,
-                  subSectiontitle: subSectionInput.getValue() || null,
-                  parentSection_id: "MAIN_" + mainSectionId, // Use mainSectionId passed from saveMainSection
-                  imagearea: this._inputString || null,
-                  textarea: testdatasubsection[j] || null,
-              };
-
-              var promise = new Promise(function (resolve, reject) {
-                  oModel.create("/SubSection", subSectionData, {
-                      method: "POST",
-                      success: function (data, response) {
-                          console.log("Success Response:", response);
-                          var createdSubSectionId = response.headers["sap-message"].split(":")[1].trim();
-                          createdSubSectionIds.push(createdSubSectionId);
-                          MessageToast.show("Sub Section Added Successfully");
-                          resolve();
-                          console.log("Sub Section has been added");
-                      },
-                      error: function (error) {
-                          console.error("Error Response:", error);
-                          reject(error);
-                      }
-                  });
-              });
-
-              promises.push(promise);
-              break;
-          }
-
-          return Promise.all(promises);
-      }
-  })).then(function () {
-      return createdSubSectionIds;
-  }).catch(function (error) {
-      console.error("Error saving Sub Sections:", error);
-  });
-},
-
-
-
-
-
-// saveMainSection: function () {
-//   var that = this;
-//   var oModel = this.getView().getModel();
-//   // Array to store created main section IDs
-//   var createdMainSectionIds = [];
-//   var valueofi = 1; // Start valueofi from 1
-//   var i = 0; // Initialize i here
-
-//   return Promise.all(this._mainSections.map((mainSectionId, index) => {
-//       var mainSectionInput = sap.ui.getCore().byId(mainSectionId);
-
-//       if (mainSectionInput) {
-//           var testdata = [];
-//           var mainSectionText = this._mainSectionTextArray.filter(function (element, i) {
-//               if (i % 2 === 0) {
-//                   testdata.push(element);
-//                   return true;
-//               } else {
-//                   return false;
-//               }
-//           });
-
-//           var promises = [];
-//           valueofi++;
-
-//           for (i; i < testdata.length; i++) {
-//               var mainSectionData = {
-//                   id: "MAIN_0" + this._mainSectionId++,
-//                   mainSectiontitle: mainSectionInput.getValue(),
-//                   imagearea: this._inputString || null,
-//                   textarea: testdata[i] || null,
-//               };
-
-//               console.log(mainSectionData);
-
-//               var promise = new Promise(function (resolve, reject) {
-//                   oModel.create("/MainSection", mainSectionData, {
-//                       method: "POST",
-//                       success: function (response) {
-//                           MessageToast.show("Main- Section Added Successfully");
-//                           createdMainSectionIds.push(mainSectionData.id);
-//                           console.log("Section saved to DB");
-//                           resolve();
-
-//                           console.log(promise);
-
-//                           // Call saveSubSection with mainSectionId
-//                           that.saveSubSection(mainSectionData.id);
-//                       },
-//                       error: function (error) {
-//                           reject(error);
-//                       }
-//                   });
-//               });
-
-//               promises.push(promise);
-//               break;
-//           }
-
-//           i++;
-//           return Promise.all(promises);
-//       }
-//   })).then(function () {
-//       return createdMainSectionIds;
-//   });
-// },
-
-
-
-// saveSubSection: function (mainSectionIds) {
-//   // Implement logic to save Sub Section data
-//   // Iterate through _subSections array and save the data as needed
-//   var oModel = this.getView().getModel();
-//   var createdSubSectionIds = [];
-//   var valueofj=1;
-//   var j=0;
-
-//   return Promise.all(this._subSections.map((subSectionId, index) => {
-//     var subSectionInput = sap.ui.getCore().byId(subSectionId);
-
-//     if (subSectionInput) {
-//       var mainSectionId = mainSectionIds[index];
-
-//       var testdatasubsection = [];
-//                 var subSectionText = this._mainSectionTextArray.filter(function (element, j) {
-//                     if (j % 2 === 1) {
-//                         testdatasubsection.push(element);
-//                         return true;
-//                     } else {
-//                         return false;
-//                     }
-//                 });
-      
-//                 var promises = [];
-//                 valueofj++;
-      
-               
-      
-//                 for (j; j < testdatasubsection.length; j++) {
-
-//       var subSectionData = {
-//         id: "SUB_0" + this._subSectionCounter++, // Adjust as needed
-//         subSectiontitle: subSectionInput.getValue() || null,
-//         parentSection_id: mainSectionId,
-//         imagearea: this._inputString || null,
-//         textarea : testdatasubsection[j] || null,
-//       };
-
-//       console.log(subSectionData);
-
-//       var promise =  new Promise(function (resolve, reject) {
-//         oModel.create("/SubSection", subSectionData, {
-//           method: "POST",
-//           success: function (data, response) {
-//             // Check the response structure and log it
-//             console.log("Success Response:", response);
-            
-//             // Extract the created Sub Section ID from the response
-//             var createdSubSectionId = response.headers["sap-message"].split(":")[1].trim();
-//             createdSubSectionIds.push(createdSubSectionId);
-
-//             MessageToast.show("Sub Section Added Successfully");
-//             resolve();
-//             console.log("Sub Section has been added");
-//           },
-//           error: function (error) {
-//             // Check the error response structure and log it
-//             console.error("Error Response:", error);
-
-//             reject(error);
-//           }
-//         });
-//       });
-
-//       promises.push(promise);
-//       break;
-
-//     }
-//     j++;
-//     return Promise.all(promises);
-//   }
-//   }))
-//   .then(function () {
-//     // Return the array of created Sub Section IDs
-//     return createdSubSectionIds;
-//   })
-//   .catch(function (error) {
-//     console.error("Error saving Sub Sections:", error);
-//   });
-// },
-
-
-// saveMainSection: function () {
-//   var that = this;
-//   var oModel = this.getView().getModel();
-//   var createdMainSectionIds = [];
-
-//   return Promise.all(this._mainSections.map((mainSectionId, index) => {
-//       var mainSectionInput = sap.ui.getCore().byId(mainSectionId);
-
-//       if (mainSectionInput) {
-//           var testdata = [];
-//           var mainSectionText = this._mainSectionTextArray.filter(function (element, i) {
-//               if (i % 2 === 0) {
-//                   testdata.push(element);
-//                   return true;
-//               } else {
-//                   return false;
-//               }
-//           });
-
-//           var promises = [];
-
-//           for (var i = 0; i < testdata.length; i++) {
-//               var mainSectionData = {
-//                   id: "MAIN_0" + this._mainSectionId++,
-//                   mainSectiontitle: mainSectionInput.getValue(),
-//                   imagearea: this._inputString || null,
-//                   textarea: testdata[i] || null,
-//               };
-
-//               var promise = new Promise(function (resolve, reject) {
-//                   oModel.create("/MainSection", mainSectionData, {
-//                       method: "POST",
-//                       success: function (response) {
-//                           MessageToast.show("Main- Section Added Successfully");
-//                           createdMainSectionIds.push(mainSectionData.id);
-//                           console.log("Section saved to DB");
-//                           resolve();
-
-//                           // Call saveSubSection with mainSectionId
-//                           var numericMainId = mainSectionData.id.match(/\d+/)[0]; // Extract numeric part from mainSectionId
-//                           that.saveSubSection(numericMainId);
-//                       },
-//                       error: function (error) {
-//                           reject(error);
-//                       }
-//                   });
-//               });
-
-//               promises.push(promise);
-//               break;
-//           }
-
-//           return Promise.all(promises);
-//       }
-//   })).then(function () {
-//       return createdMainSectionIds;
-//   });
-// },
-
-// saveSubSection: function (mainSectionId) {
-//   var oModel = this.getView().getModel();
-//   var createdSubSectionIds = [];
-
-//   return Promise.all(this._subSections.map((subSectionId, subIndex) => {
-//       var subSectionInput = sap.ui.getCore().byId(subSectionId);
-
-//       if (subSectionInput) {
-//           var testdatasubsection = [];
-//           var subSectionText = this._mainSectionTextArray.filter(function (element, j) {
-//               if (j % 2 === 1) {
-//                   testdatasubsection.push(element);
-//                   return true;
-//               } else {
-//                   return false;
-//               }
-//           });
-
-//           var promises = [];
-
-//           for (var j = 0; j < testdatasubsection.length; j++) {
-//               var subSectionData = {
-//                   id: "SUB_0" + this._subSectionCounter++,
-//                   subSectiontitle: subSectionInput.getValue() || null,
-//                   parentSection_id: mainSectionId,
-//                   imagearea: this._inputString || null,
-//                   textarea: testdatasubsection[j] || null,
-//               };
-
-//               var promise = new Promise(function (resolve, reject) {
-//                   oModel.create("/SubSection", subSectionData, {
-//                       method: "POST",
-//                       success: function (data, response) {
-//                           console.log("Success Response:", response);
-//                           var createdSubSectionId = response.headers["sap-message"].split(":")[1].trim();
-//                           createdSubSectionIds.push(createdSubSectionId);
-//                           MessageToast.show("Sub Section Added Successfully");
-//                           resolve();
-//                           console.log("Sub Section has been added");
-//                       },
-//                       error: function (error) {
-//                           console.error("Error Response:", error);
-//                           reject(error);
-//                       }
-//                   });
-//               });
-
-//               promises.push(promise);
-//               break;
-//           }
-
-//           return Promise.all(promises);
-//       }
-//   })).then(function () {
-//       return createdSubSectionIds;
-//   }).catch(function (error) {
-//       console.error("Error saving Sub Sections:", error);
-//   });
-// },
-
-
-
-
-
-      addSectionLabel: function (stepTitle, wizard) {
+addSectionLabel: function (stepTitle, wizard) {
         // Extract the step number from the title
         var stepNumber = parseInt(stepTitle.replace("Step ", ""));
 
