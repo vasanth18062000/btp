@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/core/mvc/Controller"],function(n){"use strict";return n.extend("ns.proposalsystem.controller.Main",{onInit:function(){},clientCretation:function(){this.getOwnerComponent().getRouter().navTo("clientCretation")},proposalCreation:function(){this.getOwnerComponent().getRouter().navTo("proposalform")}})});
