@@ -26,6 +26,5 @@ service PropsalSystem {
 
     entity ProjectType as projection on psModels.ProjectType;
 
-    entity MainTableFields as projection on psModels.MainTableFields;
 
 }

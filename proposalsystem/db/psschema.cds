@@ -93,7 +93,7 @@ entity ProposalDetails{
 }
 
 entity MainSection{
-    key id        :   String;
+    key id        :   Int16;
     mainSectiontitle: String;
     textarea      :   LargeBinary;
     imagearea     :   LargeBinary;
@@ -102,12 +102,11 @@ entity MainSection{
     modifiedBy    :   String(50);
     modifiedAt    :   Timestamp;
     proposalDetails: Association to ProposalDetails;
-    tablearea     :   Association to many MainTableFields on tablearea.mainSection=$self ;
     subsection    :   Association to many SubSection on subsection.parentSection=$self;
 
 }
 entity SubSection{
-    key id        :   String;
+    key id        :   Int16;
     subSectiontitle:  String;
     textarea      :   LargeBinary;
     imagearea     :   LargeBinary;
@@ -116,7 +115,6 @@ entity SubSection{
     modifiedBy    :   String(50);
     modifiedAt    :   Timestamp;
     parentSection :   Association to MainSection;
-    tablearea     :   Association to many MainTableFields on tablearea.subSection=$self ;
 
 }
 
@@ -126,12 +124,3 @@ entity ProjectType{
 
 }
 
-entity MainTableFields{
-    field1        :   String;
-    field2        :   String;
-    field3        :   String;
-    field4        :   String;
-    field5        :   String;
-    mainSection   :   Association to one MainSection;
-    subSection    :   Association to one SubSection;
-}
