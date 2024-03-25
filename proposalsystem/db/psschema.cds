@@ -93,7 +93,7 @@ entity ProposalDetails{
 }
 
 entity MainSection{
-    key id        :   Int16;
+    key id        :   Int16; //12
     mainSectiontitle: String;
     textarea      :   LargeBinary;
     imagearea     :   LargeBinary;
@@ -106,7 +106,7 @@ entity MainSection{
 
 }
 entity SubSection{
-    key id        :   Int16;
+    key id        :   Int16; //15
     subSectiontitle:  String;
     textarea      :   LargeBinary;
     imagearea     :   LargeBinary;
@@ -114,7 +114,7 @@ entity SubSection{
     createdAt     :   Timestamp;
     modifiedBy    :   String(50);
     modifiedAt    :   Timestamp;
-    parentSection :   Association to MainSection;
+    parentSection :   Association to MainSection; //12
 
 }
 
