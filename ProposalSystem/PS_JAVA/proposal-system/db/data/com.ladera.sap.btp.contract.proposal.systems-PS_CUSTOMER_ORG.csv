@@ -1,0 +1,6 @@
+id,createdAt,createdBy,modifiedAt,modifiedBy,name,logo,website
+1,2024-03-26 10:00:00,John Doe,2024-03-26 10:00:00,John Doe,Company A,,https://www.companyA.com
+2,2024-03-26 11:30:00,Jane Smith,2024-03-26 11:45:00,John Doe,Company B,,https://www.companyB.com
+3,2024-03-26 12:45:00,Michael Johnson,2024-03-26 13:00:00,Mary Brown,Company C,,https://www.companyC.com
+4,2024-03-26 14:15:00,Sarah Lee,2024-03-26 14:30:00,Susan Wang,Company D,,https://www.companyD.com
+5,2024-03-26 15:45:00,David Chen,2024-03-26 16:00:00,Emma Taylor,Company E,,https://www.companyE.com

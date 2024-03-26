@@ -1,0 +1,6 @@
+id,createdAt,createdBy,modifiedAt,modifiedBy,name,logo,website
+1,2024-03-26 10:00:00,Admin,2024-03-26 10:00:00,Admin,ABC Corporation,,https://www.abccorporation.com
+2,2024-03-26 09:30:00,Admin,2024-03-26 09:45:00,Manager,XYZ Enterprises,,https://www.xyzenterprises.com
+3,2024-03-25 12:15:00,Admin,2024-03-25 12:20:00,Admin,PQR Industries,,https://www.pqrintustries.com
+4,2024-03-24 14:20:00,Manager,2024-03-25 09:30:00,Manager,LMN Corporation,,https://www.lmncorporation.com
+5,2024-03-24 11:45:00,Admin,2024-03-24 11:50:00,Admin,UVW Ltd.,,https://www.uvwlimited.com

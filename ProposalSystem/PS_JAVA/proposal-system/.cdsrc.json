@@ -1,0 +1,9 @@
+{
+  "requires": {
+    "db": "hana",
+    "auth": "mocked"
+  },
+  "odata": {
+    "version": "v2"
+  }
+}
