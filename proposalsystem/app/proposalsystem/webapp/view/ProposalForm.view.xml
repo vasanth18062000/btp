@@ -40,7 +40,7 @@
                 <Wizard
                     id="wizard"
                     stepActivate="onStepChanged"
-                    showNextButton="true"
+                    showNextButton="false"
                     class="proposalform"
                 >
                     <steps>

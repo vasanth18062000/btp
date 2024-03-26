@@ -121,7 +121,14 @@
           "name": "PreviewForm",
           "pattern": "PreviewForm",
           "target": ["PreviewForm"]
+        },
+
+        {
+          "name": "PreviewForm",
+          "pattern": "PreviewForm/{mainSectionData}",
+          "target": ["PreviewForm"]
         }
+
       ],
       "targets": {
         "TargetMain": {
@@ -142,6 +149,8 @@
         "PreviewForm":{
           "viewName": "PreviewForm"
         }
+
+        
         
       }
     },

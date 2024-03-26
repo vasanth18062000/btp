@@ -19,6 +19,45 @@
 
   .buttonfortool{border-style: inherit; border-color: black;}
   
-  .table{border-style: groove;} 
+  /* Style for the table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #060907; /* Indigo border for the table */
+  }
+  
+  /* Style for table header */
+  th {
+    background-color: #7eac73; /* Indigo */
+    color: white;
+    font-weight: bold;
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 2px solid #b82542; /* Darker Indigo */
+    border-right: 1px solid #4e5dab; /* Darker Indigo border on the right */
+  }
+  
+  /* Style for table rows */
+  tr {
+    background-color: #f8f9fc; /* Light Grayish Blue */
+    border-bottom: 1px solid #ccc; /* Light Gray border for each row */
+  }
+  
+  /* Style for alternating rows */
+  tr:nth-child(even) {
+    background-color: #edf1f7; /* Light Gray */
+  }
+  
+  /* Style for table data */
+  td {
+    padding: 10px 15px;
+    border-right: 1px solid #ccc; /* Light Gray border on the right of each cell */
+  }
+  
+  /* Hover effect for table rows */
+  tr:hover {
+    background-color: #e2e6ea; /* Lighter Gray */
+  }
+
 
   

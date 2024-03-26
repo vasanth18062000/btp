@@ -1,9 +1,19 @@
 sap.ui.define(
   ["sap/ui/core/mvc/Controller", "sap/m/Input", "sap/m/MessageToast",
-    "sap/ui/richtexteditor/RichTextEditor", "sap/m/MessageBox",
-    "sap/ui/richtexteditor/library", "sap/ui/model/json/JSONModel",],
-  function (Controller, Input, MessageToast, RichTextEditor, MessageBox, JSONModel, library) {
+  "sap/ui/richtexteditor/RichTextEditor", "sap/m/MessageBox", "sap/m/Dialog", "sap/m/Button",
+  "sap/ui/richtexteditor/library", "sap/ui/model/json/JSONModel",'sap/base/util/uid'],
+  function (Controller, Input, MessageToast, RichTextEditor, MessageBox, Dialog, Button, JSONModel, library, uid) {
     "use strict";
+
+    function generateMainSectionId() {
+      return Math.floor(Math.random() * 1000000) + 1;
+  }
+
+  var imageuploadarray = [];
+
+  var _mainSectionsImage =[];
+
+        var _subSectionsImage =[];
 
     return Controller.extend("ns.propose.controller.ProposalForm", {
 
@@ -13,7 +23,8 @@ sap.ui.define(
       _mainSections: [], // Array to store Main Section data
       _subsection: 1,
       _subSections: [],
-      _imagecount: 1,
+     
+      _imagecount: 0,
       _inputString: "",
       _subSectionCounter: 2000,
       _sectionCounters: {},
@@ -21,12 +32,15 @@ sap.ui.define(
       _table: 1,
       _tableitem: 1,
       textitem: 1,
+      _uploadedImages: [],
 
+      
 
 
 
       onInit: function () {
 
+      
         this._tableitem = 1;
 
 
@@ -37,7 +51,7 @@ sap.ui.define(
         this._subsection1 = 1;
         this._subsection = [1];
         this._SubSectionId = 1;
-        this._imagecount = 1;
+        this._imagecount = 0;
 
         this._subSectionCounter = 2000;
         this._sectionCounters = {};
@@ -48,6 +62,12 @@ sap.ui.define(
 
         this._table = 1;
         this.textitem = 1;
+
+        this._uploadedImages;
+
+        
+
+        
 
       },
 
@@ -150,7 +170,7 @@ sap.ui.define(
             showGroupUndo: true,
             showGroupTextAlign: true,
             showGroupFontStyle: true,
-          });
+          }).addStyleClass("myRichTextEditor");
       
           var row = new sap.m.ColumnListItem({
             cells: [richTextEditor],
@@ -204,6 +224,9 @@ sap.ui.define(
         var idFrame = that.getView().byId('idFrame' + currentStepIndex);
 
         that._addingImageForSubSection = true;
+
+        that._subSectionTextArea =true;
+
         that._addingTextArea = true;
 
         if (currentStepIndex >= 0) {
@@ -268,40 +291,7 @@ sap.ui.define(
 
 
 
-  //   onSave: function () {
-  //     var that = this;
-  //     var wizard = that.getView().byId("wizard");
   
-  //     MessageBox.show("Do you need to save all the provided details?", {
-  //         icon: MessageBox.Icon.QUESTION,
-  //         title: "Complete Steps",
-  //         actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-  //         onClose: function (oAction) {
-  //             if (oAction === MessageBox.Action.YES) {
-  //                 console.log("clicked yes");
-  //                 that.saveMainSection()
-  //                     .then(function (mainSectionIds) {
-  //                         // Save Sub Sections after Main Sections are created
-  //                         return that.saveSubSection(mainSectionIds); // Return the Promise
-  //                     })
-  //                     .then(function (createdSubSectionIds) {
-  //                         // Handle the result of saveSubSection if needed
-  //                         console.log("Subsections saved successfully:", createdSubSectionIds);
-  //                         console.log("moving to subsection");
-  //                     })
-  //                     .catch(function (error) {
-  //                         console.error("Error saving data:", error);
-  //                     });
-  
-  //                 // User clicked "Yes", perform completion logic
-  //             } else {
-  //                 console.log("clicked no");
-  //                 // User clicked "No", do nothing or handle as needed
-  //             }
-  //         }
-  //     });
-  // },
-
   onSave: function () {
     var that = this;
     var wizard = that.getView().byId("wizard");
@@ -342,6 +332,13 @@ sap.ui.define(
       var i = 0;
       var j = 0; // Declare j here
       var y=0;
+
+      var busyDialog = new sap.m.BusyDialog({
+        title: "Please wait",
+        text: "Saving data...",
+        showCancelButton: false,
+    });
+    busyDialog.open();
   
       // Save main sections
       return Promise.all(this._mainSections.map((mainSectionId, index) => {
@@ -357,15 +354,31 @@ sap.ui.define(
                       return false;
                   }
               });
+
+              var ImageTextArea=[];
+              var imageArea = imageuploadarray.filter(function(element,i){
+
+               
+                if (i%2==0){
+
+                  ImageTextArea.push(element);
+                  return true;
+
+                } else {
+                  return false;
+                }
+
+              });
   
               var promises = [];
               valueofi++;
   
-              for (i; i < testdata.length; i++) {
+              for (i; i < ImageTextArea.length || i< testdata.length; i++) {
                   var mainSectionData = {
-                      id: this._mainSectionId++,
+                      // id: this._mainSectionId++,
+                      id: generateMainSectionId(),
                       mainSectiontitle: mainSectionInput.getValue(),
-                      imagearea: this._inputString || null,
+                      imagearea: ImageTextArea[i] || null,
                       textarea: testdata[i] || null,
                   };
   
@@ -405,7 +418,7 @@ sap.ui.define(
               var mainSectionInput = createdMainSectionIds; 
 
               console.log(mainSectionInput);
-              debugger;
+              // debugger;
               
   
               if (subSectionInput && mainSectionInput) {
@@ -418,28 +431,45 @@ sap.ui.define(
                           return false;
                       }
                   });
+
+                  var ImageTextAreaSub=[];
+                  var imageArea = imageuploadarray.filter(function(element,i){
+    
+                   
+                    if (i%2==1){
+    
+                      ImageTextAreaSub.push(element);
+                      return true;
+    
+                    } else {
+                      return false;
+                    }
+    
+                  });
   
                   var promises = [];
 
                   for (y =y;y<mainSectionInput.length; y++){
   
-                  for (j; j < testdatasub.length; y++) {
+                  for (j; j < testdatasub.length || j<ImageTextAreaSub.length; y++) {
                       var subSectionData = {
-                          id: that._subSectionCounter++,
+                          // id: that._subSectionCounter++,
+                          id: generateMainSectionId(),
                           subSectiontitle: subSectionInput.getValue(),
                           parentSection_id: mainSectionInput[y], // Corrected usage
-                          textarea: testdatasub[y] || null,
+                          textarea: testdatasub[j] || null,
+                          imagearea: ImageTextAreaSub[j],
                       };
   
                       console.log(subSectionData);
   
-                      debugger;
+                      // debugger;
   
                       var promise = new Promise(function (resolve, reject) {
                           oModel.create("/SubSection", subSectionData, {
                               method: "POST",
                               success: function (data, response) {
-                                  MessageToast.show("Sub Section Added Successfully");
+                                  MessageToast.show("MAin and Subsection Added Successfully in DB ");
                                   createdSubSectionIds.push(subSectionData.id);
                                   resolve();
                               },
@@ -462,13 +492,21 @@ sap.ui.define(
           }
           }));
       }).then(function () {
+        busyDialog.close();
+        that.getView().byId("previewButton").setEnabled(true);
+
           return {
               createdMainSectionIds: createdMainSectionIds,
               createdSubSectionIds: createdSubSectionIds
           };
-      });
+      }).catch(function (error) {
+        busyDialog.close();
+        // console.error("Error saving data:", error);
+    });
   },
 
+
+  
   
   
   
@@ -551,6 +589,8 @@ addSectionLabel: function (stepTitle, wizard) {
       onNext: function () {
         // Handle navigation to the next step logic here
         var wizard = this.getView().byId("wizard");
+
+      console.log("Moving to Next Step");
         wizard.nextStep();
       },
 
@@ -603,114 +643,120 @@ addSectionLabel: function (stepTitle, wizard) {
         var idFrame = that.getView().byId('idFrame' + currentStepIndex);
         var inputId = 'Image' + this._imagecount++;
 
+        // var imageuploadarray =[];
+    
         console.log(inputId);
         var container = new sap.m.VBox();
-
+    
         // Create a Label for bold text
         var boldLabel = new sap.m.Label({
-          text: inputId,
-          design: 'Bold',
+            text: inputId,
+            design: 'Bold',
         });
         // Create a new FileUploader with the generated ID
         var fileUploader = new sap.ui.unified.FileUploader({
-          id: inputId,
-          placeholder: 'Upload Image',
-          width: '80%',
-          fileType: "png,jpg,jpeg",
-          change: that.onChangeDP.bind(that),
-          uploadComplete: that.onUploadComplete.bind(that),
-          typeMissmatch: that.onTypeMissmatch.bind(that),
-          fileSizeExceed: that.onFileSizeExceed.bind(that)
+            id: inputId,
+            placeholder: 'Upload Image',
+            width: '80%',
+            fileType: "png,jpg,jpeg",
+            change: that.onChangeDP.bind(that),
+            uploadComplete: that.onUploadComplete.bind(that),
+            typeMissmatch: that.onTypeMissmatch.bind(that),
+            fileSizeExceed: that.onFileSizeExceed.bind(that)
         });
-
+    
         // Check if idFrame exists in the view
         var idFrame = that.getView().byId('idFrame' + currentStepIndex);
         if (idFrame) {
-          // Add the Label and Input field to the VBox
-          container.addItem(boldLabel);
-          container.addItem(fileUploader);
+            // Add the Label and Input field to the VBox
+            container.addItem(boldLabel);
+            container.addItem(fileUploader);
+    
+            // Create a new ColumnListItem with the VBox
+            var row = new sap.m.ColumnListItem({
+                cells: [container],
+            });
+    
+            // Get the table and add the new row
+            idFrame.addItem(row);
+    
+            // Make the Input field visible
+            fileUploader.setVisible(true);
 
-          // Create a new ColumnListItem with the VBox
-          var row = new sap.m.ColumnListItem({
-            cells: [container],
-          });
+    
+            // Store the uploaded images in an array
+            fileUploader.attachChange(function (oEvent) {
+                var file = oEvent.getParameter("files")[0];
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var imageData = e.target.result;
+                    // Add the image data to your array
+                    // that._uploadedImages.push(imageData);
 
-          // Get the table and add the new row
-          idFrame.addItem(row);
-
-          // Make the Input field visible
-          fileUploader.setVisible(true);
-
-          // Determine whether it is a Main Section or SubSection and add the input ID accordingly
-          if (that._addingImageForSubSection) {
-            that._subSections.push(inputId);
-            console.log("Image added successfully to SubSection");
-          } else {
-            that._mainSections.push(inputId);
-            console.log("Image added successfully to Main Section");
-          }
+                    // imageuploadarray.push(imageData);
+                    // console.log("Uploaded images:", imageuploadarray);
+                };
+                reader.readAsDataURL(file);
+            });
         } else {
-          console.error("idFrame not found for SubSection");
+            console.error("idFrame not found for SubSection");
         }
-      },
+    },
+    
 
 
-
-      onChangeDP: function (oEvent) {
-
-        var that = this;
-        var image = new Image();
-        var file = oEvent.getParameter("files")[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function () {
-          var data = reader.result;
-
-          var inputString = data;
-          console.log(inputString);
-
-          // that._inputString = inputString;
-
-          this.input = inputString;
-          var wordsToRemove = ["data:image/png;base64,", "data:text/plain;base64,", "data:image/jpeg;base64,"
-            , "data:audio/mpeg;base64,", "data:application/vnd.ms-excel;base64,", "data:video/mp4;base64,"];
-          var replacement = "";
-          var regexPattern = new RegExp(wordsToRemove.join('|'), 'gi');
-          var resultString = inputString.replace(regexPattern, replacement);
-          console.log(resultString);
-
-          that._inputString = resultString;
-
-          var rs = resultString;
-
-          //console.log(data);
+// Declare imageuploadarray globally to retain its values across function calls
 
 
-          var base64Data = inputString;
-          that.byId("imagePreview").setSrc(base64Data);
+onChangeDP: function (oEvent) {
+    var that = this;
+    var image = new Image();
+    var file = oEvent.getParameter("files")[0];
+    var reader = new FileReader();
 
-          image.onload = function () {
+    reader.readAsDataURL(file);
 
-            if (this.width + this.height === 0) {
-              that.dpImage = "";
-              sap.m.MessageBox.error("Invalid Image!");
-            }
-          };
-        };
-        reader.onerror = function (error) {
-          //Error Handling
-        };
+    reader.onload = function () {
+        var data = reader.result;
 
-        this.pDialog.then((oDialog) => oDialog.close());
-      },
+        var inputString = data;
+        console.log(inputString);
 
-      onAddTable: function (bIsTinyMCE5) {
+        var wordsToRemove = ["data:image/png;base64,", "data:text/plain;base64,", "data:image/jpeg;base64,",
+            "data:audio/mpeg;base64,", "data:application/vnd.ms-excel;base64,", "data:video/mp4;base64,"];
+        var replacement = "";
+        var regexPattern = new RegExp(wordsToRemove.join('|'), 'gi');
+        var resultString = inputString.replace(regexPattern, replacement);
+
+        if (resultString){
+            // Push the base64-encoded image data into the global array
+            imageuploadarray.push(resultString);
+            console.log("Image Array ", imageuploadarray);
+            console.log("Number of images stored in imageuploadarray:", imageuploadarray.length);
+
+            // Call saveMainAndSubSections with imageuploadarray as a parameter
+            // that.saveMainAndSubSections(imageuploadarray);
+        } else {
+            console.log("Image not found");
+        }
+    };
+
+    reader.onerror = function (error) {
+        // Error handling
+    };
+},
+
+  
+
+      
+
+      onAddTable: function(bIsTinyMCE5) {
         var that = this;
         var wizard = that.getView().byId("wizard");
         var currentStep = wizard.getProgressStep();
         var currentStepIndex = wizard.getSteps().indexOf(currentStep);
         var textItemId = "Table-" + that.tableitem++;
-
+      
         // Check if idFrame exists in the view
         var idFrame = that.getView().byId('idFrame' + currentStepIndex);
         if (idFrame) {
@@ -718,7 +764,7 @@ addSectionLabel: function (stepTitle, wizard) {
             id: textItemId,
             width: "100%",
             editorType: sap.ui.richtexteditor.EditorType.bIsTinyMCE5,
-
+      
             showGroupFont: true,
             showGroupLink: true,
             showGroupInsert: false,
@@ -727,91 +773,52 @@ addSectionLabel: function (stepTitle, wizard) {
             showGroupStructure: false,
             showGroupTextAlign: true,
             showGroupFontStyle: true,
-
-            ready: function () {
-              bIsTinyMCE5
-                ? this.addButtonGroup("table") // show only the table group
-                : this.addButtonGroup("table");
+      
+            ready: function() {
+              bIsTinyMCE5 ?
+                this.addButtonGroup("table") // show only the table group
+                :
+                this.addButtonGroup("table");
             },
+            change: function(oEvent) {
+              var editorContent = richTextEditor.getValue();
+              var base64Content = btoa(editorContent);
+      
+              if (bIsTinyMCE5) {
+                // Save main section text as an array
+                if (!that._mainSectionTableArray) {
+                  that._mainSectionTableArray = [];
+                }
+                that._mainSectionTableArray.push(base64Content);
+                console.log("Main Section Table Array:", that._mainSectionTableArray);
+              }
+            }
           });
-
+      
           var row = new sap.m.ColumnListItem({
             cells: [richTextEditor],
           });
-
+      
           idFrame.addItem(row);
-
-        //   var isMainSection = that._mainSections.some(function (section) {
-        //     return section.richTextEditor === richTextEditor;
-        //   });
-
-        //   if (that._addingTextArea) {
-        //     that._subSections.push({
-        //       id: textItemId,
-        //       richTextEditor: richTextEditor,
-        //     });
-
-        //     // Attach the event listener for saving base64 content on change
-        //     richTextEditor.attachChange(function (oEvent) {
-        //       var editorContent = richTextEditor.getValue();
-        //       var base64Content = btoa(editorContent);
-        //       that._subsectiontext = base64Content;
-        //       console.log(that._subsectiontext);
-
-              
-        //     });
-
-        //     console.log("Rich Text Area added successfully to SubSection");
-        //   } else {
-        //     that._mainSections.push({
-        //       id: textItemId,
-        //       richTextEditor: richTextEditor,
-        //     });
-
-        //     // Attach the event listener for saving base64 content on change
-        //     richTextEditor.attachChange(function (oEvent) {
-        //       var editorContent = richTextEditor.getValue();
-        //       var base64Content = btoa(editorContent);
-        //       that._mainsectiontext = base64Content;
-        //       console.log(that._mainsectiontext);
-        //     });
-
-        //     console.log("Rich Text Area added successfully to Main Section");
-        //   }
-        // }
-        
-        if (!that._mainSectionTableArray) {
-          that._mainSectionTextArray = [];
-
-          
-        }
-        
-    
-        //event listener for saving base64 content on change
-        richTextEditor(function (oEvent) {
-          var editorContent = richTextEditor.getValue();
-          var base64Content = btoa(editorContent);
-        
-          if (bIsTinyMCE5) {
-            // Save main section text as an array
-            that._mainSectionTextArray.push(base64Content);
-            console.log("Main Section Table Array:", that._mainSectionTextArray);
-          } 
-        });
-    
-        console.log("Table Area added successfully");
-      }else {
+      
+          console.log("Table Area added successfully");
+        } else {
           console.error("idFrame not found for step " + currentStepIndex);
         }
       },
+      
 
-      onPreview: function () {
+        onPreview: function () {
 
-        this.getOwnerComponent().getRouter().navTo("PreviewForm");
+          this.getOwnerComponent().getRouter().navTo("PreviewForm");
 
-        console.log("Navigating to Next Page...")
-      }
+          console.log("Navigating to Next Page...");
+        },
 
-    });
-  }
-);
+        
+
+        
+
+      });
+    }
+  );

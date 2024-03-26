@@ -1,9 +1,43 @@
-<mvc:View controllerName="ns.proposalsystem.controller.PreviewForm"
+<mvc:View
+    controllerName="ns.proposalsystem.controller.PreviewForm"
     xmlns:html="http://www.w3.org/1999/xhtml"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <App id="app">
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <NavContainer>
+        <Page
+            id="_IDGenPage1"
+            title="Preview Page"
+            class="prorposal"
+            titleAlignment="Center"
+        >
 
-    
-    </App>
+
+          <Bar>
+            <contentLeft>
+                <Title text="MainSection Details" level="H1" titleStyle="H3" />
+            </contentLeft>
+        </Bar>
+ 
+  
+       
+        <List >
+            <ObjectListItem>
+                <attributes>
+                    <ObjectAttribute class="bigFont" title="Main Section Title" id="ID" text="{mainSectiontitle}" />
+ 
+                    <ObjectAttribute class="bigFont" title="Text Data" text="{textarea}" />
+<!--  
+                    <ObjectAttribute class="bigFont" title="Vendor Website" text="{}" /> -->
+ 
+                </attributes>
+            </ObjectListItem>
+        </List>
+ 
+ </Page>
+       
+ 
+       
+    </NavContainer>
 </mvc:View>
