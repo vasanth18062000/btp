@@ -9,6 +9,13 @@ sap.ui.define(
       return Math.floor(Math.random() * 1000000) + 1;
   }
 
+  
+
+  var createdMainSectionIds = [];
+  var createdSubSectionIds = [];
+
+  var mainsectionsaveddata;
+
   var imageuploadarray = [];
 
   var _mainSectionsImage =[];
@@ -39,6 +46,7 @@ sap.ui.define(
 
 
       onInit: function () {
+
 
       
         this._tableitem = 1;
@@ -139,79 +147,145 @@ sap.ui.define(
       },
 
 
+      // onAddRowTextArea: function (isMainSection) {
+      //   var that = this;
+      //   var wizard = that.getView().byId("wizard");
+      //   console.log("wizard - "+ wizard);
+      //   var currentStep = wizard.getProgressStep();
+      //   console.log("currentStep - "+ currentStep);
+      //   var currentStepIndex = wizard.getSteps().indexOf(currentStep);
+
+      //   console.log(currentStepIndex);
+
+      //   var textItemId = "Text-" + that.textitem++;
+      
+      //   console.log(textItemId);
+      
+      //   // Check if idFrame exists in the view
+      //   var idFrame = that.getView().byId('idFrame' + currentStepIndex);
+
+      //   console.log ("Id Frame - "+ idFrame);
+
+      //   if (idFrame) {
+      //     var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
+      //       id: textItemId,
+      //       width: "100%",
+      //       editorType: sap.ui.richtexteditor.EditorType.bIsTinyMCE5,
+      //       showGroupFont: true,
+      //       showGroupLink: true,
+      //       showGroupInsert: true,
+      //       showGroupClipboard: true,
+      //       showGroupUndo: true,
+      //       showGroupTextAlign: true,
+      //       showGroupFontStyle: true,
+      //     }).addStyleClass("myRichTextEditor");
+      
+      //     var row = new sap.m.ColumnListItem({
+      //       cells: [richTextEditor],
+      //     });
+      
+      //     idFrame.addItem(row);
+      
+      //     if (!that._mainSectionTextArray) {
+      //       that._mainSectionTextArray = [];
+
+      //       console.log("it comes here ");
+      //     }
+      //     else{
+      //       console.log("it comes to else ");
+      //       that._subSectionTextArray = [];
+      //     }
+      
+      //     //event listener for saving base64 content on change
+      //     richTextEditor.attachChange(function (oEvent) {
+      //       var editorContent = richTextEditor.getValue();
+      //       var base64Content = editorContent ? btoa(editorContent) : null; // Convert to base64 if content exists, otherwise null
+        
+      //       if (isMainSection) {
+      //           // Save main section text as an array
+      //           that._mainSectionTextArray.push(base64Content);
+      //           console.log("Main Section Text Array:", that._mainSectionTextArray);
+      //       } else {
+      //           // Save subsection text as an array
+      //           that._subSectionTextArray.push(base64Content);
+      //           console.log("Sub Section Text Array:", that._subSectionTextArray);
+      //       }
+      //   });
+      
+      //     console.log("Rich Text Area added successfully");
+      //   } else {
+      //     console.error("idFrame not found for step " + currentStepIndex);
+      //     // Handle the situation when idFrame is not found
+      //     // Display an error message or take alternative actions
+      //   }
+      // },
+      
+
       onAddRowTextArea: function (isMainSection) {
         var that = this;
         var wizard = that.getView().byId("wizard");
-        console.log("wizard - "+ wizard);
         var currentStep = wizard.getProgressStep();
-        console.log("currentStep - "+ currentStep);
         var currentStepIndex = wizard.getSteps().indexOf(currentStep);
-
-        console.log(currentStepIndex);
-
         var textItemId = "Text-" + that.textitem++;
-      
-        console.log(textItemId);
       
         // Check if idFrame exists in the view
         var idFrame = that.getView().byId('idFrame' + currentStepIndex);
-
-        console.log ("Id Frame - "+ idFrame);
-
+    
         if (idFrame) {
-          var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
-            id: textItemId,
-            width: "100%",
-            editorType: sap.ui.richtexteditor.EditorType.bIsTinyMCE5,
-            showGroupFont: true,
-            showGroupLink: true,
-            showGroupInsert: true,
-            showGroupClipboard: true,
-            showGroupUndo: true,
-            showGroupTextAlign: true,
-            showGroupFontStyle: true,
-          }).addStyleClass("myRichTextEditor");
-      
-          var row = new sap.m.ColumnListItem({
-            cells: [richTextEditor],
-          });
-      
-          idFrame.addItem(row);
-      
-          if (!that._mainSectionTextArray) {
-            that._mainSectionTextArray = [];
-
-            console.log("it comes here ");
-          }
-          else{
-            console.log("it comes to else ");
-            that._subSectionTextArray = [];
-          }
-      
-          //event listener for saving base64 content on change
-          richTextEditor.attachChange(function (oEvent) {
-            var editorContent = richTextEditor.getValue();
-            var base64Content = btoa(editorContent);
+            var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
+                id: textItemId,
+                width: "100%",
+                editorType: sap.ui.richtexteditor.EditorType.bIsTinyMCE5,
+                showGroupFont: true,
+                showGroupLink: true,
+                showGroupInsert: true,
+                showGroupClipboard: true,
+                showGroupUndo: true,
+                showGroupTextAlign: true,
+                showGroupFontStyle: true,
+            }).addStyleClass("myRichTextEditor");
+        
+            var row = new sap.m.ColumnListItem({
+                cells: [richTextEditor],
+            });
+        
+            idFrame.addItem(row);
+        
+            // Initialize main section text array if not already initialized
+            if (!that._mainSectionTextArray) {
+                that._mainSectionTextArray = [];
+            }
           
-            if (isMainSection) {
-              // Save main section text as an array
-              that._mainSectionTextArray.push(base64Content);
-              console.log("Main Section Text Array:", that._mainSectionTextArray);
+        
+            //event listener for saving base64 content on change
+            richTextEditor.attachChange(function (oEvent) {
+              var editorContent = richTextEditor.getValue();
+              var base64Content = editorContent.trim() ? btoa(editorContent) : null;
+          
+              if (!base64Content) {
+                  // If base64Content is null, set it to an empty string to ensure consistent behavior
+                  base64Content = "";
+              }
+            
+              if (isMainSection) {
+                // Save main section text as an array
+                that._mainSectionTextArray[currentStepIndex] = base64Content;
+                console.log("Main Section Text Array:", that._mainSectionTextArray);
             } else {
-              // Save subsection text as an array
-              that._subSectionTextArray.push(base64Content);
-              console.log("Sub Section Text Array:", that._subSectionTextArray);
+                // Save subsection text as an array
+                that._subSectionTextArray[currentStepIndex] = base64Content;
+                console.log("Sub Section Text Array:", that._subSectionTextArray);
             }
           });
-      
-          console.log("Rich Text Area added successfully");
+        
+            console.log("Rich Text Area added successfully");
         } else {
-          console.error("idFrame not found for step " + currentStepIndex);
-          // Handle the situation when idFrame is not found
-          // Display an error message or take alternative actions
+            console.error("idFrame not found for step " + currentStepIndex);
+            // Handle the situation when idFrame is not found
+            // Display an error message or take alternative actions
         }
-      },
-      
+    },
+    
 
 
 
@@ -326,8 +400,7 @@ sap.ui.define(
     saveMainAndSubSections: function () {
       var that = this;
       var oModel = this.getView().getModel();
-      var createdMainSectionIds = [];
-      var createdSubSectionIds = [];
+     
       var valueofi = 1;
       var i = 0;
       var j = 0; // Declare j here
@@ -374,25 +447,28 @@ sap.ui.define(
               valueofi++;
   
               for (i; i < ImageTextArea.length || i< testdata.length; i++) {
-                  var mainSectionData = {
+                  var mainSectionDatatosave = {
                       // id: this._mainSectionId++,
                       id: generateMainSectionId(),
                       mainSectiontitle: mainSectionInput.getValue(),
                       imagearea: ImageTextArea[i] || null,
                       textarea: testdata[i] || null,
                   };
-  
-                  console.log(mainSectionData);
+                  console.log(mainSectionDatatosave);
+
+                  mainsectionsaveddata.push(mainSectionDatatosave);
+                  console.log(mainsectionsaveddata);
   
                   var promise = new Promise(function (resolve, reject) {
-                      oModel.create("/MainSection", mainSectionData, {
+                      oModel.create("/MainSection", mainSectionDatatosave, {
                           method: "POST",
                           success: function (data, response) {
                               MessageToast.show("Main Section Added Successfully");
-                              createdMainSectionIds.push(mainSectionData.id);
+                              createdMainSectionIds.push(mainSectionDatatosave.id);
 
                               console.log(createdMainSectionIds);
                               resolve();
+                              
                           },
                           error: function (error) {
                               reject(error);
@@ -493,16 +569,20 @@ sap.ui.define(
           }));
       }).then(function () {
         busyDialog.close();
-        that.getView().byId("previewButton").setEnabled(true);
-
+        
           return {
               createdMainSectionIds: createdMainSectionIds,
               createdSubSectionIds: createdSubSectionIds
+
           };
+
+          
       }).catch(function (error) {
         busyDialog.close();
         // console.error("Error saving data:", error);
     });
+
+    
   },
 
 
@@ -808,12 +888,18 @@ onChangeDP: function (oEvent) {
       },
       
 
+
         onPreview: function () {
+         
 
-          this.getOwnerComponent().getRouter().navTo("PreviewForm");
+          console.log("Created Mian Section Id : " + createdMainSectionIds);
 
+      
+          this.getOwnerComponent().getRouter().navTo("PreviewForm",{mainpreviewid:createdMainSectionIds[0]});
+      
           console.log("Navigating to Next Page...");
-        },
+      },
+      
 
         
 

@@ -119,13 +119,7 @@
 
         {
           "name": "PreviewForm",
-          "pattern": "PreviewForm",
-          "target": ["PreviewForm"]
-        },
-
-        {
-          "name": "PreviewForm",
-          "pattern": "PreviewForm/{mainSectionData}",
+          "pattern": "PreviewForm/{mainpreviewid}",
           "target": ["PreviewForm"]
         }
 
@@ -135,8 +129,8 @@
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "Main",
-          "viewName": "Main"
+          "viewId": "PreviewForm",
+          "viewName": "PreviewForm"
         },
         "clientCretation":{
           "viewName": "ClientCreation"
@@ -147,7 +141,8 @@
         },
 
         "PreviewForm":{
-          "viewName": "PreviewForm"
+          "viewName": "PreviewForm",
+          "viewLevel": 2
         }
 
         

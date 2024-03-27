@@ -12,32 +12,21 @@
             class="prorposal"
             titleAlignment="Center"
         >
-
-
-          <Bar>
-            <contentLeft>
-                <Title text="MainSection Details" level="H1" titleStyle="H3" />
-            </contentLeft>
-        </Bar>
- 
-  
-       
-        <List >
-            <ObjectListItem>
-                <attributes>
-                    <ObjectAttribute class="bigFont" title="Main Section Title" id="ID" text="{mainSectiontitle}" />
- 
-                    <ObjectAttribute class="bigFont" title="Text Data" text="{textarea}" />
-<!--  
-                    <ObjectAttribute class="bigFont" title="Vendor Website" text="{}" /> -->
- 
-                </attributes>
-            </ObjectListItem>
-        </List>
- 
- </Page>
-       
- 
-       
+            <content>
+                <Bar>
+                    <contentLeft>
+                        <Title text="MainSection Details" level="H1" titleStyle="H3" />
+                    </contentLeft>
+                </Bar>
+                <List >
+                    <ObjectListItem>
+                        <attributes>
+                            <ObjectAttribute class="bigFont" title="Main Section Title" text="{mainSectiontitle}" />
+                            <ObjectAttribute class="bigFont" title="Text Data" text="{textarea}" />
+                        </attributes>
+                    </ObjectListItem>
+                </List>
+            </content>
+        </Page>
     </NavContainer>
 </mvc:View>
