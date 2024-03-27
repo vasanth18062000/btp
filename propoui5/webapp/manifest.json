@@ -1,0 +1,235 @@
+{
+    "_version": "1.58.0",
+    "sap.app": {
+        "id": "ns.propoui5",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.11.4",
+            "toolsId": "bd6e0e31-9f64-4bf1-b2f2-e1b36dac1a5e"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/v2/odata/v4/proposal/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.122.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "ns.propoui5.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "ns.propoui5.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteProposal",
+                    "pattern": "",
+                    "target": [
+                        "TargetProposal"
+                    ]
+                },
+                {
+                    "name": "supplierForm",
+                    "pattern": "supplierForm",
+                    "target": [
+                      "supplierForm"
+                    ]
+                  },
+                  {
+                    "name": "clientForm",
+                    "pattern": "clientForm",
+                    "target": [
+                      "clientForm"
+                    ]
+                  },
+                  {
+                    "name": "clientView",
+                    "pattern": "clientView/{clientId}",
+                    "target": [
+                      "clientView"
+                    ]
+                  },
+                  {
+                    "name": "supplierView",
+                    "pattern": "supplierView/{supplierId}",
+                    "target": [
+                      "supplierView"
+                    ]
+                  },
+                  {
+                    "name": "supplierViewEdit",
+                    "pattern": "supplierViewEdit",
+                    "target": [
+                      "supplierViewEdit"
+                    ]
+                  },
+                  {
+                    "name": "clientViewEdit",
+                    "pattern": "clientViewEdit",
+                    "target": [
+                      "clientViewEdit"
+                    ]
+                  },
+                  {
+                    "name": "clientUpdateForm",
+                    "pattern": "clientUpdateForm/{SelectedItem}",
+                    "target": [
+                      "clientUpdateForm"
+                    ]
+                  },
+                  {
+                    "name": "supplierUpdateForm",
+                    "pattern": "supplierUpdateForm/{SelectedItem}",
+                    "target": [
+                      "supplierUpdateForm"
+                    ]
+                  },
+                  {
+                    "name": "templateCreation",
+                    "pattern": "templateCreation",
+                    "target": [
+                      "templateCreation"
+                    ]
+                  },
+                  {
+                    "name": "supplierPreviewEdit",
+                    "pattern": "supplierPreviewEdit",
+                    "target": [
+                      "supplierPreviewEdit"
+                    ]
+                  }
+            ],
+            "targets": {
+                "TargetProposal": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Main",
+                    "viewName": "Main"
+                },
+                "supplierForm": {
+                  "viewId": "SupplierForm",
+                  "viewName": "SupplierForm"
+                },
+                "clientForm": {
+                  "viewId": "ClientForm",
+                  "viewName": "ClientForm"
+                },
+                "clientView": {
+                  "viewId": "ClientView",
+                  "viewName": "ClientView"
+                },
+                "supplierView": {
+                  "viewId": "SupplierView",
+                  "viewName": "SupplierView"
+                },
+                "supplierViewEdit": {
+                  "viewId": "SupplierViewEdit",
+                  "viewName": "SupplierViewEdit"
+                },
+                "clientViewEdit": {
+                  "viewId": "ClientViewEdit",
+                  "viewName": "ClientViewEdit"
+                },
+                "clientUpdateForm": {
+                  "viewId": "ClientUpdateForm",
+                  "viewName": "ClientUpdateForm"
+                },
+                "supplierUpdateForm": {
+                  "viewId": "SupplierUpdateForm",
+                  "viewName": "SupplierUpdateForm"
+                },
+                "templateCreation": {
+                  "viewId": "TemplateCreation",
+                  "viewName": "TemplateCreation"
+                },
+                "supplierPreviewEdit": {
+                  "viewId": "SupplierPreviewEdit",
+                  "viewName": "SupplierPreviewEdit"
+                }
+              }
+        },
+        "rootView": {
+            "viewName": "ns.propoui5.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "nspropoui5"
+    }
+}

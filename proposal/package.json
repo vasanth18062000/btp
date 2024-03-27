@@ -26,7 +26,8 @@
   },
   "cds": {
     "requires": {
-      "db": "hana"
+      "db": "hana",
+      "auth": "mocked"
     }
   }
 }
