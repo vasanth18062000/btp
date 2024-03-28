@@ -129,8 +129,8 @@
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "PreviewForm",
-          "viewName": "PreviewForm"
+          "viewId": "Main",
+          "viewName": "Main"
         },
         "clientCretation":{
           "viewName": "ClientCreation"

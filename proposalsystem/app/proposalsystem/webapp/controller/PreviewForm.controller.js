@@ -6,6 +6,9 @@ sap.ui.define([
 
   var selectedItem;
 
+
+  debugger;
+
   function isValidBase64(str) {
     try {
         // Check if encoding and decoding the string results in the original string
@@ -45,9 +48,9 @@ sap.ui.define([
               
               console.log(oJSON);
               
-              var decodedText = atob(oJSON.getProperty("/textarea"));
-              console.log(decodedText);
-              oJSON.setProperty("/textarea", decodedText);              
+              // var decodedText = atob(oJSON.getProperty("/textarea"));
+              // console.log(decodedText);
+              // oJSON.setProperty("/textarea", decodedText);              
               that.getView().setModel(oJSON, "ven");
           },
           error: function(error) {
