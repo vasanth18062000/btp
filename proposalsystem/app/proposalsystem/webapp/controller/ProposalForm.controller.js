@@ -18,51 +18,49 @@ sap.ui.define(
     library
   ) {
     "use strict";
-    var mainSectionData = null;
+    // var mainDatas;
+    var subDatas;
+    var mergeDatas;
+
+    function generateMainSectionId() {
+      return Math.floor(Math.random() * 1000000) + 1;
+    }
+
     return Controller.extend("ns.propose.controller.ProposalForm", {
       _sectionTitle: 1,
-      _mainSectionId: 1,
+      _mainSectionId: 1000,
       _SubSectionId: 1,
       _mainSections: [], // Array to store Main Section data
       _subsection: 1,
       _subSections: [],
       _imagecount: 1,
       _inputString: "",
-      _subSectionCounter: 2001,
+      _subSectionCounter: 2000,
       _sectionCounters: {},
-
-      _mainSectionCounter: 1000,
 
       _table: 1,
       _tableitem: 1,
       textitem: 1,
 
-      _mainSectionTextArray: [],
-      _subSectionTextArray: [],
-
       onInit: function () {
-        this._mainSectionTextArray = [];
-        this._subSectionTextArray = [];
-
         this._tableitem = 1;
 
         this._sectionTitle = 1;
-        this._mainSectionId = 1;
+        this._mainSectionId = 1000;
         this._mainSections = [1];
+        this._subSections = [1];
         this._subsection1 = 1;
         this._subsection = [1];
         this._SubSectionId = 1;
         this._imagecount = 1;
 
-        this._subSectionCounter = 2001;
+        this._subSectionCounter = 2000;
         this._sectionCounters = {};
 
         this._setInitialSectionTitle();
 
         this._table = 1;
         this.textitem = 1;
-
-        this._mainSectionCounter = 1000;
       },
       _setInitialSectionTitle: function () {
         var that = this;
@@ -129,59 +127,74 @@ sap.ui.define(
         }
       },
 
-      // _setInitialSectionTitle: function () {
+      // onAddRowTextArea: function (isMainSection) {
       //   var that = this;
-      //   var wizard = this.getView().byId("wizard");
+      //   var wizard = that.getView().byId("wizard");
       //   var currentStep = wizard.getProgressStep();
-      //   var allSteps = wizard.getSteps();
-      //   var currentStepIndex = allSteps.indexOf(currentStep) + 1;
-      //   var inputId = "Section-" + this._sectionTitle++;
-      //   this._titleSubInputCounter = 0;
-      //   this._titleSubInputCounter++;
+      //   var currentStepIndex = wizard.getSteps().indexOf(currentStep);
+      //   var textItemId = "Text-" + that.textitem++;
 
-      //   if (currentStepIndex === -1) {
-      //     currentStepIndex++;
-      //   }
+      //   console.log(textItemId);
 
-      //   this._SubSectionId = inputId;
-
-      //   var container = new sap.m.VBox();
-      //   var boldLabel = new sap.m.Label({
-      //     text: inputId,
-      //     design: "Bold",
-      //   });
-
-      //   var inputField = new sap.m.Input({
-      //     id: inputId,
-      //     placeholder: "Enter your title...",
-      //     width: "80%",
-      //   });
-
-      //   container.addItem(boldLabel);
-      //   container.addItem(inputField);
-
-      //   var row = new sap.m.ColumnListItem({
-      //     cells: [container],
-      //   });
-
-      //   var idFrame = that.getView().byId("idFrame" + currentStepIndex);
-
+      //   // Check if idFrame exists in the view
+      //   var idFrame = that.getView().byId('idFrame' + currentStepIndex);
       //   if (idFrame) {
+      //     var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
+      //       id: textItemId,
+      //       width: "100%",
+      //       editorType: sap.ui.richtexteditor.EditorType.bIsTinyMCE5,
+      //       showGroupFont: true,
+      //       showGroupLink: true,
+      //       showGroupInsert: true,
+      //       showGroupClipboard: true,
+      //       showGroupUndo: true,
+      //       showGroupTextAlign: true,
+      //       showGroupFontStyle: true,
+      //     }).addStyleClass("myRichTextEditor");
+
+      //     var row = new sap.m.ColumnListItem({
+      //       cells: [richTextEditor],
+      //     });
+
       //     idFrame.addItem(row);
-      //     inputField.setVisible(true);
-      //     this._mainSections.push(inputId);
-      //     console.log("Section added successfully.");
+
+      //     if (!that._mainSectionTextArray) {
+      //       that._mainSectionTextArray = [];
+      //     }
+      //     if (!that._subSectionTextArray) {
+      //       that._subSectionTextArray = [];
+      //     }
+
+      //     // Attach the event listener for saving base64 content on change
+      //     richTextEditor.attachChange(function (oEvent) {
+      //       var editorContent = richTextEditor.getValue();
+      //       var base64Content = btoa(editorContent);
+
+      //       if (isMainSection) {
+      //         // Save main section text as an array
+      //         that._mainSectionTextArray.push(base64Content);
+      //         console.log("Main Section Text Array:", that._mainSectionTextArray);
+      //       } else {
+      //         // Save subsection text as an array
+      //         that._subSectionTextArray.push(base64Content);
+      //         console.log("Sub Section Text Array:", that._subSectionTextArray);
+      //       }
+      //     });
+
+      //     console.log("Rich Text Area added successfully");
       //   } else {
       //     console.error("idFrame not found for step " + currentStepIndex);
       //   }
       // },
 
-      onAddRowTextArea: function () {
+      onAddRowTextArea: function (isMainSection) {
         var that = this;
         var wizard = that.getView().byId("wizard");
         var currentStep = wizard.getProgressStep();
         var currentStepIndex = wizard.getSteps().indexOf(currentStep);
         var textItemId = "Text-" + that.textitem++;
+
+        console.log(textItemId);
 
         // Check if idFrame exists in the view
         var idFrame = that.getView().byId("idFrame" + currentStepIndex);
@@ -189,14 +202,12 @@ sap.ui.define(
           var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
             id: textItemId,
             width: "100%",
-            editorType: sap.ui.richtexteditor.EditorType.TinyMCE4,
-            customToolbar: true,
+            editorType: sap.ui.richtexteditor.EditorType.bIsTinyMCE5,
             showGroupFont: true,
             showGroupLink: true,
             showGroupInsert: true,
             showGroupClipboard: true,
             showGroupUndo: true,
-            showGroupStructure: true,
             showGroupTextAlign: true,
             showGroupFontStyle: true,
           }).addStyleClass("myRichTextEditor");
@@ -207,43 +218,37 @@ sap.ui.define(
 
           idFrame.addItem(row);
 
-          var isMainSection = that._mainSections.some(function (section) {
-            return section.richTextEditor === richTextEditor;
+          if (!that._mainSectionTextArray) {
+            that._mainSectionTextArray = [];
+          }
+          if (!that._subSectionTextArray) {
+            that._subSectionTextArray = [];
+          }
+
+          // Attach the event listener for saving base64 content on change
+          richTextEditor.attachChange(function (oEvent) {
+            var editorContent = richTextEditor.getValue();
+            var base64Content = btoa(editorContent);
+
+            if (isMainSection) {
+              // Save main section text as an array
+              that._mainSectionTextArray.push(base64Content);
+              console.log(
+                "Main Section Text Array:",
+                that._mainSectionTextArray
+              );
+            } else {
+              // Save subsection text as an array
+              that._subSectionTextArray.push(base64Content);
+              console.log("Sub Section Text Array:", that._subSectionTextArray);
+            }
           });
 
-          if (that._addingTextArea) {
-            that._subSections.push({
-              id: textItemId,
-              richTextEditor: richTextEditor,
-            });
-
-            // Attach the event listener for saving base64 content on change
-            richTextEditor.attachChange(function (oEvent) {
-              var editorContent = richTextEditor.getValue();
-              var base64Content = btoa(editorContent);
-              that._subsectiontext = base64Content;
-              console.log(that._subsectiontext);
-            });
-
-            console.log("Rich Text Area added successfully to SubSection");
-          } else {
-            that._mainSections.push({
-              id: textItemId,
-              richTextEditor: richTextEditor,
-            });
-
-            // Attach the event listener for saving base64 content on change
-            richTextEditor.attachChange(function (oEvent) {
-              var editorContent = richTextEditor.getValue();
-              var base64Content = btoa(editorContent);
-              that._mainsectiontext = base64Content;
-              console.log(that._mainsectiontext);
-            });
-
-            console.log("Rich Text Area added successfully to Main Section");
-          }
+          console.log("Rich Text Area added successfully");
         } else {
           console.error("idFrame not found for step " + currentStepIndex);
+          // Handle the situation when idFrame is not found
+          // Display an error message or take alternative actions
         }
       },
 
@@ -332,12 +337,15 @@ sap.ui.define(
             if (oAction === MessageBox.Action.YES) {
               console.log("clicked yes");
               that
-                .saveMainSection()
-                .then(function (mainSectionIds) {
-                  // Save Sub Sections after Main Sections are created
-                  that.saveSubSection(mainSectionIds);
-
-                  // Display a message or perform any additional actions after saving
+                .saveMainAndSubSections()
+                .then(function (result) {
+                  // Handle the result if needed
+                  console.log(
+                    "Main and Subsections saved successfully:",
+                    result
+                  );
+                  console.log("moving to next step");
+                  console.log(result);
                 })
                 .catch(function (error) {
                   console.error("Error saving data:", error);
@@ -350,283 +358,288 @@ sap.ui.define(
             }
           },
         });
-
-        // Save Main Sections
       },
 
-      //   saveMainSection: function () {
-      //     var oModel = this.getView().getModel();
-      //     var createdMainSectionIds = [];
-      //     var that = this;
+      saveMainAndSubSections: function () {
+        var that = this;
+        var oModel = this.getView().getModel();
+        var createdMainSectionIds = [];
+        var createdSubSectionIds = [];
+        var valueofi = 1;
+        var i = 0;
+        var j = 0; // Declare j here
+        var y = 0;
 
-      //     // Initialize _mainSectionCounter if it's not already initialized
-      //     if (!this._mainSectionCounter) {
-      //         this._mainSectionCounter = 0;
-      //     }
+        var busyDialog = new sap.m.BusyDialog({
+          title: "Please wait",
+          text: "Saving data...",
+          showCancelButton: false,
+        });
+        busyDialog.open();
 
-      //     return Promise.all(this._mainSections.map((mainSection) => {
-      //         // Ensure mainSection.richTextEditor is defined before accessing it
-      //         if (!mainSection || !mainSection.richTextEditor) {
-      //             console.error("Rich text editor is not found for main section:", mainSection);
-      //             return Promise.resolve(); // Skip this main section and continue with the next one
-      //         }
+        // Save main sections
+        return Promise.all(
+          this._mainSections.map((mainSectionId, index) => {
+            var mainSectionInput = sap.ui.getCore().byId(mainSectionId);
 
-      //         var mainSectionInput = mainSection.richTextEditor;
-      //         var mainSectionTitle = mainSection.title; // Assuming you have a 'title' property for the main section
-      //         var mainSectionText = mainSectionInput.getValue(); // Get the content of the textarea for this main section
+            if (mainSectionInput) {
+              var testdata = [];
+              var mainSectionText = this._mainSectionTextArray.filter(function (
+                element,
+                i
+              ) {
+                if (i % 2 === 0) {
+                  testdata.push(element);
+                  return true;
+                } else {
+                  return false;
+                }
+              });
 
-      //         var mainSectionData = {
-      //             id: "MAIN_0" + that._mainSectionCounter++,
-      //             mainSectiontitle: mainSectionTitle, // Assign the title as it is
-      //             imagearea: that._inputString || null,
-      //             textarea: btoa(mainSectionText) || null, // Convert the textarea content to base64 and assign it
-      //         };
+              var promises = [];
+              valueofi++;
 
-      //         console.log("Main Section Data:", mainSectionData);
+              for (i; i < testdata.length; i++) {
+                var mainSectionData = {
+                  // id: this._mainSectionId++,
+                  id: generateMainSectionId(),
+                  mainSectiontitle: mainSectionInput.getValue(),
+                  imagearea: this._inputString || null,
+                  textarea: testdata[i] || null,
+                };
 
-      //         return new Promise(function (resolve, reject) {
-      //             oModel.create("/MainSection", mainSectionData, {
-      //                 method: "POST",
-      //                 success: function () {
-      //                     MessageToast.show("Main Section Added Successfully");
-      //                     createdMainSectionIds.push(mainSectionData.id);
-      //                     resolve();
-      //                     console.log("Main Section saved to DB");
-      //                 },
-      //                 error: function (error) {
-      //                     reject(error);
-      //                 }
-      //             });
-      //         });
-      //     }))
+                var promise = new Promise(function (resolve, reject) {
+                  oModel.create("/MainSection", mainSectionData, {
+                    method: "POST",
+                    success: function (data, response) {
+                      MessageToast.show("Main Section Added Successfully");
+                      createdMainSectionIds.push(mainSectionData.id);
 
-      //     .then(function () {
-      //         return createdMainSectionIds;
-      //     });
-      // },
+                      console.log(createdMainSectionIds);
+                      // Store mainSectionData in session storage
+                      var decodedtext = atob(mainSectionData.textarea);
+                      // var decodedimage = atob(mainSectionData.imagearea);
 
-      //   saveMainSection: function () {
-      //     var that=this;
-      //     // Implement logic to save Main Section data
-      //     // Iterate through _mainSections array and save the data as needed
-      //     var oModel = this.getView().getModel();
+                      var sourceJson = {
+                        key1: mainSectionData.id,
+                        key2: mainSectionData.imagearea,
+                        //key2: decodedimage,
+                        key3: decodedtext,
+                        key4: mainSectionData.mainSectiontitle,
+                      };
 
-      //     // Array to store created main section IDs
-      //     var createdMainSectionIds = [];
+                      var imgData = sourceJson.key2;
 
-      //     // Use Promise to handle asynchronous operation
-      //     return Promise.all(this._mainSections.map((mainSectionId) => {
-      //         var mainSectionInput = sap.ui.getCore().byId(mainSectionId);
+                      console.log("decoded data", sourceJson);
 
-      //         if (mainSectionInput) {
+                      console.log("image data gopi", imgData);
 
-      //             var mainSectionData = {
-      //                 // Extract data from the main section input control
-      //                 id: "MAIN_0" + this._mainSectionCounter++,
-      //                 mainSectiontitle: mainSectionInput.getValue(),
-      //                 imagearea: this._inputString || null,
-      //                 textarea : this._mainsectiontext || null,
+                      sessionStorage.setItem(
+                        "mainSectionData",
+                        JSON.stringify(sourceJson)
+                      );
+                      resolve();
+                      mergeDatas = mainSectionData;
+                      // mainDatas = mainSectionData;
+                      console.log("main datas", mergeDatas);
+                    },
+                    error: function (error) {
+                      reject(error);
+                    },
+                  });
+                });
+                //preview button enable link
+                this.getView().byId("_IDGenButtn2").setVisible(true);
 
-      //             };
+                console.log("main section data", mainSectionData);
 
-      //             console.log("data",mainSectionData);
+                promises.push(promise);
+                break;
+              }
 
-      //             // Use Promise to handle asynchronous operation
-      //             return new Promise(function (resolve, reject) {
-      //                 oModel.create("/MainSection", mainSectionData, {
-      //                     method: "POST",
-      //                     success: function () {
-      //                       that.getView().byId("IDGenButton3").setVisible(true);
-      //                         MessageToast.show("Main- Section Added Successfully");
-      //                         createdMainSectionIds.push(mainSectionData.id);
-      //                         resolve();
-      //                         console.log("Section saved to DB");
-      //                     },
+              i++;
+              return Promise.all(promises);
+            }
 
-      //                     error: function (error) {
-      //                         reject(error);
-      //                     }
-      //                 });
-      //             });
-      //         }
-      //     }))
-      //     .then(function () {
-      //         // Return the array of created Main Section IDs
-      //         return createdMainSectionIds;
-      //     });
-      // },
+            // debugger;
+          })
+        )
+          .then(function () {
+            // Save subsections
+            return Promise.all(
+              that._subSections.map((subSectionId, index) => {
+                var subSectionInput = sap.ui.getCore().byId(subSectionId);
 
-      // onPreviewPress: function(mainSectionData){
+                var mainSectionInput = createdMainSectionIds;
 
-      //   console.log(mainSectionData);
+                console.log(mainSectionInput);
+                // debugger;
+
+                if (subSectionInput && mainSectionInput) {
+                  var testdatasub = [];
+                  var subSectionText = that._mainSectionTextArray.filter(
+                    function (element, i) {
+                      if (i % 2 === 1) {
+                        testdatasub.push(element);
+                        return true;
+                      } else {
+                        return false;
+                      }
+                    }
+                  );
+
+                  var promises = [];
+
+                  for (y = y; y < mainSectionInput.length; y++) {
+                    for (j; j < testdatasub.length; y++) {
+                      var subSectionData = {
+                        // id: that._subSectionCounter++,
+                        id: generateMainSectionId(),
+                        subSectiontitle: subSectionInput.getValue(),
+                        parentSection_id: mainSectionInput[y], // Corrected usage
+                        textarea: testdatasub[y] || null,
+                      };
+
+                      // debugger;
+
+                      var promise = new Promise(function (resolve, reject) {
+                        oModel.create("/SubSection", subSectionData, {
+                          method: "POST",
+                          success: function (data, response) {
+                            MessageToast.show(
+                              "MAin and Subsection Added Successfully in DB "
+                            );
+                            createdSubSectionIds.push(subSectionData.id);
+                            resolve();
+                          },
+                          error: function (error) {
+                            reject(error);
+                          },
+                        });
+                      });
+                      //  subDatas=subSectionData;
+                      console.log("subsection data", subSectionData);
+                      var decodedtext = atob(subSectionData.textarea);
+                      var sourceSubJson = {
+                        id: subSectionData.id,
+                        // key2: subSectionData.imagearea,
+                        //key2: decodedimage,
+                        decodedtextkey3: decodedtext,
+                        subSectiontitle: subSectionData.subSectiontitle,
+                      };
+console.log("sub data:",sourceSubJson);
+sessionStorage.setItem(
+  "subSectionData",
+  JSON.stringify(sourceSubJson)
+);
+
+                      // console.log("data",datas);
+                      promises.push(promise);
+                      promises.push(promise);
+                      break;
+                    }
+
+                    j++; // Increment j for next iteration
+                    y++;
+                    mainSectionInput++;
+                    return Promise.all(promises);
+                  }
+                }
+
+                //  console.log("ex main datas", mainDatas);
+              })
+            );
+          })
+          .then(function () {
+            busyDialog.close();
+
+            // that.getView().byId("onPreview").setEnabled(true);
+
+            return {
+              createdMainSectionIds: createdMainSectionIds,
+              createdSubSectionIds: createdSubSectionIds,
+            };
+          })
+          .catch(function (error) {
+            busyDialog.close();
+            console.error("Error saving data:", error);
+          });
+      },
+
+      // onPreview: function () {
 
       //   this.getOwnerComponent().getRouter().navTo("PreviewForm");
 
       //   console.log("Navigating to Next Page...")
       // },
 
-      saveMainSection: function () {
-        var that = this;
-        var oModel = this.getView().getModel();
-        var createdMainSectionIds = [];
-        // var mainSectionData = null; // Define mainSectionData here
+      // onPreview: function (mainDatas) {
+      //   // Receive createdMainSectionIds
+      //   // debugger;
+      //   console.log(mainDatas);
+      //   // Access mainSectionData here
 
-        return Promise.all(
-          this._mainSections.map((mainSectionId) => {
-            var mainSectionInput = sap.ui.getCore().byId(mainSectionId);
+      //   const oRouter = this.getOwnerComponent().getRouter();
+      //   oRouter.navTo("PreviewForm", {
+      //     mainDatas: mainDatas,
+      //   });
+      // },.
 
-            if (mainSectionInput) {
-              mainSectionData = {
-                id: this._mainSectionCounter++,
-                mainSectiontitle: mainSectionInput.getValue(),
-                imagearea: this._inputString || null,
-                textarea: this._mainsectiontext || null,
-              };
-
-              return new Promise(function (resolve, reject) {
-                oModel.create("/MainSection", mainSectionData, {
-                  method: "POST",
-                  success: function () {
-                    that.getView().byId("IDGenButton3").setVisible(true);
-                    MessageToast.show("Main- Section Added Successfully");
-                    createdMainSectionIds.push(mainSectionData.id);
-                    resolve(mainSectionData); // Pass mainSectionData to the next then() block
-                  },
-                  error: function (error) {
-                    reject(error);
-                  },
-                });
-              });
-            }
-          })
-        )
-          .then(function () {
-            return createdMainSectionIds;
-          })
-          .then(function (mainSectionData) {
-            // Call onPreviewPress and pass mainSectionData
-            // that.onPreviewPress(mainSectionData);
-          });
-      },
-
-      onPreviewPress: function () {
-        // Access mainSectionData here
-        if (mainSectionData) {
-          // Do something with mainSectionData
-          console.log(mainSectionData);
-        } else {
-          console.log("Main section data is not available.");
-        }
+      onPreview: function () {
+        //  var mergeDatas = [id, textarea];
+        console.log("hii im button");
         this.getOwnerComponent().getRouter().navTo("PreviewForm", {
-          mainSectionData:mainSectionData.id
+          mergeDatas: mergeDatas.id,
         });
       },
 
-      saveSubSection: function (mainSectionIds) {
-        // Implement logic to save Sub Section data
-        // Iterate through _subSections array and save the data as needed
-        var oModel = this.getView().getModel();
-        var createdSubSectionIds = [];
+      addSectionLabel: function (stepTitle, wizard) {
+        // Extract the step number from the title
+        var stepNumber = parseInt(stepTitle.replace("Step ", ""));
 
-        return Promise.all(
-          this._subSections.map((subSectionId, index) => {
-            var subSectionInput = sap.ui.getCore().byId(subSectionId);
+        // Generate a unique ID for the new Input field
+        var inputId = "Section_" + (stepNumber < 10 ? "0" : "") + stepNumber;
 
-            if (subSectionInput) {
-              var mainSectionId = mainSectionIds[index];
+        console.log(inputId);
 
-              var subSectionData = {
-                id: this._subSectionCounter++, // Adjust as needed
-                subSectiontitle: subSectionInput.getValue() || null,
-                parentSection_id: mainSectionId,
-                imagearea: this._inputString || null,
-                textarea: this._subsectiontext || null,
-              };
+        var container = new sap.m.VBox();
 
-              console.log("data", subSectionData);
+        // Create a Label for bold text
+        var boldLabel = new sap.m.Label({
+          text: "Section: " + inputId,
+          design: "Bold",
+        });
 
-              return new Promise(function (resolve, reject) {
-                oModel.create("/SubSection", subSectionData, {
-                  method: "POST",
-                  success: function (data, response) {
-                    // Check the response structure and log it
-                    console.log("Success Response:", response);
+        // Create a new Input field with the generated ID
+        var inputField = new sap.m.Input({
+          id: inputId,
+          placeholder: "Enter your title...",
+          width: "80%",
+        });
 
-                    // Extract the created Sub Section ID from the response
-                    var createdSubSectionId = response.headers["sap-message"]
-                      .split(":")[1]
-                      .trim();
-                    createdSubSectionIds.push(createdSubSectionId);
+        // Add the Label and Input field to the VBox
+        container.addItem(boldLabel);
+        container.addItem(inputField);
 
-                    MessageToast.show("Sub Section Added Successfully");
-                    resolve();
-                    console.log("Sub Section has been added");
-                  },
-                  error: function (error) {
-                    // Check the error response structure and log it
-                    console.error("Error Response:", error);
+        // Create a new ColumnListItem with the VBox
+        var row = new sap.m.ColumnListItem({
+          cells: [container],
+        });
 
-                    reject(error);
-                  },
-                });
-              });
-            }
-          })
-        )
-          .then(function () {
-            // Return the array of created Sub Section IDs
-            return createdSubSectionIds;
-          })
-          .catch(function (error) {
-            console.error("Error saving Sub Sections:", error);
-          });
+        // Get the table and add the new row
+        var tableId = "idFrame" + stepNumber;
+        var idFrame = wizard.byId(tableId);
+
+        if (idFrame) {
+          idFrame.addItem(row);
+
+          // Make the Input field visible
+          inputField.setVisible(true);
+
+          // Add the input ID to the array for later reference
+          this._mainSections.push(inputId);
+        }
       },
-
-      // saveSubSection: function (mainSectionIds) {
-      //   var oModel = this.getView().getModel();
-      //   var createdSubSectionIds = [];
-      //   var that = this;
-
-      //   return Promise.all(this._subSections.map((subSection) => {
-      //     var subSectionInput = subSection.richTextEditor;
-      //     var subSectionText = subSectionInput.getValue(); // Get the content of the textarea for this sub section
-
-      //     if (subSectionInput) {
-      //       var mainSectionId = mainSectionIds[Math.floor(that._subSections.indexOf(subSection) / 2)];
-
-      //       var subSectionData = {
-      //         id: "SUB_0" + that._subSectionCounter++,
-      //         subSectiontitle: subSectionText || null,
-      //         parentSection_id: mainSectionId,
-      //         imagearea: null,
-      //         textarea: btoa(subSectionText) || null, // Convert the textarea content to base64 and assign it
-      //       };
-
-      //       console.log("Sub Section Data:", subSectionData);
-
-      //       return new Promise(function (resolve, reject) {
-      //         oModel.create("/SubSection", subSectionData, {
-      //           method: "POST",
-      //           success: function (data, response) {
-      //             var createdSubSectionId = response.headers["sap-message"].split(":")[1].trim();
-      //             createdSubSectionIds.push(createdSubSectionId);
-      //             MessageToast.show("Sub Section Added Successfully");
-      //             resolve();
-      //           },
-      //           error: function (error) {
-      //             reject(error);
-      //           }
-      //         });
-      //       });
-      //     }
-      //   }))
-      //   .then(function () {
-      //     return createdSubSectionIds;
-      //   })
-      //   .catch(function (error) {
-      //     console.error("Error saving Sub Sections:", error);
-      //   });
-      // },
 
       onStepChanged: function (oEvent) {
         var wizard = oEvent.getSource();

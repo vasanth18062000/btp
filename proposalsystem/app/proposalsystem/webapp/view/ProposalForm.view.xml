@@ -50,6 +50,7 @@
                             nextStep="nextstep1"
                             complete="true"
                             class="proposalform"
+                            
                         >
                             <MessageStrip
                                 class="sapUiSmallMarginBottom"
@@ -87,18 +88,19 @@
                                             />
 
                                             <Button
-                                                text="Add Image"
-                                                press="onAddImage"
-                                                class="buttonfortool"
-                                                icon="sap-icon://picture"
-                                            />
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"
+                                                    />
 
-                                            <Button
-                                                text="Add Table"
-                                                press="onAddTable"
-                                                class="buttonfortool"
-                                                icon="sap-icon://table-view"
-                                            />
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>
@@ -133,7 +135,7 @@
                                             <ToolbarSpacer
                                                 id="_IDGenToolbarSpacer2"
                                             />
-                                            <Button
+                                             <Button
                                                 id="_IDGenButton2"
                                                 press="onAddRowTextArea"
                                                 text="Add Description"
@@ -150,18 +152,18 @@
                                             />
 
                                             <Button
-                                                text="Add Image"
-                                                press="onAddImage"
-                                                class="buttonfortool"
-                                                icon="sap-icon://picture"
-                                            />
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"/>
 
-                                            <Button
-                                                text="Add Table"
-                                                press="onAddTable"
-                                                class="buttonfortool"
-                                                icon="sap-icon://table-view"
-                                            />
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>
@@ -212,18 +214,18 @@
                                             />
 
                                             <Button
-                                                text="Add Image"
-                                                press="onAddImage"
-                                                class="buttonfortool"
-                                                icon="sap-icon://picture"
-                                            />
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"/>
 
-                                            <Button
-                                                text="Add Table"
-                                                press="onAddTable"
-                                                class="buttonfortool"
-                                                icon="sap-icon://table-view"
-                                            />
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>
@@ -257,7 +259,7 @@
                                             <ToolbarSpacer
                                                 id="_IDGenToolbarSpacer4"
                                             />
-                                            <Button
+                                             <Button
                                                 id="_IDGenButton4"
                                                 press="onAddRowTextArea"
                                                 text="Add Description"
@@ -274,18 +276,18 @@
                                             />
 
                                             <Button
-                                                text="Add Image"
-                                                press="onAddImage"
-                                                class="buttonfortool"
-                                                icon="sap-icon://picture"
-                                            />
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"/>
 
-                                            <Button
-                                                text="Add Table"
-                                                press="onAddTable"
-                                                class="buttonfortool"
-                                                icon="sap-icon://table-view"
-                                            />
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>
@@ -319,7 +321,7 @@
                                             <ToolbarSpacer
                                                 id="_IDGenToolbarSpacer5"
                                             />
-                                            <Button
+                                             <Button
                                                 id="_IDGenButton5"
                                                 press="onAddRowTextArea"
                                                 text="Add Description"
@@ -336,18 +338,18 @@
                                             />
 
                                             <Button
-                                                text="Add Image"
-                                                press="onAddImage"
-                                                class="buttonfortool"
-                                                icon="sap-icon://picture"
-                                            />
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"/>
 
-                                            <Button
-                                                text="Add Table"
-                                                press="onAddTable"
-                                                class="buttonfortool"
-                                                icon="sap-icon://table-view"
-                                            />
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>
@@ -398,18 +400,18 @@
                                             />
 
                                             <Button
-                                                text="Add Image"
-                                                press="onAddImage"
-                                                class="buttonfortool"
-                                                icon="sap-icon://picture"
-                                            />
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"/>
 
-                                            <Button
-                                                text="Add Table"
-                                                press="onAddTable"
-                                                class="buttonfortool"
-                                                icon="sap-icon://table-view"
-                                            />
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>
@@ -460,18 +462,18 @@
                                             />
 
                                             <Button
-                                                text="Add Image"
-                                                press="onAddImage"
-                                                class="buttonfortool"
-                                                icon="sap-icon://picture"
-                                            />
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"/>
 
-                                            <Button
-                                                text="Add Table"
-                                                press="onAddTable"
-                                                class="buttonfortool"
-                                                icon="sap-icon://table-view"
-                                            />
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>
@@ -505,7 +507,7 @@
                                             <ToolbarSpacer
                                                 id="_IDGenToolbarSpacer8"
                                             />
-                                            <Button
+                                             <Button
                                                 id="_IDGenButton8"
                                                 press="onAddRowTextArea"
                                                 text="Add Description"
@@ -522,18 +524,18 @@
                                             />
 
                                             <Button
-                                                text="Add Image"
-                                                press="onAddImage"
-                                                class="buttonfortool"
-                                                icon="sap-icon://picture"
-                                            />
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"/>
 
-                                            <Button
-                                                text="Add Table"
-                                                press="onAddTable"
-                                                class="buttonfortool"
-                                                icon="sap-icon://table-view"
-                                            />
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>
@@ -549,6 +551,8 @@
                                 </Table>
                             </VBox>
                         </WizardStep>
+
+                      
                     </steps>
                 </Wizard>
 
@@ -571,26 +575,25 @@
                                 type="Attention"
                             />
 
-                            <Button
-                                id="IDGenButton3"
-                                text="Preview"
-                                type="Emphasized"
-                                press="onPreviewPress"
-                                icon="sap-icon://table-view"
-                                visible="false"
-                            />
-
-                            <!-- <Button
+                              <Button
                                 text="Preview"
                                 press="onPreview"
                                 type="Accept"
-                            /> -->
+                                id="_IDGenButtn2"
+                                visible="false"
+                            />
 
                             <Button
                                 text="Cancel"
                                 press="onCancel"
                                 type="Negative"
                             />
+
+                             <!-- <Button
+                                text="CaonPreviewncel"
+                                press="onPreview"
+                                type="Negative"
+                            /> -->
                         </contentRight>
                     </Bar>
                 </footer>

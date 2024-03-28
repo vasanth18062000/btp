@@ -1,43 +1,76 @@
 <mvc:View
     controllerName="ns.proposalsystem.controller.PreviewForm"
-    xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:mvc="sap.ui.core.mvc"
-    displayBlock="true"
     xmlns="sap.m"
+    xmlns:core="sap.ui.core"
 >
-    <NavContainer>
-        <Page
-            id="_IDGenPage1"
-            title="Preview Page"
-            class="prorposal"
-            titleAlignment="Center"
-        >
-
-
-          <Bar>
+    <Page>
+        <Bar>
             <contentLeft>
-                <Title text="MainSection Details" level="H1" titleStyle="H3" />
+                <Title
+                    text="MainSection Details"
+                    level="H1"
+                    titleStyle="H3"
+                />
             </contentLeft>
         </Bar>
- 
-  
-       
-        <List >
+
+        <!-- <List >
             <ObjectListItem>
                 <attributes>
-                    <ObjectAttribute class="bigFont" title="Main Section Title" id="ID" text="{mainSectiontitle}" />
- 
-                    <ObjectAttribute class="bigFont" title="Text Data" text="{textarea}" />
-<!--  
-                    <ObjectAttribute class="bigFont" title="Vendor Website" text="{}" /> -->
- 
-                </attributes>
+                    <ObjectAttribute class="bigFont" title="Section -1 " id="ID" text="{mainSectiontitle}" /> -->
+
+        <!-- <ObjectAttribute class="bigFont" title="Text Data" text="{ven>/key3}" /> -->
+
+        <VBox>
+            <!-- Display static text -->
+            <Text text="{mainSectiontitle}" />
+
+            <!-- <Text text="{ven>/key2}" /> -->
+
+            <core:HTML
+                class="htmledit"
+                id="_IDGenText1"
+                content="{main>/key3}"
+            />
+
+            <VBox id="previewImageContainer" />
+        </VBox>
+        <!-- <ObjectAttribute class="bigFont" title="Vendor Website" text="{}" /> -->
+
+        <!-- </attributes>
             </ObjectListItem>
-        </List>
- 
- </Page>
-       
- 
-       
-    </NavContainer>
+        </List> -->
+        <Bar>
+            <contentLeft>
+                <Title
+                    text="subSection Details"
+                    level="H1"
+                    titleStyle="H3"
+                />
+            </contentLeft>
+        </Bar>
+
+        <!-- <List >
+            <ObjectListItem>
+                <attributes>
+                    <ObjectAttribute class="bigFont" title="Section -1 " id="ID" text="{mainSectiontitle}" /> -->
+
+        <!-- <ObjectAttribute class="bigFont" title="Text Data" text="{ven>/key3}" /> -->
+
+        <VBox>
+            <!-- Display static text -->
+            <Text text="{path:'ven3>/subSectiontitle'}" />
+
+            <!-- <Text text="{ven>/key2}" /> -->
+
+            <core:HTML
+                class="htmledit"
+                id="_IDGenTxt1"
+                content="{sub>/decodedtextkey3}"
+            />
+
+            <VBox id="previwImageContainer" />
+        </VBox>
+    </Page>
 </mvc:View>
