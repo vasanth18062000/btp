@@ -6,71 +6,76 @@
 >
     <Page>
         <Bar>
-            <contentLeft>
+            <contentMiddle>
                 <Title
                     text="MainSection Details"
                     level="H1"
                     titleStyle="H3"
                 />
-            </contentLeft>
+            </contentMiddle>
         </Bar>
 
-        <!-- <List >
-            <ObjectListItem>
-                <attributes>
-                    <ObjectAttribute class="bigFont" title="Section -1 " id="ID" text="{mainSectiontitle}" /> -->
-
-        <!-- <ObjectAttribute class="bigFont" title="Text Data" text="{ven>/key3}" /> -->
-
         <VBox>
-            <!-- Display static text -->
-            <Text text="{mainSectiontitle}" />
-
-            <!-- <Text text="{ven>/key2}" /> -->
-
-            <core:HTML
-                class="htmledit"
-                id="_IDGenText1"
-                content="{main>/key3}"
-            />
-
-            <VBox id="previewImageContainer" />
+            <Panel headerText="Main Section Title">
+                <ObjectAttribute
+                    class="bigFont"
+                    text="{mainSectiontitle}"
+                />
+            </Panel>
+            <Panel headerText="Text Area">
+                <core:HTML
+                    class="htmledit"
+                    id="_IDGenText"
+                    content="{main>/key3}"
+                />
+            </Panel>
         </VBox>
-        <!-- <ObjectAttribute class="bigFont" title="Vendor Website" text="{}" /> -->
 
-        <!-- </attributes>
-            </ObjectListItem>
-        </List> -->
         <Bar>
             <contentLeft>
                 <Title
-                    text="subSection Details"
-                    level="H1"
-                    titleStyle="H3"
+                    text="Image Preview :"
+                    level="H3"
                 />
             </contentLeft>
         </Bar>
 
-        <!-- <List >
-            <ObjectListItem>
-                <attributes>
-                    <ObjectAttribute class="bigFont" title="Section -1 " id="ID" text="{mainSectiontitle}" /> -->
+        <FlexBox
+            class="image"
+            justifyContent="Center"
+            alignItems="Center"
+        >
+            <VBox id="previewImageContainer" />
+        </FlexBox>
 
-        <!-- <ObjectAttribute class="bigFont" title="Text Data" text="{ven>/key3}" /> -->
+        <Bar>
+            <contentMiddle>
+                <Title
+                    text="SubSection Details"
+                    level="H1"
+                    titleStyle="H3"
+                />
+            </contentMiddle>
+        </Bar>
 
         <VBox>
-            <!-- Display static text -->
-            <Text text="{path:'ven3>/subSectiontitle'}" />
-
-            <!-- <Text text="{ven>/key2}" /> -->
-
-            <core:HTML
-                class="htmledit"
-                id="_IDGenTxt1"
-                content="{sub>/decodedtextkey3}"
-            />
-
-            <VBox id="previwImageContainer" />
+            <Panel headerText="Sub Section Title">
+            <List >
+            <ObjectListItem >
+                <ObjectAttribute
+                    class="bigFont"
+                    text="{ven3>/subSectiontitle}"
+                /> 
+                </ObjectListItem>
+                </List>
+            </Panel>
+            <Panel headerText="Sub Text Area">
+                <core:HTML
+                    class="htmledit"
+                    id=""
+                    content="{}"
+                />
+            </Panel>
         </VBox>
     </Page>
 </mvc:View>

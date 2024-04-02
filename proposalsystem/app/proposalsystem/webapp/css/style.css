@@ -20,4 +20,9 @@
   .buttonfortool{border-style: inherit; border-color: black;}
   
   .table{border-style: groove;} 
+
+  .image{
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
   

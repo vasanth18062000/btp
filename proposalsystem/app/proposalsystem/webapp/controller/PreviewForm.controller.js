@@ -10,7 +10,7 @@ sap.ui.define(
     var imgdata = parsedData.key2;
     return Controller.extend("ns.proposalsystem.controller.PreviewForm", {
       onInit: function () {
-        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);         
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
         oRouter
           .getRoute("PreviewForm")
           .attachMatched(this.onObjectMatched, this);
@@ -58,44 +58,46 @@ sap.ui.define(
 
         // Create a new Image control
         var oImage = new Image({
-          width: "500px", // Set width as needed
-          height: "250px", // Set height as needed
-          src: "data:image/jpeg;base64," + imgdata, // Set the src property with the base64 string
+          width: "300px",
+          //height: "250px",
+          src: "data:image/jpeg;base64," + imgdata,
         });
-
-        // Assuming you have a container in your XML view with ID "previewImageContainer"
         var oView = this.getView();
-        oView.byId("previewImageContainer").addItem(oImage); // Add the Image control to the container
+        oView.byId("previewImageContainer").addItem(oImage);
 
-        oModel.read("/MainSection("+selectedItem+")",{
+        oModel.read("/MainSection(" + selectedItem + ")", {
           urlParameters: {
-            "$expand": "subsection"
-        },
-        
-            method: "GET",
-            
-            success:function(response){
-              //debugger;
-              console.log("sub title",response.subsection.results[0].subSectiontitle)
-              oJSON3.setData(response.subsection.results[0]);
-              this.getView().setModel(oJSON3,"ven3")
-      }
-      });
-    }
-//       asso:function(){
-//         var oModel = this.getOwnerComponent().getModel();
-//         var oJSON = new sap.ui.model.json.JSONModel();
-//  debugger
-//         oModel.read("/MainSection("+selectedItem+")",{
-//           urlParameters: {
-//             "$expand": "subsection"
-//         },
-//             method: "GET",
-//             success:function(response){
-//               console.log(response.PS_CUSTOMER_ORG_CONTACT.results[0].addressLine2)
-//               oJSON.setData(response.PS_CUSTOMER_ORG_CONTACT.results[0]);
-//               this.getView().setModel(oJSON,"ven")
-//       }
+            $expand: "subsection",
+          },
+
+          method: "GET",
+
+          success: function (response) {
+            //debugger;
+            console.log(
+              "sub title",
+              response.subsection.results[0].subSectiontitle
+            );
+            oJSON3.setData(response.subsection.results[0]);
+            this.getView().setModel(oJSON3, "ven3");
+            // console.log("sub data",oJSON3);
+          },
+        });
+      },
+      //       asso:function(){
+      //         var oModel = this.getOwnerComponent().getModel();
+      //         var oJSON = new sap.ui.model.json.JSONModel();
+      //  debugger
+      //         oModel.read("/MainSection("+selectedItem+")",{
+      //           urlParameters: {
+      //             "$expand": "subsection"
+      //         },
+      //             method: "GET",
+      //             success:function(response){
+      //               console.log(response.PS_CUSTOMER_ORG_CONTACT.results[0].addressLine2)
+      //               oJSON.setData(response.PS_CUSTOMER_ORG_CONTACT.results[0]);
+      //               this.getView().setModel(oJSON,"ven")
+      //       }
 
       //   })
       // },

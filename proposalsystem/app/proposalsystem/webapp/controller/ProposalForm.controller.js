@@ -527,11 +527,11 @@ sap.ui.define(
                         decodedtextkey3: decodedtext,
                         subSectiontitle: subSectionData.subSectiontitle,
                       };
-console.log("sub data:",sourceSubJson);
-sessionStorage.setItem(
-  "subSectionData",
-  JSON.stringify(sourceSubJson)
-);
+                      console.log("sub data:", sourceSubJson);
+                      sessionStorage.setItem(
+                        "subSectionData",
+                        JSON.stringify(sourceSubJson)
+                      );
 
                       // console.log("data",datas);
                       promises.push(promise);
