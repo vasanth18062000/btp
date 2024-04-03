@@ -430,9 +430,9 @@ sap.ui.define(
 
                       var imgData = sourceJson.key2;
 
-                      console.log("decoded data", sourceJson);
+                     console.log("decoded data", sourceJson);
 
-                      console.log("image data gopi", imgData);
+                      console.log("image data", imgData);
 
                       sessionStorage.setItem(
                         "mainSectionData",
@@ -520,13 +520,15 @@ sap.ui.define(
                       //  subDatas=subSectionData;
                       console.log("subsection data", subSectionData);
                       var decodedtext = atob(subSectionData.textarea);
+                      var subTitle  = subSectionData.subSectiontitle
                       var sourceSubJson = {
                         id: subSectionData.id,
                         // key2: subSectionData.imagearea,
                         //key2: decodedimage,
                         decodedtextkey3: decodedtext,
-                        subSectiontitle: subSectionData.subSectiontitle,
+                        subSectiontitle: subTitle,
                       };
+
                       console.log("sub data:", sourceSubJson);
                       sessionStorage.setItem(
                         "subSectionData",

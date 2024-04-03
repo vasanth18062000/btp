@@ -50,7 +50,7 @@ sap.ui.define(
         console.log("parse data", parsedData);
         console.log("parse data", parsedSubData);
 
-        console.log("hii gopi you'll get the imgdata", imgdata);
+        console.log("get the imgdata", imgdata);
         oJSON.setData(parsedData);
         this.getView().setModel(oJSON, "main");
         oJSON2.setData(parsedSubData);
