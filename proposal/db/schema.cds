@@ -114,15 +114,15 @@ entity PS_MAIN_SECTION{
     key id                                 :   Integer;
     title                                  :   String;
     description                            :   String; //text area
-    section_image                          :   Binary;
-    table_data                              :Binary;
-    tableArea                               :Binary;
+    section_image                          :   LargeBinary;
+    table_data                              :LargeBinary;
+    tableArea                               :LargeBinary;
     createdBy                              :   String(50);
     createdAt                              :   Timestamp;
     modifiedBy                             :   String(50);
     modifiedAt                             :   Timestamp;
     PS_DETAILS                             :   Association to PS_DETAILS;
-    section_table                          :   Binary ;
+    section_table                          :   LargeBinary ;
     PS_SUB_SECTION                             :   Association to many PS_SUB_SECTION on PS_SUB_SECTION.PS_MAIN_SECTION=$self;
 
 }
@@ -131,14 +131,14 @@ entity PS_SUB_SECTION{
    key id                                  :   Integer;
     sub_title                              :   String;
     sub_description                        :   String; //text area
-    sub_section_image                      :   Binary;
-    sub_table_data                          : Binary;
+    sub_section_image                      :   LargeBinary;
+    sub_table_data                          : LargeBinary;
     createdBy                              :   String(50);
     createdAt                              :   Timestamp;
     modifiedBy                             :   String(50);
     modifiedAt                             :   Timestamp;
     // PS_DETAILS                             :   Association to PS_DETAILS;
-    sub_section_table                      :   Binary ;
+    sub_section_table                      :   LargeBinary ;
     PS_MAIN_SECTION                         :   Association to one PS_MAIN_SECTION;
 
 }

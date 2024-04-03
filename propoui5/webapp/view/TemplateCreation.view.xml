@@ -6,7 +6,7 @@
     xmlns="sap.m"
     xmlns:wizard="sap.m.Wizard"
 >
-    <NavContainer id="_IDGenNavContainer1">
+    <NavContainer>
         <pages>
             <Page
                 id="_IDGenPage1"
@@ -14,23 +14,23 @@
                 class="prorposal"
             >
                 <customHeader>
-                    <Bar id="_IDGenBar1">
+                    <Bar>
                         <contentMiddle>
-                            <Title id="_IDGenTitle1" text="Proposal Client Form" />
+                            <Title text="Proposal Client Form" />
                         </contentMiddle>
                     </Bar>
                 </customHeader>
 
-                <Bar id="_IDGenBar2">
+                <Bar>
                     <contentLeft>
-                        <Image id="_IDGenImage1"
+                        <Image
                             src="{i18n>headerimage}"
                             width="50%"
                         />
                     </contentLeft>
 
                     <contentRight>
-                        <Image id="_IDGenImage2"
+                        <Image
                             src="https://tier4marketing.com/wp-content/uploads/2015/10/Client-Logo-Placeholder.png"
                             width="40%"
                         />
@@ -40,7 +40,7 @@
                 <Wizard
                     id="wizard"
                     stepActivate="onStepChanged"
-                    showNextButton="true"
+                    showNextButton="false"
                     class="proposalform"
                 >
                     <steps>
@@ -50,13 +50,16 @@
                             nextStep="nextstep1"
                             complete="true"
                             class="proposalform"
+                            
                         >
-                            <MessageStrip id="_IDGenMessageStrip1"
+                            <MessageStrip
                                 class="sapUiSmallMarginBottom"
                                 text="Enter the required details"
                                 showIcon="true"
+                                type="Warning"
+                                showCloseButton="true"
                             />
-                            <VBox id="_IDGenVBox1">
+                            <VBox>
                                 <Table
                                     id="idFrame0"
                                     growing="true"
@@ -77,19 +80,27 @@
                                                 iconDensityAware="true"
                                             />
 
-                                            <Button id="_IDGenButton9"
+                                            <Button
                                                 text="Add Sub-Section"
                                                 class="buttonfortool"
                                                 press="onSubSection"
                                                 icon="sap-icon://sys-add"
                                             />
 
-                                            <Button id="_IDGenButton10"
+                                            <Button
                                                     
                                                     text="Add Image"
                                                     press="onAddImage"
                                                     class="buttonfortool"
-                                                    icon="sap-icon://picture"/>
+                                                    icon="sap-icon://picture"
+                                                    />
+
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>
@@ -112,7 +123,7 @@
                             id="wizard2"
                             class="proposalform"
                         >
-                            <VBox id="_IDGenVBox2">
+                            <VBox>
                                 <Table
                                     id="idFrame1"
                                     growing="true"
@@ -124,20 +135,35 @@
                                             <ToolbarSpacer
                                                 id="_IDGenToolbarSpacer2"
                                             />
-                                            <Button
+                                             <Button
                                                 id="_IDGenButton2"
                                                 press="onAddRowTextArea"
                                                 text="Add Description"
                                                 class="buttonfortool"
                                                 icon="sap-icon://add-coursebook"
+                                                iconDensityAware="true"
                                             />
 
-                                            <Button id="_IDGenButton11"
+                                            <Button
                                                 text="Add Sub-Section"
                                                 class="buttonfortool"
                                                 press="onSubSection"
-                                                 icon="sap-icon://sys-add"
+                                                icon="sap-icon://sys-add"
                                             />
+
+                                            <Button
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"/>
+
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>
@@ -159,7 +185,7 @@
                             id="wizard3"
                             class="proposalform"
                         >
-                            <VBox id="_IDGenVBox3">
+                            <VBox>
                                 <Table
                                     id="idFrame2"
                                     growing="true"
@@ -177,14 +203,29 @@
                                                 text="Add Description"
                                                 class="buttonfortool"
                                                 icon="sap-icon://add-coursebook"
+                                                iconDensityAware="true"
                                             />
 
-                                            <Button id="_IDGenButton12"
+                                            <Button
                                                 text="Add Sub-Section"
                                                 class="buttonfortool"
                                                 press="onSubSection"
-                                                 icon="sap-icon://sys-add"
+                                                icon="sap-icon://sys-add"
                                             />
+
+                                            <Button
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"/>
+
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>
@@ -206,7 +247,7 @@
                             id="wizard4"
                             class="proposalform"
                         >
-                            <VBox id="_IDGenVBox4">
+                            <VBox>
                                 <Table
                                     id="idFrame3"
                                     growing="true"
@@ -218,20 +259,35 @@
                                             <ToolbarSpacer
                                                 id="_IDGenToolbarSpacer4"
                                             />
-                                            <Button
+                                             <Button
                                                 id="_IDGenButton4"
                                                 press="onAddRowTextArea"
                                                 text="Add Description"
                                                 class="buttonfortool"
                                                 icon="sap-icon://add-coursebook"
+                                                iconDensityAware="true"
                                             />
 
-                                            <Button id="_IDGenButton13"
+                                            <Button
                                                 text="Add Sub-Section"
                                                 class="buttonfortool"
                                                 press="onSubSection"
-                                                 icon="sap-icon://sys-add"
+                                                icon="sap-icon://sys-add"
                                             />
+
+                                            <Button
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"/>
+
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>
@@ -253,7 +309,7 @@
                             id="wizard5"
                             class="proposalform"
                         >
-                            <VBox id="_IDGenVBox5">
+                            <VBox>
                                 <Table
                                     id="idFrame4"
                                     growing="true"
@@ -265,21 +321,35 @@
                                             <ToolbarSpacer
                                                 id="_IDGenToolbarSpacer5"
                                             />
-                                            <Button
+                                             <Button
                                                 id="_IDGenButton5"
                                                 press="onAddRowTextArea"
                                                 text="Add Description"
                                                 class="buttonfortool"
                                                 icon="sap-icon://add-coursebook"
+                                                iconDensityAware="true"
                                             />
 
-                                            <Button id="_IDGenButton14"
+                                            <Button
                                                 text="Add Sub-Section"
                                                 class="buttonfortool"
                                                 press="onSubSection"
-                                                 icon="sap-icon://sys-add"
-
+                                                icon="sap-icon://sys-add"
                                             />
+
+                                            <Button
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"/>
+
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>
@@ -301,7 +371,7 @@
                             id="wizard6"
                             class="proposalform"
                         >
-                            <VBox id="_IDGenVBox6">
+                            <VBox>
                                 <Table
                                     id="idFrame5"
                                     growing="true"
@@ -319,14 +389,29 @@
                                                 text="Add Description"
                                                 class="buttonfortool"
                                                 icon="sap-icon://add-coursebook"
+                                                iconDensityAware="true"
                                             />
 
-                                            <Button id="_IDGenButton15"
+                                            <Button
                                                 text="Add Sub-Section"
                                                 class="buttonfortool"
                                                 press="onSubSection"
-                                                 icon="sap-icon://sys-add"
+                                                icon="sap-icon://sys-add"
                                             />
+
+                                            <Button
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"/>
+
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>
@@ -348,7 +433,7 @@
                             id="wizard7"
                             class="proposalform"
                         >
-                            <VBox id="_IDGenVBox7">
+                            <VBox>
                                 <Table
                                     id="idFrame6"
                                     growing="true"
@@ -366,14 +451,29 @@
                                                 text="Add Description"
                                                 class="buttonfortool"
                                                 icon="sap-icon://add-coursebook"
+                                                iconDensityAware="true"
                                             />
 
-                                            <Button id="_IDGenButton16"
+                                            <Button
                                                 text="Add Sub-Section"
                                                 class="buttonfortool"
                                                 press="onSubSection"
-                                                 icon="sap-icon://sys-add"
+                                                icon="sap-icon://sys-add"
                                             />
+
+                                            <Button
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"/>
+
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>
@@ -395,7 +495,7 @@
                             id="wizard8"
                             class="proposalform"
                         >
-                            <VBox id="_IDGenVBox8">
+                            <VBox>
                                 <Table
                                     id="idFrame7"
                                     growing="true"
@@ -407,20 +507,35 @@
                                             <ToolbarSpacer
                                                 id="_IDGenToolbarSpacer8"
                                             />
-                                            <Button
+                                             <Button
                                                 id="_IDGenButton8"
                                                 press="onAddRowTextArea"
                                                 text="Add Description"
                                                 class="buttonfortool"
                                                 icon="sap-icon://add-coursebook"
+                                                iconDensityAware="true"
                                             />
 
-                                            <Button id="_IDGenButton17"
+                                            <Button
                                                 text="Add Sub-Section"
                                                 class="buttonfortool"
                                                 press="onSubSection"
-                                                 icon="sap-icon://sys-add"
+                                                icon="sap-icon://sys-add"
                                             />
+
+                                            <Button
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"/>
+
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
                                         </Toolbar>
                                     </headerToolbar>
                                     <columns>
@@ -437,33 +552,101 @@
                             </VBox>
                         </WizardStep>
 
+                         <WizardStep
+                            title="Step 9"
+                            id="wizard9"
+                            class="proposalform"
+                        >
+                            <VBox>
+                                <Table
+                                    id="idFrame8"
+                                    growing="true"
+                                    growingDirection="Downwards"
+                                    class="table"
+                                >
+                                    <headerToolbar>
+                                        <Toolbar id="_IDGenToolbar9">
+                                            <ToolbarSpacer
+                                                id="_IDGenToolbarSpacer9"
+                                            />
+                                             <Button
+                                                id="_IDGenButton9"
+                                                press="onAddRowTextArea"
+                                                text="Add Description"
+                                                class="buttonfortool"
+                                                icon="sap-icon://add-coursebook"
+                                                iconDensityAware="true"
+                                            />
+
+                                            <Button
+                                                text="Add Sub-Section"
+                                                class="buttonfortool"
+                                                press="onSubSection"
+                                                icon="sap-icon://sys-add"
+                                            />
+
+                                            <Button
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"/>
+
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
+                                        </Toolbar>
+                                    </headerToolbar>
+                                    <columns>
+                                        <Column id="coloumn9" />
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem
+                                            id="_IDGenColumnListItem9"
+                                        >
+                                            <cells />
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </VBox>
+                        </WizardStep>
+
                       
                     </steps>
                 </Wizard>
 
                 <footer>
-                    <Bar id="_IDGenBar3">
+                    <Bar>
                         <contentRight>
-                            <Button id="_IDGenButton18"
-                                text="Next"
+                            <Button
+                                text="Next Step"
                                 press="onContinue"
                                 type="Emphasized"
                             />
-                            <Button id="_IDGenButton19"
+                            <Button
                                 text="Save"
                                 press="onSave"
-                                type="Emphasized"
+                                type="Success"
                             />
-                            <Button id="_IDGenButton20"
+                            <Button
                                 text="Complete"
                                 press="onComplete"
-                                type="Emphasized"
+                                type="Attention"
                             />
 
-                            <Button id="_IDGenButton21"
+                              <Button
+                                text="Preview"
+                                press="onPreview"
+                                type="Accept"
+                            />
+
+                            <Button
                                 text="Cancel"
                                 press="onCancel"
-                                type="Emphasized"
+                                type="Negative"
                             />
                         </contentRight>
                     </Bar>

@@ -9,7 +9,9 @@
     "sapui5"
   ],
   "main": "webapp/index.html",
-  "dependencies": {},
+  "dependencies": {
+    "@sap/cds-hana": "^2.0.0"
+  },
   "devDependencies": {
     "@sap-ux/ui5-middleware-fe-mockserver": "2",
     "@sap/cds-dk": "^7",
@@ -41,5 +43,8 @@
       "ui5-task-zipper",
       "mbt"
     ]
+  },
+  "cds": {
+    "requires": {}
   }
 }

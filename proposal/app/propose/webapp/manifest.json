@@ -162,13 +162,21 @@
             "supplierUpdateForm"
           ]
         },
+
         {
-          "name": "templateCreation",
-          "pattern": "templateCreation",
+          "name": "PreviewForm",
+          "pattern": "PreviewForm/{mergeDatas}",
+          "target": ["PreviewForm"]
+        },
+
+        {
+          "name": "ProposalCreation",
+          "pattern": "ProposalCreation",
           "target": [
-            "templateCreation"
+            "ProposalCreation"
           ]
         },
+
         {
           "name": "supplierPreviewEdit",
           "pattern": "supplierPreviewEdit",
@@ -217,13 +225,17 @@
           "viewId": "SupplierUpdateForm",
           "viewName": "SupplierUpdateForm"
         },
-        "templateCreation": {
-          "viewId": "TemplateCreation",
-          "viewName": "TemplateCreation"
+        "ProposalCreation": {
+          "viewId": "ProposalForm",
+          "viewName": "ProposalForm"
         },
         "supplierPreviewEdit": {
           "viewId": "SupplierPreviewEdit",
           "viewName": "SupplierPreviewEdit"
+        },
+        "PreviewForm":{
+          "viewName": "PreviewForm",
+          "viewLevel": 2
         }
       }
     },

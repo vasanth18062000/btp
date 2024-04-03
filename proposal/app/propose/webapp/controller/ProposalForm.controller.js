@@ -6,20 +6,18 @@ sap.ui.define(
 function (Controller, Input, MessageToast, RichTextEditor, MessageBox, Dialog, Button, JSONModel, library, uid) {
     "use strict";
 
+    var mergeDatas;
+
 function generateMainSectionId() {
       return Math.floor(Math.random() * 1000000) + 1;
-      }
-
-  
+}
 
               var createdMainSectionIds = [];
-              var createdSubSectionIds = [];
+              
               var mainsectionsaveddata;
               var imageuploadarray = [];
-              var _mainSectionsImage =[];
-              var _subSectionsImage =[];
 
-    return Controller.extend("ns.propoui5.controller.TemplateCreation", {
+    return Controller.extend("ns.propose.controller.ProposalForm", {
 
               _sectionTitle: 1,
               _mainSectionId: 1000,
@@ -358,13 +356,13 @@ saveMainAndSubSections: function () {
           var mainSectionData = {
             // id: this._mainSectionId++,
             id: generateMainSectionId(),
-            mainSectiontitle: mainSectionInput.getValue(),
-            imagearea: ImageTextArea[i] || null,
-            textarea: testdata[i] || null,
+            title: mainSectionInput.getValue(),
+            section_image: ImageTextArea[i] || null,
+            description: testdata[i] || null,
           };
 
           var promise = new Promise(function (resolve, reject) {
-            oModel.create("/MainSection", mainSectionData, {
+            oModel.create("/PS_MAIN_SECTION", mainSectionData, {
               method: "POST",
               success: function (data, response) {
                 MessageToast.show("Main Section Added Successfully");
@@ -372,31 +370,32 @@ saveMainAndSubSections: function () {
 
                 console.log(createdMainSectionIds);
                 // Store mainSectionData in session storage
-                var decodedtext = atob(mainSectionData.textarea);
+                var decodedtext = atob(mainSectionData.description);
                 // var decodedimage = atob(mainSectionData.imagearea);
 
                 var sourceJson = {
                   key1: mainSectionData.id,
-                  key2: mainSectionData.imagearea,
+                  key2: mainSectionData.section_image,
                   //key2: decodedimage,
                   key3: decodedtext,
-                  key4: mainSectionData.mainSectiontitle,
+                  key4: mainSectionData.title,
                 };
 
                 var imgData = sourceJson.key2;
 
-                console.log("decoded data", sourceJson);
+               console.log("decoded data", sourceJson);
 
-                console.log("image data gopi", imgData);
+                console.log("image data", imgData);
 
                 sessionStorage.setItem(
                   "mainSectionData",
                   JSON.stringify(sourceJson)
                 );
+
                 resolve();
-                // mergeDatas = mainSectionData;
-                // // mainDatas = mainSectionData;
-                // console.log("main datas", mergeDatas);
+                mergeDatas = mainSectionData;
+                // mainDatas = mainSectionData;
+                console.log("main datas", mergeDatas);
               },
               error: function (error) {
                 reject(error);
@@ -405,6 +404,8 @@ saveMainAndSubSections: function () {
           });
           //preview button enable link
           // this.getView().byId("_IDGenButtn2").setVisible(true);
+
+          this.getView().byId("_IDGenButtn2").setVisible(true);
 
           console.log("main section data", mainSectionData);
 
@@ -466,20 +467,20 @@ saveMainAndSubSections: function () {
                 var subSectionData = {
                   // id: that._subSectionCounter++,
                   id: generateMainSectionId(),
-                  subSectiontitle: subSectionInput.getValue(),
-                  parentSection_id: mainSectionInput[y], // Corrected usage
-                  textarea: testdatasub[y] || null,
-                  imagearea: ImageTextAreaSub[j],
+                  sub_title: subSectionInput.getValue(),
+                  PS_MAIN_SECTION_id: mainSectionInput[y], // Corrected usage
+                  sub_description: testdatasub[y] || null,
+                  sub_section_image: ImageTextAreaSub[j],
                 };
 
                 // debugger;
 
                 var promise = new Promise(function (resolve, reject) {
-                  oModel.create("/SubSection", subSectionData, {
+                  oModel.create("/PS_SUB_SECTION", subSectionData, {
                     method: "POST",
                     success: function (data, response) {
                       MessageToast.show(
-                        "MAin and Subsection Added Successfully in DB "
+                        "Main and Subsection Added Successfully in DB "
                       );
                       createdSubSectionIds.push(subSectionData.id);
                       resolve();
@@ -490,11 +491,34 @@ saveMainAndSubSections: function () {
                   });
                 });
                 //  subDatas=subSectionData;
-                console.log("subsection data", subSectionData);
-                // console.log("data",datas);
-                promises.push(promise);
-                promises.push(promise);
-                break;
+               console.log("subsection data", subSectionData);
+                      var decodedtext = atob(subSectionData.sub_description);
+                      var subTitle  = subSectionData.sub_title;
+
+
+                      var sourceSubJson = {
+                        id: subSectionData.id,
+                        key2: subSectionData.sub_section_image,
+                        //key2: decodedimage,
+                        decodedtextkey3: decodedtext,
+                        subSectiontitle: subTitle,
+                      };
+                      var imagedataforsub = sourceSubJson.key2
+
+                      console.log("sub image data",imagedataforsub);
+
+                      
+
+                      console.log("sub data:", sourceSubJson);
+                      sessionStorage.setItem(
+                        "subSectionData",
+                        JSON.stringify(sourceSubJson)
+                      );
+
+                      // console.log("data",datas);
+                      promises.push(promise);
+                      promises.push(promise);
+                      break;
               }
 
               j++; // Increment j for next iteration
@@ -790,11 +814,14 @@ onAddTable: function(bIsTinyMCE5) {
       },
       
 onPreview: function () {
-         
-          console.log("Created Mian Section Id : " + createdMainSectionIds);
-          this.getOwnerComponent().getRouter().navTo("PreviewForm",{mainpreviewid:mainsectionsaveddata.value1});
-          console.log("Navigating to Next Page...");
+        //  var mergeDatas = [id, textarea];
+        console.log("Preview Button");
+        this.getOwnerComponent().getRouter().navTo("PreviewForm", {
+          mergeDatas: mergeDatas.id,
+        });
       },
+
+
       });
     }
   );

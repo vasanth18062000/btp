@@ -41,7 +41,7 @@ sap.ui.define([
             // Navigate to the proposal form
             // this.getOwnerComponent().getRouter().navTo("vendorclient");
             var oRouter=sap.ui.core.UIComponent.getRouterFor(this);
-            oRouter.navTo("templateCreation");
+            oRouter.navTo("ProposalCreation");
         }
     });
 });
