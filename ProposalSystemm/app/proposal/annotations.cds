@@ -1,1 +1,0 @@
-using proposal.service.MyService as service from '../../srv/proposalservice';
