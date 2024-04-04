@@ -1,2 +1,0 @@
-id,orderCode,customer_id,totalPrice,deliveryAddress_id,billingAddress_id,deliveryContact_id,paymentMode,shippingMethod_id,message
-3001,cs11,101,150,301,301,501,PO,901,hii everyone
