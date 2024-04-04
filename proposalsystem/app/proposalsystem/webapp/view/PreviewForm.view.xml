@@ -75,5 +75,24 @@
                 />
             </Panel>
         </VBox>
+
+        <Bar id="_IDGenBar1">
+            <contentRight>
+                <Button
+                    id="_IDGenButton1"
+                    text="Download Page"
+                    icon="sap-icon://download"
+                    press="onDownloadPress"
+                    type="Ghost"
+                />
+                <!-- <Button
+                    id="_IDGenButton2"
+                    text="Print"
+                    icon="sap-icon://print"
+                    press="onPrintPress"
+                    type="Ghost"
+                /> -->
+            </contentRight>
+        </Bar>
     </Page>
 </mvc:View>

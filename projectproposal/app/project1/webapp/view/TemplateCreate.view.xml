@@ -52,10 +52,13 @@
                     text="Preview"
                     press="onPreviewPress"
                     type="Emphasized"
+                    visible="false"
                     icon="sap-icon://table-view"
-                    enabled="{viewModel>/isPreviewButtonEnabled}"
                 />
             </contentLeft>
         </Bar>
     </Page>
 </mvc:View>
+
+
+                    <!-- enabled="{viewModel>/isPreviewButtonEnabled}" -->

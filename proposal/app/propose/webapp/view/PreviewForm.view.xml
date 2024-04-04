@@ -1,0 +1,156 @@
+<mvc:View
+    controllerName="ns.propose.controller.PreviewForm"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Page id="_IDGenPage1">
+        <Bar id="_IDGenBar1">
+            <contentMiddle>
+                <Title id="_IDGenTitle1"
+                    text="MainSection Details"
+                    level="H1"
+                    titleStyle="H3"
+                />
+            </contentMiddle>
+        </Bar>
+
+        <VBox id="_IDGenVBox1">
+            <Panel id="_IDGenPanel1" headerText="Main Section Title">
+                <ObjectAttribute id="_IDGenObjectAttribute1"
+                    class="bigFont"
+                    text="{path:'ven>/title'}"
+                />
+            </Panel>
+            <Panel id="_IDGenPanel2" headerText="Text Area">
+            
+                <core:HTML id="_IDGenHTML1"
+                    class="htmledit"
+                    content="{path:'ven>/Text'}"
+                
+                />
+            </Panel>
+        </VBox>
+
+        <Bar id="_IDGenBar2">
+            <contentLeft>
+                <Title id="_IDGenTitle2"
+                    text="Image Preview :"
+                    level="H3"
+                />
+            </contentLeft>
+        </Bar>
+
+        <FlexBox id="_IDGenFlexBox1"
+            class="image"
+            justifyContent="Center"
+            alignItems="Center"
+        >
+            <VBox id="_IDGenVBox2"  class="image">
+            
+            <Image id="imagePreview" width="300px" />
+        </VBox>
+        </FlexBox>
+<!-- 
+        <Bar>
+            <contentMiddle>
+                <Title
+                    text="SubSection Details"
+                    level="H1"
+                    titleStyle="H3"
+                />
+            </contentMiddle>
+        </Bar>
+
+        <VBox>
+            <Panel headerText="Sub Section Title">
+            <List >
+            <ObjectListItem >
+                <ObjectAttribute
+                    class="bigFont"
+                    text="{path:'ven1>/sub_title'}"
+                /> 
+                </ObjectListItem>
+                </List>
+            </Panel>
+            <Panel headerText="Sub Text Area">
+                <core:HTML
+                    class="htmledit"
+                    content="{path:'ven1>/sub_description'}"
+                />
+            </Panel>
+
+            <Panel headerText="Image">
+                <core:HTML
+                    class="htmledit"
+                    content="{}"
+                />
+            </Panel>
+
+        </VBox>
+
+         <Bar>
+            <contentLeft>
+                <Title
+                    text="Image Preview :"
+                    level="H3"
+                />
+            </contentLeft>
+        </Bar>
+
+        <FlexBox
+            class="image"
+            justifyContent="Center"
+            alignItems="Center"
+        >
+            <VBox id="" />
+        </FlexBox> -->
+
+         <Bar id="_IDGenBar">
+            <contentMiddle>
+                <Title id="_IDGenTitle"
+                    text="SubSection Details"
+                    level="H1"
+                    titleStyle="H3"
+                />
+            </contentMiddle>
+        </Bar>
+
+        <VBox id="_IDGenVBox">
+            <Panel id="_IDGenPnel" headerText="Main Section Title">
+                <ObjectAttribute id="_IDGenObjectAttribute"
+                    class="bigFont"
+                    text="{path:'ven>/sub_title'}"
+                />
+            </Panel>
+            <Panel id="_IDGenPanel" headerText="Text Area">
+            
+                <core:HTML id="_IDGenHTML"
+                    class="htmledit"
+                    content="{path:'ven>/sub_description'}"
+                
+                />
+            </Panel>
+        </VBox>
+
+        <Bar id="IDGenBar">
+            <contentLeft>
+                <Title id="IDGenTitle"
+                    text="Image Preview :"
+                    level="H3"
+                />
+            </contentLeft>
+        </Bar>
+
+        <FlexBox id="_IDGenFlexBox"
+            class="image"
+            justifyContent="Center"
+            alignItems="Center"
+        >
+            <VBox id="IDGenVBox"  class="image">
+            
+            <Image id="subimagePreview" width="300px" />
+        </VBox>
+        </FlexBox>
+    </Page>
+</mvc:View>

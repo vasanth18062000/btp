@@ -6,7 +6,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller"], function (Controller) {
       var oRouter = this.getOwnerComponent().getRouter();
       oRouter
         .getRoute("Preview")
-        .attachPatternMatched(this._onRouteMatched, this);
+        .attachPatternMatched(this.onRouteMatched, this);
 
       // Create a JSONModel instance
       var oViewModel = new sap.ui.model.json.JSONModel();
@@ -15,7 +15,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller"], function (Controller) {
       this.getView().setModel(oViewModel, "viewModel");
     },
 
-    _onRouteMatched: function (oEvent) {
+    onRouteMatched: function (oEvent) {
       var base64Content = oEvent.getParameter("arguments").base64Content;
       var decodedData = atob(base64Content);
       console.log("Base64 Content from URL:", decodedData);
@@ -43,5 +43,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller"], function (Controller) {
       downloadLink.click();
       document.body.removeChild(downloadLink);
     },
+
+    onPrintPress: function () {
+      window.print();
+    }
   });
 });

@@ -24,6 +24,13 @@
                     press="onDownloadPress"
                     type="Ghost"
                 />
+                <Button
+                    id="_IDGenButton2"
+                    text="Print"
+                    icon="sap-icon://print"
+                    press="onPrintPress"
+                    type="Ghost"
+                />
             </contentRight>
         </Bar>
     </Page>

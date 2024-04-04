@@ -29,7 +29,7 @@ sap.ui.define(
           selector: "#myEditor",
           customToolbar: false,
           showGroupFont: true, // hide font-related groups
-          showGroupLink: false, // hide link-related groups
+          showGroupLink: true, // hide link-related groups
           showGroupInsert: true, // hide insert-related groups
           showGroupClipboard: false, // hide clipboard-related groups
           showGroupUndo: true, // hide undo-related groups
@@ -41,12 +41,18 @@ sap.ui.define(
           showGroupColor: false, // hide color-related groups
           showGroupHighlight: false, // hide highlight-related groups
           toolbar: "custom-toolbar",
-          setup: function (editor) {
-            editor.ui.registry.addButton("custom-toolbar", {
-              text: "Custom Toolbar",
-              icon: "image",
-            });
+          tinymceSettings: {
+            plugins: 'image',
+            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+            images_upload_url: '/uploadImage',  // URL for image upload endpoint on the server
+            automatic_uploads: true,
           },
+          // setup: function (editor) {
+          //   editor.ui.registry.addButton("custom-toolbar", {
+          //     text: "Custom Toolbar",
+          //     icon: "image",
+          //   });
+          // },
           liveChange: function (oEvent) {
             that.updateDocumentContent(oEvent.getSource().getValue());
           },
@@ -56,7 +62,7 @@ sap.ui.define(
               : this.addButtonGroup("table");
           },
         }).addStyleClass("myRichTextEditor");
-
+ 
         var row = new sap.m.ColumnListItem({
           cells: [oRichTextEditor],
         });
@@ -85,7 +91,7 @@ sap.ui.define(
       saveClick: function () {
         var content = this.mergeContent();
         if (content.trim() !== "") {
-          var formattedContent = "<html><body>" + content + "</body></html>";
+          var formattedContent =  content ;
           var blob = new Blob([formattedContent], {});
 
           // Convert content to base64
@@ -118,6 +124,7 @@ sap.ui.define(
           success: function () {
             oViewModel.setProperty("/isPreviewButtonEnabled", true);
             console.log("Data added to the database successfully");
+            that.getView().byId("IDGenButton3").setVisible(true);
             MessageToast.show("Table data added successfully");
 
             // Call a function to preview the data
@@ -132,7 +139,6 @@ sap.ui.define(
           },
         });
       },
-
       clearForm: function () {
         // Implement your form clearing logic here
       },

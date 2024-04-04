@@ -448,8 +448,9 @@ sap.ui.define(
                     },
                   });
                 });
+
                 //preview button enable link
-                this.getView().byId("_IDGenButtn2").setVisible(true);
+                this.getView().byId("_IDGenButtn2").setVisible(true); 
 
                 console.log("main section data", mainSectionData);
 
