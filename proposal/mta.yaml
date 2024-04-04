@@ -22,15 +22,7 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: proposal-db
       - name: proposal-auth
-
-  - name: proposal-db-deployer
-    type: hdb
-    path: gen/db
-    parameters:
-      buildpack: nodejs_buildpack
-    requires:
       - name: proposal-db
 
   - name: proposal
@@ -49,12 +41,15 @@ modules:
           forwardAuthToken: true
       - name: proposal-auth
 
-resources:
-  - name: proposal-db
-    type: com.sap.xs.hdi-container
+  - name: proposal-db-deployer
+    type: hdb
+    path: gen/db
     parameters:
-      service: hana
-      service-plan: hdi-shared
+      buildpack: nodejs_buildpack
+    requires:
+      - name: proposal-db
+
+resources:
   - name: proposal-auth
     type: org.cloudfoundry.managed-service
     parameters:
@@ -64,3 +59,8 @@ resources:
       config:
         xsappname: proposal-${org}-${space}
         tenant-mode: dedicated
+  - name: proposal-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
