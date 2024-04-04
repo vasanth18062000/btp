@@ -1,1 +1,0 @@
-id,createdAt,createdBy,modifiedAt,modifiedBy,orderNumber,orderDateTime,price,paymentType,orderStatus_orderStatusCode,relationCustomerToOrder_id,relationHotelToOrder_id
