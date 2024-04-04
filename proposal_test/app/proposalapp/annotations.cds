@@ -1,1 +1,0 @@
-using ProposalSystemServices as service from '../../srv/service';

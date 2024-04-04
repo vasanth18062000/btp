@@ -1,4 +1,0 @@
-id,createdAt,createdBy,modifiedAt,modifiedBy,referenceId,projectName,PS_PROJECT_TYPE_id,proposedDate,validTillDate,proposedBy,proposerRole,proposerDepartment,PS_VENDOR_ORG_id,PS_CUSTOMER_ORG_id
-1,2024-03-15T10:00:00Z,John Doe,2024-03-15T10:00:00Z,John Doe,REF1,Project 1,1,2024-04-01,2024-05-01,John Doe,Manager,Department A,1,1
-2,2024-03-16T11:00:00Z,Jane Smith,2024-03-16T11:00:00Z,Jane Smith,REF2,Project 2,2,2024-04-02,2024-05-02,Jane Smith,Director,Department B,2,2
-3,2024-03-17T12:00:00Z,Mike Johnson,2024-03-17T12:00:00Z,Mike Johnson,REF3,Project 3,3,2024-04-03,2024-05-03,Mike Johnson,Manager,Department C,3,3
