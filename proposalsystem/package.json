@@ -24,7 +24,13 @@
   },
   "cds": {
     "requires": {
-      "db": "hana"
+      "db": "hana",
+      "[production]": {
+        "db": "hana"
+      },
+      "[test]": {
+        "db": "hana"
+      }
     }
   }
 }

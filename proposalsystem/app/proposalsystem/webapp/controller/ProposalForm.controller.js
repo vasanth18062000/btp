@@ -6,53 +6,37 @@ sap.ui.define(
 function (Controller, Input, MessageToast, RichTextEditor, MessageBox, Dialog, Button, JSONModel, library, uid) {
     "use strict";
 
+    var mergeDatas;
+
 function generateMainSectionId() {
       return Math.floor(Math.random() * 1000000) + 1;
-      }
+}
 
-  
-
-  var createdMainSectionIds = [];
-  var createdSubSectionIds = [];
-
-  var mainsectionsaveddata;
-
-  var imageuploadarray = [];
-
-  var _mainSectionsImage =[];
-
-        var _subSectionsImage =[];
+              var createdMainSectionIds = [];
+              
+              var mainsectionsaveddata;
+              var imageuploadarray = [];
 
     return Controller.extend("ns.propose.controller.ProposalForm", {
 
-      _sectionTitle: 1,
-      _mainSectionId: 1000,
-      _SubSectionId: 1,
-      _mainSections: [], // Array to store Main Section data
-      _subsection: 1,
-      _subSections: [],
-     
-      _imagecount: 0,
-      _inputString: "",
-      _subSectionCounter: 2000,
-      _sectionCounters: {},
-
-      _table: 1,
-      _tableitem: 1,
-      textitem: 1,
-      _uploadedImages: [],
-
-      
-
-
+              _sectionTitle: 1,
+              _mainSectionId: 1000,
+              _SubSectionId: 1,
+              _mainSections: [], // Array to store Main Section data
+              _subsection: 1,
+              _subSections: [],
+              _imagecount: 0,
+              _inputString: "",
+              _subSectionCounter: 2000,
+              _sectionCounters: {},
+              _table: 1,
+              _tableitem: 1,
+              textitem: 1,
+              _uploadedImages: [],
 
 onInit: function () {
 
-
-      
         this._tableitem = 1;
-
-
         this._sectionTitle = 1;
         this._mainSectionId = 1000;
         this._mainSections = [1];
@@ -61,22 +45,12 @@ onInit: function () {
         this._subsection = [1];
         this._SubSectionId = 1;
         this._imagecount = 0;
-
         this._subSectionCounter = 2000;
         this._sectionCounters = {};
-
-
-
         this._setInitialSectionTitle();
-
         this._table = 1;
         this.textitem = 1;
-
         this._uploadedImages;
-
-        
-
-        
 
       },
 
@@ -85,10 +59,10 @@ _setInitialSectionTitle: function () {
         var that = this;
         // Generate a unique ID for the new Input field
         var wizard = this.getView().byId("wizard");
-        var currentStep = wizard.getProgressStep();
+        var currentStep = wizard.getProgressStep(); // -1 or 0
         var allSteps = wizard.getSteps();
         var currentStepIndex = allSteps.indexOf(currentStep); // Adding 1 since steps are usually 1-indexed
-        var inputId = 'Section-' + this._sectionTitle++;
+        var inputId = 'Section-Input-' + this._sectionTitle++;
         this._titleSubInputCounter = 0;
         this._titleSubInputCounter++;
 
@@ -145,71 +119,6 @@ _setInitialSectionTitle: function () {
           console.error("idFrame not found for step " + currentStepIndex);
         }
       },
-      
-// onAddRowTextArea: function (isMainSection) {
-//         var that = this;
-//         var wizard = that.getView().byId("wizard");
-//         var currentStep = wizard.getProgressStep();
-//         var currentStepIndex = wizard.getSteps().indexOf(currentStep);
-//         var textItemId = "Text-" + that.textitem++;
-      
-//         // Check if idFrame exists in the view
-//         var idFrame = that.getView().byId('idFrame' + currentStepIndex);
-    
-//         if (idFrame) {
-//             var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
-//                 id: textItemId,
-//                 width: "100%",
-//                 editorType: sap.ui.richtexteditor.EditorType.bIsTinyMCE5,
-//                 showGroupFont: true,
-//                 showGroupLink: true,
-//                 showGroupInsert: true,
-//                 showGroupClipboard: true,
-//                 showGroupUndo: true,
-//                 showGroupTextAlign: true,
-//                 showGroupFontStyle: true,
-//             }).addStyleClass("myRichTextEditor");
-        
-//             var row = new sap.m.ColumnListItem({
-//                 cells: [richTextEditor],
-//             });
-        
-//             idFrame.addItem(row);
-        
-//             // Initialize main section text array if not already initialized
-//             if (!that._mainSectionTextArray) {
-//                 that._mainSectionTextArray = [];
-//             }
-          
-        
-//             //event listener for saving base64 content on change
-//             richTextEditor.attachChange(function (oEvent) {
-//               var editorContent = richTextEditor.getValue();
-//               var base64Content = editorContent.trim() ? btoa(editorContent) : null;
-          
-//               if (!base64Content) {
-//                   // If base64Content is null, set it to an empty string to ensure consistent behavior
-//                   base64Content = "";
-//               }
-            
-//               if (isMainSection) {
-//                 // Save main section text as an array
-//                 that._mainSectionTextArray[currentStepIndex] = base64Content;
-//                 console.log("Main Section Text Array:", that._mainSectionTextArray);
-//             } else {
-//                 // Save subsection text as an array
-//                 that._subSectionTextArray[currentStepIndex] = base64Content;
-//                 console.log("Sub Section Text Array:", that._subSectionTextArray);
-//             }
-//           });
-        
-//             console.log("Rich Text Area added successfully");
-//         } else {
-//             console.error("idFrame not found for step " + currentStepIndex);
-//             // Handle the situation when idFrame is not found
-//             // Display an error message or take alternative actions
-//         }
-//     },
     
 onAddRowTextArea: function (isMainSection) {
   var that = this;
@@ -222,6 +131,9 @@ onAddRowTextArea: function (isMainSection) {
 
   // Check if idFrame exists in the view
   var idFrame = that.getView().byId("idFrame" + currentStepIndex);
+
+  console.log(idFrame);
+  
   if (idFrame) {
     var richTextEditor = new sap.ui.richtexteditor.RichTextEditor({
       id: textItemId,
@@ -245,7 +157,7 @@ onAddRowTextArea: function (isMainSection) {
     if (!that._mainSectionTextArray) {
       that._mainSectionTextArray = [];
     }
-    if (!that._subSectionTextArray) {
+    else {
       that._subSectionTextArray = [];
     }
 
@@ -471,18 +383,19 @@ saveMainAndSubSections: function () {
 
                 var imgData = sourceJson.key2;
 
-                console.log("decoded data", sourceJson);
+               console.log("decoded data", sourceJson);
 
-                console.log("image data gopi", imgData);
+                console.log("image data", imgData);
 
                 sessionStorage.setItem(
                   "mainSectionData",
                   JSON.stringify(sourceJson)
                 );
+
                 resolve();
-                // mergeDatas = mainSectionData;
-                // // mainDatas = mainSectionData;
-                // console.log("main datas", mergeDatas);
+                mergeDatas = mainSectionData;
+                // mainDatas = mainSectionData;
+                console.log("main datas", mergeDatas);
               },
               error: function (error) {
                 reject(error);
@@ -491,6 +404,8 @@ saveMainAndSubSections: function () {
           });
           //preview button enable link
           // this.getView().byId("_IDGenButtn2").setVisible(true);
+
+          this.getView().byId("_IDGenButtn2").setVisible(true);
 
           console.log("main section data", mainSectionData);
 
@@ -565,7 +480,7 @@ saveMainAndSubSections: function () {
                     method: "POST",
                     success: function (data, response) {
                       MessageToast.show(
-                        "MAin and Subsection Added Successfully in DB "
+                        "Main and Subsection Added Successfully in DB "
                       );
                       createdSubSectionIds.push(subSectionData.id);
                       resolve();
@@ -576,11 +491,34 @@ saveMainAndSubSections: function () {
                   });
                 });
                 //  subDatas=subSectionData;
-                console.log("subsection data", subSectionData);
-                // console.log("data",datas);
-                promises.push(promise);
-                promises.push(promise);
-                break;
+               console.log("subsection data", subSectionData);
+                      var decodedtext = atob(subSectionData.textarea);
+                      var subTitle  = subSectionData.subSectiontitle;
+
+
+                      var sourceSubJson = {
+                        id: subSectionData.id,
+                        key2: subSectionData.imagearea,
+                        //key2: decodedimage,
+                        decodedtextkey3: decodedtext,
+                        subSectiontitle: subTitle,
+                      };
+                      var imagedataforsub = sourceSubJson.key2
+
+                      console.log("sub image data",imagedataforsub);
+
+                      
+
+                      console.log("sub data:", sourceSubJson);
+                      sessionStorage.setItem(
+                        "subSectionData",
+                        JSON.stringify(sourceSubJson)
+                      );
+
+                      // console.log("data",datas);
+                      promises.push(promise);
+                      promises.push(promise);
+                      break;
               }
 
               j++; // Increment j for next iteration
@@ -876,11 +814,14 @@ onAddTable: function(bIsTinyMCE5) {
       },
       
 onPreview: function () {
-         
-          console.log("Created Mian Section Id : " + createdMainSectionIds);
-          this.getOwnerComponent().getRouter().navTo("PreviewForm",{mainpreviewid:mainsectionsaveddata.value1});
-          console.log("Navigating to Next Page...");
+        //  var mergeDatas = [id, textarea];
+        console.log("Preview Button");
+        this.getOwnerComponent().getRouter().navTo("PreviewForm", {
+          mergeDatas: mergeDatas.id,
+        });
       },
+
+
       });
     }
   );

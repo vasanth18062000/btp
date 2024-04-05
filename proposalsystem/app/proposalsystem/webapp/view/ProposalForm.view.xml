@@ -552,6 +552,68 @@
                             </VBox>
                         </WizardStep>
 
+                         <WizardStep
+                            title="Step 9"
+                            id="wizard9"
+                            class="proposalform"
+                        >
+                            <VBox>
+                                <Table
+                                    id="idFrame8"
+                                    growing="true"
+                                    growingDirection="Downwards"
+                                    class="table"
+                                >
+                                    <headerToolbar>
+                                        <Toolbar id="_IDGenToolbar9">
+                                            <ToolbarSpacer
+                                                id="_IDGenToolbarSpacer9"
+                                            />
+                                             <Button
+                                                id="_IDGenButton9"
+                                                press="onAddRowTextArea"
+                                                text="Add Description"
+                                                class="buttonfortool"
+                                                icon="sap-icon://add-coursebook"
+                                                iconDensityAware="true"
+                                            />
+
+                                            <Button
+                                                text="Add Sub-Section"
+                                                class="buttonfortool"
+                                                press="onSubSection"
+                                                icon="sap-icon://sys-add"
+                                            />
+
+                                            <Button
+                                                    
+                                                    text="Add Image"
+                                                    press="onAddImage"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://picture"/>
+
+                                                     <Button 
+                                                    
+                                                    text="Add Table"
+                                                    press="onAddTable"
+                                                    class="buttonfortool"
+                                                    icon="sap-icon://table-view"/>
+                                        </Toolbar>
+                                    </headerToolbar>
+                                    <columns>
+                                        <Column id="coloumn9" />
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem
+                                            id="_IDGenColumnListItem9"
+                                        >
+                                            <cells />
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </VBox>
+                        </WizardStep>
+
                       
                     </steps>
                 </Wizard>
@@ -578,7 +640,9 @@
                               <Button
                                 text="Preview"
                                 press="onPreview"
+                                id="_IDGenButtn2"
                                 type="Accept"
+                                visible="false"
                             />
 
                             <Button

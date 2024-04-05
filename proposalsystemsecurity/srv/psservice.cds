@@ -8,13 +8,7 @@ namespace com.ladera.proposalSystemServices;
 
 service PropsalSystem {
 
-    @requires: 'User'
-@restrict: [{ grant: 'READ'}]
-
     entity UserCredentials as projection on psModels.LoginCredentials;
-
-    @requires: 'Admin'
-@restrict: [{ grant: '*'}]
 
     entity ProposalOwner as projection on psModels.ProposalOwner;
 

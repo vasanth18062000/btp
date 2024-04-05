@@ -1,5 +1,5 @@
 _schema-version: '3.1'
-ID: proposalsystembackend
+ID: proposalsystemsecurity
 version: 1.0.0
 description: "A simple CAP project."
 parameters:
@@ -10,7 +10,7 @@ build-parameters:
       commands:
         - npx cds build --production
 modules:
-  - name: proposalsystembackend-srv
+  - name: proposalsystemsecurity-srv
     type: nodejs
     path: gen/srv
     parameters:
@@ -22,29 +22,29 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: proposalsystembackend-db
-      - name: proposalsystembackend-auth
+      - name: proposalsystemsecurity-db
+      - name: proposalsystemsecurity-auth
 
-  - name: proposalsystembackend-db-deployer
+  - name: proposalsystemsecurity-db-deployer
     type: hdb
     path: gen/db
     parameters:
       buildpack: nodejs_buildpack
     requires:
-      - name: proposalsystembackend-db
+      - name: proposalsystemsecurity-db
 
 resources:
-  - name: proposalsystembackend-db
+  - name: proposalsystemsecurity-db
     type: com.sap.xs.hdi-container
     parameters:
       service: hana
       service-plan: hdi-shared
-  - name: proposalsystembackend-auth
+  - name: proposalsystemsecurity-auth
     type: org.cloudfoundry.managed-service
     parameters:
       service: xsuaa
       service-plan: application
       path: ./xs-security.json
       config:
-        xsappname: proposalsystembackend-${org}-${space}
+        xsappname: proposalsystemsecurity-${org}-${space}
         tenant-mode: dedicated

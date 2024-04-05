@@ -119,7 +119,7 @@
 
         {
           "name": "PreviewForm",
-          "pattern": "PreviewForm/{mainpreviewid}",
+          "pattern": "PreviewForm/{mergeDatas}",
           "target": ["PreviewForm"]
         }
 
