@@ -1,7 +1,7 @@
 # Generated manifest.yml based on template version 0.1.0
 # appName = proposal
 # language=nodejs
-# multitenancy=
+# multitenancy=false
 ---
 applications:
 # -----------------------------------------------------------------------------------
