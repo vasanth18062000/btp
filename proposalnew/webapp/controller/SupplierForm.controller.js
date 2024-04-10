@@ -6,7 +6,7 @@ sap.ui.define([
     "use strict";
     var newSupplierId;
     var supName;
-    return Controller.extend("ns.ui5.controller.SupplierForm", {
+    return Controller.extend("ns.proposalnew.controller.SupplierForm", {
         // Function to generate a random 5-digit number
         generateRandomNumber: function () {
             return Math.floor(10000 + Math.random() * 90000);
