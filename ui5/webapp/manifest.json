@@ -42,6 +42,15 @@
                     "localUri": "localService/ProposalService/metadata.xml",
                     "odataVersion": "4.0"
                 }
+            },
+            "proposal-section": {
+                "uri": "/v2/odata/v4/proposal-section/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/proposal-section/metadata.xml",
+                    "odataVersion": "2.0"
+                }
             }
         }
     },
@@ -113,6 +122,18 @@
                     "autoExpandSelect": true,
                     "earlyRequests": true
                 }
+            },
+            "proposal-section": {
+                "dataSource": "proposal-section",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
             }
         },
         "resources": {
@@ -144,80 +165,79 @@
                     "name": "supplierForm",
                     "pattern": "supplierForm",
                     "target": [
-                      "supplierForm"
+                        "supplierForm"
                     ]
-                  },
-                  {
+                },
+                {
                     "name": "clientForm",
                     "pattern": "clientForm",
                     "target": [
-                      "clientForm"
+                        "clientForm"
                     ]
-                  },
-                  {
+                },
+                {
                     "name": "clientView",
                     "pattern": "clientView/{clientId}",
                     "target": [
-                      "clientView"
+                        "clientView"
                     ]
-                  },
-                  {
+                },
+                {
                     "name": "supplierView",
                     "pattern": "supplierView/{supplierId}",
                     "target": [
-                      "supplierView"
+                        "supplierView"
                     ]
-                  },
-                  {
+                },
+                {
                     "name": "supplierViewEdit",
                     "pattern": "supplierViewEdit",
                     "target": [
-                      "supplierViewEdit"
+                        "supplierViewEdit"
                     ]
-                  },
-                  {
+                },
+                {
                     "name": "clientViewEdit",
                     "pattern": "clientViewEdit",
                     "target": [
-                      "clientViewEdit"
+                        "clientViewEdit"
                     ]
-                  },
-                  {
+                },
+                {
                     "name": "clientUpdateForm",
                     "pattern": "clientUpdateForm/{SelectedItem}",
                     "target": [
-                      "clientUpdateForm"
+                        "clientUpdateForm"
                     ]
-                  },
-                  {
+                },
+                {
                     "name": "supplierUpdateForm",
                     "pattern": "supplierUpdateForm/{SelectedItem}",
                     "target": [
-                      "supplierUpdateForm"
+                        "supplierUpdateForm"
                     ]
-                  },
-          
-                  {
+                },
+                {
                     "name": "PreviewForm",
                     "pattern": "PreviewForm/{mergeDatas}",
-                    "target": ["PreviewForm"]
-                  },
-          
-                  {
+                    "target": [
+                        "PreviewForm"
+                    ]
+                },
+                {
                     "name": "ProposalCreation",
                     "pattern": "ProposalCreation",
                     "target": [
-                      "ProposalCreation"
+                        "ProposalCreation"
                     ]
-                  },
-          
-                  {
+                },
+                {
                     "name": "supplierPreviewEdit",
                     "pattern": "supplierPreviewEdit",
                     "target": [
-                      "supplierPreviewEdit"
+                        "supplierPreviewEdit"
                     ]
-                  }
+                }
             ],
             "targets": {
                 "TargetView1": {
@@ -230,47 +250,47 @@
                 "supplierForm": {
                     "viewId": "SupplierForm",
                     "viewName": "SupplierForm"
-                  },
-                  "clientForm": {
+                },
+                "clientForm": {
                     "viewId": "ClientForm",
                     "viewName": "ClientForm"
-                  },
-                  "clientView": {
+                },
+                "clientView": {
                     "viewId": "ClientView",
                     "viewName": "ClientView"
-                  },
-                  "supplierView": {
+                },
+                "supplierView": {
                     "viewId": "SupplierView",
                     "viewName": "SupplierView"
-                  },
-                  "supplierViewEdit": {
+                },
+                "supplierViewEdit": {
                     "viewId": "SupplierViewEdit",
                     "viewName": "SupplierViewEdit"
-                  },
-                  "clientViewEdit": {
+                },
+                "clientViewEdit": {
                     "viewId": "ClientViewEdit",
                     "viewName": "ClientViewEdit"
-                  },
-                  "clientUpdateForm": {
+                },
+                "clientUpdateForm": {
                     "viewId": "ClientUpdateForm",
                     "viewName": "ClientUpdateForm"
-                  },
-                  "supplierUpdateForm": {
+                },
+                "supplierUpdateForm": {
                     "viewId": "SupplierUpdateForm",
                     "viewName": "SupplierUpdateForm"
-                  },
-                  "ProposalCreation": {
+                },
+                "ProposalCreation": {
                     "viewId": "ProposalForm",
                     "viewName": "ProposalForm"
-                  },
-                  "supplierPreviewEdit": {
+                },
+                "supplierPreviewEdit": {
                     "viewId": "SupplierPreviewEdit",
                     "viewName": "SupplierPreviewEdit"
-                  },
-                  "PreviewForm":{
+                },
+                "PreviewForm": {
                     "viewName": "PreviewForm",
                     "viewLevel": 2
-                  }
+                }
             }
         },
         "rootView": {

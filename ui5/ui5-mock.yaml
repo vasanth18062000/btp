@@ -20,6 +20,8 @@ server:
             url: https://aa7efdc3trial-dev-proposal-srv.cfapps.us10-001.hana.ondemand.com
           - path: /odata/v4/ProposalService/
             url: https://96d64a93trial-dev-proposalsystem-srv.cfapps.us10-001.hana.ondemand.com
+          - path: /v2/odata/v4/proposal-section/
+            url: https://aa7efdc3trial-dev-proposal-srv.cfapps.us10-001.hana.ondemand.com
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
@@ -48,4 +50,8 @@ server:
           - urlPath: /odata/v4/ProposalService/
             metadataXmlPath: ./webapp/localService/ProposalService/metadata.xml
             mockdataRootPath: ./webapp/localService/ProposalService/mockdata
+            generateMockData: true
+          - urlPath: /v2/odata/v4/proposal-section/
+            metadataXmlPath: ./webapp/localService/proposal-section/metadata.xml
+            mockdataRootPath: ./webapp/localService/proposal-section/mockdata
             generateMockData: true

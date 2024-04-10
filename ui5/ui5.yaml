@@ -22,6 +22,8 @@ server:
             url: https://aa7efdc3trial-dev-proposal-srv.cfapps.us10-001.hana.ondemand.com
           - path: /odata/v4/ProposalService/
             url: https://96d64a93trial-dev-proposalsystem-srv.cfapps.us10-001.hana.ondemand.com
+          - path: /v2/odata/v4/proposal-section/
+            url: https://aa7efdc3trial-dev-proposal-srv.cfapps.us10-001.hana.ondemand.com
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
